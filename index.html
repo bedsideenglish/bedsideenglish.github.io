@@ -531,7 +531,7 @@
               <span data-i18n="platform_desktop_point_2">Demo Mode works without an API key</span>
               <span data-i18n="platform_desktop_point_3">Screenshots throughout this page are the real app</span>
             </div>
-            <a class="button button-primary" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest" target="_blank" rel="noreferrer"><span data-i18n="platform_desktop_cta">Download for Windows</span><span class="button-arrow">↗</span></a>
+            <a class="button button-primary" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip"><span data-i18n="platform_desktop_cta">Download for Windows</span><span class="button-arrow">↓</span></a>
           </article>
           <article class="platform-card is-soon">
             <div class="platform-card-head"><h3 data-i18n="platform_android_name">Android</h3><span class="platform-status" data-i18n="platform_android_status">Coming soon</span></div>
@@ -567,10 +567,11 @@
         <div class="download-copy"><span class="section-code">07 / START</span><h2 data-i18n="download_title">Speak before you feel ready.</h2><p data-i18n="download_body">Open Demo Mode without an API key, or connect your own supported provider for live voice. Free and open source on both platforms.</p></div>
         <div class="download-panel">
           <div class="download-panel-head" data-i18n="download_panel_desktop_title">Desktop / GitHub Releases</div>
-          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest" target="_blank" rel="noreferrer"><span class="platform-icon">W</span><span><strong>Windows</strong><span data-i18n="view_release">View release files</span></span><b>↗</b></a>
+          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip"><span class="platform-icon">W</span><span><strong>Windows</strong><span data-i18n="download_zip">Download the .zip</span></span><b>↓</b></a>
           <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop#-quick-start-running-from-source" target="_blank" rel="noreferrer"><span class="platform-icon">M</span><span><strong>macOS</strong><span data-i18n="build_source">Build from source</span></span><b>↗</b></a>
           <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop#-quick-start-running-from-source" target="_blank" rel="noreferrer"><span class="platform-icon">L</span><span><strong>Linux</strong><span data-i18n="build_source">Build from source</span></span><b>↗</b></a>
-          <div class="download-note" data-i18n="download_note_desktop">Windows builds are published automatically on every release. macOS and Linux aren't packaged yet — run from source using the README instructions.</div>
+          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer"><span class="platform-icon">◆</span><span><strong data-i18n="desktop_source_title">Source</strong><span data-i18n="desktop_source_body">Read the README on GitHub</span></span><b>↗</b></a>
+          <div class="download-note" data-i18n="download_note_desktop">Downloads straight as a .zip — unzip it, open the folder, and double-click MedVoiceTrainer.exe to start (no installer). macOS and Linux aren't packaged yet — run from source using the README instructions.</div>
         </div>
         <div class="download-panel">
           <div class="download-panel-head" data-i18n="download_panel_android_title">Android / Pre-launch</div>
@@ -591,7 +592,7 @@
           <details><summary data-i18n="faq_android_q">Is the Android app on Google Play yet?</summary><div class="faq-answer" data-i18n="faq_android_a">Not yet — it's pre-launch. You can already build and run it yourself from the Android repo using Android Studio; a Play Store listing is planned.</div></details>
           <details><summary data-i18n="faq_3_q">Can I try it without an API key?</summary><div class="faq-answer" data-i18n="faq_3_a">Yes. Demo Mode (desktop) and Mock voice mode (Android) run a guided practice flow without a key or microphone. Live AI voice and provider-based analysis require a supported API key.</div></details>
           <details><summary data-i18n="faq_4_q">Is the app completely free?</summary><div class="faq-answer" data-i18n="faq_4_a">Both apps are free and open source. Provider-based live AI usage depends on the model, free tier, and plan attached to your own API key.</div></details>
-          <details><summary data-i18n="faq_5_q">Why might my operating system show a warning?</summary><div class="faq-answer" data-i18n="faq_5_a">Early open-source desktop releases may be unsigned. Confirm the file came from this project’s GitHub Releases page, inspect the source if you wish, then use your operating system’s one-time open or run-anyway flow.</div></details>
+          <details><summary data-i18n="faq_5_q">Why might my operating system show a warning?</summary><div class="faq-answer" data-i18n="faq_5_a">Early open-source desktop releases are unsigned, so Windows SmartScreen may say “Windows protected your PC.” Click <strong>More info</strong>, then <strong>Run anyway</strong> — the file comes straight from this project’s GitHub Releases, and you’re welcome to inspect the source first.</div></details>
         </div>
       </div>
     </section>
@@ -661,8 +662,9 @@
         ledger_account: '앱 계정', ledger_account_body: '계정이나 Bedside English 클라우드 프로필 없음', ledger_history: '학습 기록', ledger_history_body: '세션, 실수, 성장 기록은 로컬에 보관', ledger_telemetry: 'Telemetry 수집기', ledger_telemetry_body: '현재 빌드에는 설정되지 않음', ledger_ai: 'AI 기반 세션', ledger_ai_body: '필요한 음성이나 텍스트만 선택한 제공자로 직접 전송', state_none: '없음', state_device: '기기 내부', state_inactive: '비활성', state_direct: '직접 연결',
         trust_note: '가상 또는 비식별화된 사례를 사용하세요. 데이터 처리는 설정한 제공자와 계정 정책을 따릅니다. 향후 익명 telemetry가 활성화되더라도 명시적 동의가 필요하며 음성, 대화 내용, API 키, 자유 입력 텍스트는 제외됩니다.',
         download_title: '준비되기 전에 말하세요.', download_body: 'API 키 없이 Demo Mode를 열거나, 지원되는 내 AI 제공자를 연결해 실시간 음성을 사용하세요. 두 플랫폼 모두 무료 오픈소스입니다.',
-        download_panel_desktop_title: '데스크톱 / GitHub Releases', view_release: '릴리스 파일 보기', build_source: '소스에서 빌드',
-        download_note_desktop: 'Windows 빌드는 릴리스마다 자동으로 게시됩니다. macOS와 Linux는 아직 패키징되지 않았습니다 — README 안내에 따라 소스에서 직접 실행하세요.',
+        download_panel_desktop_title: '데스크톱 / GitHub Releases', download_zip: '.zip 다운로드', build_source: '소스에서 빌드',
+        desktop_source_title: '소스 코드', desktop_source_body: 'GitHub에서 README 보기',
+        download_note_desktop: '.zip 파일이 바로 다운로드됩니다 — 압축을 풀고 폴더 안의 MedVoiceTrainer.exe를 더블클릭하면 실행됩니다 (설치 프로그램 없음). macOS와 Linux는 아직 패키징되지 않았습니다 — README 안내에 따라 소스에서 직접 실행하세요.',
         download_panel_android_title: 'Android / 출시 전', android_play_title: 'Google Play', android_play_soon: '출시 예정',
         android_source_title: 'Android Studio', android_star_title: '저장소 Watch', android_star_body: '출시 시 알림 받기',
         download_note_android: '아직 Play 스토어에 등록되지 않았습니다. 그동안 저장소를 클론해 Android Studio에서 직접 실행해 보세요 — 설정 방법은 README를 참고하세요.',
@@ -672,7 +674,7 @@
         faq_android_q: 'Android 앱은 이미 Google Play에 있나요?', faq_android_a: '아직입니다 — 출시 전 단계입니다. 지금도 Android 저장소를 Android Studio로 직접 빌드해 실행해 볼 수 있으며, Play 스토어 등록은 계획되어 있습니다.',
         faq_3_q: 'API 키 없이 체험할 수 있나요?', faq_3_a: '네. 데스크톱의 Demo Mode와 Android의 Mock 음성 모드는 키나 마이크 없이 안내형 연습 흐름을 실행합니다. 실시간 AI 음성과 제공자 기반 분석에는 지원되는 API 키가 필요합니다.',
         faq_4_q: '앱은 완전히 무료인가요?', faq_4_a: '두 앱 모두 무료 오픈소스입니다. 제공자 기반 실시간 AI 사용 비용은 내 API 키에 연결된 모델, 무료 사용량, 요금제에 따라 달라집니다.',
-        faq_5_q: '운영체제에서 경고가 뜰 수 있는 이유는 무엇인가요?', faq_5_a: '초기 오픈소스 데스크톱 릴리스는 서명되지 않았을 수 있습니다. 이 프로젝트의 GitHub Releases에서 받은 파일인지 확인하고, 원하면 소스도 살펴본 뒤 운영체제의 일회성 열기 또는 실행 절차를 사용하세요.',
+        faq_5_q: '운영체제에서 경고가 뜰 수 있는 이유는 무엇인가요?', faq_5_a: '초기 오픈소스 데스크톱 릴리스는 서명되어 있지 않아, Windows SmartScreen이 "Windows의 PC 보호"라는 경고를 띄울 수 있습니다. <strong>추가 정보</strong>를 클릭한 뒤 <strong>실행</strong>을 누르세요 — 파일은 이 프로젝트의 GitHub Releases에서 직접 받은 것이며, 원하면 먼저 소스 코드를 살펴보셔도 됩니다.',
         footer_note: 'Bedside English: Talk & Train / 무료 오픈소스 / 의료기기가 아님', footer_source_desktop: '데스크톱 소스 보기 ↗', footer_source_android: 'Android 소스 보기 ↗'
       }
     };
