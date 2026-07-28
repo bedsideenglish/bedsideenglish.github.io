@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <title>Privacy Policy — Bedside English: Talk &amp; Train</title>
+  <meta name="description" content="How Bedside English: Talk & Train (Desktop and Android) handles your data: what stays on your device, what goes to the AI provider you configure, and what we never collect.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bedside English: Talk & Train">
+  <meta property="og:title" content="Privacy Policy — Bedside English: Talk & Train">
+  <meta property="og:url" content="https://boyskier.github.io/bedside-english/privacy.html">
+  <link rel="canonical" href="https://boyskier.github.io/bedside-english/privacy.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4f2ec; --ink: #0b1020; --ink-soft: #414755;
+      --cobalt: #1e40af; --cobalt-pale: #e6edff; --rule: #c8c5bb; --white: #fff;
+      --display: Manrope, sans-serif; --mono: "IBM Plex Mono", Consolas, monospace;
+      --shell: min(880px, calc(100vw - 48px));
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--display); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--cobalt); }
+    .shell { width: var(--shell); margin-inline: auto; }
+    header.site-header { min-height: 74px; display: flex; align-items: center; border-bottom: 1px solid var(--ink); background: var(--paper); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: .92rem; font-weight: 800; letter-spacing: -.035em; text-decoration: none; color: var(--ink); }
+    .brand-mark { width: 31px; height: 31px; display: grid; place-items: center; color: white; background: var(--cobalt); }
+    .brand-mark svg { width: 18px; height: 18px; }
+    main { padding: 56px 0 90px; }
+    .doc-kicker { color: var(--cobalt); font: 600 .68rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    h1 { margin: 14px 0 6px; font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -.04em; }
+    .doc-meta { margin: 0 0 40px; color: #6b6f79; font: 500 .72rem var(--mono); text-transform: uppercase; }
+    h2 { margin: 46px 0 12px; font-size: 1.35rem; font-weight: 750; letter-spacing: -.02em; }
+    p, li { color: var(--ink-soft); font-size: .96rem; }
+    ul { padding-left: 1.2em; }
+    li { margin: 8px 0; }
+    .callout { margin: 18px 0; padding: 18px 20px; border: 1px solid var(--ink); background: var(--cobalt-pale); }
+    .callout p { margin: 0; color: var(--ink); }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .88rem; }
+    th, td { text-align: left; padding: 10px 12px; border: 1px solid var(--rule); vertical-align: top; }
+    th { background: var(--white); font: 600 .68rem var(--mono); text-transform: uppercase; }
+    code { padding: 2px 5px; border: 1px solid var(--rule); background: var(--white); font: 500 .82em var(--mono); }
+    footer.site-footer { min-height: 90px; display: flex; align-items: center; border-top: 1px solid var(--ink); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 30px; color: #5b606a; font: 500 .62rem var(--mono); text-transform: uppercase; }
+    .footer-inner a { color: var(--cobalt); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Bedside English</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <span class="doc-kicker">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p class="doc-meta">Effective 2026-07-28 · Applies to both the Windows Desktop app and the Android app ("Bedside English: Talk &amp; Train", internal codename "MedVoiceTrainer")</p>
+
+      <div class="callout">
+        <p><strong>Short version:</strong> Bedside English does not run any server and has no user accounts. Your practice history stays in a local database on your own device. When you use live AI voice or AI feedback, your speech/text is sent directly from your device to the AI provider you personally configured (e.g. Google Gemini, OpenAI, Anthropic Claude, or Microsoft Azure Speech) — never through a Bedside English server, because there isn't one.</p>
+      </div>
+
+      <h2>1. Who this policy covers</h2>
+      <p>Bedside English: Talk &amp; Train is a personal, open-source project built by an individual developer (contact below), distributed free of charge on GitHub and (for Android) Google Play. It is a speaking-practice tool, not a clinical system or medical device, and it is not affiliated with OET, OSCE, USMLE, or any residency-matching organization.</p>
+
+      <h2>2. Data that stays only on your device</h2>
+      <p>The app stores the following locally (SQLite/Room database on Android; a local data file on Desktop) and never uploads it to any Bedside English server, because none exists:</p>
+      <ul>
+        <li>Session history: transcripts, scores, corrections, checklist coverage, and SRS (spaced-repetition) review state.</li>
+        <li>Your preferences: native language, selected AI provider/model, feature toggles.</li>
+        <li>Your API keys for Gemini, OpenAI, Claude, and/or Azure Speech, if you choose to enter them. On Android these are stored using the platform's encrypted preferences and are explicitly excluded from Android's automatic cloud backup.</li>
+        <li>Optional recorded audio clips of your own practice speech, only if you turn on the "save voice clips" setting — off by default, viewable/deletable by you at any time, and never uploaded by the app.</li>
+      </ul>
+      <p>Uninstalling the app, or clearing its data from your device's app settings, permanently deletes all of the above. There is no separate remote copy for us to delete, because we never received one.</p>
+
+      <h2>3. Data sent to the AI provider you configure</h2>
+      <p>Live voice practice and AI-generated feedback require an AI model. The app does not include or resell access to any AI provider — you supply your own API key for the provider(s) you want to use. When you start a session or request feedback, your speech audio and/or conversation transcript is sent directly from your device to that provider's own servers, under that provider's own privacy policy and terms, which we do not control:</p>
+      <table>
+        <thead><tr><th>Provider</th><th>Used for</th><th>Their privacy policy</th></tr></thead>
+        <tbody>
+          <tr><td>Google (Gemini API / Gemini Live)</td><td>Live voice conversation, text-based feedback analysis</td><td><a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noreferrer">ai.google.dev/gemini-api/terms</a></td></tr>
+          <tr><td>OpenAI (Realtime API / GPT)</td><td>Live voice conversation (optional), text-based feedback analysis (optional)</td><td><a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noreferrer">openai.com/policies/privacy-policy</a></td></tr>
+          <tr><td>Anthropic (Claude)</td><td>Text-based feedback analysis (optional)</td><td><a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noreferrer">anthropic.com/legal/privacy</a></td></tr>
+          <tr><td>Microsoft Azure AI Speech</td><td>Pronunciation scoring (optional, off by default)</td><td><a href="https://www.microsoft.com/en-us/trust-center/privacy" target="_blank" rel="noreferrer">microsoft.com/trust-center/privacy</a></td></tr>
+        </tbody>
+      </table>
+      <p>If you don't configure a given provider, no data is ever sent to it. Demo/Mock modes run entirely offline and contact no AI provider at all.</p>
+      <p>We recommend practicing with fictional or de-identified scenarios and never entering real patients' or third parties' identifiable information into a session.</p>
+
+      <h2>4. Microphone access</h2>
+      <p>The Android app requests microphone access only to enable live voice practice. You can decline it; the app falls back to a text-based practice mode instead of crashing or silently failing. Audio is streamed for live transcription/conversation and is not recorded to disk unless you separately opt in per §2.</p>
+
+      <h2>5. Anonymous usage telemetry (opt-in, currently inactive)</h2>
+      <p>Preferences includes an opt-in toggle to "share anonymous usage data to help improve the app." As of this policy's effective date, that pipeline has no destination configured in the shipped build, so enabling it currently sends nothing anywhere. If a lightweight, privacy-respecting telemetry endpoint is activated in a future update, it will never include audio, transcripts, API keys, or any free-text you typed or spoke — only anonymous, aggregate technical signals (e.g. error type, app version) — and it will remain something you must explicitly opt into.</p>
+
+      <h2>6. No accounts, no ads, no data sale</h2>
+      <p>There is no sign-up, login, or Bedside English cloud profile on either platform. We do not run advertising, analytics SDKs, or data brokers, and we do not sell or share your data with anyone — we simply never receive it in the first place.</p>
+
+      <h2>7. Children</h2>
+      <p>Bedside English is designed for adult learners (medical students, graduates, and residency applicants) and is not directed at children under 13. We do not knowingly collect data from children, and by design we do not collect personal data from anyone on our own servers.</p>
+
+      <h2>8. Open source</h2>
+      <p>Both apps are open source under the MIT license, so you can verify these claims yourself in the source code:</p>
+      <ul>
+        <li>Android: <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer">github.com/boyskier/BedsideEnglish-Android</a></li>
+        <li>Desktop: <a href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer">github.com/boyskier/BedsideEnglish-Desktop</a></li>
+      </ul>
+
+      <h2>9. Changes to this policy</h2>
+      <p>If this policy changes, the "Effective" date at the top of this page will be updated and the change will be visible in this page's git history at <a href="https://github.com/boyskier/bedside-english" target="_blank" rel="noreferrer">github.com/boyskier/bedside-english</a>.</p>
+
+      <h2>10. Contact</h2>
+      <p>Questions, deletion requests, or privacy concerns: <a href="mailto:boy.skier@gmail.com">boy.skier@gmail.com</a>, or open an issue on either GitHub repo above.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <span>Bedside English: Talk &amp; Train / Free &amp; open source / Not a medical device</span>
+      <span><a href="./">← Back to home</a></span>
+    </div>
+  </footer>
+</body>
+</html>

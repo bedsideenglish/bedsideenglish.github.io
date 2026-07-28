@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070c">
+  <title>Bedside English — Android</title>
+  <meta name="description" content="Talk out loud to an AI patient that answers unscripted. It scores your history-taking while you're still speaking, catches every slip, and drills it back until it's gone. Free, open source, no account — runs on your own free Gemini API key.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bedside English: Talk &amp; Train">
+  <meta property="og:title" content="It's never the medicine. It's the English.">
+  <meta property="og:description" content="Speak out loud to an AI patient that talks back — unscripted, at 2am, with nobody watching. Free, open source, no account, no telemetry. Bring your own free Gemini key.">
+  <meta property="og:url" content="https://boyskier.github.io/bedside-english/android.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://boyskier.github.io/bedside-english/android.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --void:#05070c; --ink:#080c14; --panel:#111828; --panel2:#182031; --line:#242e40;
+      --fog:#96a1b5; --fog2:#6a7488; --chalk:#e9eef8; --white:#fff;
+      --blue:#2563eb; --blue-lit:#8fb2ff; --blue-dim:rgba(37,99,235,.18);
+      --amber:#f7a626; --green:#37d39b; --red:#f0524d;
+      --display:Manrope,"Noto Sans KR",system-ui,sans-serif;
+      --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+      --shell:min(1400px,calc(100% - 48px));
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--void);color:var(--chalk);font-family:var(--display);line-height:1.55;
+      -webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%}
+    button,a{-webkit-tap-highlight-color:transparent}
+    :focus-visible{outline:2px solid var(--amber);outline-offset:4px;border-radius:3px}
+    .shell{width:var(--shell);margin-inline:auto}
+    .skip-link{position:fixed;top:10px;left:10px;z-index:200;padding:10px 14px;background:var(--blue);color:#fff;transform:translateY(-200%)}
+    .skip-link:focus{transform:none}
+    html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3,html[lang="ko"] p,html[lang="ko"] li{word-break:keep-all}
+
+    /* ── ambient background ─────────────────────────────── */
+    .aura{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(58vw 46vw at 78% -6%, rgba(37,99,235,.22), transparent 62%),
+        radial-gradient(46vw 40vw at 4% 32%, rgba(37,99,235,.11), transparent 60%),
+        radial-gradient(50vw 40vw at 60% 108%, rgba(247,166,38,.09), transparent 62%);}
+    .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+      background-image:linear-gradient(rgba(255,255,255,.024) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.024) 1px,transparent 1px);
+      background-size:76px 76px;
+      -webkit-mask-image:radial-gradient(78% 60% at 50% 30%,#000,transparent 78%);
+      mask-image:radial-gradient(78% 60% at 50% 30%,#000,transparent 78%);}
+    main,.site-header,.site-footer{position:relative;z-index:2}
+
+    /* ── header ─────────────────────────────────────────── */
+    .site-header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
+      background:rgba(5,7,12,.72);border-bottom:1px solid rgba(255,255,255,.07)}
+    .nav{min-height:68px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
+    .brand{display:inline-flex;align-items:center;gap:10px;width:max-content;font-weight:800;font-size:.94rem;letter-spacing:-.03em}
+    .brand-mark{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;color:#fff;
+      background:linear-gradient(150deg,#3b82f6,#1d3fb0);box-shadow:0 0 24px rgba(37,99,235,.5)}
+    .brand-mark svg{width:17px;height:17px}
+    .nav-links{display:flex;gap:26px;font:600 .68rem var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--fog)}
+    .nav-links a{transition:color .18s}
+    .nav-links a:hover{color:var(--chalk)}
+    .nav-tools{display:flex;justify-content:flex-end;align-items:center;gap:10px}
+    .lang{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+    .lang button{min-width:38px;padding:7px 8px;border:0;background:transparent;color:var(--fog);
+      font:700 .64rem var(--mono);cursor:pointer;transition:.18s}
+    .lang button.active{background:var(--chalk);color:var(--void)}
+    .nav-cta{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 15px;border-radius:9px;
+      color:#fff;background:var(--blue);font:700 .68rem var(--mono);text-transform:uppercase;letter-spacing:.05em;
+      box-shadow:0 0 0 0 rgba(37,99,235,.6);transition:box-shadow .25s,transform .18s}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 26px -6px rgba(37,99,235,.8)}
+    .icon-btn{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:9px;color:var(--fog);transition:.18s}
+    .icon-btn svg{width:16px;height:16px}
+    .icon-btn:hover{color:var(--chalk);border-color:var(--fog2)}
+
+    /* ── shared primitives ──────────────────────────────── */
+    .kicker{display:inline-flex;align-items:center;gap:10px;font:700 .66rem var(--mono);letter-spacing:.14em;
+      text-transform:uppercase;color:var(--blue-lit)}
+    .kicker::before{content:"";width:26px;height:1px;background:currentColor;opacity:.6}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 24px;
+      border-radius:11px;font:700 .74rem var(--mono);letter-spacing:.06em;text-transform:uppercase;
+      border:1px solid transparent;transition:transform .2s,box-shadow .25s,background .2s,border-color .2s}
+    .btn-primary{color:#fff;background:linear-gradient(140deg,#3b82f6,#1d43b8);box-shadow:0 14px 40px -14px rgba(37,99,235,.95)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 50px -14px rgba(59,130,246,1)}
+    .btn-ghost{color:var(--chalk);border-color:var(--line);background:rgba(255,255,255,.02)}
+    .btn-ghost:hover{transform:translateY(-2px);border-color:var(--fog2);background:rgba(255,255,255,.05)}
+    h2.big{font-size:clamp(2rem,4.2vw,3.4rem);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin:18px 0 0}
+
+    /* reveal-on-scroll */
+    .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+    .rv.in{opacity:1;transform:none}
+
+    /* ── hero ───────────────────────────────────────────── */
+    .hero{padding:clamp(56px,9vh,110px) 0 clamp(60px,10vh,120px)}
+    .hero-grid{display:grid;grid-template-columns:1.08fr auto;gap:clamp(30px,5vw,84px);align-items:center}
+    .badge{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 11px;border-radius:999px;
+      border:1px solid rgba(247,166,38,.3);background:rgba(247,166,38,.08);color:#ffcd7a;
+      font:600 .66rem var(--mono);letter-spacing:.1em;text-transform:uppercase}
+    .badge i{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 0 rgba(247,166,38,.7);animation:ping 2.4s infinite}
+    @keyframes ping{0%{box-shadow:0 0 0 0 rgba(247,166,38,.6)}70%{box-shadow:0 0 0 9px rgba(247,166,38,0)}100%{box-shadow:0 0 0 0 rgba(247,166,38,0)}}
+    .hero h1{margin:26px 0 0;font-size:clamp(2.7rem,6.4vw,5.6rem);font-weight:800;line-height:.96;letter-spacing:-.045em}
+    .hero h1 em{display:block;font-style:normal;
+      background:linear-gradient(100deg,#8fb2ff 0%,#3b82f6 46%,#ffc46b 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+    html[lang="ko"] .hero h1{font-size:clamp(2.2rem,5.4vw,4.6rem);letter-spacing:-.03em;line-height:1.06}
+    .hero-sub{max-width:41ch;margin:26px 0 0;color:var(--fog);font-size:clamp(1rem,1.15vw,1.14rem);line-height:1.68}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .hero-facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:30px 0 0;padding:0;list-style:none;
+      font:600 .68rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fog2)}
+    .hero-facts li{display:flex;align-items:center;gap:8px}
+    .hero-facts li::before{content:"";width:5px;height:5px;background:var(--green);border-radius:50%}
+
+    /* ── phone chrome (shared) ──────────────────────────── */
+    .phone{--u:1px;position:relative;flex:0 0 auto;width:calc(var(--u)*292);height:calc(var(--u)*614);
+      border-radius:calc(var(--u)*44);padding:calc(var(--u)*11);
+      background:linear-gradient(160deg,#2c3446,#0b0f18 42%,#05070c);
+      box-shadow:0 0 0 1px rgba(255,255,255,.09),0 50px 90px -30px rgba(0,0,0,.95),0 0 90px -20px rgba(37,99,235,.4)}
+    .phone::after{content:"";position:absolute;top:calc(var(--u)*112);right:calc(var(--u)*-2);width:calc(var(--u)*3);
+      height:calc(var(--u)*54);border-radius:2px;background:#39425a}
+    .phone-screen{position:relative;width:100%;height:100%;border-radius:calc(var(--u)*34);overflow:hidden;
+      background:#0b1220;display:flex;flex-direction:column;color:var(--chalk)}
+    .notch{position:absolute;top:calc(var(--u)*11);left:50%;transform:translateX(-50%);width:calc(var(--u)*8);
+      height:calc(var(--u)*8);border-radius:50%;background:#141b2a;z-index:9}
+    .statusbar{flex:0 0 auto;height:calc(var(--u)*26);padding:0 calc(var(--u)*16);display:flex;align-items:center;
+      justify-content:space-between;font:600 calc(var(--u)*9.5)/1 var(--mono);color:var(--fog2)}
+    .topbar{flex:0 0 auto;display:flex;align-items:center;gap:calc(var(--u)*8);padding:calc(var(--u)*2) calc(var(--u)*15) calc(var(--u)*10)}
+    .applogo{width:calc(var(--u)*21);height:calc(var(--u)*21);border-radius:calc(var(--u)*6);display:grid;place-items:center;
+      color:#fff;background:linear-gradient(150deg,#4f8bff,#1d3fb0);flex:0 0 auto}
+    .applogo svg{width:calc(var(--u)*12);height:calc(var(--u)*12)}
+    .topbar b{font-size:calc(var(--u)*12);font-weight:800;letter-spacing:-.02em}
+    .topbar span{margin-left:auto;color:#414a5e;font-size:calc(var(--u)*12);letter-spacing:calc(var(--u)*4)}
+
+    .bottomnav{flex:0 0 auto;position:relative;display:flex;padding:calc(var(--u)*7) calc(var(--u)*5) calc(var(--u)*11);
+      border-top:1px solid #1c2536;background:#0d1524}
+    .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*3);color:#4a5468;
+      transition:color .4s;position:relative}
+    .tab svg{width:calc(var(--u)*17);height:calc(var(--u)*17)}
+    .tab small{font-size:calc(var(--u)*8);font-weight:700;letter-spacing:.01em}
+    .tab .tw{display:grid;place-items:center;border-radius:999px;padding:calc(var(--u)*2.5) calc(var(--u)*12);
+      transition:background .4s,box-shadow .4s}
+    .tab.on{color:var(--blue-lit)}
+    .tab.on .tw{background:rgba(59,130,246,.2);box-shadow:0 0 0 1px rgba(143,178,255,.35),0 0 22px rgba(59,130,246,.4)}
+
+    /* ── hero phone: looping live encounter ─────────────── */
+    .hero-phone-wrap{position:relative;display:flex;justify-content:center}
+    .hero-phone-wrap::before{content:"";position:absolute;inset:6% -14%;border-radius:50%;
+      background:radial-gradient(closest-side,rgba(37,99,235,.34),transparent 72%);filter:blur(24px)}
+    .hero .phone{animation:float 8s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(-.5deg)}50%{transform:translateY(-14px) rotate(.4deg)}}
+    .live-body{flex:1 1 auto;padding:calc(var(--u)*12) calc(var(--u)*14);display:flex;flex-direction:column;
+      gap:calc(var(--u)*9);overflow:hidden}
+    .livebar{display:flex;align-items:center;gap:calc(var(--u)*7);padding:calc(var(--u)*8) calc(var(--u)*11);
+      border-radius:calc(var(--u)*10);background:var(--panel);border:1px solid #1e2738;
+      font:600 calc(var(--u)*8.5)/1 var(--mono);letter-spacing:.06em;color:var(--fog)}
+    .rec{width:calc(var(--u)*6);height:calc(var(--u)*6);border-radius:50%;background:var(--red);animation:blink 1.3s infinite}
+    @keyframes blink{50%{opacity:.2}}
+    .livebar b{margin-left:auto;color:var(--chalk);font-family:var(--display);font-size:calc(var(--u)*9.5)}
+    .bub{max-width:84%;padding:calc(var(--u)*9) calc(var(--u)*12);border-radius:calc(var(--u)*14);
+      font-size:calc(var(--u)*10);line-height:1.42;opacity:0;transform:translateY(10px) scale(.97)}
+    .bub.me{align-self:flex-end;background:linear-gradient(140deg,#3b82f6,#2159d6);color:#fff;border-bottom-right-radius:calc(var(--u)*4)}
+    .bub.pt{align-self:flex-start;background:var(--panel);border:1px solid #1e2738;border-bottom-left-radius:calc(var(--u)*4)}
+    /* who is talking — the whole point is that this is speech, not typing */
+    .who{display:flex;align-items:center;gap:calc(var(--u)*4);margin-bottom:calc(var(--u)*5);
+      font:700 calc(var(--u)*7)/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+    .who svg{width:calc(var(--u)*8);height:calc(var(--u)*8);flex:0 0 auto}
+    .bub.me .who{color:#d3e2ff;justify-content:flex-end}
+    .bub.pt .who{color:var(--fog2)}
+    .vbars{display:flex;align-items:center;gap:calc(var(--u)*1.6);height:calc(var(--u)*8)}
+    .vbars i{width:calc(var(--u)*1.6);border-radius:2px;background:currentColor;opacity:.85;
+      animation:wv .9s ease-in-out infinite}
+    /* mic dock — a live, listening microphone, not a text field */
+    .micdock{display:flex;align-items:center;gap:calc(var(--u)*11);
+      padding:calc(var(--u)*10) calc(var(--u)*13);border-radius:calc(var(--u)*16);
+      background:linear-gradient(150deg,#16233f,#111828);border:1px solid #253358}
+    .mic{position:relative;width:calc(var(--u)*34);height:calc(var(--u)*34);border-radius:50%;flex:0 0 auto;
+      display:grid;place-items:center;color:#fff;background:linear-gradient(140deg,#4f8bff,#1d3fb0);
+      box-shadow:0 0 calc(var(--u)*24) rgba(59,130,246,.75)}
+    .mic svg{width:calc(var(--u)*16);height:calc(var(--u)*16)}
+    .mic::before,.mic::after{content:"";position:absolute;inset:0;border-radius:50%;
+      border:1px solid rgba(143,178,255,.8);animation:ring 2.4s ease-out infinite}
+    .mic::after{animation-delay:1.2s}
+    @keyframes ring{0%{transform:scale(1);opacity:.85}100%{transform:scale(1.9);opacity:0}}
+    .micmeta{flex:1 1 auto;min-width:0}
+    .micmeta b{display:block;font-size:calc(var(--u)*10);font-weight:800;letter-spacing:-.01em}
+    .micdock .wave{height:calc(var(--u)*15);margin-top:calc(var(--u)*6)}
+    /* .live-body children: 1 = livebar, 2–5 = bubbles, 6 = checkcard */
+    .hero .bub{animation:pop 12s cubic-bezier(.2,.8,.3,1) infinite}
+    .hero .live-body > .bub:nth-child(2){animation-delay:.4s}
+    .hero .live-body > .bub:nth-child(3){animation-delay:2.1s}
+    .hero .live-body > .bub:nth-child(4){animation-delay:4.4s}
+    .hero .live-body > .bub:nth-child(5){animation-delay:6.4s}
+    @keyframes pop{0%{opacity:0;transform:translateY(10px) scale(.97)}
+      5%,72%{opacity:1;transform:none}88%,100%{opacity:0;transform:translateY(-6px) scale(.99)}}
+    .checkcard{margin-top:auto;padding:calc(var(--u)*11);border-radius:calc(var(--u)*13);
+      background:linear-gradient(150deg,#16233f,#111828);border:1px solid #253358}
+    .checkcard .lbl{display:flex;justify-content:space-between;align-items:center;
+      font:700 calc(var(--u)*7.5)/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--blue-lit)}
+    .checkcard .lbl em{font-style:normal;color:var(--green)}
+    .bar{height:calc(var(--u)*5);border-radius:999px;background:#1d2739;overflow:hidden;margin:calc(var(--u)*8) 0}
+    .bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#3b82f6,#8fb2ff);width:12%}
+    .hero .bar i{animation:fill 12s cubic-bezier(.4,0,.2,1) infinite}
+    @keyframes fill{0%,6%{width:8%}30%{width:28%}55%{width:54%}80%,100%{width:78%}}
+
+    /* ── cold open ──────────────────────────────────────── */
+    .cold{padding:clamp(80px,14vh,180px) 0;border-top:1px solid rgba(255,255,255,.06)}
+    .cold-inner{max-width:920px;margin-inline:auto;text-align:center}
+    .cold .ts{display:inline-block;padding:8px 16px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.03);font:700 .7rem var(--mono);letter-spacing:.16em;color:var(--fog2)}
+    .cold p{font-size:clamp(1.5rem,3.5vw,2.7rem);font-weight:700;letter-spacing:-.03em;line-height:1.28;margin:34px 0 0}
+    .cold p.mute{color:var(--fog2);font-weight:500;font-size:clamp(1.05rem,1.9vw,1.4rem);letter-spacing:-.01em;line-height:1.6;max-width:44ch;margin-inline:auto}
+    .cold .flash{color:var(--amber)}
+    .silence{display:flex;justify-content:center;gap:14px;margin:46px 0}
+    .silence i{width:11px;height:11px;border-radius:50%;background:#232c3e}
+    .silence.in i{animation:beat 1.4s ease-in-out infinite}
+    .silence i:nth-child(2){animation-delay:.18s}
+    .silence i:nth-child(3){animation-delay:.36s}
+    .silence i:nth-child(4){animation-delay:.54s}
+    @keyframes beat{0%,100%{background:#232c3e;transform:scale(1)}50%{background:var(--red);transform:scale(1.35)}}
+    .cold-rule{width:64px;height:2px;background:var(--blue);margin:52px auto 0}
+
+    /* ── the tour (pinned phone) ────────────────────────── */
+    .tour{position:relative;padding-top:clamp(60px,9vh,110px);border-top:1px solid rgba(255,255,255,.06)}
+    .tour-head{text-align:center;max-width:660px;margin:0 auto clamp(20px,4vh,50px)}
+    .tour-head p{color:var(--fog);margin:16px auto 0;max-width:52ch}
+    .tour-grid{position:relative;display:grid;grid-template-columns:1fr min(292px,28vw) 1fr;
+      grid-template-rows:repeat(7,auto);column-gap:clamp(24px,4vw,68px);width:var(--shell);margin-inline:auto}
+    .tour-rail{grid-column:2;grid-row:1/-1}
+    .tour-pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+    .tour-pin .phone{--u:.94px}
+    .step{min-height:104vh;display:flex;align-items:center;padding:6vh 0}
+    .step[data-step="0"]{grid-row:1}.step[data-step="1"]{grid-row:2}.step[data-step="2"]{grid-row:3}
+    .step[data-step="3"]{grid-row:4}.step[data-step="4"]{grid-row:5}.step[data-step="5"]{grid-row:6}
+    .step[data-step="6"]{grid-row:7}
+    /* alternate sides: even-numbered chapters left, odd-numbered right */
+    .step[data-step="0"],.step[data-step="2"],.step[data-step="4"],.step[data-step="6"]{
+      grid-column:1;justify-content:flex-end;text-align:right}
+    .step[data-step="1"],.step[data-step="3"],.step[data-step="5"]{grid-column:3;justify-content:flex-start}
+    .step-in{position:relative;max-width:355px;opacity:.16;filter:blur(1px);
+      transition:opacity .55s ease,filter .55s ease,transform .55s ease}
+    .step[data-step="0"] .step-in,.step[data-step="2"] .step-in,
+    .step[data-step="4"] .step-in,.step[data-step="6"] .step-in{padding-right:26px;transform:translateX(-14px)}
+    .step[data-step="1"] .step-in,.step[data-step="3"] .step-in,
+    .step[data-step="5"] .step-in{padding-left:26px;transform:translateX(14px)}
+    .step.on .step-in{opacity:1;filter:none;transform:none}
+    .step-in::after{content:"";position:absolute;top:calc(50% - 1px);width:0;height:2px;border-radius:2px;
+      background:linear-gradient(90deg,var(--blue-lit),transparent);transition:width .5s ease .1s}
+    .step[data-step="0"] .step-in::after,.step[data-step="2"] .step-in::after,
+    .step[data-step="4"] .step-in::after,.step[data-step="6"] .step-in::after{
+      right:0;background:linear-gradient(270deg,var(--blue-lit),transparent)}
+    .step[data-step="1"] .step-in::after,.step[data-step="3"] .step-in::after,
+    .step[data-step="5"] .step-in::after{left:0}
+    .step.on .step-in::after{width:22px}
+    .step-no{display:block;font:700 .68rem var(--mono);letter-spacing:.16em;color:var(--blue-lit);margin-bottom:14px}
+    .step[data-step="1"] .step-no,.step[data-step="3"] .step-no,.step[data-step="5"] .step-no{color:var(--amber)}
+    .step-in h3{margin:0 0 14px;font-size:clamp(1.4rem,2.3vw,2.05rem);font-weight:800;letter-spacing:-.03em;line-height:1.12}
+    .step-in p{margin:0;color:var(--fog);font-size:.97rem;line-height:1.7}
+    .step-tag{display:inline-block;margin-top:18px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.03);font:600 .64rem var(--mono);letter-spacing:.07em;color:var(--fog2)}
+
+    /* progress ticks */
+    .ticks{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:11px;
+      opacity:0;pointer-events:none;transition:opacity .4s}
+    .ticks.show{opacity:1}
+    .ticks i{width:3px;height:22px;border-radius:2px;background:#222b3d;transition:background .35s,height .35s}
+    .ticks i.on{background:var(--blue-lit);height:32px;box-shadow:0 0 14px rgba(143,178,255,.7)}
+
+    /* ── screens ────────────────────────────────────────── */
+    .screens{position:relative;flex:1 1 auto;overflow:hidden}
+    .sc{position:absolute;inset:0;padding:calc(var(--u)*12) calc(var(--u)*14);display:flex;flex-direction:column;
+      gap:calc(var(--u)*9);opacity:0;transform:translateY(14px) scale(.985);
+      transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+    .sc.on{opacity:1;transform:none}
+    .h1{font-size:calc(var(--u)*16);font-weight:800;letter-spacing:-.025em}
+    .eyeb{font:700 calc(var(--u)*7.5)/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--fog2)}
+    .note{font-size:calc(var(--u)*8.8);color:var(--fog2);line-height:1.45}
+    .card{background:var(--panel);border:1px solid #1e2738;border-radius:calc(var(--u)*13);padding:calc(var(--u)*11)}
+    .card.lit{background:linear-gradient(155deg,#1a2947,#121a2b);border-color:#2b3d69;
+      box-shadow:0 0 0 1px rgba(143,178,255,.16),0 14px 34px -14px rgba(37,99,235,.7)}
+    .ck{font:700 calc(var(--u)*7.8)/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--blue-lit);margin-bottom:calc(var(--u)*5)}
+    .ct{font-size:calc(var(--u)*12.5);font-weight:800;letter-spacing:-.01em}
+    .cs{font-size:calc(var(--u)*9.3);color:var(--fog);line-height:1.45;margin-top:calc(var(--u)*3)}
+    .pill-btn{margin-top:calc(var(--u)*10);padding:calc(var(--u)*8) 0;border-radius:999px;text-align:center;
+      background:linear-gradient(140deg,#3b82f6,#2159d6);color:#fff;font-size:calc(var(--u)*9.5);font-weight:700}
+    .rowchip{display:flex;justify-content:space-between;align-items:center;gap:calc(var(--u)*8);
+      background:var(--panel);border:1px solid #1e2738;border-radius:calc(var(--u)*10);
+      padding:calc(var(--u)*9) calc(var(--u)*11);font-size:calc(var(--u)*9);color:var(--fog)}
+    .rowchip b{color:var(--chalk);white-space:nowrap}
+    .sect{font:700 calc(var(--u)*7.5)/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#49536a}
+    .li{display:flex;align-items:center;gap:calc(var(--u)*9);font-size:calc(var(--u)*9.5)}
+    .li b{display:block;font-size:calc(var(--u)*9.6);font-weight:700}
+    .li small{color:var(--fog2);font-size:calc(var(--u)*8.2)}
+    .dot{width:calc(var(--u)*7);height:calc(var(--u)*7);border-radius:50%;flex:0 0 auto}
+    .dot.due{background:var(--red);box-shadow:0 0 10px rgba(240,82,77,.7)}
+    .dot.warn{background:var(--amber)}
+    .streak{font-size:calc(var(--u)*11);font-weight:800;color:var(--amber);flex:0 0 auto}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*7)}
+    .tile{background:var(--panel);border:1px solid #1e2738;border-radius:calc(var(--u)*10);
+      padding:calc(var(--u)*9);font-size:calc(var(--u)*9);font-weight:700;line-height:1.3}
+    .tile small{display:block;margin-top:calc(var(--u)*3);font-weight:500;font-size:calc(var(--u)*7.8);color:var(--fog2)}
+    .field label{display:block;font:700 calc(var(--u)*7.3)/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+      color:var(--fog2);margin-bottom:calc(var(--u)*4)}
+    .select{border:1px solid #1e2738;border-radius:calc(var(--u)*10);padding:calc(var(--u)*9) calc(var(--u)*11);
+      font-size:calc(var(--u)*10);display:flex;justify-content:space-between;color:var(--chalk)}
+    .tgl{display:flex;align-items:center;justify-content:space-between;gap:calc(var(--u)*8);font-size:calc(var(--u)*9.6);font-weight:700}
+    .tgl small{display:block;font-weight:500;font-size:calc(var(--u)*8);color:var(--fog2);margin-top:calc(var(--u)*2)}
+    .sw{width:calc(var(--u)*30);height:calc(var(--u)*17);border-radius:999px;background:#1d2739;position:relative;flex:0 0 auto}
+    .sw::after{content:"";position:absolute;top:calc(var(--u)*2.5);left:calc(var(--u)*2.5);width:calc(var(--u)*12);
+      height:calc(var(--u)*12);border-radius:50%;background:#5a6478;transition:.25s}
+    .sw.on{background:rgba(59,130,246,.55)}
+    .sw.on::after{background:#fff;transform:translateX(calc(var(--u)*13))}
+    .scene{background:var(--panel);border:1px solid #1e2738;border-radius:calc(var(--u)*11);padding:calc(var(--u)*10);
+      font-size:calc(var(--u)*9.4);font-style:italic;color:#c2cbdb;line-height:1.45}
+    .fix{font:700 calc(var(--u)*7)/1 var(--mono);color:var(--amber);border:1px solid rgba(247,166,38,.5);
+      border-radius:999px;padding:calc(var(--u)*3.5) calc(var(--u)*8);white-space:nowrap}
+    .wave{display:flex;align-items:flex-end;gap:calc(var(--u)*2.5);height:calc(var(--u)*20);margin-top:calc(var(--u)*8)}
+    .wave i{flex:1;border-radius:2px;background:linear-gradient(180deg,#8fb2ff,#2563eb);animation:wv 1.1s ease-in-out infinite}
+    @keyframes wv{0%,100%{height:22%}50%{height:100%}}
+    .bigcard{background:linear-gradient(158deg,#24356a,#131b2c);border:1px solid #32467f;
+      border-radius:calc(var(--u)*13);padding:calc(var(--u)*13);text-align:center}
+    .quote{font-size:calc(var(--u)*12.8);font-weight:800;line-height:1.34;margin:calc(var(--u)*6) 0;letter-spacing:-.01em}
+    .strike{font-size:calc(var(--u)*10);color:#8d93a4;text-decoration:line-through;text-decoration-color:rgba(240,82,77,.85)}
+    .transfer{background:var(--panel);border:1px solid #1e2738;border-radius:calc(var(--u)*11);
+      padding:calc(var(--u)*10);font-size:calc(var(--u)*9);color:var(--fog);line-height:1.45}
+    .transfer b{display:block;color:var(--blue-lit);font:700 calc(var(--u)*7.5)/1 var(--mono);letter-spacing:.08em;
+      text-transform:uppercase;margin-bottom:calc(var(--u)*5)}
+    .btn2{display:flex;gap:calc(var(--u)*8)}
+    .btn2 span{flex:1;text-align:center;border-radius:999px;padding:calc(var(--u)*9) 0;font-size:calc(var(--u)*9.5);font-weight:700}
+    .bd{background:rgba(240,82,77,.15);color:#ff8b87}
+    .bp{background:linear-gradient(140deg,#3b82f6,#2159d6);color:#fff}
+    .searchbar{border:1px solid #1e2738;border-radius:calc(var(--u)*10);padding:calc(var(--u)*9) calc(var(--u)*11);
+      font-size:calc(var(--u)*9);color:#49536a}
+    .chips{display:flex;gap:calc(var(--u)*6);flex-wrap:wrap}
+    .chip{border:1px solid #1e2738;border-radius:999px;padding:calc(var(--u)*4.5) calc(var(--u)*10);
+      font-size:calc(var(--u)*8);color:var(--fog2)}
+    .chip.on{background:#243459;border-color:#31467c;color:#fff}
+    .costrow{display:flex;justify-content:space-between;align-items:baseline;font-size:calc(var(--u)*8.6);color:var(--fog2);
+      padding:calc(var(--u)*6) 0;border-bottom:1px solid #18202f}
+    .costrow b{color:var(--chalk);font-family:var(--mono);font-size:calc(var(--u)*9)}
+
+    /* ── the loop ───────────────────────────────────────── */
+    .loop{padding:clamp(80px,13vh,160px) 0;border-top:1px solid rgba(255,255,255,.06)}
+    .loop-head{max-width:660px}
+    .loop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:54px}
+    .lp{position:relative;padding:26px 22px 28px;border-radius:16px;border:1px solid var(--line);
+      background:linear-gradient(165deg,rgba(255,255,255,.045),rgba(255,255,255,.012));overflow:hidden;
+      transition:border-color .3s,transform .3s}
+    .lp:hover{border-color:#3b4a68;transform:translateY(-4px)}
+    .lp::before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--blue)}
+    .lp:nth-child(4)::before{background:var(--amber)}
+    .lp .n{font:700 2.1rem var(--mono);letter-spacing:-.04em;color:#2b3854}
+    .lp h4{margin:8px 0 8px;font-size:1.06rem;font-weight:800;letter-spacing:-.02em}
+    .lp p{margin:0;color:var(--fog);font-size:.9rem;line-height:1.6}
+
+    /* ── price ──────────────────────────────────────────── */
+    .price{padding:clamp(80px,13vh,160px) 0;border-top:1px solid rgba(255,255,255,.06)}
+    .price-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
+    .meter{font:700 clamp(3.4rem,9vw,7.4rem)/1 var(--mono);letter-spacing:-.05em;
+      background:linear-gradient(100deg,#8fb2ff,#3b82f6 55%,#ffc46b);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .price h2{margin-top:20px}
+    .price p{color:var(--fog);max-width:46ch;margin:20px 0 0;line-height:1.72}
+    .receipt{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);padding:26px 24px}
+    .receipt .rh{font:700 .66rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fog2);
+      padding-bottom:14px;border-bottom:1px dashed var(--line)}
+    .receipt ul{list-style:none;margin:0;padding:0}
+    .receipt li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px dashed rgba(255,255,255,.07);
+      font-size:.88rem;color:var(--fog)}
+    .receipt li b{color:var(--chalk);font-family:var(--mono);font-weight:600;white-space:nowrap}
+    .receipt li.tot{border:0;padding-top:18px;font-size:1rem;color:var(--chalk);font-weight:800}
+    .receipt li.tot b{color:var(--green);font-size:1.15rem}
+    .receipt .foot{margin-top:14px;font:500 .68rem/1.6 var(--mono);letter-spacing:.03em;color:var(--fog2)}
+    .steps3{display:flex;flex-direction:column;gap:13px;margin-top:32px;padding-top:28px;border-top:1px solid var(--line)}
+    .steps3 div{display:flex;align-items:center;gap:14px;font-size:.93rem;color:var(--fog)}
+    .steps3 b{width:27px;height:27px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;
+      background:rgba(37,99,235,.16);border:1px solid #2b3d69;color:var(--blue-lit);font:700 .7rem var(--mono)}
+
+    /* ── grid of facts ──────────────────────────────────── */
+    .facts{padding:clamp(80px,13vh,160px) 0;border-top:1px solid rgba(255,255,255,.06)}
+    .facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;background:var(--line);
+      border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    .ft{padding:30px 26px 34px;background:var(--void);transition:background .3s}
+    .ft:hover{background:#0b1120}
+    .ft svg{width:20px;height:20px;color:var(--blue-lit)}
+    .ft h4{margin:16px 0 9px;font-size:1.02rem;font-weight:800;letter-spacing:-.02em}
+    .ft p{margin:0;color:var(--fog);font-size:.89rem;line-height:1.62}
+
+    /* ── final CTA ──────────────────────────────────────── */
+    .final{position:relative;padding:clamp(90px,15vh,190px) 0;border-top:1px solid rgba(255,255,255,.06);
+      text-align:center;overflow:hidden}
+    .final::before{content:"";position:absolute;left:50%;top:0;width:120vw;height:100%;transform:translateX(-50%);
+      background:radial-gradient(50% 60% at 50% 40%,rgba(37,99,235,.28),transparent 70%);pointer-events:none}
+    .final-in{position:relative;max-width:820px;margin-inline:auto}
+    .final h2{font-size:clamp(2.2rem,5.6vw,4.4rem);font-weight:800;letter-spacing:-.045em;line-height:1;margin:22px 0 0}
+    .final p{color:var(--fog);max-width:50ch;margin:24px auto 0;line-height:1.72}
+    .final-actions{display:flex;flex-wrap:wrap;gap:13px;justify-content:center;margin-top:38px}
+    .final-list{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 24px;margin:34px 0 0;padding:0;list-style:none;
+      font:600 .68rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fog2)}
+    .final-list li{display:flex;align-items:center;gap:8px}
+    .final-list li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--green)}
+
+    /* ── footer ─────────────────────────────────────────── */
+    .site-footer{border-top:1px solid rgba(255,255,255,.07);padding:34px 0}
+    .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 30px;
+      font:500 .64rem var(--mono);letter-spacing:.05em;text-transform:uppercase;color:#5a6478}
+    .footer-inner a:hover{color:var(--blue-lit)}
+    .footer-links{display:flex;flex-wrap:wrap;gap:20px}
+
+    /* ── responsive ─────────────────────────────────────── */
+    @media (max-width:1080px){
+      .hero-grid{grid-template-columns:1fr;gap:52px}
+      .hero-phone-wrap{order:-1}
+      .hero .phone{--u:.86px}
+      .price-grid{grid-template-columns:1fr;gap:44px}
+      .loop-grid{grid-template-columns:repeat(2,1fr)}
+      .facts-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:900px){
+      :root{--shell:calc(100% - 34px)}
+      .nav-links{display:none}
+      .ticks{display:none}
+      /* stack the tour: the phone pins to the top half, copy rides the bottom */
+      .tour-grid{display:block}
+      .tour-rail{position:sticky;top:0;height:100vh;display:flex;align-items:flex-start;justify-content:center;
+        padding-top:6vh;z-index:3;margin-bottom:-100vh;pointer-events:none}
+      .tour-pin{position:static;height:auto}
+      /* 614 * .085vh ≈ 52vh tall, so the mockup can never grow into the copy card */
+      .tour-pin .phone{--u:min(.7px,.085vh)}
+      .step{min-height:100vh;align-items:flex-end;justify-content:center !important;text-align:center !important;
+        padding:0 0 5vh;position:relative;z-index:4}
+      .step-in{max-width:520px;padding:20px 18px !important;transform:none !important;border-radius:16px;
+        background:rgba(5,7,12,.92);backdrop-filter:blur(10px);border:1px solid var(--line)}
+      .step-in::after{display:none}
+      .step-in h3{font-size:1.25rem}
+      .step-in p{font-size:.9rem;line-height:1.6}
+      .step-tag{margin-top:14px}
+    }
+    @media (max-width:640px){
+      .loop-grid,.facts-grid{grid-template-columns:1fr}
+      .hero .phone{--u:.78px}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+      .cold p{font-size:clamp(1.3rem,6vw,1.9rem)}
+      .step-in{padding:16px 15px !important}
+      .step-in p{font-size:.86rem}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+      .rv{opacity:1;transform:none}
+      .step-in{opacity:1 !important;filter:none !important}
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="aura" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <nav class="nav shell" aria-label="Primary">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      Bedside English
+    </a>
+    <div class="nav-links">
+      <a href="#tour" data-i18n="nav_tour">The tour</a>
+      <a href="#price" data-i18n="nav_price">What it costs</a>
+      <a href="index.html" data-i18n="nav_desktop">Desktop ↗</a>
+    </div>
+    <div class="nav-tools">
+      <div class="lang" role="group" aria-label="Language">
+        <button class="active" type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ko" aria-pressed="false">KO</button>
+      </div>
+      <a class="icon-btn" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer" aria-label="Android repository on GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <a class="nav-cta" href="#get" data-i18n="nav_get">Get it</a>
+    </div>
+  </nav>
+</header>
+
+<div class="ticks" id="ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<main id="main">
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero shell">
+    <div class="hero-grid">
+      <div>
+        <span class="badge"><i></i><span data-i18n="hero_badge">Android · Free · No account · Open source</span></span>
+        <h1 data-i18n="hero_title">It was never<em>the medicine.</em></h1>
+        <p class="hero-sub" data-i18n="hero_sub">It's the English. So this is an AI patient you <b style="color:var(--chalk)">talk to out loud</b> — it hears you, answers back unscripted, at 2 a.m. with nobody watching. It scores your history-taking while you're still speaking, catches every slip, and pushes each one back at you until it's gone.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#tour"><span data-i18n="hero_cta1">See it work</span><span>↓</span></a>
+          <a class="btn btn-ghost" href="#get"><span data-i18n="hero_cta2">Get the app</span><span>↗</span></a>
+        </div>
+        <ul class="hero-facts">
+          <li data-i18n="hero_f1">Free — no subscription</li>
+          <li data-i18n="hero_f2">No login, no telemetry</li>
+          <li data-i18n="hero_f3">Your own free Gemini key</li>
+        </ul>
+      </div>
+
+      <div class="hero-phone-wrap">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="phone-screen">
+            <div class="statusbar"><span>02:41</span><span>▮▮▮ 63%</span></div>
+            <div class="topbar">
+              <span class="applogo"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              <b>Bedside English</b><span>⋯</span>
+            </div>
+            <div class="live-body">
+              <div class="livebar"><span class="rec"></span>VOICE ENCOUNTER · 00:41<b>Mr. Johnson</b></div>
+              <div class="bub me">
+                <span class="who"><svg viewBox="0 0 24 24" fill="none"><rect x="9.2" y="2.6" width="5.6" height="11" rx="2.8" fill="currentColor"/><path d="M6 11a6 6 0 0012 0M12 17v3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>You · spoken</span>
+                Can you describe what the chest pain feels like?
+              </div>
+              <div class="bub pt">
+                <span class="who"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9.5h3.6L12 5.4v13.2L7.6 14.5H4z" fill="currentColor"/><path d="M16 9.6a4 4 0 010 4.8M18.6 7.2a7.6 7.6 0 010 9.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Patient · out loud</span>
+                It's in the middle of my chest — quite severe. Maybe a 7 out of 10.
+              </div>
+              <div class="bub me">
+                <span class="who"><span class="vbars" aria-hidden="true"><i style="animation-delay:0s"></i><i style="animation-delay:.12s"></i><i style="animation-delay:.24s"></i><i style="animation-delay:.36s"></i></span>You · spoken</span>
+                Does it move anywhere? Your arm, your jaw?
+              </div>
+              <div class="bub pt">
+                <span class="who"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9.5h3.6L12 5.4v13.2L7.6 14.5H4z" fill="currentColor"/><path d="M16 9.6a4 4 0 010 4.8M18.6 7.2a7.6 7.6 0 010 9.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Patient · out loud</span>
+                …my left arm goes kind of heavy. Is that bad, doctor?
+              </div>
+              <div class="checkcard">
+                <div class="lbl"><span data-i18n="hero_check">Scoring you as you speak</span><em>3 / 4</em></div>
+                <div class="bar"><i></i></div>
+              </div>
+              <div class="micdock">
+                <div class="mic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="9.2" y="2.6" width="5.6" height="11" rx="2.8" fill="currentColor"/><path d="M6 11a6 6 0 0012 0M12 17v3.4m-3.4 0h6.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+                <div class="micmeta">
+                  <b data-i18n="hero_mic">Listening — your turn, out loud</b>
+                  <div class="wave" aria-hidden="true">
+                    <i style="animation-delay:0s"></i><i style="animation-delay:.08s"></i><i style="animation-delay:.16s"></i><i style="animation-delay:.24s"></i><i style="animation-delay:.32s"></i><i style="animation-delay:.4s"></i><i style="animation-delay:.48s"></i><i style="animation-delay:.56s"></i><i style="animation-delay:.64s"></i><i style="animation-delay:.72s"></i><i style="animation-delay:.8s"></i><i style="animation-delay:.88s"></i><i style="animation-delay:.96s"></i><i style="animation-delay:1.04s"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bottomnav">
+              <div class="tab"><div class="tw"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg></div><small>Home</small></div>
+              <div class="tab on"><div class="tw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M10 8.3v7.4l6.5-3.7z" fill="currentColor" stroke="none"/></svg></div><small>Practice</small></div>
+              <div class="tab"><div class="tw"><svg viewBox="0 0 24 24" fill="none"><rect x="9.2" y="3" width="5.6" height="10.5" rx="2.8" fill="currentColor"/><path d="M6.3 11a5.7 5.7 0 0011.4 0M12 16.8v3.2m-3 0h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><small>Pron.</small></div>
+              <div class="tab"><div class="tw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9" stroke-width="1.7"/><path d="M12 7.3v6" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16.3" r="1.05" fill="currentColor" stroke="none"/></svg></div><small>SRS</small></div>
+              <div class="tab"><div class="tw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="13" r="8" stroke-width="1.7"/><path d="M12 9v4l3 2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.3 3.8L4.6 6M16.7 3.8l2.7 2.2" stroke-width="1.4" stroke-linecap="round"/></svg></div><small>History</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ COLD OPEN ══════════ -->
+  <section class="cold shell">
+    <div class="cold-inner">
+      <span class="ts rv" data-i18n="cold_ts">04:12 · WARD CORRIDOR</span>
+      <p class="rv" data-i18n="cold_1">The attending stops you.<br>"Quickly — one sentence. How's bed 12?"</p>
+      <p class="mute rv" data-i18n="cold_2">You know the answer. You have known it since second year of medical school.</p>
+      <div class="silence rv" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <p class="rv" data-i18n="cold_3">And for four seconds, <span class="flash">nothing comes out.</span></p>
+      <p class="mute rv" data-i18n="cold_4">That silence is not a vocabulary problem. It's a reps problem — and you can't get reps from a textbook, because a textbook never interrupts you.</p>
+      <div class="cold-rule rv"></div>
+      <p class="rv" style="margin-top:34px" data-i18n="cold_5">So this one interrupts you.<br>Eleven different ways.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ THE TOUR ══════════ -->
+  <section class="tour" id="tour">
+    <div class="tour-head shell">
+      <span class="kicker">01 — 07 / ONE EVENING WITH IT</span>
+      <h2 class="big" data-i18n="tour_title">09:41 to 10:22.<br>The whole of it.</h2>
+      <p data-i18n="tour_body">At 09:41 it tells you what to fix. By 10:22 tomorrow's card is already written. Nothing in between is a menu screen.</p>
+    </div>
+
+    <div class="tour-grid">
+      <!-- pinned phone -->
+      <div class="tour-rail">
+        <div class="tour-pin">
+          <div class="phone" id="tourPhone">
+            <div class="notch"></div>
+            <div class="phone-screen">
+              <div class="statusbar"><span id="scClock">09:41</span><span>▮▮▮ 98%</span></div>
+              <div class="topbar">
+                <span class="applogo"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                <b>Bedside English</b><span>⋯</span>
+              </div>
+
+              <div class="screens">
+                <!-- 1 · HOME -->
+                <div class="sc" data-sc="0">
+                  <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div><div class="eyeb">Welcome back</div><div class="h1">Home</div></div>
+                    <div class="streak">2🔥</div>
+                  </div>
+                  <div class="card lit">
+                    <div class="ck">Daily adaptive mission</div>
+                    <div class="ct">Rescue yesterday's mistakes</div>
+                    <div class="cs">4 saved correction(s) are due today.</div>
+                    <div class="pill-btn">Review 4 correction(s) ▶</div>
+                  </div>
+                  <div class="rowchip"><span>Gemini key</span><b>Free tier · connected</b></div>
+                  <div class="sect">Clinical English roadmap</div>
+                  <div class="li"><span class="dot due"></span><div><b>Practice My Mistakes</b><small>Due now — 4 corrections</small></div></div>
+                  <div class="li"><span class="dot warn"></span><div><b>Clinical English Foundations</b><small>Grammar average 11.4 / 10 — needs attention</small></div></div>
+                </div>
+
+                <!-- 2 · PRACTICE -->
+                <div class="sc" data-sc="1">
+                  <div class="h1">Practice</div>
+                  <div class="note">Every mode estimates its own API cost from your recent usage before you start it.</div>
+                  <div class="card lit" style="padding:calc(var(--u)*10)">
+                    <div class="ck" style="margin-bottom:calc(var(--u)*3)">Recommended next</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:calc(var(--u)*8)">
+                      <div><b style="font-size:calc(var(--u)*11)">Rescue yesterday's mistakes</b>
+                        <div class="cs">4 saved correction(s) are due.</div></div>
+                      <span class="fix" style="color:#fff;border-color:#fff3">▶ Start</span>
+                    </div>
+                  </div>
+                  <div class="g2">
+                    <div class="tile">Patient Encounter<small>Scored on a clinical checklist</small></div>
+                    <div class="tile">Survival English<small>Hallway · pharmacy · small talk</small></div>
+                    <div class="tile">Communication drills<small>One weak skill, hard</small></div>
+                    <div class="tile">Residency Interview<small>Match Q&amp;A under pressure</small></div>
+                    <div class="tile">Lecture Teach-back<small>Explain it in plain English</small></div>
+                    <div class="tile">Listening Lab<small>Hear, commit, verify</small></div>
+                  </div>
+                  <div class="note">+ Say It · Free English Lounge · Beginner foundations · Exam &amp; Diagnostic · Custom Scenario</div>
+                </div>
+
+                <!-- 3 · ENCOUNTER -->
+                <div class="sc" data-sc="2">
+                  <div class="livebar"><span class="rec"></span>ENCOUNTER · 00:08<b>Mr. Johnson</b></div>
+                  <div class="card lit">
+                    <div class="ck">Checklist coverage · live · 1 / 4</div>
+                    <div class="bar"><i style="width:25%"></i></div>
+                    <div class="cs">✓ Elicit cardiac history systematically using SOCRATES</div>
+                    <div class="cs" style="opacity:.45">○ Screen red flags · ○ Ideas, concerns, expectations · ○ Safety-net and close</div>
+                  </div>
+                  <div class="bub me" style="opacity:1;transform:none">
+                    <span class="who"><svg viewBox="0 0 24 24" fill="none"><rect x="9.2" y="2.6" width="5.6" height="11" rx="2.8" fill="currentColor"/><path d="M6 11a6 6 0 0012 0M12 17v3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>You · spoken</span>
+                    HPI: Can you describe what the chest pain feels like?
+                  </div>
+                  <div class="bub pt" style="opacity:1;transform:none">
+                    <span class="who"><svg viewBox="0 0 24 24" fill="none"><path d="M4 9.5h3.6L12 5.4v13.2L7.6 14.5H4z" fill="currentColor"/><path d="M16 9.6a4 4 0 010 4.8M18.6 7.2a7.6 7.6 0 010 9.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Patient · out loud</span>
+                    It's in the middle of my chest, quite severe — maybe a 7 out of 10.
+                  </div>
+                  <div class="micdock" style="margin-top:auto">
+                    <div class="mic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="9.2" y="2.6" width="5.6" height="11" rx="2.8" fill="currentColor"/><path d="M6 11a6 6 0 0012 0M12 17v3.4m-3.4 0h6.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+                    <div class="micmeta"><b>Speak — no typing</b>
+                      <div class="wave" aria-hidden="true"><i style="animation-delay:0s"></i><i style="animation-delay:.09s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.27s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.45s"></i><i style="animation-delay:.54s"></i><i style="animation-delay:.63s"></i><i style="animation-delay:.72s"></i><i style="animation-delay:.81s"></i><i style="animation-delay:.9s"></i><i style="animation-delay:.99s"></i></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 4 · SURVIVAL -->
+                <div class="sc" data-sc="3">
+                  <div class="h1">Survival English</div>
+                  <div class="field"><label>Situation</label><div class="select"><span>After the experiment</span><span>▾</span></div></div>
+                  <div class="tgl"><span>Surprise me<small>Hide the scene until it starts.</small></span><div class="sw"></div></div>
+                  <div class="tgl"><span>Ear-only<small>No transcript to lean on.</small></span><div class="sw on"></div></div>
+                  <div class="field"><label>Accent</label><div class="select"><span>General American</span><span>▾</span></div></div>
+                  <div class="scene">"It's 7 pm. You and your labmate are cleaning up after a long experiment."</div>
+                  <div class="pill-btn">▶ Start Survival Scenario</div>
+                </div>
+
+                <!-- 5 · PRONUNCIATION -->
+                <div class="sc" data-sc="4">
+                  <div class="h1">Pronunciation Lab</div>
+                  <div class="card lit">
+                    <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:calc(var(--u)*12)">steth·o·scope</b><span class="fix">FIX</span></div>
+                    <div class="cs">you said /ˈstɛskoʊp/ &nbsp;→&nbsp; aim for /ˈstɛθəskoʊp/</div>
+                    <div class="wave" aria-hidden="true">
+                      <i style="animation-delay:0s"></i><i style="animation-delay:.09s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.27s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.45s"></i><i style="animation-delay:.54s"></i><i style="animation-delay:.63s"></i><i style="animation-delay:.72s"></i><i style="animation-delay:.81s"></i><i style="animation-delay:.9s"></i><i style="animation-delay:.99s"></i><i style="animation-delay:1.08s"></i><i style="animation-delay:1.17s"></i>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:calc(var(--u)*12)">ab·do·men</b><span class="fix">FIX</span></div>
+                    <div class="cs">stress landed on the wrong syllable — AB-do-men</div>
+                  </div>
+                  <div class="note">Collected automatically at the end of every scored session. Nothing to remember to open.</div>
+                </div>
+
+                <!-- 6 · SRS -->
+                <div class="sc" data-sc="5">
+                  <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div class="h1" style="font-size:calc(var(--u)*14)">My Mistakes</div><span class="chip on">Export Anki</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font:700 calc(var(--u)*8)/1 var(--mono);color:var(--blue-lit)">
+                    <span>CARD 1 OF 4</span><span style="color:var(--amber)">STREAK 1🔥</span>
+                  </div>
+                  <div class="bar" style="margin:0"><i style="width:25%"></i></div>
+                  <div class="bigcard">
+                    <div class="strike">"you're sleeping rhythm might be like messed up."</div>
+                    <div class="ck" style="margin:calc(var(--u)*8) 0 0">Senior attending phrasing</div>
+                    <div class="quote">"Your sleep rhythm might be a bit disrupted."</div>
+                  </div>
+                  <div class="transfer"><b>Transfer challenge</b>Your attending stops you in the hallway: "Quickly — one sentence." Say it out loud, in a brand-new situation.</div>
+                  <div class="btn2"><span class="bd">Still learning</span><span class="bp">Got it</span></div>
+                </div>
+
+                <!-- 7 · HISTORY -->
+                <div class="sc" data-sc="6">
+                  <div class="h1">Session History</div>
+                  <div class="searchbar">Search…</div>
+                  <div class="chips"><span class="chip on">All</span><span class="chip">Encounter</span><span class="chip">Exam</span><span class="chip">Survival</span></div>
+                  <div class="card lit">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                      <span class="ck" style="margin:0">Score trend</span><b style="color:var(--green);font-size:calc(var(--u)*10)">▲ 45.3</b>
+                    </div>
+                    <svg viewBox="0 0 100 30" preserveAspectRatio="none" style="width:100%;height:calc(var(--u)*34);margin-top:calc(var(--u)*6)">
+                      <defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b82f6" stop-opacity=".45"/><stop offset="1" stop-color="#3b82f6" stop-opacity="0"/></linearGradient></defs>
+                      <polygon points="0,28 25,27 50,26 70,6 100,4 100,30 0,30" fill="url(#tg)"/>
+                      <polyline points="0,28 25,27 50,26 70,6 100,4" fill="none" stroke="#8fb2ff" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="eyeb">Session cost breakdown</div>
+                  <div>
+                    <div class="costrow"><span>Mrs. Chen — progressive shortness of breath</span><b>$0.0037</b></div>
+                    <div class="costrow"><span>Mr. Johnson — chest pain for 2 hours</span><b>$0.0034</b></div>
+                    <div class="costrow" style="border:0"><span>Handover teach-back — post-op day 1</span><b>$0.0041</b></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bottomnav" id="tourNav">
+                <div class="tab" data-tab="0"><div class="tw"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6"/></svg></div><small>Home</small></div>
+                <div class="tab" data-tab="1"><div class="tw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M10 8.3v7.4l6.5-3.7z" fill="currentColor" stroke="none"/></svg></div><small>Practice</small></div>
+                <div class="tab" data-tab="2"><div class="tw"><svg viewBox="0 0 24 24" fill="none"><rect x="9.2" y="3" width="5.6" height="10.5" rx="2.8" fill="currentColor"/><path d="M6.3 11a5.7 5.7 0 0011.4 0M12 16.8v3.2m-3 0h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><small>Pron.</small></div>
+                <div class="tab" data-tab="3"><div class="tw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9" stroke-width="1.7"/><path d="M12 7.3v6" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16.3" r="1.05" fill="currentColor" stroke="none"/></svg></div><small>SRS</small></div>
+                <div class="tab" data-tab="4"><div class="tw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="13" r="8" stroke-width="1.7"/><path d="M12 9v4l3 2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.3 3.8L4.6 6M16.7 3.8l2.7 2.2" stroke-width="1.4" stroke-linecap="round"/></svg></div><small>History</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- steps -->
+      <div class="step" data-step="0"><div class="step-in">
+        <span class="step-no">01 · HOME</span>
+        <h3 data-i18n="s1_t">It opens with an instruction, not a feed.</h3>
+        <p data-i18n="s1_b">No infinite scroll, no streak-bait. One daily mission, chosen from what your last sessions actually got wrong. Today it's four corrections that came due — so that's what the button says.</p>
+        <span class="step-tag" data-i18n="s1_tag">Adaptive daily mission · roadmap · streak</span>
+      </div></div>
+
+      <div class="step" data-step="1"><div class="step-in">
+        <span class="step-no">02 · PRACTICE</span>
+        <h3 data-i18n="s2_t">Eleven rooms. All of them uncomfortable.</h3>
+        <p data-i18n="s2_b">A full scored patient encounter when you have twenty minutes. A two-minute empathy drill when you have two. Residency interview grilling, teach-back, listening lab, or a scenario you write yourself.</p>
+        <span class="step-tag" data-i18n="s2_tag">11 modes · every one of them scored</span>
+      </div></div>
+
+      <div class="step" data-step="2"><div class="step-in">
+        <span class="step-no">03 · PATIENT ENCOUNTER</span>
+        <h3 data-i18n="s3_t">The checklist ticks while you're still talking.</h3>
+        <p data-i18n="s3_b">SOCRATES, red flags, ICE, safety-netting — tracked live, item by item, as you speak. You find out you skipped the closure <b style="color:var(--chalk)">during</b> the encounter, when you can still go back for it. Not on a report afterwards.</p>
+        <span class="step-tag" data-i18n="s3_tag">Live rubric · SOAP note · unscripted AI patient</span>
+      </div></div>
+
+      <div class="step" data-step="3"><div class="step-in">
+        <span class="step-no">04 · SURVIVAL ENGLISH</span>
+        <h3 data-i18n="s4_t">The hallway. The pharmacy callback. 7 p.m. in the lab.</h3>
+        <p data-i18n="s4_b">The moments that actually humiliate you abroad aren't in the OSCE. Flip on <b style="color:var(--chalk)">Surprise me</b> and the scene stays hidden until someone starts talking. Flip on <b style="color:var(--chalk)">Ear-only</b> and the transcript disappears — just a voice, an accent you pick, and you.</p>
+        <span class="step-tag" data-i18n="s4_tag">Surprise me · Ear-only · accent &amp; pace control</span>
+      </div></div>
+
+      <div class="step" data-step="4"><div class="step-in">
+        <span class="step-no">05 · PRONUNCIATION LAB</span>
+        <h3 data-i18n="s5_t">It hears the /θ/ you've been skipping for ten years.</h3>
+        <p data-i18n="s5_b">Nobody at work will correct your <i>stethoscope</i>. They'll just quietly decide you're hard to follow. Every session ends by depositing your slips here — with the sound you made, and the one you were reaching for.</p>
+        <span class="step-tag" data-i18n="s5_tag">Automatic · clinical terms included</span>
+      </div></div>
+
+      <div class="step" data-step="5"><div class="step-in">
+        <span class="step-no">06 · SRS REVIEW</span>
+        <h3 data-i18n="s6_t">Yesterday's mistake, back at your throat tomorrow.</h3>
+        <p data-i18n="s6_b">Every slip becomes a card on a spaced-repetition schedule. And it isn't a flashcard you read — it's a <b style="color:var(--chalk)">transfer challenge</b>: say the fix out loud, in a situation you've never seen. Export the whole deck to Anki whenever you want.</p>
+        <span class="step-tag" data-i18n="s6_tag">Spaced repetition · say-it-aloud · Anki export</span>
+      </div></div>
+
+      <div class="step" data-step="6"><div class="step-in">
+        <span class="step-no">07 · HISTORY &amp; COST</span>
+        <h3 data-i18n="s7_t">Progress you can chart. A bill you can audit.</h3>
+        <p data-i18n="s7_b">Every scored session, searchable, with the score trend over time. And because it runs on your own API key instead of a subscription, each session prints what it cost <b style="color:var(--chalk)">you</b> — to the fourth decimal place, straight from the provider. Nothing rounded, nothing hidden, and no bill from me, because I never see any of it.</p>
+        <span class="step-tag" data-i18n="s7_tag">Score trend · your own token-level cost</span>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ══════════ THE LOOP ══════════ -->
+  <section class="loop shell">
+    <div class="loop-head rv">
+      <span class="kicker">08 / THE LOOP</span>
+      <h2 class="big" data-i18n="loop_title">Why it actually sticks.</h2>
+      <p style="color:var(--fog);max-width:54ch;margin-top:18px" data-i18n="loop_body">Most language apps end at the score. This one treats the score as the input to tomorrow.</p>
+    </div>
+    <div class="loop-grid">
+      <div class="lp rv"><div class="n">01</div><h4 data-i18n="lp1_t">You speak</h4><p data-i18n="lp1_b">A live AI patient answers <i>your</i> words — not a branching script. Go off-book and it follows you.</p></div>
+      <div class="lp rv"><div class="n">02</div><h4 data-i18n="lp2_t">It scores</h4><p data-i18n="lp2_b">Clinical checklist, grammar, rapport, intelligibility, speaking pace. Plus a SOAP note of what you took.</p></div>
+      <div class="lp rv"><div class="n">03</div><h4 data-i18n="lp3_t">It keeps the slip</h4><p data-i18n="lp3_b">Every grammar error and mispronunciation is saved with the attending-level rewrite beside it.</p></div>
+      <div class="lp rv"><div class="n">04</div><h4 data-i18n="lp4_t">It comes back</h4><p data-i18n="lp4_b">On a spaced schedule, in a new situation, out loud — until you stop making it. Then it stops asking.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════ PRICE ══════════ -->
+  <section class="price shell" id="price">
+    <div class="price-grid">
+      <div class="rv">
+        <span class="kicker">09 / WHAT IT COSTS YOU</span>
+        <div class="meter">$0</div>
+        <h2 class="big" data-i18n="price_title">I don't want your money.<br>Or your email.</h2>
+        <p data-i18n="price_body">No subscription. No account, no login, no ads, no telemetry, no analytics, no server of mine anywhere in the middle — so there is nothing to bill you for and nothing to collect about you. The whole app is open source; read every line of it.</p>
+        <p data-i18n="price_body2">It talks to Google's Gemini API using <b style="color:var(--chalk)">your own key</b>, which Google gives out free. The free tier covers ordinary daily practice. If you ever push past it, you pay Google directly at Google's price — and the app prints the exact cost of every session in the History tab so you're never guessing.</p>
+        <div class="steps3">
+          <div><b>1</b><span data-i18n="st1">Get a Gemini API key. It's free, it takes a minute.</span></div>
+          <div><b>2</b><span data-i18n="st2">Paste it in once. It stays on your phone.</span></div>
+          <div><b>3</b><span data-i18n="st3">Start talking. There is no step four.</span></div>
+        </div>
+      </div>
+      <div class="receipt rv">
+        <div class="rh" data-i18n="rc_h">Everything you are ever charged</div>
+        <ul>
+          <li><span data-i18n="rc_1">Subscription</span><b>$0</b></li>
+          <li><span data-i18n="rc_2">Account or login</span><b data-i18n="rv2">none</b></li>
+          <li><span data-i18n="rc_3">Ads</span><b data-i18n="rv3">none</b></li>
+          <li><span data-i18n="rc_4">Telemetry / analytics</span><b data-i18n="rv4">none</b></li>
+          <li><span data-i18n="rc_6">Source code</span><b data-i18n="rv6">all of it, open</b></li>
+          <li class="tot"><span data-i18n="rc_5">Your Gemini API key</span><b data-i18n="rv5">free tier</b></li>
+        </ul>
+        <div class="foot" data-i18n="rc_f">The only bill that can ever exist is Google's — and it goes to you, not through me.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FACTS ══════════ -->
+  <section class="facts shell">
+    <div class="rv">
+      <span class="kicker">10 / THE REST OF IT</span>
+      <h2 class="big" data-i18n="facts_title">Things you'd only find out on day three.</h2>
+    </div>
+    <div class="facts-grid rv">
+      <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 10h8M8 14h5"/></svg>
+        <h4 data-i18n="ft1_t">Demo Mode needs no key</h4><p data-i18n="ft1_b">Three scripted patients, full feedback loop, zero setup and zero cost — so you can judge it before you sign up for anything.</p></div>
+      <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg>
+        <h4 data-i18n="ft2_t">Zero telemetry, by design</h4><p data-i18n="ft2_b">Sessions, mistakes and audio stay on the device. No account, no analytics, no crash pings, no cloud of mine — I could not tell you a single thing about how you use it.</p></div>
+      <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+        <h4 data-i18n="ft3_t">Onboarding in 8 languages</h4><p data-i18n="ft3_b">Get set up in your own language. Once you start, the practice itself stays English, always.</p></div>
+      <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v13m0 0l-4-4m4 4l4-4"/><path d="M4 20h16"/></svg>
+        <h4 data-i18n="ft4_t">Exports to Anki</h4><p data-i18n="ft4_b">Your mistake deck belongs to you. Take it out whenever you want, in a format your existing routine already reads.</p></div>
+      <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a9 9 0 100 18 9 9 0 000-18z"/><path d="M12 8v4l3 2"/></svg>
+        <h4 data-i18n="ft5_t">Nothing is ever lost</h4><p data-i18n="ft5_b">Drop the call, kill the app, lose signal mid-sentence — the transcript survives and you can analyze the session as-is.</p></div>
+      <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 4H5a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1v-3"/><path d="M14 4h6v6M20 4l-9 9"/></svg>
+        <h4 data-i18n="ft6_t">Open source, all of it</h4><p data-i18n="ft6_b">Read the prompts, read the scoring, read exactly what gets sent where. Then build it yourself if you'd rather.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════ FINAL CTA ══════════ -->
+  <section class="final" id="get">
+    <div class="final-in shell">
+      <span class="kicker rv" style="justify-content:center">11 / GET IT</span>
+      <h2 class="rv" data-i18n="final_title">Tomorrow the attending asks again.</h2>
+      <p class="rv" data-i18n="final_body">This time you'll have said it out loud forty times already — to a patient who kept interrupting, at 2 a.m., with nobody watching. It's free, it's open source, there's no account to make, and it runs on a Gemini key Google hands you for nothing. Pre-launch: build it from source today.</p>
+      <div class="final-actions rv">
+        <a class="btn btn-primary" href="https://github.com/boyskier/BedsideEnglish-Android#-quick-start" target="_blank" rel="noreferrer"><span data-i18n="final_cta1">Build it from source</span><span>↗</span></a>
+        <a class="btn btn-ghost" href="index.html"><span data-i18n="final_cta2">See the desktop app</span><span>→</span></a>
+      </div>
+      <ul class="final-list rv">
+        <li data-i18n="fl1">Free &amp; open source</li>
+        <li data-i18n="fl2">No account, no login</li>
+        <li data-i18n="fl3">No telemetry</li>
+        <li data-i18n="fl4">Your own free Gemini key</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner shell">
+    <span data-i18n="footer_note">Bedside English: Talk &amp; Train / Free &amp; open source / Not a medical device</span>
+    <span class="footer-links">
+      <a href="privacy.html" data-i18n="footer_privacy">Privacy policy</a>
+      <a href="index.html" data-i18n="footer_desktop">Desktop landing ↗</a>
+      <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer" data-i18n="footer_src">Android source ↗</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+/* ── scrollytelling: which step owns the phone ───────────────────── */
+(function () {
+  var steps  = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var screens= Array.prototype.slice.call(document.querySelectorAll('.sc'));
+  var tabs   = Array.prototype.slice.call(document.querySelectorAll('#tourNav .tab'));
+  var ticks  = Array.prototype.slice.call(document.querySelectorAll('#ticks i'));
+  var ticksEl= document.getElementById('ticks');
+  var tour   = document.getElementById('tour');
+  var clock  = document.getElementById('scClock');
+  /* step index -> bottom-nav tab index */
+  var TAB_OF = [0, 1, 1, 1, 2, 3, 4];
+  var CLOCK  = ['09:41','09:42','09:50','09:53','10:04','10:11','10:22'];
+  var current = -1;
+
+  function activate(i) {
+    if (i === current) return;
+    current = i;
+    steps.forEach(function (s, n) { s.classList.toggle('on', n === i); });
+    screens.forEach(function (s, n) { s.classList.toggle('on', n === i); });
+    tabs.forEach(function (t, n) { t.classList.toggle('on', n === TAB_OF[i]); });
+    ticks.forEach(function (t, n) { t.classList.toggle('on', n === i); });
+    if (clock) clock.textContent = CLOCK[i];
+  }
+
+  /* pick the step whose centre is nearest the viewport centre */
+  var raf = null;
+  function measure() {
+    raf = null;
+    var mid = window.innerHeight / 2, best = 0, bestD = Infinity;
+    for (var n = 0; n < steps.length; n++) {
+      var r = steps[n].getBoundingClientRect();
+      var d = Math.abs((r.top + r.bottom) / 2 - mid);
+      if (d < bestD) { bestD = d; best = n; }
+    }
+    activate(best);
+    var tr = tour.getBoundingClientRect();
+    ticksEl.classList.toggle('show', tr.top < window.innerHeight * .3 && tr.bottom > window.innerHeight * .7);
+  }
+  function onScroll() { if (raf === null) raf = requestAnimationFrame(measure); }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  measure();
+})();
+
+/* ── generic reveal-on-scroll ────────────────────────────────────── */
+(function () {
+  var items = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) {
+    Array.prototype.forEach.call(items, function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      if (e.target.classList.contains('silence')) e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: .18 });
+  /* stagger siblings inside a grid */
+  Array.prototype.forEach.call(items, function (el, i) {
+    var p = el.parentElement;
+    if (p && (p.classList.contains('loop-grid'))) el.style.transitionDelay = (i * 90) + 'ms';
+    io.observe(el);
+  });
+})();
+
+/* ── language ────────────────────────────────────────────────────── */
+var I18N = { ko: {
+  nav_tour:'투어', nav_price:'비용은?', nav_desktop:'데스크톱 ↗', nav_get:'받기',
+  hero_badge:'Android · 무료 · 계정 없음 · 오픈소스',
+  hero_title:'문제는 한 번도<em>의학이 아니었다.</em>',
+  hero_sub:'영어였습니다. 그래서 만들었습니다 — <b style="color:var(--chalk)">직접 소리 내어 말하는</b> AI 환자를. 내 말을 듣고, 대본 없이 대답하고, 새벽 2시에 아무도 보지 않는 곳에서. 말하는 도중에 병력 청취를 채점하고, 모든 실수를 잡아내고, 사라질 때까지 다시 들이밉니다.',
+  hero_cta1:'작동 보기', hero_cta2:'앱 받기',
+  hero_f1:'무료 · 구독 없음', hero_f2:'로그인도 추적도 없음', hero_f3:'무료 Gemini 키만 있으면 끝',
+  hero_check:'말하는 동안 채점 중', hero_mic:'듣고 있습니다 — 소리 내어 말하세요',
+  cold_ts:'04:12 · 병동 복도',
+  cold_1:'교수님이 당신을 세웁니다.<br>"짧게, 한 문장으로. 12번 침대 어때?"',
+  cold_2:'답은 알고 있습니다. 본과 2학년 때부터 알고 있었습니다.',
+  cold_3:'그런데 4초 동안, <span class="flash">아무 말도 나오지 않습니다.</span>',
+  cold_4:'그 침묵은 단어를 몰라서가 아닙니다. 훈련량이 부족한 겁니다 — 그리고 교재로는 그 훈련을 할 수 없습니다. 교재는 절대 당신의 말을 끊지 않으니까요.',
+  cold_5:'그래서 이 앱은 당신의 말을 끊습니다.<br>열한 가지 방식으로.',
+  tour_title:'09:41부터 10:22까지.<br>그 사이의 전부.',
+  tour_body:'09:41, 앱이 오늘 무엇을 고칠지 알려줍니다. 10:22, 내일 복습할 카드가 이미 만들어져 있습니다. 그 사이에 메뉴 화면 같은 건 없습니다.',
+  s1_t:'피드가 아니라 지시 하나로 시작합니다.',
+  s1_b:'무한 스크롤도, 스트릭 미끼도 없습니다. 지난 세션에서 실제로 틀린 것을 근거로 고른 오늘의 미션 하나뿐입니다. 오늘은 복습 시점이 된 교정 4개 — 그래서 버튼에 그렇게 적혀 있습니다.',
+  s1_tag:'적응형 데일리 미션 · 로드맵 · 스트릭',
+  s2_t:'방이 열한 개. 전부 불편합니다.',
+  s2_b:'20분이 있으면 채점되는 전체 환자 면담을, 2분뿐이라면 2분짜리 공감 드릴을. 레지던시 면접 압박 문답, 티치백, 리스닝 랩, 혹은 직접 쓴 시나리오까지.',
+  s2_tag:'11개 모드 · 전부 채점됩니다',
+  s3_t:'말하는 도중에 체크리스트가 켜집니다.',
+  s3_b:'SOCRATES, 레드 플래그, ICE, 안전망까지 — 말하는 동안 항목 단위로 실시간 추적됩니다. 마무리를 빼먹었다는 사실을 <b style="color:var(--chalk)">면담 중에</b>, 아직 되돌아갈 수 있을 때 알게 됩니다. 끝난 뒤 리포트에서가 아니라.',
+  s3_tag:'실시간 루브릭 · SOAP 노트 · 대본 없는 AI 환자',
+  s4_t:'복도. 약국 콜백. 저녁 7시의 실험실.',
+  s4_b:'해외에서 실제로 당신을 무너뜨리는 순간은 OSCE 안에 없습니다. <b style="color:var(--chalk)">Surprise me</b>를 켜면 누군가 말을 걸기 전까지 상황이 숨겨지고, <b style="color:var(--chalk)">Ear-only</b>를 켜면 자막이 사라집니다 — 목소리와, 당신이 고른 억양과, 당신뿐입니다.',
+  s4_tag:'Surprise me · Ear-only · 억양 &amp; 속도 조절',
+  s5_t:'10년째 빼먹던 /θ/를 이 앱은 듣습니다.',
+  s5_b:'직장에서 아무도 당신의 <i>stethoscope</i> 발음을 고쳐주지 않습니다. 그냥 조용히 "알아듣기 어려운 사람"으로 분류할 뿐이죠. 모든 세션은 당신이 낸 소리와 냈어야 할 소리를 여기에 남기고 끝납니다.',
+  s5_tag:'자동 수집 · 임상 용어 포함',
+  s6_t:'어제의 실수가 내일 다시 목을 조릅니다.',
+  s6_b:'모든 실수는 간격 반복 일정에 올라간 카드가 됩니다. 그리고 읽고 넘기는 플래시카드가 아니라 <b style="color:var(--chalk)">transfer challenge</b>입니다 — 처음 보는 상황에서, 소리 내어 직접 말해야 합니다. 전체 덱은 언제든 Anki로 내보낼 수 있습니다.',
+  s6_tag:'간격 반복 · 소리 내어 말하기 · Anki 내보내기',
+  s7_t:'성장은 그래프로. 청구서는 감사 가능하게.',
+  s7_b:'채점된 모든 세션을 검색할 수 있고, 점수 추이도 함께 봅니다. 구독이 아니라 <b style="color:var(--chalk)">본인의</b> API 키로 돌아가기 때문에, 세션마다 든 비용이 제공사 기준 그대로 소수점 넷째 자리까지 찍힙니다. 반올림도 숨김도 없고, 제가 청구할 것도 없습니다 — 저는 그 숫자를 볼 수조차 없으니까요.',
+  s7_tag:'점수 추이 · 내 토큰 단위 비용',
+  loop_title:'왜 이건 실제로 남는가.',
+  loop_body:'대부분의 어학 앱은 점수에서 끝납니다. 이 앱은 그 점수를 내일의 입력값으로 씁니다.',
+  lp1_t:'말한다', lp1_b:'라이브 AI 환자가 분기 대본이 아니라 <i>당신의</i> 말에 반응합니다. 예상 밖으로 가도 따라옵니다.',
+  lp2_t:'채점된다', lp2_b:'임상 체크리스트, 문법, 라포, 명료도, 발화 속도. 그리고 당신이 받아낸 정보로 만든 SOAP 노트까지.',
+  lp3_t:'실수가 저장된다', lp3_b:'모든 문법 오류와 발음 실수가, 전문의 수준의 교정 문장과 나란히 저장됩니다.',
+  lp4_t:'다시 돌아온다', lp4_b:'간격을 두고, 새로운 상황에서, 소리 내어 — 더 이상 틀리지 않을 때까지. 그다음엔 묻지 않습니다.',
+  price_title:'돈 안 받습니다.<br>이메일도 안 받습니다.',
+  price_body:'구독 없음. 계정도, 로그인도, 광고도, 사용 기록 수집도, 애널리틱스도 없고, 중간에 제 서버라는 것 자체가 없습니다 — 그러니 청구할 것도, 수집할 것도 없습니다. 앱 전체가 오픈소스입니다. 한 줄까지 직접 읽어보세요.',
+  price_body2:'앱은 <b style="color:var(--chalk)">본인의</b> Google Gemini API 키로 동작합니다. 키는 Google이 무료로 발급해 주고, 무료 한도만으로 일상적인 연습은 충분합니다. 혹시 한도를 넘기면 Google에 Google 가격으로 직접 냅니다. 그리고 앱은 세션마다 든 정확한 비용을 History 탭에 그대로 찍어 줍니다.',
+  st1:'Gemini API 키를 발급받으세요. 무료고, 1분이면 됩니다.',
+  st2:'한 번만 붙여넣으세요. 키는 내 폰에만 남습니다.',
+  st3:'말을 시작하세요. 4단계는 없습니다.',
+  rc_h:'당신이 내는 돈의 전부',
+  rc_1:'구독료', rc_2:'계정 · 로그인', rc_3:'광고', rc_4:'사용 기록 수집', rc_6:'소스 코드', rc_5:'본인의 Gemini API 키',
+  rc_f:'존재할 수 있는 청구서는 Google의 것 하나뿐이고, 그것도 저를 거치지 않고 당신에게 직접 갑니다.',
+  rv2:'없음', rv3:'없음', rv4:'없음', rv6:'전부 공개', rv5:'무료 한도',
+  facts_title:'사흘째쯤 되어야 알게 되는 것들.',
+  ft1_t:'Demo Mode는 키가 필요 없습니다', ft1_b:'대본 환자 3명, 피드백 루프 전체, 설정도 비용도 0. 무엇에도 가입하기 전에 직접 판단해 보세요.',
+  ft2_t:'추적 기능 자체가 없습니다', ft2_b:'세션, 실수, 음성 모두 기기에만 남습니다. 계정도, 애널리틱스도, 크래시 리포트도, 제 클라우드도 없습니다 — 당신이 이걸 어떻게 쓰는지 저는 단 하나도 알 수 없습니다.',
+  ft3_t:'8개 언어로 온보딩', ft3_b:'설정 과정은 모국어로 진행하세요. 일단 시작하면 훈련은 항상 영어 그대로입니다.',
+  ft4_t:'Anki로 내보내기', ft4_b:'실수 덱은 당신의 것입니다. 이미 쓰고 있는 루틴이 읽을 수 있는 형식으로 언제든 꺼내가세요.',
+  ft5_t:'아무것도 잃지 않습니다', ft5_b:'연결이 끊기든, 앱이 죽든, 문장 중간에 신호가 나가든 — 대화 기록은 살아남고 그 상태 그대로 분석할 수 있습니다.',
+  ft6_t:'전부 오픈소스', ft6_b:'프롬프트도, 채점 로직도, 무엇이 어디로 가는지도 직접 읽어보세요. 마음에 안 들면 직접 빌드하셔도 됩니다.',
+  final_title:'내일 교수님이 다시 물어봅니다.',
+  final_body:'그때는 이미 마흔 번쯤 소리 내어 말해본 뒤일 겁니다 — 자꾸 말을 끊는 환자에게, 새벽 2시에, 아무도 보지 않는 곳에서. 무료고, 오픈소스고, 만들 계정도 없고, Google이 그냥 주는 Gemini 키 하나면 돌아갑니다. 출시 전이라 지금은 소스에서 직접 빌드합니다.',
+  final_cta1:'소스에서 빌드하기', final_cta2:'데스크톱 앱 보기',
+  fl1:'무료 오픈소스', fl2:'계정도 로그인도 없음', fl3:'추적 없음', fl4:'내 무료 Gemini 키',
+  footer_note:'Bedside English: Talk &amp; Train / 무료 오픈소스 / 의료기기가 아님',
+  footer_privacy:'개인정보 처리방침', footer_desktop:'데스크톱 랜딩 ↗', footer_src:'Android 소스 ↗'
+}};
+(function () {
+  var original = new Map();
+  function apply(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.dataset.i18n;
+      if (!original.has(el)) original.set(el, el.innerHTML);
+      el.innerHTML = (lang === 'ko' && I18N.ko[k]) ? I18N.ko[k] : original.get(el);
+    });
+    document.querySelectorAll('[data-lang]').forEach(function (b) {
+      var on = b.dataset.lang === lang;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    document.title = lang === 'ko' ? 'Bedside English — Android' : 'Bedside English — Android';
+    try { localStorage.setItem('be-language', lang); } catch (e) {}
+  }
+  document.querySelectorAll('[data-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.dataset.lang); });
+  });
+  var init = '';
+  try { init = localStorage.getItem('be-language') || ''; } catch (e) {}
+  if (!init) init = (navigator.language || '').toLowerCase().indexOf('ko') === 0 ? 'ko' : 'en';
+  apply(init === 'ko' ? 'ko' : 'en');
+})();
+</script>
+</body>
+</html>
