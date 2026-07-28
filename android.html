@@ -108,6 +108,10 @@
       -webkit-background-clip:text;background-clip:text;color:transparent}
     html[lang="ko"] .hero h1{font-size:clamp(2.2rem,5.4vw,4.6rem);letter-spacing:-.03em;line-height:1.06}
     .hero-sub{max-width:41ch;margin:26px 0 0;color:var(--fog);font-size:clamp(1rem,1.15vw,1.14rem);line-height:1.68}
+    /* three benefits, so the promise is scannable without reading the sentence */
+    .hero-benefits{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin:20px 0 0;padding:0;list-style:none}
+    .hero-benefits li{display:flex;align-items:center;gap:12px;font-size:.95rem;font-weight:700;letter-spacing:-.015em;color:var(--chalk)}
+    .hero-benefits li:not(:last-child)::after{content:"·";color:#3b4761;font-weight:400}
     .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
     .hero-facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:30px 0 0;padding:0;list-style:none;
       font:600 .68rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fog2)}
@@ -204,6 +208,19 @@
     .bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#3b82f6,#8fb2ff);width:12%}
     .hero .bar i{animation:fill 12s cubic-bezier(.4,0,.2,1) infinite}
     @keyframes fill{0%,6%{width:8%}30%{width:28%}55%{width:54%}80%,100%{width:78%}}
+
+    /* ── glance: the whole loop in one strip, above the fold-ish ─ */
+    .glance{padding:0 0 clamp(44px,8vh,80px)}
+    .glance-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 0;margin:0;padding:22px 20px;list-style:none;
+      border:1px solid var(--line);border-radius:16px;
+      background:linear-gradient(150deg,rgba(255,255,255,.05),rgba(255,255,255,.012))}
+    .glance-row li{flex:1 1 170px;display:flex;align-items:center;justify-content:center;gap:11px}
+    .glance-row li::after{content:"→";margin-left:4px;color:#3b4761;font-size:1.05rem}
+    .glance-row li:last-child::after{content:none}
+    .glance-row b{font:700 .66rem var(--mono);letter-spacing:.12em;color:var(--blue-lit);opacity:.8}
+    .glance-row span{font-size:1.04rem;font-weight:800;letter-spacing:-.025em;white-space:nowrap}
+    .glance-note{margin:14px 0 0;text-align:center;font:600 .66rem var(--mono);letter-spacing:.08em;
+      text-transform:uppercase;color:var(--fog2)}
 
     /* ── cold open ──────────────────────────────────────── */
     .cold{padding:clamp(80px,14vh,180px) 0;border-top:1px solid rgba(255,255,255,.06)}
@@ -439,6 +456,10 @@
     }
     @media (max-width:640px){
       .loop-grid,.facts-grid{grid-template-columns:1fr}
+      .glance-row{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;padding:20px 16px}
+      .glance-row li{justify-content:flex-start}
+      .glance-row li::after{content:none}
+      .glance-row span{font-size:.96rem}
       .hero .phone{--u:.78px}
       .footer-inner{flex-direction:column;align-items:flex-start}
       .cold p{font-size:clamp(1.3rem,6vw,1.9rem)}
@@ -491,7 +512,12 @@
         <span class="kicker" style="display:flex;margin-bottom:14px" data-i18n="hero_kicker">For medical students &amp; healthcare professionals</span>
         <span class="badge"><i></i><span data-i18n="hero_badge">Android · Free · No account · Open source</span></span>
         <h1 data-i18n="hero_title">Talk to an AI patient.<em>In English. Out loud.</em></h1>
-        <p class="hero-sub" data-i18n="hero_sub">It hears you and answers back unscripted — no branching script. It scores your history-taking, grammar, and pronunciation while you're still speaking, then saves every mistake and brings it back later for spoken spaced-repetition practice, until it's gone.</p>
+        <p class="hero-sub" data-i18n="hero_sub">Speak with an unscripted AI patient and get real-time feedback on your clinical English.</p>
+        <ul class="hero-benefits">
+          <li data-i18n="hero_b1">Clinical checklist</li>
+          <li data-i18n="hero_b2">Grammar &amp; pronunciation</li>
+          <li data-i18n="hero_b3">Spoken mistake review</li>
+        </ul>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#tour"><span data-i18n="hero_cta1">See it work</span><span>↓</span></a>
           <a class="btn btn-ghost" href="https://github.com/boyskier/BedsideEnglish-Android#-quick-start" target="_blank" rel="noreferrer"><span data-i18n="hero_cta2">Build it from source</span><span>↗</span></a>
@@ -499,7 +525,7 @@
         <ul class="hero-facts">
           <li data-i18n="hero_f1">Free — no subscription</li>
           <li data-i18n="hero_f2">No login, no telemetry</li>
-          <li data-i18n="hero_f3">Your own free Gemini key</li>
+          <li data-i18n="hero_f3">Demo mode works without an API key</li>
         </ul>
       </div>
 
@@ -557,6 +583,17 @@
     </div>
   </section>
 
+  <!-- ══════════ THE LOOP AT A GLANCE ══════════ -->
+  <section class="glance shell" aria-label="How it works">
+    <ol class="glance-row">
+      <li><b>01</b><span data-i18n="gl1">Speak</span></li>
+      <li><b>02</b><span data-i18n="gl2">Get scored</span></li>
+      <li><b>03</b><span data-i18n="gl3">Review mistakes</span></li>
+      <li><b>04</b><span data-i18n="gl4">Improve</span></li>
+    </ol>
+    <p class="glance-note" data-i18n="gl_note">That's the whole loop — one evening of it, step by step, below ↓</p>
+  </section>
+
   <!-- ══════════ COLD OPEN ══════════ -->
   <section class="cold shell">
     <div class="cold-inner">
@@ -609,7 +646,7 @@
                   <div class="rowchip"><span>Gemini key</span><b>Free tier · connected</b></div>
                   <div class="sect">Clinical English roadmap</div>
                   <div class="li"><span class="dot due"></span><div><b>Practice My Mistakes</b><small>Due now — 4 corrections</small></div></div>
-                  <div class="li"><span class="dot warn"></span><div><b>Clinical English Foundations</b><small>Grammar average 11.4 / 10 — needs attention</small></div></div>
+                  <div class="li"><span class="dot warn"></span><div><b>Clinical English Foundations</b><small>Grammar average 6.4 / 10 — needs attention</small></div></div>
                 </div>
 
                 <!-- 2 · PRACTICE -->
@@ -816,7 +853,7 @@
         <span class="kicker">09 / WHAT IT COSTS YOU</span>
         <div class="meter">$0</div>
         <h2 class="big" data-i18n="price_title">I don't want your money.<br>Or your email.</h2>
-        <p data-i18n="price_body">No subscription. No account, no login, no ads, no telemetry, no analytics, no server of mine anywhere in the middle — so there is nothing to bill you for and nothing to collect about you. The whole app is open source; read every line of it.</p>
+        <p data-i18n="price_body">No subscription. No account, no login, no ads, no telemetry, no analytics, no server of mine anywhere in the middle — so there is nothing to bill you for and nothing to collect about you. Your speech and transcripts go straight from your device to the AI provider you configure; I never receive them. The whole app is open source; read every line of it.</p>
         <p data-i18n="price_body2">It talks to Google's Gemini API using <b style="color:var(--chalk)">your own key</b>, which Google gives out free. The free tier covers ordinary daily practice. If you ever push past it, you pay Google directly at Google's price — and the app prints the exact cost of every session in the History tab so you're never guessing.</p>
         <div class="steps3">
           <div><b>1</b><span data-i18n="st1">Get a Gemini API key. It's free, it takes a minute.</span></div>
@@ -849,7 +886,7 @@
       <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 10h8M8 14h5"/></svg>
         <h4 data-i18n="ft1_t">Demo Mode needs no key</h4><p data-i18n="ft1_b">Three scripted patients, full feedback loop, zero setup and zero cost — so you can judge it before you sign up for anything.</p></div>
       <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg>
-        <h4 data-i18n="ft2_t">Zero telemetry, by design</h4><p data-i18n="ft2_b">Sessions, mistakes and audio stay on the device. No account, no analytics, no crash pings, no cloud of mine — I could not tell you a single thing about how you use it.</p></div>
+        <h4 data-i18n="ft2_t">Zero telemetry, by design</h4><p data-i18n="ft2_b">Sessions, mistakes and audio stay on the device. No account, no analytics, no crash pings, no cloud of mine. We never receive your data — AI requests go directly from your device to the provider you configure.</p></div>
       <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
         <h4 data-i18n="ft3_t">Onboarding in 8 languages</h4><p data-i18n="ft3_b">Get set up in your own language. Once you start, the practice itself stays English, always.</p></div>
       <div class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v13m0 0l-4-4m4 4l4-4"/><path d="M4 20h16"/></svg>
@@ -967,10 +1004,13 @@ var I18N = { ko: {
   hero_kicker:'의대생 &amp; 의료진을 위한 앱',
   hero_badge:'Android · 무료 · 계정 없음 · 오픈소스',
   hero_title:'AI 환자와 대화하세요.<em>영어로, 소리 내어.</em>',
-  hero_sub:'내 말을 듣고, 대본 없이 대답합니다. 말하는 도중에 병력 청취, 문법, 발음을 채점하고, 모든 실수를 저장했다가 나중에 소리 내어 다시 연습하도록 — 간격 반복으로 — 되돌려줍니다, 사라질 때까지.',
+  hero_sub:'대본 없는 AI 환자와 대화하고, 임상 영어에 대한 피드백을 말하는 그 자리에서 받으세요.',
+  hero_b1:'임상 체크리스트', hero_b2:'문법 &amp; 발음', hero_b3:'말한 실수 복습',
   hero_cta1:'작동 보기', hero_cta2:'소스에서 빌드하기',
-  hero_f1:'무료 · 구독 없음', hero_f2:'로그인도 추적도 없음', hero_f3:'무료 Gemini 키만 있으면 끝',
+  hero_f1:'무료 · 구독 없음', hero_f2:'로그인도 추적도 없음', hero_f3:'Demo Mode는 API 키 없이 실행',
   hero_check:'말하는 동안 채점 중', hero_mic:'듣고 있습니다 — 소리 내어 말하세요',
+  gl1:'말한다', gl2:'채점받는다', gl3:'실수를 복습한다', gl4:'나아진다',
+  gl_note:'이게 학습 루프 전부입니다 — 하루 저녁 분량을 단계별로, 아래에서 ↓',
   cold_0:'문제는 한 번도 의학이 아니었습니다.<br>영어였습니다.',
   cold_ts:'04:12 · 병동 복도',
   cold_1:'교수님이 당신을 세웁니다.<br>"짧게, 한 문장으로. 12번 침대 어때?"',
@@ -1008,7 +1048,7 @@ var I18N = { ko: {
   lp3_t:'실수가 저장된다', lp3_b:'모든 문법 오류와 발음 실수가, 전문의 수준의 교정 문장과 나란히 저장됩니다.',
   lp4_t:'다시 돌아온다', lp4_b:'간격을 두고, 새로운 상황에서, 소리 내어 — 더 이상 틀리지 않을 때까지. 그다음엔 묻지 않습니다.',
   price_title:'돈 안 받습니다.<br>이메일도 안 받습니다.',
-  price_body:'구독 없음. 계정도, 로그인도, 광고도, 사용 기록 수집도, 애널리틱스도 없고, 중간에 제 서버라는 것 자체가 없습니다 — 그러니 청구할 것도, 수집할 것도 없습니다. 앱 전체가 오픈소스입니다. 한 줄까지 직접 읽어보세요.',
+  price_body:'구독 없음. 계정도, 로그인도, 광고도, 사용 기록 수집도, 애널리틱스도 없고, 중간에 제 서버라는 것 자체가 없습니다 — 그러니 청구할 것도, 수집할 것도 없습니다. 음성과 대화 기록은 사용자가 설정한 AI 제공사로 기기에서 바로 전송되며, 저는 그것을 전달받지 않습니다. 앱 전체가 오픈소스입니다. 한 줄까지 직접 읽어보세요.',
   price_body2:'앱은 <b style="color:var(--chalk)">본인의</b> Google Gemini API 키로 동작합니다. 키는 Google이 무료로 발급해 주고, 무료 한도만으로 일상적인 연습은 충분합니다. 혹시 한도를 넘기면 Google에 Google 가격으로 직접 냅니다. 그리고 앱은 세션마다 든 정확한 비용을 History 탭에 그대로 찍어 줍니다.',
   st1:'Gemini API 키를 발급받으세요. 무료고, 1분이면 됩니다.',
   st2:'한 번만 붙여넣으세요. 키는 내 폰에만 남습니다.',
@@ -1019,7 +1059,7 @@ var I18N = { ko: {
   rv2:'없음', rv3:'없음', rv4:'없음', rv6:'전부 공개', rv5:'무료 한도',
   facts_title:'사흘째쯤 되어야 알게 되는 것들.',
   ft1_t:'Demo Mode는 키가 필요 없습니다', ft1_b:'대본 환자 3명, 피드백 루프 전체, 설정도 비용도 0. 무엇에도 가입하기 전에 직접 판단해 보세요.',
-  ft2_t:'추적 기능 자체가 없습니다', ft2_b:'세션, 실수, 음성 모두 기기에만 남습니다. 계정도, 애널리틱스도, 크래시 리포트도, 제 클라우드도 없습니다 — 당신이 이걸 어떻게 쓰는지 저는 단 하나도 알 수 없습니다.',
+  ft2_t:'추적 기능 자체가 없습니다', ft2_b:'세션, 실수, 음성 모두 기기에만 남습니다. 계정도, 애널리틱스도, 크래시 리포트도, 제 클라우드도 없습니다. AI 요청은 기기에서 사용자가 설정한 제공사로 직접 전송되며, 저는 그 데이터를 전달받지 않습니다.',
   ft3_t:'8개 언어로 온보딩', ft3_b:'설정 과정은 모국어로 진행하세요. 일단 시작하면 훈련은 항상 영어 그대로입니다.',
   ft4_t:'Anki로 내보내기', ft4_b:'실수 덱은 당신의 것입니다. 이미 쓰고 있는 루틴이 읽을 수 있는 형식으로 언제든 꺼내가세요.',
   ft5_t:'아무것도 잃지 않습니다', ft5_b:'연결이 끊기든, 앱이 죽든, 문장 중간에 신호가 나가든 — 대화 기록은 살아남고 그 상태 그대로 분석할 수 있습니다.',
