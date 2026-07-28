@@ -34,11 +34,13 @@
     h1 { margin: 14px 0 6px; font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -.04em; }
     .doc-meta { margin: 0 0 40px; color: #6b6f79; font: 500 .72rem var(--mono); text-transform: uppercase; }
     h2 { margin: 46px 0 12px; font-size: 1.35rem; font-weight: 750; letter-spacing: -.02em; }
+    h3 { margin: 26px 0 10px; font-size: 1.05rem; font-weight: 700; letter-spacing: -.01em; }
     p, li { color: var(--ink-soft); font-size: .96rem; }
     ul { padding-left: 1.2em; }
     li { margin: 8px 0; }
     .callout { margin: 18px 0; padding: 18px 20px; border: 1px solid var(--ink); background: var(--cobalt-pale); }
     .callout p { margin: 0; color: var(--ink); }
+    .callout p + p { margin-top: 10px; }
     table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .88rem; }
     th, td { text-align: left; padding: 10px 12px; border: 1px solid var(--rule); vertical-align: top; }
     th { background: var(--white); font: 600 .68rem var(--mono); text-transform: uppercase; }
@@ -59,63 +61,103 @@
     <div class="shell">
       <span class="doc-kicker">Legal</span>
       <h1>Privacy Policy</h1>
-      <p class="doc-meta">Effective 2026-07-28 · Applies to both the Windows Desktop app and the Android app ("Bedside English: Talk &amp; Train", internal codename "MedVoiceTrainer")</p>
+      <p class="doc-meta">Effective and last updated 2026-07-28 · Applies to both the Windows Desktop app and the Android app ("Bedside English: Talk &amp; Train", internal codename "MedVoiceTrainer") · Developer: Kyeongeon Lee (Google Play developer name: KYEONGEON LEE)</p>
 
       <div class="callout">
-        <p><strong>Short version:</strong> Bedside English does not run any server and has no user accounts. Your practice history stays in a local database on your own device. When you use live AI voice or AI feedback, your speech/text is sent directly from your device to the AI provider you personally configured (e.g. Google Gemini, OpenAI, Anthropic Claude, or Microsoft Azure Speech) — never through a Bedside English server, because there isn't one.</p>
+        <p><strong>Short version:</strong> Bedside English does not run any server and has no user accounts. Your practice history, transcripts, and settings stay in a local database on your own device. When you use live AI voice, AI feedback, or pronunciation scoring, your speech/text is sent directly from your device to the AI provider you personally configured (e.g. Google Gemini, OpenAI, Anthropic Claude, or Microsoft Azure Speech) — never through a Bedside English server, because there isn't one.</p>
+        <p>We don't show ads, don't include advertising or analytics SDKs, and don't sell or use your data for advertising.</p>
       </div>
 
       <h2>1. Who this policy covers</h2>
-      <p>Bedside English: Talk &amp; Train is a personal, open-source project built by an individual developer (contact below), distributed free of charge on GitHub and (for Android) Google Play. It is a speaking-practice tool, not a clinical system or medical device, and it is not affiliated with OET, OSCE, USMLE, or any residency-matching organization.</p>
+      <p>Bedside English: Talk &amp; Train is a personal, open-source project built by an individual developer (contact below), distributed free of charge on GitHub and, for Android, on Google Play. It is an educational speaking-practice tool for medical and everyday English — not a clinical system, medical device, diagnostic service, or substitute for professional medical advice — and it is not affiliated with OET, OSCE, USMLE, or any residency-matching organization.</p>
 
-      <h2>2. Data that stays only on your device</h2>
+      <h2>2. Data that stays on your device</h2>
       <p>The app stores the following locally (SQLite/Room database on Android; a local data file on Desktop) and never uploads it to any Bedside English server, because none exists:</p>
       <ul>
-        <li>Session history: transcripts, scores, corrections, checklist coverage, and SRS (spaced-repetition) review state.</li>
-        <li>Your preferences: native language, selected AI provider/model, feature toggles.</li>
-        <li>Your API keys for Gemini, OpenAI, Claude, and/or Azure Speech, if you choose to enter them. On Android these are stored using the platform's encrypted preferences and are explicitly excluded from Android's automatic cloud backup.</li>
-        <li>Optional recorded audio clips of your own practice speech, only if you turn on the "save voice clips" setting — off by default, viewable/deletable by you at any time, and never uploaded by the app.</li>
+        <li>Session history: transcripts, AI-generated responses, scores, fluency measurements, feedback, corrections, and checklist coverage.</li>
+        <li>Spaced-repetition (SRS) review items and mistake-review history, plus listening-drill answers and ratings.</li>
+        <li>Debrief content, including SOAP-style notes and commitments generated from your sessions.</li>
+        <li>Your preferences: interface and native language, selected AI/voice/speech provider and model, playback and notification settings, onboarding status.</li>
+        <li>Your API keys/credentials for Gemini, OpenAI, Claude, and/or Azure Speech, if you choose to enter them. On Android these are stored using encrypted preferences backed by the Android Keystore. On Desktop they are stored in a local configuration file in the app's own data folder on your device.</li>
+        <li>Optional recorded audio clips of your own practice speech, saved only if a "save voice clips" feature is available and enabled — viewable and deletable by you at any time, and never uploaded by the app itself. Temporary audio files may also be created in the app cache while analysis is being performed.</li>
+        <li>API token-usage and estimated cost records, calculated locally from your own provider usage.</li>
       </ul>
-      <p>Uninstalling the app, or clearing its data from your device's app settings, permanently deletes all of the above. There is no separate remote copy for us to delete, because we never received one.</p>
+      <p>On Android, the local database, encrypted credential preferences, and the learner-audio folder are explicitly excluded from Android's automatic cloud backup. Uninstalling the app, or clearing its data from your device's app settings, permanently deletes all of the above. There is no separate remote copy for us to delete, because we never received one.</p>
 
-      <h2>3. Data sent to the AI provider you configure</h2>
-      <p>Live voice practice and AI-generated feedback require an AI model. The app does not include or resell access to any AI provider — you supply your own API key for the provider(s) you want to use. When you start a session or request feedback, your speech audio and/or conversation transcript is sent directly from your device to that provider's own servers, under that provider's own privacy policy and terms, which we do not control:</p>
+      <h2>3. Microphone and audio access</h2>
+      <p>The app requests microphone access only when a feature needs spoken input — live voice conversation, dictation, pronunciation analysis, or another voice-based exercise. Depending on the feature and your settings, microphone audio may be streamed live to the AI/speech provider you configured, or a short clip may be sent for transcription or pronunciation scoring. You can deny or revoke microphone permission through your OS settings; the app will fall back to text-based practice where available, but voice features will not work without it. The app never activates the microphone for advertising or background monitoring unrelated to the exercise you started.</p>
+
+      <h2>4. Data sent to the AI provider you configure</h2>
+      <p>Live voice practice, transcription, AI feedback, and pronunciation scoring require an AI or speech model. The app does not include or resell access to any AI provider — you supply your own API key/credential for the provider(s) you want to use. When you start a session or request feedback, your speech audio, transcript, and/or relevant exercise context is sent directly from your device to that provider's own servers, under that provider's own privacy policy and terms, which we do not control:</p>
       <table>
-        <thead><tr><th>Provider</th><th>Used for</th><th>Their privacy policy</th></tr></thead>
+        <thead><tr><th>Provider</th><th>May receive</th><th>Their privacy policy</th></tr></thead>
         <tbody>
-          <tr><td>Google (Gemini API / Gemini Live)</td><td>Live voice conversation, text-based feedback analysis</td><td><a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noreferrer">ai.google.dev/gemini-api/terms</a></td></tr>
-          <tr><td>OpenAI (Realtime API / GPT)</td><td>Live voice conversation (optional), text-based feedback analysis (optional)</td><td><a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noreferrer">openai.com/policies/privacy-policy</a></td></tr>
-          <tr><td>Anthropic (Claude)</td><td>Text-based feedback analysis (optional)</td><td><a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noreferrer">anthropic.com/legal/privacy</a></td></tr>
-          <tr><td>Microsoft Azure AI Speech</td><td>Pronunciation scoring (optional, off by default)</td><td><a href="https://www.microsoft.com/en-us/trust-center/privacy" target="_blank" rel="noreferrer">microsoft.com/trust-center/privacy</a></td></tr>
+          <tr><td>Google (Gemini API / Gemini Live)</td><td>Microphone audio, transcripts, prompts, exercise context, pasted material, text-to-speech text</td><td><a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noreferrer">ai.google.dev/gemini-api/terms</a> · <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">policies.google.com/privacy</a></td></tr>
+          <tr><td>OpenAI (Realtime API / GPT)</td><td>Microphone audio, audio clips, transcripts, prompts, exercise context (optional features)</td><td><a href="https://openai.com/policies/row-privacy-policy/" target="_blank" rel="noreferrer">openai.com/policies/row-privacy-policy</a></td></tr>
+          <tr><td>Anthropic (Claude)</td><td>Transcripts, prompts, exercise context, pasted material (optional, text-based feedback only)</td><td><a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noreferrer">anthropic.com/legal/privacy</a></td></tr>
+          <tr><td>Microsoft Azure AI Speech</td><td>Short audio clips, language settings, reference text (optional, pronunciation scoring, off by default)</td><td><a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank" rel="noreferrer">privacy.microsoft.com/privacystatement</a></td></tr>
         </tbody>
       </table>
-      <p>If you don't configure a given provider, no data is ever sent to it. Demo/Mock modes run entirely offline and contact no AI provider at all.</p>
-      <p>We recommend practicing with fictional or de-identified scenarios and never entering real patients' or third parties' identifiable information into a session.</p>
+      <p>If you don't configure a given provider, no data is ever sent to it. Demo/mock modes run entirely offline and contact no AI provider at all. Providers may process your data in countries other than your own, and their retention, logging, and model-improvement practices are governed by their own policies and your own account with them — review the provider's policy before enabling it or submitting sensitive information.</p>
+      <p>We recommend practicing with fictional or de-identified scenarios and never entering real patients' or third parties' identifiable information into a session (see §9).</p>
 
-      <h2>4. Microphone access</h2>
-      <p>The Android app requests microphone access only to enable live voice practice. You can decline it; the app falls back to a text-based practice mode instead of crashing or silently failing. Audio is streamed for live transcription/conversation and is not recorded to disk unless you separately opt in per §2.</p>
+      <h3>4.1 YouTube transcript lookup</h3>
+      <p>If you paste a public YouTube video URL or ID to import a caption track (for example, for a "teach-back" exercise), the app connects to YouTube to retrieve that video's public page and available captions. YouTube/Google may see normal network request information associated with that request, such as your device's IP address. See <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">policies.google.com/privacy</a>.</p>
 
       <h2>5. Anonymous usage telemetry (opt-in, currently inactive)</h2>
-      <p>Preferences includes an opt-in toggle to "share anonymous usage data to help improve the app." As of this policy's effective date, that pipeline has no destination configured in the shipped build, so enabling it currently sends nothing anywhere. If a lightweight, privacy-respecting telemetry endpoint is activated in a future update, it will never include audio, transcripts, API keys, or any free-text you typed or spoke — only anonymous, aggregate technical signals (e.g. error type, app version) — and it will remain something you must explicitly opt into.</p>
+      <p>The app includes an optional telemetry mechanism for coarse usage statistics. It sends nothing unless you explicitly opt in <em>and</em> the developer has configured a telemetry endpoint and key in that build. As of this policy's effective date, no telemetry endpoint is configured in the shipped release of either app, so telemetry currently sends nothing regardless of your consent setting.</p>
+      <p>If it is ever activated in a future release, telemetry is designed to include only: a random per-install identifier (no account, no device identifier); the event name; app version and OS family; interface/native-language codes; a coarse country code derived from your system locale (never GPS or IP-based geolocation); session mode, duration, counts, and rounded score information; and limited technical error information (exception type and an in-app file/line location, never the error message text). It is designed to never include microphone audio, transcripts, prompts, feedback text, names, API keys, or any other free-form content you typed or spoke. Any future activation will be reflected in an updated "Last updated" date on this page and, for the Android app, in the Google Play Data safety section.</p>
 
       <h2>6. No accounts, no ads, no data sale</h2>
-      <p>There is no sign-up, login, or Bedside English cloud profile on either platform. We do not run advertising, analytics SDKs, or data brokers, and we do not sell or share your data with anyone — we simply never receive it in the first place.</p>
+      <p>There is no sign-up, login, or Bedside English cloud profile on either platform. The apps do not include advertising or third-party analytics SDKs, and we do not sell or share your data with anyone — we simply never receive it in the first place. The Android app does not request access to contacts, precise location, call logs, SMS messages, photos, or the advertising identifier.</p>
 
-      <h2>7. Children</h2>
-      <p>Bedside English is designed for adult learners (medical students, graduates, and residency applicants) and is not directed at children under 13. We do not knowingly collect data from children, and by design we do not collect personal data from anyone on our own servers.</p>
+      <h2>7. Data retention and deletion</h2>
+      <ul>
+        <li><strong>Sessions and learning records:</strong> stay on your device until you delete them, clear the app's storage, or uninstall the app. Deleting a session in the app moves it to an in-app Trash area first; from there you can delete it immediately, or use the app's trash-cleanup control to purge items older than 7 days, which also deletes any audio clips saved for that session.</li>
+        <li><strong>API credentials and settings:</strong> remain on your device until you remove or replace them, clear the app's storage, or uninstall the app.</li>
+        <li><strong>Temporary files:</strong> cache/export audio files are kept only as long as the relevant feature needs them, subject to your OS's normal storage and cleanup behavior.</li>
+        <li><strong>Third-party provider data:</strong> anything sent to Google, OpenAI, Anthropic, Microsoft, or YouTube is retained and deleted according to that provider's own policies and your account/configuration with them. We generally cannot access or delete data already sent to your own third-party provider account on your behalf — use that provider's own privacy controls.</li>
+      </ul>
+      <p>Because the app never creates a Bedside English account, there is no separate online account for us to delete. You can remove all local app data at any time by deleting items in-app, clearing stored API credentials, using your OS's "clear app data" option, or uninstalling the app.</p>
 
-      <h2>8. Open source</h2>
-      <p>Both apps are open source under the MIT license, so you can verify these claims yourself in the source code:</p>
+      <h2>8. Security</h2>
+      <ul>
+        <li>API credentials are stored encrypted (Android Keystore-backed encrypted preferences on Android) or in a local, per-device configuration file (Desktop).</li>
+        <li>Learning records live in the app's private local database; learner audio clips live in the app's private local file storage.</li>
+        <li>Requests to AI/speech providers use HTTPS or secure WebSocket connections where the provider supports them.</li>
+        <li>On Android, the database, encrypted credential store, and learner-audio folder are excluded from automatic cloud backup.</li>
+      </ul>
+      <p>No method of electronic storage or transmission is completely secure. Please also protect your own device and provider account credentials.</p>
+
+      <h2>9. Sensitive medical or personal information</h2>
+      <p>Bedside English is intended for simulated education and language practice. Please do not enter, speak, paste, or otherwise submit real patient-identifying information, protected health information, confidential clinical records, or other information you're not authorized to disclose. The app is not a HIPAA-compliant or equivalent clinical information system, and anything you voluntarily include in a voice session, transcript, or pasted material may be transmitted to the third-party AI/speech provider you've selected (§4).</p>
+
+      <h2>10. Children and intended audience</h2>
+      <p>Bedside English and its AI integrations are designed for adult learners — medical students, graduates, and residency applicants generally aged 18 or older — and are not directed at children. We do not knowingly collect personal information from children through a Bedside English account or developer-operated backend, because none exists. A parent or guardian who believes a minor has used the app to provide information to a third-party AI provider should contact that provider directly and may also contact us at the address below.</p>
+
+      <h2>11. Your choices</h2>
+      <ul>
+        <li>Use offline or demo/mock features without an API key or microphone access, where available.</li>
+        <li>Deny or revoke microphone and notification permissions in your OS settings.</li>
+        <li>Choose which third-party AI/speech provider(s) to use, or use none at all.</li>
+        <li>Remove or replace stored provider credentials at any time.</li>
+        <li>Opt in or out of anonymous telemetry (currently inactive regardless of this setting — see §5).</li>
+        <li>Delete individual sessions/learning records, or clear all local app data / uninstall the app.</li>
+      </ul>
+      <p>Disabling a permission or removing a provider credential may prevent the related feature from working.</p>
+
+      <h2>12. Open source</h2>
+      <p>Both apps are open source under the MIT license, so you can verify the claims in this policy yourself in the source code:</p>
       <ul>
         <li>Android: <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer">github.com/boyskier/BedsideEnglish-Android</a></li>
         <li>Desktop: <a href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer">github.com/boyskier/BedsideEnglish-Desktop</a></li>
       </ul>
 
-      <h2>9. Changes to this policy</h2>
-      <p>If this policy changes, the "Effective" date at the top of this page will be updated and the change will be visible in this page's git history at <a href="https://github.com/boyskier/bedside-english" target="_blank" rel="noreferrer">github.com/boyskier/bedside-english</a>.</p>
+      <h2>13. Changes to this policy</h2>
+      <p>We may update this policy when the app's features, providers, or data practices change. The "Last updated" date at the top of this page will change accordingly, and material changes will be reflected here, in the app, and/or in the Google Play listing as required. This page's history is also visible at <a href="https://github.com/boyskier/bedside-english" target="_blank" rel="noreferrer">github.com/boyskier/bedside-english</a>.</p>
 
-      <h2>10. Contact</h2>
-      <p>Questions, deletion requests, or privacy concerns: <a href="mailto:boy.skier@gmail.com">boy.skier@gmail.com</a>, or open an issue on either GitHub repo above.</p>
+      <h2>14. Contact</h2>
+      <p>Questions, deletion requests, or privacy concerns: <strong>Kyeongeon Lee</strong>, <a href="mailto:boy.skier@gmail.com">boy.skier@gmail.com</a>, or open an issue on either GitHub repo above.</p>
     </div>
   </main>
 

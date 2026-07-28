@@ -8,8 +8,8 @@
   <meta name="description" content="Talk out loud to an AI patient that answers unscripted. It scores your history-taking while you're still speaking, catches every slip, and drills it back until it's gone. Free, open source, no account — runs on your own free Gemini API key.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bedside English: Talk &amp; Train">
-  <meta property="og:title" content="It's never the medicine. It's the English.">
-  <meta property="og:description" content="Speak out loud to an AI patient that talks back — unscripted, at 2am, with nobody watching. Free, open source, no account, no telemetry. Bring your own free Gemini key.">
+  <meta property="og:title" content="AI Patient Roleplay for Clinical English — Android">
+  <meta property="og:description" content="For medical students and healthcare professionals: speak to an AI patient that talks back unscripted, get scored on your history-taking while you talk, and drill every mistake back until it's gone. Free, open source, no account, no telemetry.">
   <meta property="og:url" content="https://boyskier.github.io/bedside-english/android.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://boyskier.github.io/bedside-english/android.html">
@@ -488,12 +488,13 @@
   <section class="hero shell">
     <div class="hero-grid">
       <div>
+        <span class="kicker" style="display:flex;margin-bottom:14px" data-i18n="hero_kicker">For medical students &amp; healthcare professionals</span>
         <span class="badge"><i></i><span data-i18n="hero_badge">Android · Free · No account · Open source</span></span>
-        <h1 data-i18n="hero_title">It was never<em>the medicine.</em></h1>
-        <p class="hero-sub" data-i18n="hero_sub">It's the English. So this is an AI patient you <b style="color:var(--chalk)">talk to out loud</b> — it hears you, answers back unscripted, at 2 a.m. with nobody watching. It scores your history-taking while you're still speaking, catches every slip, and pushes each one back at you until it's gone.</p>
+        <h1 data-i18n="hero_title">Talk to an AI patient.<em>In English. Out loud.</em></h1>
+        <p class="hero-sub" data-i18n="hero_sub">It hears you and answers back unscripted — no branching script. It scores your history-taking, grammar, and pronunciation while you're still speaking, then saves every mistake and brings it back later for spoken spaced-repetition practice, until it's gone.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#tour"><span data-i18n="hero_cta1">See it work</span><span>↓</span></a>
-          <a class="btn btn-ghost" href="#get"><span data-i18n="hero_cta2">Get the app</span><span>↗</span></a>
+          <a class="btn btn-ghost" href="https://github.com/boyskier/BedsideEnglish-Android#-quick-start" target="_blank" rel="noreferrer"><span data-i18n="hero_cta2">Build it from source</span><span>↗</span></a>
         </div>
         <ul class="hero-facts">
           <li data-i18n="hero_f1">Free — no subscription</li>
@@ -559,6 +560,7 @@
   <!-- ══════════ COLD OPEN ══════════ -->
   <section class="cold shell">
     <div class="cold-inner">
+      <p class="rv" style="font-size:clamp(1.6rem,3.8vw,2.9rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin:0 0 40px" data-i18n="cold_0">It was never the medicine.<br>It's the English.</p>
       <span class="ts rv" data-i18n="cold_ts">04:12 · WARD CORRIDOR</span>
       <p class="rv" data-i18n="cold_1">The attending stops you.<br>"Quickly — one sentence. How's bed 12?"</p>
       <p class="mute rv" data-i18n="cold_2">You know the answer. You have known it since second year of medical school.</p>
@@ -962,12 +964,14 @@
 /* ── language ────────────────────────────────────────────────────── */
 var I18N = { ko: {
   nav_tour:'투어', nav_price:'비용은?', nav_desktop:'데스크톱 ↗', nav_get:'받기',
+  hero_kicker:'의대생 &amp; 의료진을 위한 앱',
   hero_badge:'Android · 무료 · 계정 없음 · 오픈소스',
-  hero_title:'문제는 한 번도<em>의학이 아니었다.</em>',
-  hero_sub:'영어였습니다. 그래서 만들었습니다 — <b style="color:var(--chalk)">직접 소리 내어 말하는</b> AI 환자를. 내 말을 듣고, 대본 없이 대답하고, 새벽 2시에 아무도 보지 않는 곳에서. 말하는 도중에 병력 청취를 채점하고, 모든 실수를 잡아내고, 사라질 때까지 다시 들이밉니다.',
-  hero_cta1:'작동 보기', hero_cta2:'앱 받기',
+  hero_title:'AI 환자와 대화하세요.<em>영어로, 소리 내어.</em>',
+  hero_sub:'내 말을 듣고, 대본 없이 대답합니다. 말하는 도중에 병력 청취, 문법, 발음을 채점하고, 모든 실수를 저장했다가 나중에 소리 내어 다시 연습하도록 — 간격 반복으로 — 되돌려줍니다, 사라질 때까지.',
+  hero_cta1:'작동 보기', hero_cta2:'소스에서 빌드하기',
   hero_f1:'무료 · 구독 없음', hero_f2:'로그인도 추적도 없음', hero_f3:'무료 Gemini 키만 있으면 끝',
   hero_check:'말하는 동안 채점 중', hero_mic:'듣고 있습니다 — 소리 내어 말하세요',
+  cold_0:'문제는 한 번도 의학이 아니었습니다.<br>영어였습니다.',
   cold_ts:'04:12 · 병동 복도',
   cold_1:'교수님이 당신을 세웁니다.<br>"짧게, 한 문장으로. 12번 침대 어때?"',
   cold_2:'답은 알고 있습니다. 본과 2학년 때부터 알고 있었습니다.',
