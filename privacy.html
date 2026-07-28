@@ -64,15 +64,15 @@
       <p class="doc-meta">Effective and last updated 2026-07-28 · Applies to both the Windows Desktop app and the Android app ("Bedside English: Talk &amp; Train", internal codename "MedVoiceTrainer") · Developer: Kyeongeon Lee (Google Play developer name: KYEONGEON LEE)</p>
 
       <div class="callout">
-        <p><strong>Short version:</strong> Bedside English does not run any server and has no user accounts. Your practice history, transcripts, and settings stay in a local database on your own device. When you use live AI voice, AI feedback, or pronunciation scoring, your speech/text is sent directly from your device to the AI provider you personally configured (e.g. Google Gemini, OpenAI, Anthropic Claude, or Microsoft Azure Speech) — never through a Bedside English server, because there isn't one.</p>
-        <p>We don't show ads, don't include advertising or analytics SDKs, and don't sell or use your data for advertising.</p>
+        <p><strong>Short version:</strong> Bedside English does not run any server and has no user accounts. Your practice history, transcripts, and settings are stored in a local database on your own device. When you use live AI voice, AI feedback, or pronunciation scoring, the speech, text, and exercise context needed for that feature are sent directly from your device to the AI provider you personally configured (e.g. Google Gemini, OpenAI, Anthropic Claude, or Microsoft Azure Speech) — never through a Bedside English server, because there isn't one.</p>
+        <p>We don't show ads, don't include advertising or analytics SDKs, and don't sell your data or use it for advertising.</p>
       </div>
 
       <h2>1. Who this policy covers</h2>
       <p>Bedside English: Talk &amp; Train is a personal, open-source project built by an individual developer (contact below), distributed free of charge on GitHub and, for Android, on Google Play. It is an educational speaking-practice tool for medical and everyday English — not a clinical system, medical device, diagnostic service, or substitute for professional medical advice — and it is not affiliated with OET, OSCE, USMLE, or any residency-matching organization.</p>
 
-      <h2>2. Data that stays on your device</h2>
-      <p>The app stores the following locally (SQLite/Room database on Android; a local data file on Desktop) and never uploads it to any Bedside English server, because none exists:</p>
+      <h2>2. Data stored on your device</h2>
+      <p>The app stores the following locally (SQLite/Room database on Android; a local data file on Desktop) and never uploads it to any Bedside English server, because none exists. When you choose a feature that uses an AI or speech provider, the relevant audio, transcript, prompt, or exercise context may also be sent directly to that provider as described in Section 4:</p>
       <ul>
         <li>Session history: transcripts, AI-generated responses, scores, fluency measurements, feedback, corrections, and checklist coverage.</li>
         <li>Spaced-repetition (SRS) review items and mistake-review history, plus listening-drill answers and ratings.</li>
@@ -88,7 +88,7 @@
       <p>The app requests microphone access only when a feature needs spoken input — live voice conversation, dictation, pronunciation analysis, or another voice-based exercise. Depending on the feature and your settings, microphone audio may be streamed live to the AI/speech provider you configured, or a short clip may be sent for transcription or pronunciation scoring. You can deny or revoke microphone permission through your OS settings; the app will fall back to text-based practice where available, but voice features will not work without it. The app never activates the microphone for advertising or background monitoring unrelated to the exercise you started.</p>
 
       <h2>4. Data sent to the AI provider you configure</h2>
-      <p>Live voice practice, transcription, AI feedback, and pronunciation scoring require an AI or speech model. The app does not include or resell access to any AI provider — you supply your own API key/credential for the provider(s) you want to use. When you start a session or request feedback, your speech audio, transcript, and/or relevant exercise context is sent directly from your device to that provider's own servers, under that provider's own privacy policy and terms, which we do not control:</p>
+      <p>Live voice practice, transcription, AI feedback, and pronunciation scoring require an AI or speech model. The app does not include or resell access to any AI provider — you supply your own API key/credential for the provider(s) you want to use. Provider availability may vary by platform, app version, and enabled feature. When you start a session or request feedback, your speech audio, transcript, and/or relevant exercise context is sent directly from your device to that provider's own servers, under that provider's own privacy policy and terms, which we do not control:</p>
       <table>
         <thead><tr><th>Provider</th><th>May receive</th><th>Their privacy policy</th></tr></thead>
         <tbody>
@@ -109,7 +109,7 @@
       <p>If it is ever activated in a future release, telemetry is designed to include only: a random per-install identifier (no account, no device identifier); the event name; app version and OS family; interface/native-language codes; a coarse country code derived from your system locale (never GPS or IP-based geolocation); session mode, duration, counts, and rounded score information; and limited technical error information (exception type and an in-app file/line location, never the error message text). It is designed to never include microphone audio, transcripts, prompts, feedback text, names, API keys, or any other free-form content you typed or spoke. Any future activation will be reflected in an updated "Last updated" date on this page and, for the Android app, in the Google Play Data safety section.</p>
 
       <h2>6. No accounts, no ads, no data sale</h2>
-      <p>There is no sign-up, login, or Bedside English cloud profile on either platform. The apps do not include advertising or third-party analytics SDKs, and we do not sell or share your data with anyone — we simply never receive it in the first place. The Android app does not request access to contacts, precise location, call logs, SMS messages, photos, or the advertising identifier.</p>
+      <p>There is no sign-up, login, or Bedside English cloud profile on either platform. The apps do not include advertising or third-party analytics SDKs, and we do not sell data or use it for advertising. We do not receive your practice content because the app has no developer-operated backend; when you choose an AI or speech feature, the app sends the required data directly to the provider you selected, as described in Section 4. The Android app does not request access to contacts, precise location, call logs, SMS messages, photos, or the advertising identifier.</p>
 
       <h2>7. Data retention and deletion</h2>
       <ul>
