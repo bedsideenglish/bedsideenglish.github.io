@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#05070c">
   <title>Bedside English — Clinical English with an AI Patient</title>
-  <meta name="description" content="Speak out loud with an unscripted AI patient. Get live feedback on history-taking, grammar and pronunciation, then practise your own mistakes. Free Android app, no account.">
+  <meta name="description" content="Speak out loud with an unscripted AI patient — or everyday English in scenes that keep moving. Live feedback, open-book support, and your mistakes as tomorrow's practice. Free Android app.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bedside English: Talk &amp; Train">
   <meta property="og:title" content="Practise clinical English with an AI patient">
-  <meta property="og:description" content="Speak, get scored, and practise your own mistakes out loud. Free Android app for medical students and healthcare professionals.">
+  <meta property="og:description" content="Speak, get scored, and practise your own mistakes out loud. Clinical English or everyday conversation — free Android app, no account.">
   <meta property="og:url" content="https://boyskier.github.io/bedside-english/android.html">
   <link rel="canonical" href="https://boyskier.github.io/bedside-english/android.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -185,6 +185,9 @@
     .tour-pill{margin-top:9px;padding:8px;border-radius:999px;text-align:center;background:linear-gradient(140deg,#4388ff,#2456ca);font-size:8.5px;font-weight:800}
     .tour-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;border:1px solid #222e43;border-radius:10px;background:#111a29;color:var(--fog);font-size:8.5px}
     .tour-row b{color:var(--chalk)}
+    .track-row{display:flex;gap:5px}
+    .track{flex:1;padding:6px 4px;border:1px solid #253149;border-radius:8px;text-align:center;color:var(--fog2);font:700 7px var(--mono);letter-spacing:.04em}
+    .track.on{border-color:#3b6bc4;background:rgba(52,120,246,.16);color:var(--blue2)}
     .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
     .mode{min-height:72px;padding:10px;border:1px solid #253149;border-radius:11px;background:#111a2a;font-size:9px;font-weight:800}
     .mode i{display:block;width:22px;height:22px;margin-bottom:7px;border-radius:7px;background:linear-gradient(145deg,#3478f6,#23479f);box-shadow:0 0 16px rgba(52,120,246,.3)}
@@ -277,6 +280,7 @@
       .tour-card p,.tour-row,.review-prompt{font-size:6.5px}
       .tour-card strong,.review-card strong{font-size:8.5px}
       .tour-pill{padding:6px;font-size:6.5px}
+      .track{padding:4px 3px;font-size:5.4px}
       .mode{min-height:50px;padding:7px;font-size:6.8px}
       .mode i{width:16px;height:16px;margin-bottom:4px}
       .mode small{font-size:5px}
@@ -340,13 +344,13 @@
   <section class="hero shell">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow" data-i18n="hero_kicker">For medical students &amp; healthcare professionals</span>
+        <span class="eyebrow" data-i18n="hero_kicker">For medical students, healthcare workers &amp; everyday English learners</span>
         <span class="badge"><span class="status-dot"></span><span data-i18n="hero_badge">Android · Free · No account</span></span>
         <h1 data-i18n="hero_title">Talk to an AI patient.<em>In English. Out loud.</em></h1>
-        <p class="hero-copy" data-i18n="hero_copy">Have an unscripted voice conversation, see what you missed while you are still speaking, and practise your own clinical English mistakes until they stop happening.</p>
+        <p class="hero-copy" data-i18n="hero_copy">Have an unscripted voice conversation — a patient in clinic, or a stranger across a café table — see what you missed while you are still speaking, and practise your own mistakes until they stop happening.</p>
         <ul class="benefits">
-          <li data-i18n="benefit_1">Live patient conversation</li>
-          <li data-i18n="benefit_2">Clinical checklist scoring</li>
+          <li data-i18n="benefit_1">Live, unscripted voice</li>
+          <li data-i18n="benefit_2">Open book when you are stuck</li>
           <li data-i18n="benefit_3">Grammar &amp; pronunciation review</li>
         </ul>
         <div class="hero-actions">
@@ -392,7 +396,7 @@
 
   <section class="how shell" id="how" aria-label="How it works">
     <ol class="how-list">
-      <li><b>01</b><strong data-i18n="how_1_title">Speak to a patient</strong><p data-i18n="how_1_body">The AI patient responds to your words, not a branching script.</p></li>
+      <li><b>01</b><strong data-i18n="how_1_title">Speak to a patient</strong><p data-i18n="how_1_body">The AI responds to your words, not a branching script.</p></li>
       <li><b>02</b><strong data-i18n="how_2_title">Get scored live</strong><p data-i18n="how_2_body">See missed history items while there is still time to ask.</p></li>
       <li><b>03</b><strong data-i18n="how_3_title">Say the fix out loud</strong><p data-i18n="how_3_body">Your errors return later in a new speaking situation.</p></li>
     </ol>
@@ -418,26 +422,34 @@
           </article>
           <article class="tour-step" data-tour-step="1">
             <div class="tour-step-card">
-              <span class="tour-step-no">02 · CHOOSE A ROOM</span>
-              <h3 data-i18n="tour_2_title">Practise the pressure you actually face.</h3>
-              <p data-i18n="tour_2_body">Run a complete patient encounter, rehearse an interview, practise teach-back, or drop into a surprise hallway scenario when you only have two minutes.</p>
-              <div class="tour-tags"><span data-i18n="tour_2_tag1">11 practice modes</span><span data-i18n="tour_2_tag2">Clinical &amp; survival English</span></div>
+              <span class="tour-step-no">02 · CHOOSE</span>
+              <h3 data-i18n="tour_2_title">Medicine, or just English.</h3>
+              <p data-i18n="tour_2_body">Pick the clinical track and every medical mode is there — encounters, follow-up visits, interviews, teach-back. Pick everyday English and the clinical modes leave the app entirely.</p>
+              <div class="tour-tags"><span data-i18n="tour_2_tag1">Clinical or everyday</span><span data-i18n="tour_2_tag2">11 practice modes</span></div>
             </div>
           </article>
           <article class="tour-step" data-tour-step="2">
             <div class="tour-step-card">
               <span class="tour-step-no">03 · SPEAK</span>
               <h3 data-i18n="tour_3_title">The patient answers. The rubric listens.</h3>
-              <p data-i18n="tour_3_body">The conversation stays unscripted while the clinical checklist updates in the background. If you miss a red flag, you find out while you can still ask.</p>
-              <div class="tour-tags"><span data-i18n="tour_3_tag1">Live voice</span><span data-i18n="tour_3_tag2">Real-time checklist</span><span>SOAP</span></div>
+              <p data-i18n="tour_3_body">The conversation stays unscripted while the clinical checklist updates in the background. Not sure what to ask next? Open the answer sheet mid-conversation and keep talking.</p>
+              <div class="tour-tags"><span data-i18n="tour_3_tag1">Live voice</span><span data-i18n="tour_3_tag2">Real-time checklist</span><span data-i18n="tour_3_tag3">Open book</span></div>
             </div>
           </article>
           <article class="tour-step" data-tour-step="3">
             <div class="tour-step-card">
-              <span class="tour-step-no">04 · RETURN</span>
-              <h3 data-i18n="tour_4_title">The mistake does not disappear with the score.</h3>
-              <p data-i18n="tour_4_body">It becomes a spaced speaking challenge. Tomorrow, a new situation asks you to produce the corrected sentence out loud—not merely recognise it.</p>
-              <div class="tour-tags"><span data-i18n="tour_4_tag1">Spaced repetition</span><span data-i18n="tour_4_tag2">Speak the correction</span><span>Anki export</span></div>
+              <span class="tour-step-no">04 · THE SCENE MOVES</span>
+              <h3 data-i18n="tour_4_title">Real conversations do not stay in one room.</h3>
+              <p data-i18n="tour_4_body">One session moves with you: take a table by the window, skip to after the meal, get handed over to the server — or go to the counter alone and come back holding three facts nobody else heard, which you now have to relay.</p>
+              <div class="tour-tags"><span data-i18n="tour_4_tag1">Scene changes</span><span data-i18n="tour_4_tag2">Time skips</span><span data-i18n="tour_4_tag3">Solo errands</span></div>
+            </div>
+          </article>
+          <article class="tour-step" data-tour-step="4">
+            <div class="tour-step-card">
+              <span class="tour-step-no">05 · RETURN</span>
+              <h3 data-i18n="tour_5_title">The mistake does not disappear with the score.</h3>
+              <p data-i18n="tour_5_body">It becomes a spaced speaking challenge. Tomorrow, a new situation asks you to produce the corrected sentence out loud—not merely recognise it.</p>
+              <div class="tour-tags"><span data-i18n="tour_5_tag1">Spaced repetition</span><span data-i18n="tour_5_tag2">Speak the correction</span><span>Anki export</span></div>
             </div>
           </article>
         </div>
@@ -469,17 +481,18 @@
                   </div>
 
                   <div class="tour-screen" data-tour-screen="1">
-                    <span class="tour-screen-label">Choose your pressure</span>
+                    <span class="tour-screen-label">What are you here for?</span>
                     <strong class="tour-screen-title">Practice</strong>
+                    <div class="track-row"><span class="track on">Clinical English</span><span class="track">Everyday only</span></div>
                     <div class="mode-grid">
                       <div class="mode"><i></i>Patient Encounter<small>Full history · scored</small></div>
-                      <div class="mode"><i style="background:linear-gradient(145deg,#ffb33c,#a55d12)"></i>Survival English<small>Hallway · phone · lab</small></div>
+                      <div class="mode"><i style="background:linear-gradient(145deg,#7ea6ff,#2b4fae)"></i>Patient Follow-up<small>See them again</small></div>
+                      <div class="mode"><i style="background:linear-gradient(145deg,#ffb33c,#a55d12)"></i>Survival English<small>Café · phone · street</small></div>
                       <div class="mode"><i style="background:linear-gradient(145deg,#39d69f,#127450)"></i>Teach-back<small>Explain it clearly</small></div>
                       <div class="mode"><i style="background:linear-gradient(145deg,#c68cff,#6943ad)"></i>Interview<small>Residency pressure</small></div>
-                      <div class="mode"><i style="background:linear-gradient(145deg,#ff7470,#963f45)"></i>Empathy Drill<small>Two-minute reps</small></div>
                       <div class="mode"><i style="background:linear-gradient(145deg,#64c5ff,#24689d)"></i>Custom Scenario<small>Write your own</small></div>
                     </div>
-                    <div class="tour-card lit"><strong>Surprise me</strong><p>The situation stays hidden until someone starts talking.</p></div>
+                    <div class="tour-card lit"><strong>Everyday only?</strong><p>The clinical modes above disappear. Nothing medical is left on screen.</p></div>
                   </div>
 
                   <div class="tour-screen" data-tour-screen="2">
@@ -489,14 +502,31 @@
                     <div class="tour-dialogue"><small>PATIENT · OUT LOUD</small>Walking upstairs. I have to stop halfway now.</div>
                     <div class="tour-dialogue me"><small>YOU · SPOKEN</small>Do you get any chest pain with it?</div>
                     <div class="tour-card lit" style="margin-top:auto">
-                      <span class="tour-screen-label">Live rubric · 6 / 9</span>
-                      <div class="score-bar"><i style="width:66%"></i></div>
-                      <p>Still to ask: red flags · ICE · safety-net</p>
+                      <span class="tour-screen-label">Answer sheet · section 2 of 4</span>
+                      <strong>Likely: heart failure</strong>
+                      <p>Still to check: orthopnoea · ankle swelling · weight change</p>
                     </div>
                     <div class="mic"><span class="mic-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="9.2" y="2.6" width="5.6" height="11" rx="2.8" fill="white"/><path d="M6 11a6 6 0 0012 0" stroke="white" stroke-width="1.8"/></svg></span><span>Listening<span class="wave"><i></i><i></i><i></i><i></i><i></i></span></span></div>
                   </div>
 
                   <div class="tour-screen" data-tour-screen="3">
+                    <div class="live"><i></i>SURVIVAL · 06:04 <b>Café table</b></div>
+                    <div class="tour-dialogue"><small>PARTNER · OUT LOUD</small>The queue looks short now — do you want to go and order?</div>
+                    <div class="tour-card lit">
+                      <span class="tour-screen-label">Scene change</span>
+                      <strong>Go order at the counter and come back?</strong>
+                      <p>You go alone. They stay at the table and hear none of it.</p>
+                      <div class="tour-pill">Yes, let's go ▶</div>
+                    </div>
+                    <div class="tour-dialogue" style="margin-top:auto;text-align:center;background:#0f1726;color:var(--fog2)">— you walk over to the counter alone —</div>
+                    <div class="tour-card">
+                      <span class="tour-screen-label">What you found out · the counter</span>
+                      <p>• The kitchen closes at 8:30.<br>• The order will be about ten minutes.<br>• They will call the name Priya.</p>
+                    </div>
+                    <div class="tour-row"><span>They weren't with you</span><b>Tell them all of it</b></div>
+                  </div>
+
+                  <div class="tour-screen" data-tour-screen="4">
                     <span class="tour-screen-label">My mistakes · card 1 of 4</span>
                     <strong class="tour-screen-title">Say the fix</strong>
                     <div class="score-bar"><i style="width:25%"></i></div>
@@ -511,7 +541,7 @@
                 </div>
                 <div class="tabs" id="tourTabs"><span class="active">Home</span><span>Practice</span><span>Pron.</span><span>SRS</span><span>History</span></div>
               </div>
-              <div class="tour-progress"><i class="active"></i><i></i><i></i><i></i></div>
+              <div class="tour-progress"><i class="active"></i><i></i><i></i><i></i><i></i></div>
             </div>
           </div>
         </div>
@@ -530,7 +560,7 @@
         <article class="feature">
           <span class="feature-no">01 · VOICE</span>
           <h3 data-i18n="f1_title">An AI patient that goes off-script</h3>
-          <p data-i18n="f1_body">Ask an unexpected question, change direction, or stumble. The patient listens and answers out loud.</p>
+          <p data-i18n="f1_body">Ask an unexpected question, change direction, or stumble. The patient listens and answers out loud, while the clinical checklist ticks in the background.</p>
           <div class="mini" aria-hidden="true">
             <span class="mini-label">LIVE VOICE · MR JOHNSON</span>
             <div class="mini-chat me">When did the pain begin?</div>
@@ -538,15 +568,14 @@
           </div>
         </article>
         <article class="feature">
-          <span class="feature-no">02 · CLINICAL</span>
-          <h3 data-i18n="f2_title">The checklist ticks while you talk</h3>
-          <p data-i18n="f2_body">SOCRATES, red flags, ICE and safety-netting are tracked item by item during the encounter.</p>
+          <span class="feature-no">02 · OPEN BOOK</span>
+          <h3 data-i18n="f2_title">The medicine never blocks the English</h3>
+          <p data-i18n="f2_body">Early in your training, or simply out of questions? Open the answer sheet mid-encounter: the diagnosis and what still needs checking, revealed a section at a time.</p>
           <div class="mini" aria-hidden="true">
-            <span class="mini-label">HISTORY CHECKLIST · 3 / 4</span>
-            <div class="check-row"><i>✓</i> Onset and duration</div>
-            <div class="check-row"><i>✓</i> Character and severity</div>
-            <div class="check-row"><i>✓</i> Radiation</div>
-            <div class="check-row"><i style="color:var(--amber);background:rgba(255,179,60,.12)">○</i> Red flags</div>
+            <span class="mini-label">ANSWER SHEET · SECTION 2 OF 4</span>
+            <div class="check-row"><i>✓</i> Likely: heart failure</div>
+            <div class="check-row"><i style="color:var(--amber);background:rgba(255,179,60,.12)">○</i> Ask about orthopnoea</div>
+            <div class="check-row"><i style="color:var(--amber);background:rgba(255,179,60,.12)">○</i> Ask about ankle swelling</div>
           </div>
         </article>
         <article class="feature">
@@ -620,30 +649,32 @@
   var KO = {
     nav_how:"작동 방식",nav_features:"핵심 기능",
     store_pending_short:"Play Store 승인 대기",store_pending:"Google Play 승인 대기 중",
-    hero_kicker:"의대생과 의료진을 위한 임상 영어 앱",hero_badge:"Android · 무료 · 계정 없음",
+    hero_kicker:"의대생·의료진, 그리고 일상 영어를 연습하려는 모두를 위해",hero_badge:"Android · 무료 · 계정 없음",
     hero_title:"AI 환자와 대화하세요.<em>영어로, 소리 내어.</em>",
-    hero_copy:"대본 없는 AI 환자와 음성으로 대화하고, 말하는 도중 놓친 문진 항목을 확인하고, 내가 실제로 틀린 임상 영어를 다시 말하며 익히세요.",
-    benefit_1:"실시간 환자 음성 대화",benefit_2:"임상 체크리스트 채점",benefit_3:"문법·발음 맞춤 복습",
+    hero_copy:"대본 없는 음성 대화 — 진료실의 환자든, 카페 맞은편의 낯선 사람이든. 말하는 도중 놓친 것을 확인하고, 내가 실제로 틀린 문장을 다시 말하며 익히세요.",
+    benefit_1:"대본 없는 실시간 음성 대화",benefit_2:"막히면 여는 오픈북",benefit_3:"문법·발음 맞춤 복습",
     see_how:"30초로 작동 방식 보기",
     launch_note:"현재 Google Play 등록 심사 중입니다. 승인되는 즉시 이 버튼이 다운로드 링크로 바뀝니다.",
     phone_score:"말하는 동안 채점 중",phone_listen:"듣고 있습니다 — 당신 차례",
-    how_1_title:"AI 환자와 말한다",how_1_body:"선택형 대본이 아니라 내가 한 말에 환자가 직접 반응합니다.",
+    how_1_title:"AI 환자와 말한다",how_1_body:"선택형 대본이 아니라 내가 한 말에 상대가 직접 반응합니다.",
     how_2_title:"말하는 동안 채점받는다",how_2_body:"아직 다시 물어볼 수 있을 때 놓친 문진 항목을 확인합니다.",
     how_3_title:"고친 문장을 소리 내어 말한다",how_3_body:"내 실수가 나중에 새로운 말하기 상황으로 다시 출제됩니다.",
     tour_kicker:"한 번의 연습을 스크롤로 체험",tour_title:"오늘의 미션에서 내일의 교정까지.",
     tour_intro:"계속 스크롤하세요. 첫 미션부터 오늘의 실수가 내일 복습으로 돌아오는 순간까지 폰 화면이 실제 세션을 따라갑니다.",
     tour_1_title:"오늘 할 일 하나로 시작합니다.",tour_1_body:"피드도, 모두에게 똑같은 수업 목록도 없습니다. 지난 세션에서 복습 시점이 된 교정으로 오늘의 미션을 만듭니다.",
     tour_1_tag1:"적응형 미션",tour_1_tag2:"나의 취약점",
-    tour_2_title:"내가 실제로 마주칠 압박을 고릅니다.",tour_2_body:"전체 환자 면담, 레지던시 면접, 티치백, 혹은 2분짜리 복도 돌발 상황까지 필요한 장면을 연습합니다.",
-    tour_2_tag1:"11개 연습 모드",tour_2_tag2:"임상·생활 영어",
-    tour_3_title:"환자는 대답하고, 루브릭은 듣습니다.",tour_3_body:"대화는 대본 없이 이어지고 임상 체크리스트는 뒤에서 갱신됩니다. 레드 플래그를 놓치면 아직 다시 물어볼 수 있을 때 알게 됩니다.",
-    tour_3_tag1:"실시간 음성",tour_3_tag2:"실시간 체크리스트",
-    tour_4_title:"점수가 끝나도 실수는 사라지지 않습니다.",tour_4_body:"실수는 간격 반복 말하기 과제가 됩니다. 내일 새로운 상황에서 교정된 문장을 알아보는 게 아니라 직접 소리 내어 말해야 합니다.",
-    tour_4_tag1:"간격 반복",tour_4_tag2:"교정 문장 말하기",
+    tour_2_title:"의학이냐, 그냥 영어냐.",tour_2_body:"임상 트랙을 고르면 환자 면담, 재진, 레지던시 면접, 티치백까지 의학 모드가 전부 열립니다. 일상 영어를 고르면 임상 모드는 앱에서 아예 사라집니다.",
+    tour_2_tag1:"임상 또는 일상",tour_2_tag2:"11개 연습 모드",
+    tour_3_title:"환자는 대답하고, 루브릭은 듣습니다.",tour_3_body:"대화는 대본 없이 이어지고 임상 체크리스트는 뒤에서 갱신됩니다. 다음에 뭘 물어야 할지 모르겠다면, 대화 도중 답안지를 열고 그대로 말을 이어가세요.",
+    tour_3_tag1:"실시간 음성",tour_3_tag2:"실시간 체크리스트",tour_3_tag3:"오픈북",
+    tour_4_title:"실제 대화는 한 자리에 머물지 않습니다.",tour_4_body:"한 세션이 함께 움직입니다. 창가 자리로 옮기고, 식사 후로 시간을 건너뛰고, 서버에게 인계되고 — 또는 혼자 카운터에 다녀와 상대가 듣지 못한 정보 세 가지를 직접 전달해야 합니다.",
+    tour_4_tag1:"장면 전환",tour_4_tag2:"시간 스킵",tour_4_tag3:"혼자 다녀오기",
+    tour_5_title:"점수가 끝나도 실수는 사라지지 않습니다.",tour_5_body:"실수는 간격 반복 말하기 과제가 됩니다. 내일 새로운 상황에서 교정된 문장을 알아보는 게 아니라 직접 소리 내어 말해야 합니다.",
+    tour_5_tag1:"간격 반복",tour_5_tag2:"교정 문장 말하기",
     features_kicker:"말하기에서 복습까지",features_title:"오늘의 대화가 내일의 맞춤 연습이 됩니다.",
     features_body:"스크롤할 피드도, 모두에게 똑같은 수업도 없습니다. 내가 실제로 한 말을 듣고 그 안에서 다음 연습을 만듭니다.",
-    f1_title:"대본 밖으로 따라오는 AI 환자",f1_body:"예상 밖의 질문을 하거나, 방향을 바꾸거나, 말이 막혀도 환자는 듣고 소리 내어 답합니다.",
-    f2_title:"말하는 도중 켜지는 체크리스트",f2_body:"SOCRATES, 레드 플래그, ICE, 안전망까지 면담 중 항목별로 추적합니다.",
+    f1_title:"대본 밖으로 따라오는 AI 환자",f1_body:"예상 밖의 질문을 하거나, 방향을 바꾸거나, 말이 막혀도 환자는 듣고 소리 내어 답합니다. 임상 체크리스트는 그동안 뒤에서 채워집니다.",
+    f2_title:"의학 지식이 영어를 막지 않도록",f2_body:"아직 배우지 않았거나, 다음에 뭘 물어야 할지 모르겠나요? 면담 도중 답안지를 열면 진단과 아직 확인하지 않은 항목이 섹션 단위로 공개됩니다.",
     f3_title:"오늘의 실수가 내일 다시 등장",f3_body:"문법과 발음 실수가 읽고 넘기는 카드가 아니라 직접 말해야 하는 간격 반복 과제가 됩니다.",
     trust_kicker:"설정 전에 먼저 체험",trust_title:"무료입니다. 가입할 것도 없습니다.",
     trust_body:"Demo Mode의 대본 환자 3명은 API 키 없이 체험할 수 있습니다. 라이브 AI 연습에는 본인의 무료 Gemini API 키를 추가하며, 키는 휴대폰에만 저장됩니다.",
@@ -659,8 +690,8 @@
     var dots = Array.prototype.slice.call(document.querySelectorAll(".tour-progress i"));
     var tabs = Array.prototype.slice.call(document.querySelectorAll("#tourTabs span"));
     var clock = document.getElementById("tourClock");
-    var times = ["09:41","09:43","09:51","10:22"];
-    var tabForStep = [0,1,1,3];
+    var times = ["09:41","09:43","09:51","20:18","10:22"];
+    var tabForStep = [0,1,1,1,3];
 
     function activate(index){
       steps.forEach(function(step,i){step.classList.toggle("active",i === index);});
