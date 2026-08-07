@@ -194,7 +194,15 @@
     .trust-list li{display:flex;align-items:center;gap:8px}
     .trust-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
 
-    .final{padding:100px 0 110px;text-align:center;border-top:1px solid rgba(255,255,255,.07);background:radial-gradient(50% 80% at 50% 100%,rgba(52,120,246,.24),transparent 75%)}
+    /* final-cta.webp is 2400x680 with two phone clusters near the edges and
+       nothing in the middle third. At cover-fit widths under ~700px tall/wide
+       ratio (i.e. any phone viewport) that empty middle is all that's ever
+       visible, so it's dropped outright below 900px to skip the download. */
+    .final{padding:100px 0 110px;text-align:center;border-top:1px solid rgba(255,255,255,.07);
+      background:
+        radial-gradient(50% 80% at 50% 100%,rgba(52,120,246,.24),transparent 75%),
+        url("assets/backgrounds/final-cta.webp") center/cover no-repeat,
+        var(--void)}
     .final h2{max-width:760px;margin:0 auto;font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.08}
     .final p{max-width:540px;margin:20px auto 0;color:var(--fog)}
     .final-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:11px;margin-top:31px}
@@ -245,7 +253,7 @@
       .shot .device{--dw:212px}
       .trust-card{padding:26px 21px}
       .trust-list{grid-template-columns:1fr}
-      .final{padding:80px 0 95px}
+      .final{padding:80px 0 95px;background:radial-gradient(50% 80% at 50% 100%,rgba(52,120,246,.24),transparent 75%),var(--void)}
       footer{padding-bottom:96px}
       .mobile-store{position:fixed;z-index:60;left:10px;right:10px;bottom:10px;min-height:56px;display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid #3a4861;border-radius:13px;
         background:rgba(20,29,45,.96);box-shadow:0 12px 40px #000;color:#dde4ef;font-size:.92rem;font-weight:700;backdrop-filter:blur(14px);

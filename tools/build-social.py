@@ -1,12 +1,24 @@
 #!/usr/bin/env python3
-"""Build the shared social/store artwork in assets/social/ from real app captures.
+"""Build the shared social/store artwork from real app captures.
 
-All three formats are the same composition at different crops, so a copy change
-or a new screenshot only has to be made once:
+The three assets/social/ formats are the same composition at different crops,
+so a copy change or a new screenshot only has to be made once:
 
   og-cover.png        1200x630   Open Graph / Twitter card (referenced by the pages)
   feature-graphic.png 1024x500   Google Play feature graphic (exact size Play requires)
   share-square.png    1200x1200  Square fallback for KakaoTalk, Instagram, etc.
+
+A fourth, text-free asset lives in assets/backgrounds/ and decorates the final
+CTA section in place, behind the actual heading/button markup:
+
+  final-cta.webp       2400x680  Phone clusters pushed to both edges, empty and
+                                  faded in the middle so live page copy sits on
+                                  top of it without a collision. On a narrow
+                                  mobile viewport, CSS `background-size:cover`
+                                  crops to the empty middle by construction —
+                                  see the .final rule's math in a comment there
+                                  — so the page also drops the image outright
+                                  under 900px to save the download.
 
 Run from the repository root:  python3 tools/build-social.py
 Requires Pillow.  Output is flattened RGB — Play rejects artwork with alpha.
@@ -18,6 +30,7 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SHOTS = os.path.join(ROOT, "assets", "android")
 OUT = os.path.join(ROOT, "assets", "social")
+BG_OUT = os.path.join(ROOT, "assets", "backgrounds")
 BOLD = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 REG = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
 
@@ -125,7 +138,44 @@ def build(name, spec):
     print("%-22s %s  %d KB" % (name, bg.size, os.path.getsize(path) // 1024))
 
 
+def build_final_cta_bg():
+    """Two small phone clusters at the far edges of a wide canvas, nothing in
+    the middle third. Meant to sit *behind* the final section's centred
+    heading/button markup, not to be looked at directly — so each phone's
+    alpha is cut to 60% before it's pasted, reading as texture rather than a
+    third repeat of the hero screenshot."""
+    w, h = 2400, 680
+    bg = Image.new("RGB", (w, h), VOID)
+    glow = Image.new("RGB", (w, h), VOID)
+    gd = ImageDraw.Draw(glow)
+    gd.ellipse((1550, -260, 2700, 520), fill=(26, 58, 126))
+    gd.ellipse((-300, 260, 700, 900), fill=(10, 26, 62))
+    bg = Image.blend(bg, glow.filter(ImageFilter.GaussianBlur(190)), .8)
+
+    clusters = [
+        [("feedback-scores", 150, (150, 300), -9), ("pronunciation-drill", 168, (330, 380), 7)],
+        [("corrections", 168, (2070, 380), -7), ("srs-card", 150, (2250, 300), 9)],
+    ]
+    for cluster in clusters:
+        for shot, width, (cx, cy), angle in cluster:
+            p = phone(shot, width).rotate(-angle, resample=Image.BICUBIC, expand=True)
+            r, g, b_, a = p.split()
+            p = Image.merge("RGBA", (r, g, b_, a.point(lambda v: v * 6 // 10)))
+            shadow = Image.new("RGBA", p.size, (0, 0, 0, 0))
+            shadow.paste((0, 0, 0, 110), (0, 0), p.split()[3])
+            shadow = shadow.filter(ImageFilter.GaussianBlur(22))
+            pos = (cx - p.width // 2, cy - p.height // 2)
+            bg.paste(shadow, (pos[0], pos[1] + 16), shadow)
+            bg.paste(p, pos, p)
+
+    os.makedirs(BG_OUT, exist_ok=True)
+    path = os.path.join(BG_OUT, "final-cta.webp")
+    bg.save(path, "WEBP", quality=84, method=6)
+    print("%-22s %s  %d KB" % ("final-cta.webp", bg.size, os.path.getsize(path) // 1024))
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     for name, spec in FORMATS.items():
         build(name, spec)
+    build_final_cta_bg()
