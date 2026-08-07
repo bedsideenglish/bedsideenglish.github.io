@@ -42,8 +42,9 @@
     html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3,html[lang="ko"] p{word-break:keep-all}
     /* IBM Plex Mono has no Hangul, so these fell back to Noto Sans KR while
        keeping the mono tracking — which reads as broken spacing in Korean. */
-    html[lang="ko"] .eyebrow,html[lang="ko"] .tour-step-no,html[lang="ko"] .feature-no,
-    html[lang="ko"] .how-list b,html[lang="ko"] .shot-no{font-family:var(--display);letter-spacing:.04em}
+    html[lang="ko"] .eyebrow,html[lang="ko"] .feature-no,html[lang="ko"] .how-list b,
+    html[lang="ko"] .shot-no,html[lang="ko"] .tab,
+    html[lang="ko"] .vo-text,html[lang="ko"] .cost-label{font-family:var(--display);letter-spacing:.04em}
 
     body::before{content:"";position:fixed;inset:0;z-index:-2;background:
       radial-gradient(55vw 45vw at 82% -8%,rgba(52,120,246,.23),transparent 65%),
@@ -73,56 +74,75 @@
     .store-cta[aria-disabled="true"] .status-dot{background:var(--amber);box-shadow:0 0 0 5px rgba(255,179,60,.12)}
     .status-dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
 
-    /* One device component for every screenshot on the page. The screen keeps
-       the exact aspect of the exported captures (780x1636) so nothing is
-       cropped, and every other dimension is derived from --dw. */
+    /* One device component for every screenshot and the hero clip alike. The
+       screen keeps the exact aspect of the exported captures (780x1636) — the
+       video is cropped to match — so nothing is letterboxed or cut. */
     .device{position:relative;width:var(--dw,332px);padding:calc(var(--dw,332px) * .033);
       border-radius:calc(var(--dw,332px) * .137);background:linear-gradient(155deg,#354057,#0b101a 45%,#05070c);
       box-shadow:0 0 0 1px rgba(255,255,255,.1),0 48px 85px -30px #000}
     .screen{position:relative;aspect-ratio:780/1636;overflow:hidden;border-radius:calc(var(--dw,332px) * .105);background:#0b1220}
-    .screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+    .screen img,.screen video{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
 
     /* The device's glow pseudo-element reaches 10% past the wrapper, which pushed
        document scrollWidth to 411px on a 390px viewport. overflow:clip contains it
        without creating a scroll container (so it cannot break position:sticky). */
-    .hero{padding:clamp(56px,9vh,96px) 0 72px;overflow:clip}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;align-items:center;gap:clamp(44px,6vw,80px)}
+    .hero{padding:clamp(52px,8vh,88px) 0 68px;overflow:clip}
+    /* Three explicit children rather than one copy column, so the clip can sit
+       between the headline and the buttons on a phone while still occupying a
+       single full-height column on a desktop. */
+    /* Two grid items on a desktop — one copy column, one clip — so nothing
+       spans rows and nothing can be stretched apart by the height of the clip.
+       The phone breakpoint drops .hero-copy-col to display:contents, which
+       promotes the lead and the tail to grid items in their own right and lets
+       the clip be ordered between them. */
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 372px;align-items:center;column-gap:clamp(44px,6vw,80px)}
+    .hero-lead{margin-bottom:30px}
     .eyebrow{display:flex;align-items:center;gap:10px;color:var(--blue2);font:700 .67rem var(--mono);letter-spacing:.13em;text-transform:uppercase}
     .eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
     .badge{display:inline-flex;align-items:center;gap:8px;margin-top:17px;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,179,60,.32);background:rgba(255,179,60,.08);
       color:#ffd7a0;font-size:.82rem;font-weight:600}
-    h1{margin:24px 0 0;max-width:640px;font-size:clamp(2.7rem,5.1vw,4.35rem);font-weight:800;line-height:1.03;letter-spacing:-.042em}
+    h1{margin:22px 0 0;max-width:640px;font-size:clamp(2.7rem,5.1vw,4.35rem);font-weight:800;line-height:1.03;letter-spacing:-.042em}
     /* Both stops stay light (>=12:1 on --void). The old blue->amber ramp dipped
        through desaturated grey mid-line, so the emphasised words read dimmer
        than the plain ones above them. */
     h1 em{display:block;font-style:normal;background:linear-gradient(100deg,#cfdeff,#8eb4ff 55%,#7ea6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
     html[lang="ko"] h1{font-size:clamp(2.25rem,4.5vw,3.85rem);line-height:1.14;letter-spacing:-.032em}
-    .hero-copy{max-width:560px;margin:24px 0 0;color:var(--fog);font-size:clamp(1rem,1.6vw,1.16rem);line-height:1.68}
-    .benefits{display:flex;flex-wrap:wrap;gap:9px 18px;margin:22px 0 0;padding:0;list-style:none}
-    .benefits li{display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:700}
-    .benefits li::before{content:"✓";color:var(--green);font-family:var(--mono);font-weight:700}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:32px}
+    .hero-copy{max-width:48ch;margin:0 0 30px;color:var(--fog);font-size:clamp(1rem,1.6vw,1.14rem);line-height:1.65}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:11px}
     /* Store status is the one thing a visitor must not miss, so it gets body
        type and --fog, not the dimmest mono label style on the page. */
     .launch-note{display:flex;align-items:flex-start;gap:9px;max-width:46ch;margin:16px 0 0;color:var(--fog);font-size:.84rem;line-height:1.6}
     .launch-note svg{width:16px;flex:0 0 auto;margin-top:3px;color:var(--amber)}
 
-    .device-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px}
-    .device-wrap::before{content:"";position:absolute;inset:8% -10% 14%;border-radius:50%;background:radial-gradient(closest-side,rgba(52,120,246,.38),transparent 72%);filter:blur(25px)}
-    .hero .device{animation:phone-float 7s ease-in-out infinite}
-    @keyframes phone-float{0%,100%{translate:0 0;rotate:-.35deg}50%{translate:0 -12px;rotate:.35deg}}
-    .hero .screen::after{content:"";position:absolute;z-index:5;left:0;right:0;top:-30%;height:18%;pointer-events:none;
-      background:linear-gradient(transparent,rgba(122,171,255,.055),transparent);animation:screen-scan 6s linear infinite}
-    @keyframes screen-scan{to{top:115%}}
-    /* Live pill sits on the capture, not in it — the capture is untouched. */
-    .live-tag{position:absolute;z-index:6;left:50%;bottom:-13px;display:flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;
-      border:1px solid #33456b;background:rgba(11,17,30,.94);box-shadow:0 12px 30px -12px #000;color:var(--chalk);font:700 .66rem var(--mono);letter-spacing:.08em;
-      text-transform:uppercase;white-space:nowrap;transform:translateX(-50%)}
-    .live-tag i{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 9px var(--red);animation:rec-pulse 1.25s ease-in-out infinite}
-    @keyframes rec-pulse{50%{opacity:.25;box-shadow:0 0 2px var(--red)}}
-    .real-note{position:relative;margin:12px 0 0;color:var(--fog2);font-size:.78rem;font-weight:600;text-align:center}
+    .device-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+    .device-wrap::before{content:"";position:absolute;inset:6% -10% 22%;border-radius:50%;background:radial-gradient(closest-side,rgba(52,120,246,.38),transparent 72%);filter:blur(25px)}
+    .hero .device{position:relative}
 
-    .how{padding:25px 0 80px}
+    /* The clip runs silent, so the viewer has no way to know a voice is being
+       spoken or which pixel just changed. This strip is the narration: it is
+       driven off video.currentTime rather than burned into the frames, so it
+       translates with the rest of the page and stays crisp at any scale. */
+    .vo{position:relative;width:100%;max-width:332px;min-height:60px;display:flex;align-items:center;gap:11px;
+      margin-top:20px;padding:12px 14px;border:1px solid var(--line);border-radius:13px;background:rgba(11,17,30,.86)}
+    .vo-dot{position:relative;flex:0 0 auto;width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red)}
+    .vo-dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--red);opacity:.55;animation:vo-ring 1.7s ease-out infinite}
+    @keyframes vo-ring{to{transform:scale(2);opacity:0}}
+    .vo-text{margin:0;color:var(--chalk);font-size:.85rem;font-weight:600;line-height:1.45;transition:opacity .22s ease}
+    .vo-text.swap{opacity:0}
+    .vo-toggle{position:absolute;right:9px;bottom:-15px;display:none;align-items:center;gap:7px;padding:7px 13px;border:1px solid #3a4861;border-radius:999px;
+      background:rgba(20,29,45,.97);color:var(--chalk);font:700 .68rem var(--mono);letter-spacing:.06em;cursor:pointer}
+    .vo-toggle.is-shown{display:inline-flex}
+
+    /* Pulses over the checklist band of the clip at the one moment it fills in
+       (0 confirmed -> 2), because that change is four lines of small type and
+       is otherwise the easiest thing on the whole page to scroll straight past. */
+    .vo-spot{position:absolute;z-index:4;left:2%;right:2%;top:53%;height:24%;border-radius:12px;pointer-events:none;
+      border:1.5px solid rgba(57,214,159,.9);box-shadow:0 0 0 4px rgba(57,214,159,.13),0 0 26px rgba(57,214,159,.3);
+      opacity:0;transition:opacity .35s ease}
+    .vo-spot.on{opacity:1}
+    .real-note{position:relative;margin:14px 0 0;color:var(--fog2);font-size:.78rem;font-weight:600;text-align:center}
+
+    .how{padding:22px 0 76px}
     .how-list{display:grid;grid-template-columns:repeat(3,1fr);margin:0;padding:0;list-style:none;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.025)}
     .how-list li{position:relative;padding:24px 25px;border-right:1px solid var(--line)}
     .how-list li:last-child{border:0}
@@ -130,34 +150,15 @@
     .how-list strong{display:block;margin-top:8px;font-size:1.05rem}
     .how-list p{margin:6px 0 0;color:var(--fog);font-size:.92rem;line-height:1.58}
 
-    .tour{position:relative;padding:86px 0 40px;border-top:1px solid rgba(255,255,255,.07);overflow:clip;scroll-margin-top:66px}
-    .tour::before{content:"";position:absolute;inset:5% 0 auto 45%;width:55vw;height:55vw;border-radius:50%;pointer-events:none;
-      background:radial-gradient(closest-side,rgba(52,120,246,.14),transparent 72%);filter:blur(25px)}
-    .tour-intro{max-width:680px;margin-bottom:0}
-    .tour-intro h2{margin-top:16px}
-    .tour-intro p{max-width:55ch;margin:16px 0 0;color:var(--fog)}
-    .tour-layout{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:clamp(45px,7vw,96px)}
-    .tour-copy{grid-column:1}
-    .tour-step:first-child{min-height:46vh;align-items:flex-start;padding-top:34px}
-    .tour-step{min-height:64vh;display:flex;align-items:center;padding:3vh 0}
-    .tour-step-card{max-width:520px;padding-left:25px;border-left:2px solid #263149;opacity:.26;filter:saturate(.4);transform:translateY(14px);transition:.55s ease}
-    .tour-step.active .tour-step-card{opacity:1;filter:none;transform:none;border-color:var(--blue2)}
-    .tour-step-no{display:block;color:var(--blue2);font:700 .67rem var(--mono);letter-spacing:.13em;text-transform:uppercase}
-    .tour-step h3{margin:15px 0 12px;font-size:clamp(1.65rem,3vw,2.55rem);line-height:1.09;letter-spacing:-.035em}
-    .tour-step p{max-width:46ch;margin:0;color:var(--fog);font-size:1.03rem;line-height:1.7}
-    .tour-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:19px}
-    .tour-tags span{padding:6px 11px;border:1px solid var(--line);border-radius:999px;color:var(--fog);font-size:.79rem;font-weight:600}
-    .tour-device-rail{grid-column:2;grid-row:1;position:absolute;inset:0 0 0 auto;width:390px;height:100%}
-    .tour-device-pin{position:sticky;top:calc(50vh - 336px);height:100vh;display:flex;align-items:center;justify-content:center}
-    .tour-device-pin .device{--dw:322px}
-    .tour-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;
-      transform:translateY(16px) scale(.985);transition:opacity .42s ease,transform .55s cubic-bezier(.2,.75,.2,1)}
-    .tour-shot.active{opacity:1;transform:none}
-    .tour-progress{position:absolute;right:-27px;top:50%;display:grid;gap:9px;transform:translateY(-50%)}
-    .tour-progress i{width:3px;height:17px;border-radius:3px;background:#253049;transition:.35s}
-    .tour-progress i.active{height:28px;background:var(--blue2);box-shadow:0 0 13px rgba(142,180,255,.65)}
+    /* Nothing above this point tells the visitor why they should care; every
+       section states what the app does. One screen of the problem, in their
+       words, before the evidence starts. */
+    .problem{padding:78px 0;border-top:1px solid rgba(255,255,255,.07);text-align:center}
+    .problem-quote{max-width:26ch;margin:0 auto;font-size:clamp(1.72rem,4.2vw,3.1rem);font-weight:800;line-height:1.14;letter-spacing:-.04em;text-wrap:balance}
+    .problem-quote em{font-style:normal;color:var(--amber)}
+    .problem-after{max-width:50ch;margin:26px auto 0;color:var(--fog);font-size:1.04rem;line-height:1.7}
 
-    .features{padding:86px 0;border-top:1px solid rgba(255,255,255,.07)}
+    .features{padding:84px 0;border-top:1px solid rgba(255,255,255,.07)}
     .section-head{max-width:680px;text-align:center;margin:0 auto}
     .section-head .eyebrow{justify-content:center}
     h2{margin:16px 0 0;font-size:clamp(1.95rem,3.4vw,2.85rem);line-height:1.12;letter-spacing:-.034em;text-wrap:balance}
@@ -172,7 +173,39 @@
     .feature-shot{margin-top:auto;padding-top:23px}
     .feature-shot img{display:block;width:100%;height:auto;aspect-ratio:760/422;object-fit:cover;border:1px solid #2a3852;border-radius:13px;box-shadow:0 18px 35px -25px #000}
 
-    .shots{padding:86px 0;border-top:1px solid rgba(255,255,255,.07);overflow:clip}
+    /* This was a five-step scrollytelling rail: 78vh per step on a phone, so
+       four full screens of scrolling bought five paragraphs, and the sticky
+       phone sat behind a card that covered the half of the screenshot worth
+       looking at. Same five steps, same copy, as a tab set the reader drives —
+       skimmers pay one screen, and the tab labels alone carry the sequence. */
+    .tour{padding:84px 0;border-top:1px solid rgba(255,255,255,.07);overflow:clip;scroll-margin-top:66px}
+    .tour-intro{max-width:680px}
+    .tour-intro p{max-width:55ch;margin:16px 0 0;color:var(--fog)}
+    .tabs{display:flex;gap:8px;margin:36px 0 0;padding-bottom:4px;overflow-x:auto;scrollbar-width:none;scroll-padding-inline:2px}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{flex:0 0 auto;padding:11px 17px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.025);
+      color:var(--fog);font:700 .78rem var(--mono);letter-spacing:.05em;cursor:pointer;transition:.2s;white-space:nowrap}
+    .tab:hover{border-color:#53627e;color:var(--chalk)}
+    .tab[aria-selected="true"]{border-color:var(--blue2);background:rgba(52,120,246,.16);color:var(--chalk);box-shadow:0 0 22px -6px rgba(142,180,255,.5)}
+    /* Top-aligned, not centred: the phone is roughly twice the height of the
+       copy, so centring drops the heading a third of the way down the section
+       and leaves the space under the tabs looking like a mistake. */
+    .tour-stage{display:grid;grid-template-columns:minmax(0,1fr) 350px;align-items:start;gap:clamp(40px,6vw,80px);margin-top:34px}
+    .tour-panels{position:relative;grid-column:1}
+    .panel[hidden]{display:none}
+    .panel{animation:panel-in .4s ease}
+    @keyframes panel-in{from{opacity:0;transform:translateY(10px)}}
+    .panel h3{margin:0 0 12px;font-size:clamp(1.6rem,2.8vw,2.35rem);line-height:1.12;letter-spacing:-.035em;text-wrap:balance}
+    .panel p{max-width:46ch;margin:0;color:var(--fog);font-size:1.02rem;line-height:1.7}
+    .panel-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:19px}
+    .panel-tags span{padding:6px 11px;border:1px solid var(--line);border-radius:999px;color:var(--fog);font-size:.79rem;font-weight:600}
+    .tour-device{grid-column:2;justify-self:center}
+    .tour-device .device{--dw:308px}
+    .tour-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;
+      transform:scale(.99);transition:opacity .34s ease,transform .4s cubic-bezier(.2,.75,.2,1)}
+    .tour-shot.active{opacity:1;transform:none}
+
+    .shots{padding:84px 0;border-top:1px solid rgba(255,255,255,.07);overflow:clip}
     /* The rail spans the full section width and re-creates the shell gutter as
        padding, so the first card lines up with the heading but the row can still
        run off both edges. */
@@ -193,6 +226,23 @@
     .trust-list{display:grid;grid-template-columns:repeat(2,max-content);gap:14px 30px;margin:0;padding:0;list-style:none;font-size:.94rem;font-weight:600}
     .trust-list li{display:flex;align-items:center;gap:8px}
     .trust-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+    /* The honest running cost was the caption on the ninth screenshot in a
+       horizontal rail — i.e. the strongest trust signal an unlaunched app has,
+       placed where almost nobody would reach it. */
+    .cost{display:flex;flex-wrap:wrap;align-items:center;gap:22px 34px;margin-top:20px;padding:22px 26px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}
+    .cost-figure{font-size:clamp(2.1rem,4vw,2.9rem);font-weight:800;letter-spacing:-.045em;line-height:1;color:var(--green)}
+    .cost-label{display:block;margin-top:7px;color:var(--fog2);font:700 .66rem var(--mono);letter-spacing:.11em;text-transform:uppercase}
+    .cost p{flex:1 1 320px;max-width:52ch;margin:0;color:var(--fog);font-size:.96rem;line-height:1.65}
+
+    .faq{padding:80px 0;border-top:1px solid rgba(255,255,255,.07)}
+    .faq-list{width:min(760px,100%);margin:38px auto 0}
+    details{border-bottom:1px solid var(--line)}
+    details[open] summary{color:var(--chalk)}
+    summary{padding:19px 34px 19px 0;position:relative;color:var(--fog);font-size:1.02rem;font-weight:700;cursor:pointer;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";position:absolute;right:6px;top:50%;color:var(--blue2);font:700 1.3rem var(--mono);transform:translateY(-50%);transition:.2s}
+    details[open] summary::after{content:"–"}
+    .faq-list p{margin:0 0 20px;max-width:64ch;color:var(--fog);font-size:.96rem;line-height:1.72}
 
     /* final-cta.webp is 2400x680 with two phone clusters near the edges and
        nothing in the middle third. At cover-fit widths under ~700px tall/wide
@@ -216,43 +266,50 @@
     .mobile-store{display:none}
 
     @media(max-width:900px){
-      .hero-grid{grid-template-columns:1fr}
-      .device-wrap{grid-row:2}
+      /* Ordered lead -> clip -> buttons, so the clip sits directly under the
+         headline instead of being stranded below the whole copy block. */
+      .hero-grid{grid-template-columns:1fr;row-gap:30px}
+      .hero-copy-col{display:contents}
+      .hero-lead{order:1;margin-bottom:0}
+      .device-wrap{order:2}
+      .hero-tail{order:3}
       .how-list,.feature-grid{grid-template-columns:1fr}
       .how-list li{border-right:0;border-bottom:1px solid var(--line)}
       .trust-card{grid-template-columns:1fr}
       .nav-links a{display:none}
       .nav-links .lang{display:flex}
       .hero .device{--dw:300px}
-      .tour{padding-top:75px}
-      .tour-layout{display:block}
-      .tour-device-rail{position:absolute;z-index:2;inset:0 auto auto 0;width:100%;height:100%;pointer-events:none}
-      .tour-device-pin{top:58px;height:54vh;align-items:flex-start;padding-top:10px}
-      .tour-device-pin .device{--dw:232px}
-      .tour-progress{right:-18px}
-      .tour-copy{position:relative;z-index:3}
-      .tour-step{min-height:78vh;align-items:flex-end;padding-bottom:3vh}
-      .tour-step-card{max-width:600px;margin:0 auto;padding:16px 16px 18px;border:1px solid var(--line);border-left:1px solid var(--line);border-radius:15px;background:rgba(5,7,12,.95);backdrop-filter:blur(12px);text-align:center}
-      .tour-step.active .tour-step-card{border-color:#36517e}
-      .tour-tags{justify-content:center;margin-top:14px}
-      .tour-step h3{margin:10px 0 9px;font-size:1.42rem;line-height:1.16}
-      .tour-step p{font-size:.94rem;line-height:1.6}
-      .tour-tags span{padding:5px 10px;font-size:.75rem}
+      .vo{max-width:300px}
+      /* Tabs, then the phone, then the copy: tapping a tab has to change
+         something the thumb can already see. */
+      .tour-stage{grid-template-columns:1fr;gap:28px;margin-top:26px}
+      .tour-device{grid-column:1;grid-row:1}
+      .tour-panels{grid-column:1;grid-row:2}
+      .tour-device .device{--dw:262px}
+      .panel p{max-width:none}
     }
     @media(max-width:620px){
       :root{--shell:calc(100% - 30px)}
       nav{gap:12px}.brand{font-size:.9rem}.nav-links{gap:9px}.nav-links>.store-cta{display:none}
-      .hero{padding-top:48px}
-      h1{font-size:2.7rem}
+      .hero{padding-top:38px}
+      /* Every line above the clip is a line the clip drops further under the
+         fold, so the headline gives up a step and the kicker stops being a
+         two-line block of uppercase mono. */
+      h1{font-size:2.25rem;margin-top:18px}
+      html[lang="ko"] h1{font-size:2rem}
+      .eyebrow{font-size:.61rem;letter-spacing:.1em}
+      .eyebrow::before{width:18px}
+      .badge{margin-top:14px;padding:6px 11px;font-size:.78rem}
       .hero-actions{display:grid}
       .hero-actions .btn{width:100%}
-      .benefits{display:grid;gap:8px}
-      .benefits li{min-width:0}
-      .hero .device{--dw:270px}
+      .hero .device{--dw:272px}
+      .vo{max-width:272px}
+      .tour-device .device{--dw:236px}
       .shot{width:212px}
       .shot .device{--dw:212px}
       .trust-card{padding:26px 21px}
       .trust-list{grid-template-columns:1fr}
+      .cost{padding:20px}
       .final{padding:80px 0 95px;background:radial-gradient(50% 80% at 50% 100%,rgba(52,120,246,.24),transparent 75%),var(--void)}
       footer{padding-bottom:96px}
       .mobile-store{position:fixed;z-index:60;left:10px;right:10px;bottom:10px;min-height:56px;display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid #3a4861;border-radius:13px;
@@ -263,7 +320,8 @@
     }
     @media(prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
-      .hero .device,.hero .screen::after,.live-tag i{animation:none}
+      .vo-dot::after,.panel{animation:none}
+      .vo-text,.tour-shot,.vo-spot{transition:none}
       .shot-rail{scroll-snap-type:none}
     }
   </style>
@@ -280,7 +338,7 @@
     <div class="nav-links">
       <a href="#tour" data-i18n="nav_how">How it works</a>
       <a href="#screens" data-i18n="nav_screens">Screens</a>
-      <a href="#features" data-i18n="nav_features">Features</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="ko">KO</button>
@@ -293,35 +351,45 @@
 <main id="main">
   <section class="hero shell">
     <div class="hero-grid">
-      <div>
-        <span class="eyebrow" data-i18n="hero_kicker">For medical students, healthcare workers &amp; everyday English learners</span>
-        <span class="badge"><span class="status-dot"></span><span data-i18n="hero_badge">Android · Free · No account</span></span>
-        <h1 data-i18n="hero_title">Talk to an AI patient.<em>In English. Out loud.</em></h1>
-        <p class="hero-copy" data-i18n="hero_copy">Have an unscripted voice conversation — a patient in clinic, or a stranger across a café table — see what you missed while you are still speaking, and practise your own mistakes until they stop happening.</p>
-        <ul class="benefits">
-          <li data-i18n="benefit_1">Live, unscripted voice</li>
-          <li data-i18n="benefit_2">Open book when you are stuck</li>
-          <li data-i18n="benefit_3">Grammar &amp; pronunciation review</li>
-        </ul>
-        <div class="hero-actions">
-          <a class="btn btn-primary store-cta" href="#" aria-disabled="true"><span class="status-dot"></span><span data-i18n="store_pending">Google Play approval pending</span></a>
-          <a class="btn btn-secondary" href="#tour"><span data-i18n="see_how">See how it works</span><span>↓</span></a>
+      <div class="hero-copy-col">
+        <div class="hero-lead">
+          <span class="eyebrow" data-i18n="hero_kicker">For medical students, healthcare workers &amp; everyday English learners</span>
+          <span class="badge"><span class="status-dot"></span><span data-i18n="hero_badge">Android · Free · No account</span></span>
+          <h1 data-i18n="hero_title">Talk to an AI patient.<em>In English. Out loud.</em></h1>
         </div>
-        <p class="launch-note">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span data-i18n="launch_note">The app is currently under Google Play review. This button will become the download link as soon as it is approved.</span>
-        </p>
+
+        <!-- The copy sits with the buttons, not the headline: on a desktop it
+             still reads h1 -> copy -> buttons down one column, but on a phone
+             the clip is ordered between the two so it is not pushed under the
+             fold by three lines of prose. -->
+        <div class="hero-tail">
+          <p class="hero-copy" data-i18n="hero_copy">Nothing is scripted. You speak, the patient answers out loud, and the clinical checklist fills itself in from what you actually said.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary store-cta" href="#" aria-disabled="true"><span class="status-dot"></span><span data-i18n="store_pending">Google Play approval pending</span></a>
+            <a class="btn btn-secondary" href="#tour"><span data-i18n="see_how">See how it works</span><span>↓</span></a>
+          </div>
+          <p class="launch-note">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span data-i18n="launch_note">The app is currently under Google Play review. This button will become the download link as soon as it is approved.</span>
+          </p>
+        </div>
       </div>
 
       <div class="device-wrap">
         <div class="device">
           <div class="screen">
-            <img src="assets/android/encounter-live.webp" width="780" height="1636" fetchpriority="high" decoding="async"
-                 alt="A live patient encounter in Bedside English: the student asks what brings Mr. Nguyen in, the patient answers out loud about black tarry stools, and a clinical checklist updates below.">
+            <video id="clip" muted loop playsinline autoplay preload="auto"
+                   poster="assets/video/encounter-loop-poster.webp"
+                   aria-label="Eight seconds of a real encounter in the Android app: the patient answers a question out loud, the clinical checklist moves from zero to two items covered, and two more spoken exchanges follow.">
+              <source src="assets/video/encounter-loop.webm" type="video/webm">
+              <source src="assets/video/encounter-loop.mp4" type="video/mp4">
+            </video>
+            <span class="vo-spot" id="clipSpot" aria-hidden="true"></span>
           </div>
-          <span class="live-tag"><i></i><span data-i18n="hero_live_tag">Real screen · live encounter</span></span>
+          <button type="button" class="vo-toggle" id="clipToggle" hidden><span data-i18n="clip_play">Play clip</span> ▸</button>
         </div>
-        <p class="real-note" data-i18n="hero_real_note">Every screenshot on this page is the actual Android app.</p>
+        <p class="vo"><span class="vo-dot" aria-hidden="true"></span><span class="vo-text" id="clipCaption" aria-live="polite"></span></p>
+        <p class="real-note" data-i18n="hero_real_note">Every screenshot and clip on this page is the actual Android app.</p>
       </div>
     </div>
   </section>
@@ -334,69 +402,96 @@
     </ol>
   </section>
 
+  <section class="problem">
+    <div class="shell">
+      <p class="problem-quote" data-i18n="problem_quote">You know the medicine. Then someone asks <em>“Quickly — how's bed&nbsp;12?”</em> and the English will not come out.</p>
+      <p class="problem-after" data-i18n="problem_after">Reading more does not fix that. The only thing that fixes it is saying it out loud, often, to someone who answers back — and until now that meant finding a person with an hour to spare.</p>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="features_kicker">What it actually does</span>
+        <h2 data-i18n="features_title">Three things, and all three are on your phone.</h2>
+        <p data-i18n="features_body">No feed to scroll and no generic lesson plan. The app listens to what you actually say and builds practice from it.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <span class="feature-no" data-i18n="fno_1">01 · VOICE</span>
+          <h3 data-i18n="f1_title">An AI patient that goes off-script</h3>
+          <p data-i18n="f1_body">Ask an unexpected question, change direction, or stumble. The patient listens and answers out loud, while the clinical checklist ticks in the background.</p>
+          <div class="feature-shot"><img src="assets/android/detail/conversation.webp" width="760" height="422" loading="lazy" decoding="async" alt="Two chat bubbles from a real encounter: the student's opening question and the patient's spoken reply about black tarry stools and dizziness."></div>
+        </article>
+        <article class="feature">
+          <span class="feature-no" data-i18n="fno_2">02 · LIVE RUBRIC</span>
+          <h3 data-i18n="f2_title">The medicine never blocks the English</h3>
+          <p data-i18n="f2_body">Checklist coverage updates from the conversation itself, and you can tap any row to see why it was marked. Still stuck? Open the answer sheet mid-encounter.</p>
+          <div class="feature-shot"><img src="assets/android/detail/checklist.webp" width="760" height="422" loading="lazy" decoding="async" alt="The live checklist coverage panel showing zero of four items confirmed and a history-taking item to distinguish upper from lower GI bleeding."></div>
+        </article>
+        <article class="feature">
+          <span class="feature-no" data-i18n="fno_3">03 · REVIEW</span>
+          <h3 data-i18n="f3_title">Your mistake comes back tomorrow</h3>
+          <p data-i18n="f3_body">Every slip is shown as what you said, what to say instead, the rule behind it — and why a Korean speaker tends to make that exact mistake.</p>
+          <div class="feature-shot"><img src="assets/android/detail/correction.webp" width="760" height="422" loading="lazy" decoding="async" alt="A saved correction: the phrase does the nutritional yeast means struck out in red above the corrected does nutritional yeast mean in green, with the grammar rule and the likely first-language cause."></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="tour" id="tour">
     <div class="shell">
       <div class="tour-intro">
-        <span class="eyebrow" data-i18n="tour_kicker">Scroll through one practice loop</span>
+        <span class="eyebrow" data-i18n="tour_kicker">One practice loop, five steps</span>
         <h2 data-i18n="tour_title">One conversation, all the way to tomorrow's fix.</h2>
-        <p data-i18n="tour_intro">Keep scrolling. The phone shows real captures from a single session — the encounter, the score, the sound you missed, and the card it becomes.</p>
+        <p data-i18n="tour_intro">Every screen below is a real capture from a single session — the encounter, the score, the sound you missed, and the card it becomes. Pick any step.</p>
       </div>
 
-      <div class="tour-layout">
-        <div class="tour-copy">
-          <article class="tour-step active" data-tour-step="0">
-            <div class="tour-step-card">
-              <span class="tour-step-no">01 · SPEAK</span>
-              <h3 data-i18n="tour_1_title">The patient answers. The checklist listens.</h3>
-              <p data-i18n="tour_1_body">You say it out loud, the patient replies out loud, and nothing is scripted. Underneath, the clinical checklist marks what you have actually covered — and if you dry up, "Stuck? Question idea" and the Open Book are one tap away.</p>
-              <div class="tour-tags"><span data-i18n="tour_1_tag1">Live voice</span><span data-i18n="tour_1_tag2">Real-time checklist</span><span data-i18n="tour_1_tag3">Open book</span></div>
-            </div>
-          </article>
-          <article class="tour-step" data-tour-step="1">
-            <div class="tour-step-card">
-              <span class="tour-step-no">02 · EVERYDAY</span>
-              <h3 data-i18n="tour_2_title">Or leave the hospital entirely.</h3>
-              <p data-i18n="tour_2_body">Survival English puts you in a café, a phone call, a backyard movie night. Ask what "nutritional yeast" means and you get a real answer — and you can talk over the AI to interrupt it, exactly like interrupting a person.</p>
-              <div class="tour-tags"><span data-i18n="tour_2_tag1">Everyday English</span><span data-i18n="tour_2_tag2">Interrupt by speaking</span><span data-i18n="tour_2_tag3">Ear-only practice</span></div>
-            </div>
-          </article>
-          <article class="tour-step" data-tour-step="2">
-            <div class="tour-step-card">
-              <span class="tour-step-no">03 · SCORED</span>
-              <h3 data-i18n="tour_3_title">Feedback that names the exact fix.</h3>
-              <p data-i18n="tour_3_body">Naturalness, interaction, comprehension and fluency, each out of 100 and each measured from what you really said. One error is marked "Fix this first" and explained in your own language.</p>
-              <div class="tour-tags"><span data-i18n="tour_3_tag1">Four-part rubric</span><span data-i18n="tour_3_tag2">Explained in Korean</span><span data-i18n="tour_3_tag3">Anki export</span></div>
-            </div>
-          </article>
-          <article class="tour-step" data-tour-step="3">
-            <div class="tour-step-card">
-              <span class="tour-step-no">04 · SOUNDS</span>
-              <h3 data-i18n="tour_4_title">Fix the sound, not only the sentence.</h3>
-              <p data-i18n="tour_4_body">Say "quite" so it lands closer to "koit" and the app hears it. It becomes a minimal-pair drill, and you have to identify the sound three times in a row before it lets you try saying it — you can only fix a sound you can hear.</p>
-              <div class="tour-tags"><span data-i18n="tour_4_tag1">Minimal pairs</span><span data-i18n="tour_4_tag2">Ear check first</span><span data-i18n="tour_4_tag3">Per-sound tracking</span></div>
-            </div>
-          </article>
-          <article class="tour-step" data-tour-step="4">
-            <div class="tour-step-card">
-              <span class="tour-step-no">05 · RETURN</span>
-              <h3 data-i18n="tour_5_title">Tomorrow it comes back as a speaking task.</h3>
-              <p data-i18n="tour_5_body">The correction becomes a spaced card — but you do not flip it and nod. You are dropped into a new situation and asked to say the corrected sentence out loud before you can mark it as learned.</p>
-              <div class="tour-tags"><span data-i18n="tour_5_tag1">Spaced repetition</span><span data-i18n="tour_5_tag2">Transfer challenge</span><span data-i18n="tour_5_tag3">Say it, don't read it</span></div>
-            </div>
-          </article>
+      <div class="tabs" role="tablist" aria-label="Practice loop steps">
+        <button class="tab" type="button" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true"  data-i18n="tab_1">01 · Speak</button>
+        <button class="tab" type="button" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false" data-i18n="tab_2">02 · Everyday</button>
+        <button class="tab" type="button" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" data-i18n="tab_3">03 · Scored</button>
+        <button class="tab" type="button" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" data-i18n="tab_4">04 · Sounds</button>
+        <button class="tab" type="button" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" data-i18n="tab_5">05 · Return</button>
+      </div>
+
+      <div class="tour-stage">
+        <div class="tour-panels">
+          <div class="panel" role="tabpanel" id="panel-0" aria-labelledby="tab-0" tabindex="0">
+            <h3 data-i18n="tour_1_title">The patient answers. The checklist listens.</h3>
+            <p data-i18n="tour_1_body">You say it out loud, the patient replies out loud, and nothing is scripted. Underneath, the clinical checklist marks what you have actually covered — and if you dry up, "Stuck? Question idea" and the Open Book are one tap away.</p>
+            <div class="panel-tags"><span data-i18n="tour_1_tag1">Live voice</span><span data-i18n="tour_1_tag2">Real-time checklist</span><span data-i18n="tour_1_tag3">Open book</span></div>
+          </div>
+          <div class="panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0" hidden>
+            <h3 data-i18n="tour_2_title">Or leave the hospital entirely.</h3>
+            <p data-i18n="tour_2_body">Survival English puts you in a café, a phone call, a backyard movie night. Ask what "nutritional yeast" means and you get a real answer — and you can talk over the AI to interrupt it, exactly like interrupting a person.</p>
+            <div class="panel-tags"><span data-i18n="tour_2_tag1">Everyday English</span><span data-i18n="tour_2_tag2">Interrupt by speaking</span><span data-i18n="tour_2_tag3">Ear-only practice</span></div>
+          </div>
+          <div class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" hidden>
+            <h3 data-i18n="tour_3_title">Feedback that names the exact fix.</h3>
+            <p data-i18n="tour_3_body">Naturalness, interaction, comprehension and fluency, each out of 100 and each measured from what you really said. One error is marked "Fix this first" and explained in your own language.</p>
+            <div class="panel-tags"><span data-i18n="tour_3_tag1">Four-part rubric</span><span data-i18n="tour_3_tag2">Explained in Korean</span><span data-i18n="tour_3_tag3">Anki export</span></div>
+          </div>
+          <div class="panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" hidden>
+            <h3 data-i18n="tour_4_title">Fix the sound, not only the sentence.</h3>
+            <p data-i18n="tour_4_body">Say "quite" so it lands closer to "koit" and the app hears it. It becomes a minimal-pair drill, and you have to identify the sound three times in a row before it lets you try saying it — you can only fix a sound you can hear.</p>
+            <div class="panel-tags"><span data-i18n="tour_4_tag1">Minimal pairs</span><span data-i18n="tour_4_tag2">Ear check first</span><span data-i18n="tour_4_tag3">Per-sound tracking</span></div>
+          </div>
+          <div class="panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" tabindex="0" hidden>
+            <h3 data-i18n="tour_5_title">Tomorrow it comes back as a speaking task.</h3>
+            <p data-i18n="tour_5_body">The correction becomes a spaced card — but you do not flip it and nod. You are dropped into a new situation and asked to say the corrected sentence out loud before you can mark it as learned.</p>
+            <div class="panel-tags"><span data-i18n="tour_5_tag1">Spaced repetition</span><span data-i18n="tour_5_tag2">Transfer challenge</span><span data-i18n="tour_5_tag3">Say it, don't read it</span></div>
+          </div>
         </div>
 
-        <div class="tour-device-rail" aria-hidden="true">
-          <div class="tour-device-pin">
-            <div class="device">
-              <div class="screen">
-                <img class="tour-shot active" data-tour-screen="0" src="assets/android/encounter-live.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
-                <img class="tour-shot" data-tour-screen="1" src="assets/android/everyday-live.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
-                <img class="tour-shot" data-tour-screen="2" src="assets/android/feedback-scores.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
-                <img class="tour-shot" data-tour-screen="3" src="assets/android/pronunciation-drill.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
-                <img class="tour-shot" data-tour-screen="4" src="assets/android/srs-transfer.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
-              </div>
-              <div class="tour-progress"><i class="active"></i><i></i><i></i><i></i><i></i></div>
+        <div class="tour-device" aria-hidden="true">
+          <div class="device">
+            <div class="screen">
+              <img class="tour-shot active" data-tour-screen="0" src="assets/android/encounter-live.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
+              <img class="tour-shot" data-tour-screen="1" src="assets/android/everyday-live.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
+              <img class="tour-shot" data-tour-screen="2" src="assets/android/feedback-scores.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
+              <img class="tour-shot" data-tour-screen="3" src="assets/android/pronunciation-drill.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
+              <img class="tour-shot" data-tour-screen="4" src="assets/android/srs-transfer.webp" width="780" height="1636" loading="lazy" decoding="async" alt="">
             </div>
           </div>
         </div>
@@ -416,80 +511,40 @@
 
     <div class="shot-rail" role="group" aria-label="Screenshots from the Android app" tabindex="0">
       <figure class="shot">
-        <div class="device"><div class="screen"><img src="assets/android/analyzing.webp" width="780" height="1636" loading="lazy" decoding="async" alt="The analysis screen: transcript saved, fluency metrics computed, clinical scoring in progress, SRS cards pending."></div></div>
-        <span class="shot-no" data-i18n="shot_no_1">01 · After you hang up</span>
-        <figcaption data-i18n="shot_1">Analysis runs in the background. Close the app and it resumes from the saved transcript.</figcaption>
-      </figure>
-      <figure class="shot">
         <div class="device"><div class="screen"><img src="assets/android/feedback-overview.webp" width="780" height="1636" loading="lazy" decoding="async" alt="Session overview scoring 93 out of 100, with coaching notes written in Korean."></div></div>
-        <span class="shot-no" data-i18n="shot_no_2">02 · Overview</span>
-        <figcaption data-i18n="shot_2">One score for the session, then coaching written in your own language — including a ten-minute drill for the exact pattern you got wrong.</figcaption>
+        <span class="shot-no" data-i18n="shot_no_1">01 · Overview</span>
+        <figcaption data-i18n="shot_1">One score for the session, then coaching written in your own language — including a ten-minute drill for the exact pattern you got wrong.</figcaption>
       </figure>
       <figure class="shot">
         <div class="device"><div class="screen"><img src="assets/android/corrections.webp" width="780" height="1636" loading="lazy" decoding="async" alt="The corrections list: the sentence you said struck through in red, the natural version in green, the grammar rule, and the likely first-language cause."></div></div>
-        <span class="shot-no" data-i18n="shot_no_3">03 · Fix &amp; practice</span>
-        <figcaption data-i18n="shot_3">What you said, what to say instead, the rule behind it — and why a Korean speaker tends to make that slip.</figcaption>
+        <span class="shot-no" data-i18n="shot_no_2">02 · Fix &amp; practice</span>
+        <figcaption data-i18n="shot_2">What you said, what to say instead, the rule behind it — and why a Korean speaker tends to make that slip.</figcaption>
       </figure>
       <figure class="shot">
         <div class="device"><div class="screen"><img src="assets/android/delivery.webp" width="780" height="1636" loading="lazy" decoding="async" alt="Delivery metrics: 25 words per minute, 3 percent filler density, 33 words, 2 turns, 16.5 average words per turn."></div></div>
-        <span class="shot-no" data-i18n="shot_no_4">04 · Delivery</span>
-        <figcaption data-i18n="shot_4">Words per minute, filler density, how long your turns run. Counted from your real words, not estimated.</figcaption>
+        <span class="shot-no" data-i18n="shot_no_3">03 · Delivery</span>
+        <figcaption data-i18n="shot_3">Words per minute, filler density, how long your turns run. Counted from your real words, not estimated.</figcaption>
       </figure>
       <figure class="shot">
         <div class="device"><div class="screen"><img src="assets/android/pronunciation-lab.webp" width="780" height="1636" loading="lazy" decoding="async" alt="The Pronunciation Lab listing a noticed vowel slip on the word quite, waiting to be confirmed."></div></div>
-        <span class="shot-no" data-i18n="shot_no_5">05 · Pronunciation Lab</span>
-        <figcaption data-i18n="shot_5">A practice list built only from sounds you actually missed. One slip is noted; if it happens twice, it joins the drills.</figcaption>
+        <span class="shot-no" data-i18n="shot_no_4">04 · Pronunciation Lab</span>
+        <figcaption data-i18n="shot_4">A practice list built only from sounds you actually missed. One slip is noted; if it happens twice, it joins the drills.</figcaption>
       </figure>
       <figure class="shot">
         <div class="device"><div class="screen"><img src="assets/android/srs-card.webp" width="780" height="1636" loading="lazy" decoding="async" alt="A My Mistakes review card showing the incorrect utterance, waiting for the correction to be revealed."></div></div>
-        <span class="shot-no" data-i18n="shot_no_6">06 · My Mistakes</span>
-        <figcaption data-i18n="shot_6">Your own sentence comes back first. Try to repair it before the app shows you the natural phrasing.</figcaption>
+        <span class="shot-no" data-i18n="shot_no_5">05 · My Mistakes</span>
+        <figcaption data-i18n="shot_5">Your own sentence comes back first. Try to repair it before the app shows you the natural phrasing.</figcaption>
       </figure>
       <figure class="shot">
         <div class="device"><div class="screen"><img src="assets/android/history.webp" width="780" height="1636" loading="lazy" decoding="async" alt="Session history with a search field, mode filters, and a score trend chart across recent sessions."></div></div>
-        <span class="shot-no" data-i18n="shot_no_7">07 · History</span>
-        <figcaption data-i18n="shot_7">Every session kept, searchable, with a score trend that tells you honestly when you are sliding.</figcaption>
-      </figure>
-      <figure class="shot">
-        <div class="device"><div class="screen"><img src="assets/android/history-sessions.webp" width="780" height="1636" loading="lazy" decoding="async" alt="A list of recent sessions across encounter and survival modes with dates and analysis status."></div></div>
-        <span class="shot-no" data-i18n="shot_no_8">08 · Your sessions</span>
-        <figcaption data-i18n="shot_8">Clinical encounters and everyday scenes sit side by side. Re-run the analysis on any of them later.</figcaption>
+        <span class="shot-no" data-i18n="shot_no_6">06 · History</span>
+        <figcaption data-i18n="shot_6">Every session kept and searchable, with a score trend that tells you honestly when you are sliding. Analysis runs in the background, so you can close the app mid-way.</figcaption>
       </figure>
       <figure class="shot">
         <div class="device"><div class="screen"><img src="assets/android/api-cost.webp" width="780" height="1636" loading="lazy" decoding="async" alt="An API cost breakdown: total estimated cost, sessions analysed, cumulative token usage, and per-session cost."></div></div>
-        <span class="shot-no" data-i18n="shot_no_9">09 · Cost, in the open</span>
-        <figcaption data-i18n="shot_9">You use your own free Gemini key, so the app shows exactly what it spent — 37 sessions for about $2.50.</figcaption>
+        <span class="shot-no" data-i18n="shot_no_7">07 · Cost, in the open</span>
+        <figcaption data-i18n="shot_7">You use your own free Gemini key, so the app shows exactly what it spent — down to the individual session.</figcaption>
       </figure>
-    </div>
-  </section>
-
-  <section class="features" id="features">
-    <div class="shell">
-      <div class="section-head">
-        <span class="eyebrow" data-i18n="features_kicker">The complete learning loop</span>
-        <h2 data-i18n="features_title">A conversation that turns into tomorrow's practice.</h2>
-        <p data-i18n="features_body">No feed to scroll and no generic lesson plan. The app listens to what you actually say and builds practice from it.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature">
-          <span class="feature-no">01 · VOICE</span>
-          <h3 data-i18n="f1_title">An AI patient that goes off-script</h3>
-          <p data-i18n="f1_body">Ask an unexpected question, change direction, or stumble. The patient listens and answers out loud, while the clinical checklist ticks in the background.</p>
-          <div class="feature-shot"><img src="assets/android/detail/conversation.webp" width="760" height="422" loading="lazy" decoding="async" alt="Two chat bubbles from a real encounter: the student's opening question and the patient's spoken reply about black tarry stools and dizziness."></div>
-        </article>
-        <article class="feature">
-          <span class="feature-no">02 · LIVE RUBRIC</span>
-          <h3 data-i18n="f2_title">The medicine never blocks the English</h3>
-          <p data-i18n="f2_body">Checklist coverage updates from the conversation itself, and you can tap any row to see why it was marked. Still stuck? Open the answer sheet mid-encounter.</p>
-          <div class="feature-shot"><img src="assets/android/detail/checklist.webp" width="760" height="422" loading="lazy" decoding="async" alt="The live checklist coverage panel showing zero of four items confirmed and a history-taking item to distinguish upper from lower GI bleeding."></div>
-        </article>
-        <article class="feature">
-          <span class="feature-no">03 · REVIEW</span>
-          <h3 data-i18n="f3_title">Your mistake comes back tomorrow</h3>
-          <p data-i18n="f3_body">Grammar and pronunciation slips become spaced speaking challenges—not flashcards you merely read.</p>
-          <div class="feature-shot"><img src="assets/android/detail/correction.webp" width="760" height="422" loading="lazy" decoding="async" alt="A saved correction: the phrase does the nutritional yeast means struck out in red above the corrected does nutritional yeast mean in green, with the rule and confidence."></div>
-        </article>
-      </div>
     </div>
   </section>
 
@@ -507,6 +562,44 @@
           <li data-i18n="trust_3">No ads or telemetry</li>
           <li data-i18n="trust_4">Open source</li>
         </ul>
+      </div>
+      <div class="cost">
+        <div>
+          <div class="cost-figure">$2.50</div>
+          <span class="cost-label" data-i18n="cost_label">37 real sessions</span>
+        </div>
+        <p data-i18n="cost_body">That is the whole running cost of the sessions on this page, billed by Google to your own key — not to us. The app shows the figure on its own screen, and there is no plan on top of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="faq_kicker">Before you download</span>
+        <h2 data-i18n="faq_title">The awkward questions.</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary data-i18n="q1">Can I try it without an API key?</summary>
+          <p data-i18n="a1">Yes. Demo Mode ships with three scripted patients and runs immediately — no key, no account, no network setup. It is there so you can see whether the flow suits you before deciding anything.</p>
+        </details>
+        <details>
+          <summary data-i18n="q2">Why do I have to bring my own Gemini key?</summary>
+          <p data-i18n="a2">Because the alternative is a subscription. Google's free tier covers casual practice, the key takes about two minutes to create, and it is stored on your phone only — it never reaches a server of ours, because there is no server of ours.</p>
+        </details>
+        <details>
+          <summary data-i18n="q3">I am not a medical student. Is this useful?</summary>
+          <p data-i18n="a3">Survival English is a whole mode of everyday scenes — a café, a phone call, a movie night — with the same live voice, the same scoring, and the same spaced review. The clinical side is simply the part that needed a checklist.</p>
+        </details>
+        <details>
+          <summary data-i18n="q4">Where do my recordings and transcripts go?</summary>
+          <p data-i18n="a4">They stay on your device. Speech is sent to Google under your own key for analysis, and nothing else leaves the phone: no account, no ads, no telemetry. The source is public if you would rather check than take our word for it.</p>
+        </details>
+        <details>
+          <summary data-i18n="q5">Is this a medical device?</summary>
+          <p data-i18n="a5">No. It is an English-speaking practice tool. The clinical checklists exist to give the conversation a shape, not to teach medicine or support any real clinical decision.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -547,22 +640,42 @@
    */
   var GOOGLE_PLAY_URL = "";
 
+  /*
+   * Narration for the silent hero clip, keyed to the cut points of
+   * assets/video/encounter-loop.*: the reveal at 1.0s, the second exchange at
+   * 3.0s, the third at 5.6s. `spot` lights the checklist band for the one cue
+   * where it changes.
+   */
+  var CLIP_CUES = [
+    {at:0.0, spot:false, en:"The patient is answering — out loud, unscripted.",      ko:"환자가 대답하는 중입니다 — 대본 없이, 소리 내어."},
+    {at:1.0, spot:true,  en:"The checklist fills itself from what you said: 0 → 2.", ko:"내가 한 말에서 체크리스트가 스스로 채워집니다: 0 → 2."},
+    {at:3.0, spot:false, en:"Speak any time. You can talk straight over the patient.",ko:"언제든 말해도 됩니다. 환자의 말을 끊고 끼어들 수 있습니다."},
+    {at:5.6, spot:false, en:"Nothing is scripted — you decide the next question.",   ko:"대본이 없으니 다음 질문은 당신이 정합니다."}
+  ];
+
   var KO = {
-    nav_how:"작동 방식",nav_screens:"실제 화면",nav_features:"핵심 기능",
+    nav_how:"작동 방식",nav_screens:"실제 화면",nav_faq:"자주 묻는 질문",
     store_pending_short:"Play Store 승인 대기",store_pending:"Google Play 승인 대기 중",
     hero_kicker:"의대생·의료진, 그리고 일상 영어를 연습하려는 모두를 위해",hero_badge:"Android · 무료 · 계정 없음",
     hero_title:"AI 환자와 대화하세요.<em>영어로, 소리 내어.</em>",
-    hero_copy:"대본 없는 음성 대화 — 진료실의 환자든, 카페 맞은편의 낯선 사람이든. 말하는 도중 놓친 것을 확인하고, 내가 실제로 틀린 문장을 다시 말하며 익히세요.",
-    benefit_1:"대본 없는 실시간 음성 대화",benefit_2:"막히면 여는 오픈북",benefit_3:"문법·발음 맞춤 복습",
-    see_how:"30초로 작동 방식 보기",
+    hero_copy:"대본은 없습니다. 내가 말하면 환자가 소리 내어 답하고, 내가 실제로 한 말에서 임상 체크리스트가 스스로 채워집니다.",
+    see_how:"30초로 작동 방식 보기",clip_play:"영상 재생",
     launch_note:"현재 Google Play 등록 심사 중입니다. 승인되는 즉시 이 버튼이 다운로드 링크로 바뀝니다.",
-    hero_live_tag:"실제 화면 · 진행 중인 면담",
-    hero_real_note:"이 페이지의 모든 스크린샷은 실제 안드로이드 앱 화면입니다.",
+    hero_real_note:"이 페이지의 모든 화면과 영상은 실제 안드로이드 앱입니다.",
     how_1_title:"AI 환자와 말한다",how_1_body:"선택형 대본이 아니라 내가 한 말에 상대가 직접 반응합니다.",
     how_2_title:"말하는 동안 채점받는다",how_2_body:"아직 다시 물어볼 수 있을 때 놓친 문진 항목을 확인합니다.",
     how_3_title:"고친 문장을 소리 내어 말한다",how_3_body:"내 실수가 나중에 새로운 말하기 상황으로 다시 출제됩니다.",
-    tour_kicker:"한 번의 연습을 스크롤로 체험",tour_title:"한 번의 대화가 내일의 교정까지.",
-    tour_intro:"계속 스크롤하세요. 화면은 실제 세션 한 번에서 그대로 캡처한 것입니다 — 면담, 점수, 놓친 발음, 그리고 그것이 바뀐 복습 카드까지.",
+    problem_quote:"의학은 압니다. 그런데 누가 <em>“빨리, 12번&nbsp;베드 어때?”</em> 하고 물으면 영어가 안 나옵니다.",
+    problem_after:"더 읽는다고 해결되지 않습니다. 해결되는 건 대답해주는 상대에게 소리 내어 자주 말해보는 것뿐인데, 지금까지는 그러려면 한 시간을 내줄 사람을 찾아야 했습니다.",
+    fno_1:"01 · 음성 대화",fno_2:"02 · 실시간 루브릭",fno_3:"03 · 복습",
+    features_kicker:"이 앱이 실제로 하는 일",features_title:"세 가지, 전부 휴대폰 안에서.",
+    features_body:"스크롤할 피드도, 모두에게 똑같은 수업도 없습니다. 내가 실제로 한 말을 듣고 그 안에서 다음 연습을 만듭니다.",
+    f1_title:"대본 밖으로 따라오는 AI 환자",f1_body:"예상 밖의 질문을 하거나, 방향을 바꾸거나, 말이 막혀도 환자는 듣고 소리 내어 답합니다. 임상 체크리스트는 그동안 뒤에서 채워집니다.",
+    f2_title:"의학 지식이 영어를 막지 않도록",f2_body:"체크리스트는 대화 내용에서 자동으로 갱신되고, 각 항목을 눌러 왜 그렇게 판정됐는지 볼 수 있습니다. 그래도 막히면 면담 도중 답안지를 여세요.",
+    f3_title:"오늘의 실수가 내일 다시 등장",f3_body:"내가 한 말, 대신 써야 할 말, 그 뒤의 규칙 — 그리고 한국어 화자가 왜 하필 그 실수를 하는지까지 보여줍니다.",
+    tour_kicker:"한 번의 연습, 다섯 단계",tour_title:"한 번의 대화가 내일의 교정까지.",
+    tour_intro:"아래 화면은 모두 실제 세션 한 번에서 그대로 캡처한 것입니다 — 면담, 점수, 놓친 발음, 그리고 그것이 바뀐 복습 카드까지. 원하는 단계를 눌러보세요.",
+    tab_1:"01 · 말하기",tab_2:"02 · 일상 영어",tab_3:"03 · 채점",tab_4:"04 · 발음",tab_5:"05 · 복습",
     tour_1_title:"환자는 대답하고, 체크리스트는 듣습니다.",
     tour_1_body:"내가 소리 내어 말하면 환자도 소리 내어 답합니다. 대본은 없습니다. 그동안 임상 체크리스트가 실제로 확인한 항목을 표시하고, 말문이 막히면 '질문 아이디어'와 오픈북이 한 번의 탭 거리에 있습니다.",
     tour_1_tag1:"실시간 음성",tour_1_tag2:"실시간 체크리스트",tour_1_tag3:"오픈북",
@@ -581,58 +694,136 @@
     shots_kicker:"휴대폰에서 그대로",shots_title:"보정 없는 앱의 전부입니다.",
     shots_body:"렌더링도 마케팅용 목업도 아닙니다. 실제로 일주일 동안 사용한 세션에서 캡처했고, 안드로이드 상태 표시줄만 잘라냈습니다.",
     shots_hint:"화면을 옆으로 넘겨보세요",
-    shot_no_1:"01 · 통화가 끝나면",shot_no_2:"02 · 총평",shot_no_3:"03 · 교정과 연습",
-    shot_no_4:"04 · 전달력",shot_no_5:"05 · 발음 랩",shot_no_6:"06 · 내 실수",
-    shot_no_7:"07 · 히스토리",shot_no_8:"08 · 내 세션",shot_no_9:"09 · 비용 공개",
-    shot_1:"분석은 백그라운드에서 돌아갑니다. 앱을 닫아도 저장된 대화록에서 이어집니다.",
-    shot_2:"세션 총점, 그리고 모국어로 쓰인 코칭 — 내가 틀린 패턴에 맞춘 10분 훈련법까지.",
-    shot_3:"내가 한 말, 대신 써야 할 말, 그 뒤의 규칙 — 그리고 한국어 화자가 왜 그렇게 실수하는지까지.",
-    shot_4:"분당 단어 수, 필러 비율, 한 번에 말한 길이. 추정이 아니라 실제 발화에서 센 값입니다.",
-    shot_5:"실제로 놓친 소리만 모은 연습 목록. 한 번은 기록만 되고, 두 번째부터 훈련에 들어갑니다.",
-    shot_6:"내가 한 문장이 먼저 돌아옵니다. 자연스러운 표현을 보기 전에 스스로 고쳐보세요.",
-    shot_7:"모든 세션이 검색 가능하게 남고, 점수 추이는 실력이 떨어질 때도 솔직하게 알려줍니다.",
-    shot_8:"임상 면담과 일상 장면이 나란히 쌓입니다. 어떤 세션이든 나중에 다시 분석할 수 있습니다.",
-    shot_9:"무료 Gemini 키를 직접 쓰기 때문에 비용이 그대로 보입니다 — 37세션에 약 $2.50.",
-    features_kicker:"말하기에서 복습까지",features_title:"오늘의 대화가 내일의 맞춤 연습이 됩니다.",
-    features_body:"스크롤할 피드도, 모두에게 똑같은 수업도 없습니다. 내가 실제로 한 말을 듣고 그 안에서 다음 연습을 만듭니다.",
-    f1_title:"대본 밖으로 따라오는 AI 환자",f1_body:"예상 밖의 질문을 하거나, 방향을 바꾸거나, 말이 막혀도 환자는 듣고 소리 내어 답합니다. 임상 체크리스트는 그동안 뒤에서 채워집니다.",
-    f2_title:"의학 지식이 영어를 막지 않도록",f2_body:"체크리스트는 대화 내용에서 자동으로 갱신되고, 각 항목을 눌러 왜 그렇게 판정됐는지 볼 수 있습니다. 그래도 막히면 면담 도중 답안지를 여세요.",
-    f3_title:"오늘의 실수가 내일 다시 등장",f3_body:"문법과 발음 실수가 읽고 넘기는 카드가 아니라 직접 말해야 하는 간격 반복 과제가 됩니다.",
+    shot_no_1:"01 · 총평",shot_no_2:"02 · 교정과 연습",shot_no_3:"03 · 전달력",
+    shot_no_4:"04 · 발음 랩",shot_no_5:"05 · 내 실수",shot_no_6:"06 · 히스토리",shot_no_7:"07 · 비용 공개",
+    shot_1:"세션 총점, 그리고 모국어로 쓰인 코칭 — 내가 틀린 패턴에 맞춘 10분 훈련법까지.",
+    shot_2:"내가 한 말, 대신 써야 할 말, 그 뒤의 규칙 — 그리고 한국어 화자가 왜 그렇게 실수하는지까지.",
+    shot_3:"분당 단어 수, 필러 비율, 한 번에 말한 길이. 추정이 아니라 실제 발화에서 센 값입니다.",
+    shot_4:"실제로 놓친 소리만 모은 연습 목록. 한 번은 기록만 되고, 두 번째부터 훈련에 들어갑니다.",
+    shot_5:"내가 한 문장이 먼저 돌아옵니다. 자연스러운 표현을 보기 전에 스스로 고쳐보세요.",
+    shot_6:"모든 세션이 검색 가능하게 남고, 점수 추이는 실력이 떨어질 때도 솔직하게 알려줍니다. 분석은 백그라운드에서 돌아가니 도중에 앱을 닫아도 됩니다.",
+    shot_7:"무료 Gemini 키를 직접 쓰기 때문에 비용이 그대로 보입니다 — 세션 하나 단위까지.",
     trust_kicker:"설정 전에 먼저 체험",trust_title:"무료입니다. 가입할 것도 없습니다.",
     trust_body:"Demo Mode의 대본 환자 3명은 API 키 없이 체험할 수 있습니다. 라이브 AI 연습에는 본인의 무료 Gemini API 키를 추가하며, 키는 휴대폰에만 저장됩니다.",
     trust_1:"구독 없음",trust_2:"계정 없음",trust_3:"광고·추적 없음",trust_4:"오픈소스",
+    cost_label:"실제 37세션 기준",
+    cost_body:"이 페이지에 나온 세션들의 실제 운영 비용 전부입니다. 저희가 아니라 본인 키로 Google에 직접 청구되고, 앱이 그 금액을 화면에 그대로 보여줍니다. 그 위에 얹히는 요금제는 없습니다.",
+    faq_kicker:"다운로드 전에",faq_title:"물어보기 애매한 것들.",
+    q1:"API 키 없이도 써볼 수 있나요?",
+    a1:"네. Demo Mode에 대본 환자 3명이 들어 있고 바로 실행됩니다 — 키도, 계정도, 별도 설정도 필요 없습니다. 아무것도 결정하기 전에 흐름이 나에게 맞는지 보라고 넣어둔 모드입니다.",
+    q2:"왜 Gemini 키를 직접 발급해야 하나요?",
+    a2:"그러지 않으면 구독료를 받아야 하기 때문입니다. 가볍게 연습하는 정도는 Google 무료 등급으로 충분하고, 키 발급은 2분이면 되며, 키는 휴대폰에만 저장됩니다 — 저희 서버로 가지 않습니다. 애초에 저희 서버가 없습니다.",
+    q3:"의대생이 아닌데 쓸모가 있나요?",
+    a3:"서바이벌 영어가 통째로 일상 장면 모드입니다 — 카페, 전화 통화, 영화의 밤. 실시간 음성도, 채점도, 간격 반복 복습도 똑같이 적용됩니다. 임상 쪽은 체크리스트가 필요했던 부분일 뿐입니다.",
+    q4:"녹음과 대화록은 어디로 가나요?",
+    a4:"기기에 남습니다. 음성은 분석을 위해 본인 키로 Google에 전송되고, 그 외에는 휴대폰 밖으로 나가는 것이 없습니다 — 계정도, 광고도, 추적도 없습니다. 말만 믿기 어려우시면 소스가 공개되어 있습니다.",
+    q5:"의료기기인가요?",
+    a5:"아닙니다. 영어 말하기 연습 도구입니다. 임상 체크리스트는 대화에 형태를 주기 위한 것이지, 의학을 가르치거나 실제 진료 판단을 돕기 위한 것이 아닙니다.",
     final_title:"다음에는 영어가 먼저 나오게 만드세요.",final_body:"혼자서, 소리 내어, 대답하는 환자와 연습하세요. 계정 없이 Android에서 무료로 사용할 수 있습니다.",
     source_link:"GitHub에서 소스 보기",footer_note:"Bedside English · 무료 오픈소스 · 의료기기가 아님",
     privacy:"개인정보 처리방침",desktop:"데스크톱 앱"
   };
 
-  (function(){
-    var steps = Array.prototype.slice.call(document.querySelectorAll("[data-tour-step]"));
-    var screens = Array.prototype.slice.call(document.querySelectorAll("[data-tour-screen]"));
-    var dots = Array.prototype.slice.call(document.querySelectorAll(".tour-progress i"));
+  var currentLang = "en";
 
-    function activate(index){
-      steps.forEach(function(step,i){step.classList.toggle("active",i === index);});
-      screens.forEach(function(screen,i){screen.classList.toggle("active",i === index);});
-      dots.forEach(function(dot,i){dot.classList.toggle("active",i === index);});
+  /* Hero clip: caption sync, checklist spotlight, and the fallbacks for the
+     two cases where the clip will not move on its own — reduced-motion, and a
+     browser (or an iOS low-power mode) that refuses the autoplay. */
+  var clipCue = -1;
+  (function(){
+    var clip = document.getElementById("clip");
+    var caption = document.getElementById("clipCaption");
+    var spot = document.getElementById("clipSpot");
+    var toggle = document.getElementById("clipToggle");
+    if (!clip || !caption) return;
+
+    window.renderClipCaption = function(){
+      var cue = CLIP_CUES[clipCue < 0 ? 1 : clipCue];
+      caption.textContent = currentLang === "ko" ? cue.ko : cue.en;
+    };
+
+    function showCue(index){
+      if (index === clipCue) return;
+      clipCue = index;
+      caption.classList.add("swap");
+      window.setTimeout(function(){
+        window.renderClipCaption();
+        caption.classList.remove("swap");
+      },200);
+      spot.classList.toggle("on",!!CLIP_CUES[index].spot);
     }
 
-    if (!("IntersectionObserver" in window)) return;
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting) activate(Number(entry.target.dataset.tourStep));
+    clip.addEventListener("timeupdate",function(){
+      var index = 0;
+      for (var i = 0; i < CLIP_CUES.length; i++) {
+        if (clip.currentTime >= CLIP_CUES[i].at) index = i;
+      }
+      showCue(index);
+    });
+
+    /* Caption for the paused states: cue 1 describes the checklist, which is
+       exactly what the poster frame shows. */
+    window.renderClipCaption();
+
+    function offerManualPlay(){
+      toggle.hidden = false;
+      toggle.classList.add("is-shown");
+    }
+    toggle.addEventListener("click",function(){
+      if (clip.paused) { clip.play(); toggle.classList.remove("is-shown"); }
+    });
+
+    var still = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (still.matches) {
+      clip.removeAttribute("autoplay");
+      clip.pause();
+      offerManualPlay();
+    } else {
+      var started = clip.play();
+      if (started && typeof started.catch === "function") started.catch(offerManualPlay);
+    }
+  })();
+
+  /* Practice loop tabs, replacing the scroll-driven rail. */
+  (function(){
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+    var panels = tabs.map(function(tab){return document.getElementById(tab.getAttribute("aria-controls"));});
+    var shots = Array.prototype.slice.call(document.querySelectorAll("[data-tour-screen]"));
+    if (!tabs.length) return;
+
+    function select(index,focus){
+      tabs.forEach(function(tab,i){
+        var on = i === index;
+        tab.setAttribute("aria-selected",String(on));
+        if (panels[i]) panels[i].hidden = !on;
+        if (shots[i]) shots[i].classList.toggle("active",on);
       });
-    },{rootMargin:"-45% 0px -45% 0px",threshold:0});
-    steps.forEach(function(step){observer.observe(step);});
+      if (focus) tabs[index].focus();
+      /* Keep the chosen tab reachable once the strip scrolls horizontally. */
+      if (tabs[index].scrollIntoView) tabs[index].scrollIntoView({block:"nearest",inline:"nearest"});
+    }
+
+    tabs.forEach(function(tab,i){
+      tab.addEventListener("click",function(){select(i,false);});
+      tab.addEventListener("keydown",function(event){
+        var next = {ArrowRight:i + 1,ArrowLeft:i - 1,Home:0,End:tabs.length - 1}[event.key];
+        if (next === undefined) return;
+        event.preventDefault();
+        select((next + tabs.length) % tabs.length,true);
+      });
+    });
   })();
 
   (function(){
     var bar = document.querySelector(".mobile-store");
-    var heroActions = document.querySelector(".hero-actions");
-    if (bar && heroActions && "IntersectionObserver" in window) {
+    /* Watches the whole hero, not the buttons inside it. The buttons now sit
+       below the clip on a phone, so keying off them put the bar on screen at
+       load — covering the one thing the hero exists to show. */
+    var hero = document.querySelector(".hero");
+    if (bar && hero && "IntersectionObserver" in window) {
       new IntersectionObserver(function(entries){
         bar.classList.toggle("is-visible", !entries[0].isIntersecting);
-      },{threshold:0}).observe(heroActions);
+      },{threshold:0}).observe(hero);
     } else if (bar) {
       bar.classList.add("is-visible");
     }
@@ -656,6 +847,7 @@
     }
 
     function setLanguage(lang){
+      currentLang = lang;
       document.documentElement.lang = lang;
       document.querySelectorAll("[data-i18n]").forEach(function(element){
         var key = element.dataset.i18n;
@@ -667,6 +859,8 @@
         button.classList.toggle("on",active);
         button.setAttribute("aria-pressed",String(active));
       });
+      /* The clip caption is script-owned, so it is outside the data-i18n sweep. */
+      if (window.renderClipCaption) window.renderClipCaption();
       try{localStorage.setItem("be-language",lang);}catch(error){}
     }
 
