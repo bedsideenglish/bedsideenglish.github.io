@@ -1,0 +1,30 @@
+name: Verify landing pages
+
+on:
+  pull_request:
+    paths:
+      - index.html
+      - android.html
+      - tools/sync-landing-pages.py
+      - .github/workflows/verify-landing-pages.yml
+  push:
+    branches:
+      - main
+    paths:
+      - index.html
+      - android.html
+      - tools/sync-landing-pages.py
+      - .github/workflows/verify-landing-pages.yml
+
+permissions:
+  contents: read
+
+jobs:
+  verify-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: python tools/sync-landing-pages.py

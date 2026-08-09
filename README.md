@@ -11,8 +11,13 @@ A single static `index.html` (no build step) presenting both platforms of the pr
 
 Served via GitHub Pages from the `main` branch root. Edit `index.html` and push to update the live site.
 
-`android.html` is a copy of `index.html` and differs only in its `canonical`/`og:url` and the brand link.
-Keep the two in sync when you edit either.
+`android.html` is the source for `index.html`; the two differ only in their `canonical`/`og:url` and brand link. After editing `android.html`, update the root page with:
+
+```sh
+python tools/sync-landing-pages.py --write
+```
+
+GitHub Actions verifies the two files on every pull request and push to `main`, so an out-of-sync change cannot go unnoticed.
 
 ## Assets
 

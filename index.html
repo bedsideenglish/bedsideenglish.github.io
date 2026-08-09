@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#05070c">
-  <title>Bedside English — Clinical English with an AI Patient</title>
-  <meta name="description" content="Speak out loud with an unscripted AI patient — or everyday English in scenes that keep moving. Live feedback, open-book support, and your mistakes as tomorrow's practice. Free Android app.">
+  <title>Bedside English — Clinical English with AI Patients</title>
+  <meta name="description" content="Practise clinical English aloud with AI patients. Get real-time checklist guidance, precise feedback, pronunciation drills, and corrections that return as speaking practice. A full Everyday English mode is included.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bedside English: Talk &amp; Train">
-  <meta property="og:title" content="Practise clinical English with an AI patient">
-  <meta property="og:description" content="Speak, get scored, and practise your own mistakes out loud. Clinical English or everyday conversation — free Android app, no account.">
+  <meta property="og:title" content="Clinical English that talks back">
+  <meta property="og:description" content="Talk to AI patients in your own words, get precise feedback, and practise the correction again tomorrow — plus a full Everyday English mode.">
   <meta property="og:url" content="https://boyskier.github.io/bedside-english/">
   <meta property="og:image" content="https://boyskier.github.io/bedside-english/assets/social/og-cover.png">
   <meta property="og:image:width" content="1200">
@@ -124,11 +124,13 @@
       background:radial-gradient(closest-side,rgba(61,125,250,.19),transparent 70%)}
     .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 324px;column-gap:clamp(56px,7vw,110px);align-items:center}
     .hero-copy{margin:22px 0 0;max-width:46ch;color:var(--fog);font-size:clamp(1.02rem,1.5vw,1.13rem);line-height:1.66}
+    .audience-link{margin:13px 0 0;color:var(--fog2);font-size:.88rem}
+    .audience-link a{color:var(--chalk);text-decoration:underline;text-decoration-color:rgba(237,240,247,.28);text-underline-offset:4px}
+    .audience-link a:hover{color:#fff;text-decoration-color:var(--red)}
     .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
 
-    /* The running-cost figure was the caption on the seventh screenshot in a
-       horizontal rail. It is the strongest number an unlaunched app has, so it
-       sits in the first screen instead. */
+    /* The first-screen proof is the amount actually charged in testing, not a
+       paid-tier equivalent calculated from a mixed set of short and long runs. */
     .chips{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:24px 0 0;padding:0;list-style:none}
     .chips li{padding:7px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);
       color:var(--fog);font-size:.83rem;font-weight:500}
@@ -377,16 +379,16 @@
     <div class="shell hero-grid">
       <div class="hero-copy-col">
         <div class="hero-lead">
-          <p class="kicker" data-i18n="hero_kicker">For medical students, nurses &amp; everyday learners</p>
-          <h1 data-i18n="hero_title">Talk to an AI patient.<em>In English. Out loud.</em></h1>
+          <p class="kicker" data-i18n="hero_kicker">Clinical English practice for IMGs, medical students, and healthcare professionals</p>
+          <h1 data-i18n="hero_title">Speak in the clinic.<em>Keep going in real life.</em></h1>
+          <p class="hero-copy" data-i18n="hero_copy">Talk to AI patients in your own words. The patient answers out loud, the clinical checklist updates from what you actually covered, and your exact mistakes return as tomorrow’s speaking practice. A full Everyday English mode is included for life outside the clinic.</p>
+          <p class="audience-link"><a href="android-everyday.html" data-i18n="everyday_link">Here for everyday English? Explore the everyday version →</a></p>
         </div>
 
-        <!-- The copy sits with the buttons rather than the headline: on a
-             desktop it still reads h1 -> copy -> buttons down one column, but on
-             a phone the clip is ordered between the two so it is not pushed
-             under the fold by three lines of prose. -->
+        <!-- On a phone the promise stays with the headline so the clinical and
+             everyday tracks both land before the tall real-app clip. The CTA
+             remains below the clip while the store listing is under review. -->
         <div class="hero-tail">
-          <p class="hero-copy" data-i18n="hero_copy">Nothing is scripted. You speak, the patient answers out loud, and the clinical checklist fills itself in from what you actually said.</p>
           <div class="hero-actions">
             <button type="button" class="btn btn-primary" id="clipAction">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" id="clipActionIcon"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="currentColor"/></svg>
@@ -395,9 +397,9 @@
             <a class="btn btn-ghost" href="#loop"><span data-i18n="see_how">See how it works</span></a>
           </div>
           <ul class="chips">
-            <li><b>$2.50</b> <span data-i18n="chip_cost">for the 37 sessions on this page</span></li>
-            <li data-i18n="chip_free">Free</li>
-            <li data-i18n="chip_noacct">No account</li>
+            <li><b data-i18n="chip_zero">$0 charged</b> <span data-i18n="chip_cost">in our testing · Gemini Free Tier</span></li>
+            <li data-i18n="chip_free">No credit card</li>
+            <li data-i18n="chip_noacct">No Bedside English account</li>
           </ul>
           <p class="store-status">
             <span class="store-dot" aria-hidden="true"></span>
@@ -427,13 +429,12 @@
     </div>
   </section>
 
-  <!-- Nothing above this point tells the visitor why they should care; the
-       page used to state what the app does three times before it said this
-       once, in its fourth section. -->
+  <!-- The shared problem behind both tracks: real conversations change before
+       a learner has time to translate a rehearsed sentence. -->
   <section class="problem">
     <div class="shell problem-grid">
-      <p class="quote" data-i18n="problem_quote">You know the medicine. Then someone asks <em>“Quickly — how's bed&nbsp;12?”</em> and the English will not come out.</p>
-      <p class="problem-after" data-i18n="problem_after">Reading more does not fix that. The only thing that fixes it is saying it out loud, often, to someone who answers back — and until now that meant finding a person with an hour to spare.</p>
+      <p class="quote" data-i18n="problem_quote">English does not stop at the bedside. It follows you into the hallway, onto the phone, and <em>out into everyday life.</em></p>
+      <p class="problem-after" data-i18n="problem_after">The skill is the same: understand what changed, answer out loud, and keep the conversation moving before you have time to translate.</p>
     </div>
   </section>
 
@@ -441,28 +442,28 @@
     <div class="shell">
       <div class="loop-head">
         <p class="kicker" data-i18n="loop_kicker">One practice loop, five steps</p>
-        <h2 data-i18n="loop_title">One conversation, all the way to tomorrow's fix.</h2>
-        <p class="lede" data-i18n="loop_intro">Speak, get scored while you can still fix it, then meet your own mistake again tomorrow. Every screen below is a real capture from a single session — pick any step.</p>
+        <h2 data-i18n="loop_title">One live conversation. One exact fix. Then say it again tomorrow.</h2>
+        <p class="lede" data-i18n="loop_intro">Speak in an unscripted scene, get the one correction that matters first, then meet it again as a new speaking task. Every screen below is a real Android capture — pick any step.</p>
       </div>
 
       <div class="loop-stage">
         <ol class="steps" role="tablist" aria-label="Practice loop steps" aria-orientation="vertical">
           <li>
             <button class="step" type="button" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true">
-              <i>01</i><b data-i18n="loop_1_title">The patient answers. The checklist listens.</b>
+              <i>01</i><b data-i18n="loop_1_title">Speak. The patient answers — out loud and unscripted.</b>
             </button>
             <div class="panel" role="tabpanel" id="panel-0" aria-labelledby="tab-0" tabindex="0">
-              <p data-i18n="loop_1_body">You say it out loud, the patient replies out loud, and nothing is scripted. Underneath, the clinical checklist marks what you have actually covered — and if you dry up, "Stuck? Question idea" and the Open Book are one tap away.</p>
+              <p data-i18n="loop_1_body">Talk to an AI patient in your own words. The checklist marks what you actually covered; if you dry up, a question idea and the Open Book are one tap away. Everyday mode uses the same live voice and unscripted conversation engine in non-clinical scenes.</p>
               <ul class="tags"><li data-i18n="loop_1_tag1">Live voice</li><li data-i18n="loop_1_tag2">Real-time checklist</li><li data-i18n="loop_1_tag3">Open book</li></ul>
             </div>
           </li>
           <li>
             <button class="step" type="button" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false">
-              <i>02</i><b data-i18n="loop_2_title">Or leave the hospital entirely.</b>
+              <i>02</i><b data-i18n="loop_2_title">Keep talking outside the clinic, too.</b>
             </button>
             <div class="panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0" hidden>
-              <p data-i18n="loop_2_body">Survival English puts you in a café, a phone call, a backyard movie night. Ask what "nutritional yeast" means and you get a real answer — and you can talk over the AI to interrupt it, exactly like interrupting a person.</p>
-              <ul class="tags"><li data-i18n="loop_2_tag1">Everyday English</li><li data-i18n="loop_2_tag2">Interrupt by speaking</li><li data-i18n="loop_2_tag3">Ear-only practice</li></ul>
+              <p data-i18n="loop_2_body">At an airport gate, you may choose to go to the information desk alone. Remember the new boarding time and gate, then come back. The AI asks what you learned — now you have to relay it in English. The conversation can also move somewhere else, skip ahead in time, or bring in someone new, and you decide whether each change happens.</p>
+              <ul class="tags"><li data-i18n="loop_2_tag1">Scene moves</li><li data-i18n="loop_2_tag2">Time jumps</li><li data-i18n="loop_2_tag3">New people &amp; relay tasks</li></ul>
             </div>
           </li>
           <li>
@@ -530,9 +531,9 @@
 
   <section class="proof" id="proof">
     <div class="shell proof-head">
-      <p class="kicker" data-i18n="proof_kicker">Straight from the phone</p>
-      <h2 data-i18n="proof_title">This is the whole app, unretouched.</h2>
-      <p class="lede" data-i18n="proof_body">No renders and no marketing mock-ups — captures from one week of real sessions, with only the Android status bar trimmed off. Every screenshot and the clip at the top of this page are the actual Android app.</p>
+      <p class="kicker" data-i18n="proof_kicker">After the conversation</p>
+      <h2 data-i18n="proof_title">The conversation ends. The practice doesn’t.</h2>
+      <p class="lede" data-i18n="proof_body">Review your coaching, fluency, pronunciation findings, session history, and cost estimates — all from real practice sessions.</p>
     </div>
 
     <div class="rail" role="group" aria-label="Screenshots from the Android app" tabindex="0">
@@ -557,28 +558,28 @@
         <figcaption data-i18n="shot_4">With a trend that tells you honestly when you are sliding. Analysis runs in the background.</figcaption>
       </figure>
       <figure class="shot">
-        <div class="device"><div class="screen"><img src="assets/android/api-cost.webp" width="780" height="1636" loading="lazy" decoding="async" alt="An API cost breakdown: total estimated cost, sessions analysed, cumulative token usage, and per-session cost."></div></div>
+        <div class="device"><div class="screen"><img src="assets/android/api-cost.webp" width="780" height="1636" loading="lazy" decoding="async" alt="An API cost breakdown showing paid-tier equivalent estimates, cumulative token usage, and per-session estimates."></div></div>
         <h3 data-i18n="shot_5_t">Cost, in the open</h3>
-        <figcaption data-i18n="shot_5">Your own key, so the app shows exactly what it spent — down to the session.</figcaption>
+        <figcaption data-i18n="shot_5">Paid-tier estimates stay visible per session, even when Free Tier means nothing was charged.</figcaption>
       </figure>
     </div>
 
     <div class="shell">
       <div class="terms">
         <div>
-          <h3 data-i18n="terms_title">Free to use. Nothing to sign up for.</h3>
-          <p data-i18n="terms_body">Demo Mode includes three scripted patients and needs no API key. For live AI practice, add your own free Gemini API key; it stays on your phone.</p>
+          <h3 data-i18n="terms_title">Free to use. Nothing to subscribe to.</h3>
+          <p data-i18n="terms_body">Demo Mode needs no API key. For live AI practice, create a Gemini Free Tier key with your Google account — no credit card or billing setup required. Every practice session shown here stayed within that tier, so $0 was charged.</p>
           <ul class="terms-list">
             <li data-i18n="term_1">No subscription</li>
-            <li data-i18n="term_2">No account</li>
-            <li data-i18n="term_3">No ads or telemetry</li>
+            <li data-i18n="term_2">No Bedside English account</li>
+            <li data-i18n="term_3">No ads</li>
             <li data-i18n="term_4">Open source</li>
           </ul>
         </div>
         <div>
-          <div class="cost-figure">$2.50</div>
-          <span class="cost-label" data-i18n="cost_label">The running cost of all 37 sessions on this page</span>
-          <p class="cost-note" data-i18n="cost_note">Billed by Google to your own key — not to us. The app shows the figure on its own screen, and there is no plan on top of it.</p>
+          <div class="cost-figure" data-i18n="cost_figure">$0 charged</div>
+          <span class="cost-label" data-i18n="cost_label">Across the real practice shown on this page</span>
+          <p class="cost-note" data-i18n="cost_note">The app still shows estimated paid-tier equivalents per session, so potential costs are visible before you enable billing. Google sets Free Tier model availability and limits.</p>
         </div>
       </div>
     </div>
@@ -597,15 +598,15 @@
         </details>
         <details>
           <summary data-i18n="q2">Why do I have to bring my own Gemini key?</summary>
-          <p data-i18n="a2">Because the alternative is a subscription. Google's free tier covers casual practice, the key takes about two minutes to create, and it is stored on your phone only — it never reaches a server of ours, because there is no server of ours.</p>
+          <p data-i18n="a2">Because it keeps the app subscription-free. Create a Gemini Free Tier key with your Google account — no credit card or billing setup required. You only add payment details if you later choose the Paid Tier. Every practice session shown here stayed on the Free Tier, with $0 charged, and the key stays encrypted on your phone.</p>
         </details>
         <details>
-          <summary data-i18n="q3">I am not a medical student. Is this useful?</summary>
-          <p data-i18n="a3">Survival English is a whole mode of everyday scenes — a café, a phone call, a movie night — with the same live voice, the same scoring, and the same spaced review. The clinical side is simply the part that needed a checklist.</p>
+          <summary data-i18n="q3">Can I practise everyday English too?</summary>
+          <p data-i18n="a3">Yes. Survival English is a full everyday mode where scenes can move, time can jump, and new people can enter. You may even run an errand, remember what you were told, and report it back — with the same live voice, feedback, pronunciation work, and spaced review.</p>
         </details>
         <details>
           <summary data-i18n="q4">Where do my recordings and transcripts go?</summary>
-          <p data-i18n="a4">They stay on your device. Speech is sent to Google under your own key for analysis, and nothing else leaves the phone: no account, no ads, no telemetry. The source is public if you would rather check than take our word for it.</p>
+          <p data-i18n="a4">Your session history is stored on your device. When an AI feature needs it, the required audio, text, and exercise context go directly to Google under your own key — not through a Bedside English account or practice server. There are no ads, and telemetry is inactive in the current release.</p>
         </details>
         <details>
           <summary data-i18n="q5">Is this a medical device?</summary>
@@ -618,7 +619,7 @@
   <section class="final" id="download">
     <div class="shell">
       <h2 data-i18n="final_title">Next time, let the English come out first.</h2>
-      <p class="lede" data-i18n="final_body">Practise alone, out loud, with a patient who talks back. Free on Android with no account required.</p>
+      <p class="lede" data-i18n="final_body">Practise clinical English aloud with AI patients, then keep the same speaking habit in Everyday mode. Free on Android with no Bedside English account required.</p>
       <div class="final-actions">
         <a class="btn btn-ghost" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer"><span data-i18n="source_link">View source on GitHub</span><span aria-hidden="true">↗</span></a>
       </div>
@@ -673,26 +674,27 @@
   var KO = {
     skip:"본문으로 건너뛰기",
     nav_how:"작동 방식",nav_screens:"실제 화면",nav_faq:"자주 묻는 질문",
-    hero_kicker:"의대생·의료진, 그리고 일상 영어를 연습하려는 모두를 위해",
-    hero_title:"AI 환자와 대화하세요.<em>영어로, 소리 내어.</em>",
-    hero_copy:"대본은 없습니다. 내가 말하면 환자가 소리 내어 답하고, 내가 실제로 한 말에서 임상 체크리스트가 스스로 채워집니다.",
+    hero_kicker:"IMG·의대생·의료인을 위한 임상 영어 말하기 연습",
+    hero_title:"진료실에서 말하고.<em>일상에서도 이어가세요.</em>",
+    hero_copy:"AI 환자에게 내 말로 질문하세요. 환자는 소리 내어 대답하고, 실제로 확인한 내용에 따라 임상 체크리스트가 채워지며, 내가 틀린 표현은 내일의 말하기 연습으로 돌아옵니다. 진료실 밖을 위한 완전한 일상 영어 모드도 포함되어 있습니다.",
+    everyday_link:"일상 영어가 목적이신가요? Everyday 버전 보기 →",
     watch_clip:"8초 클립 보기",listen_clip:"8초 들어보기",pause_clip:"소리 끄기",
     see_how:"작동 방식 보기",
-    chip_cost:"이 페이지의 37개 세션 전체 비용",chip_free:"무료",chip_noacct:"계정 없음",
+    chip_zero:"테스트 청구액 0원",chip_cost:"· Gemini 무료 티어",chip_free:"신용카드 불필요",chip_noacct:"Bedside English 계정 없음",
     store_pending:"현재 Google Play 심사 중 — 승인되면 이 자리에 다운로드 링크가 생깁니다.",
     store_pending_short:"Google Play 심사 중 — 링크는 이 자리에",
     store_live:"Google Play에서 받기",
     callout:"내가 한 말에서 자동으로 — 양식을 채운 게 아닙니다.",
-    problem_quote:"의학은 압니다. 그런데 누가 <em>“빨리, 12번&nbsp;베드 어때?”</em> 하고 물으면 영어가 안 나옵니다.",
-    problem_after:"더 읽는다고 해결되지 않습니다. 해결되는 건 대답해주는 상대에게 소리 내어 자주 말해보는 것뿐인데, 지금까지는 그러려면 한 시간을 내줄 사람을 찾아야 했습니다.",
-    loop_kicker:"한 번의 연습, 다섯 단계",loop_title:"한 번의 대화가 내일의 교정까지.",
-    loop_intro:"말하고, 아직 고칠 수 있을 때 채점받고, 내일 내 실수를 다시 만납니다. 아래 화면은 모두 실제 세션 한 번에서 그대로 캡처했습니다 — 원하는 단계를 눌러보세요.",
-    loop_1_title:"환자는 대답하고, 체크리스트는 듣습니다.",
-    loop_1_body:"내가 소리 내어 말하면 환자도 소리 내어 답합니다. 대본은 없습니다. 그동안 임상 체크리스트가 실제로 확인한 항목을 표시하고, 말문이 막히면 '질문 아이디어'와 오픈북이 한 번의 탭 거리에 있습니다.",
+    problem_quote:"영어는 진료실에서 끝나지 않습니다. 병원 복도와 전화, 그리고 <em>그 밖의 일상까지</em> 따라옵니다.",
+    problem_after:"필요한 능력은 하나입니다. 달라진 상황을 알아듣고, 번역할 틈 없이 소리 내어 답하며, 대화를 계속 이어가는 것.",
+    loop_kicker:"한 번의 연습, 다섯 단계",loop_title:"한 번의 실시간 대화. 하나의 정확한 교정. 그리고 내일 다시 말하기.",
+    loop_intro:"대본 없는 장면에서 말하고, 가장 먼저 고칠 한 가지를 받은 뒤, 새로운 말하기 과제로 다시 만납니다. 아래 화면은 모두 실제 Android 앱 캡처입니다 — 원하는 단계를 눌러보세요.",
+    loop_1_title:"말하면, 환자가 소리 내어 답합니다. 대본 없이.",
+    loop_1_body:"AI 환자에게 내 말로 질문합니다. 체크리스트는 실제로 확인한 항목을 표시하고, 말문이 막히면 질문 아이디어와 오픈북을 바로 열 수 있습니다. 일상 영어 모드에서도 같은 실시간 음성과 대본 없는 대화 방식이 적용됩니다.",
     loop_1_tag1:"실시간 음성",loop_1_tag2:"실시간 체크리스트",loop_1_tag3:"오픈북",
-    loop_2_title:"아니면 병원 밖으로 나가도 됩니다.",
-    loop_2_body:"서바이벌 영어는 카페, 전화 통화, 마당 영화의 밤으로 데려갑니다. 'nutritional yeast'가 뭐냐고 물으면 진짜 대답이 돌아오고, 사람에게 하듯 말을 얹어 AI의 말을 끊을 수도 있습니다.",
-    loop_2_tag1:"일상 영어",loop_2_tag2:"말해서 끼어들기",loop_2_tag3:"귀로만 연습",
+    loop_2_title:"진료실 밖에서도 대화를 이어가세요.",
+    loop_2_body:"공항 게이트에서 대화를 시작했다고 해보세요. 안내 데스크에 혼자 다녀오며 새 탑승 시간과 게이트를 기억합니다. 돌아오면 AI가 무엇을 들었는지 묻습니다 — 이제 그 정보를 영어로 전달해야 합니다. 대화는 다른 장소로 옮겨가고, 시간을 건너뛰거나, 새로운 인물이 등장할 수도 있으며 각 변화는 내가 선택합니다.",
+    loop_2_tag1:"장소 이동",loop_2_tag2:"시간 점프",loop_2_tag3:"새 인물·정보 전달 과제",
     loop_3_title:"무엇을 고쳐야 하는지 정확히 짚어줍니다.",
     loop_3_body:"자연스러움, 상호작용, 이해와 복구, 유창성을 각각 100점으로 — 모두 내가 실제로 한 말에서 측정합니다. 그중 하나는 '먼저 고칠 것'으로 표시되고 내 모국어로 설명됩니다.",
     loop_3_tag1:"4개 항목 루브릭",loop_3_tag2:"한국어 해설",loop_3_tag3:"Anki 내보내기",
@@ -707,31 +709,32 @@
     fix_said:"내가 한 말",fix_say:"이렇게 말해야",
     fix_why:"한국어에는 관사가 없어서 일반 명사 앞에 'the'를 붙이기 쉽고, 'does'가 이미 시제를 가지므로 본동사는 원형이어야 합니다. 앱은 그 규칙과 모국어 습관까지 내 언어로 짚어줍니다.",
     fix_shot_cap:"앱 화면 그대로 — 보정 없음.",
-    proof_kicker:"휴대폰에서 그대로",proof_title:"보정 없는 앱의 전부입니다.",
-    proof_body:"렌더링도 마케팅용 목업도 아닙니다. 실제로 일주일 동안 사용한 세션에서 캡처했고, 안드로이드 상태 표시줄만 잘라냈습니다. 이 페이지의 모든 화면과 맨 위 영상은 실제 안드로이드 앱입니다.",
+    proof_kicker:"대화가 끝난 뒤",proof_title:"대화는 끝나도, 연습은 끝나지 않습니다.",
+    proof_body:"실제 연습 세션에서 나온 코칭, 유창성 지표, 발음 피드백, 세션 기록과 예상 비용을 확인하세요.",
     shot_1_t:"세션 총점, 그리고 코칭",shot_1:"모국어로 쓰인 코칭 — 내가 틀린 패턴에 맞춘 10분 훈련법까지.",
     shot_2_t:"실제로 어떻게 들렸는지",shot_2:"분당 단어 수, 필러 비율, 한 번에 말한 길이 — 실제 발화에서 센 값입니다.",
     shot_3_t:"내가 만들지 않은 연습 목록",shot_3:"실제로 놓친 소리만 모읍니다. 한 번은 기록만, 두 번째부터 훈련에 들어갑니다.",
     shot_4_t:"모든 세션이 검색 가능",shot_4:"점수 추이는 실력이 떨어질 때도 솔직하게 알려줍니다. 분석은 백그라운드에서 돌아갑니다.",
-    shot_5_t:"비용 공개",shot_5:"본인 키를 쓰기 때문에 쓴 만큼 그대로 보입니다 — 세션 하나 단위까지.",
-    terms_title:"무료입니다. 가입할 것도 없습니다.",
-    terms_body:"Demo Mode의 대본 환자 3명은 API 키 없이 체험할 수 있습니다. 라이브 AI 연습에는 본인의 무료 Gemini API 키를 추가하며, 키는 휴대폰에만 저장됩니다.",
-    term_1:"구독 없음",term_2:"계정 없음",term_3:"광고·추적 없음",term_4:"오픈소스",
-    cost_label:"이 페이지에 나온 37개 세션의 실제 운영비 전부",
-    cost_note:"저희가 아니라 본인 키로 Google에 직접 청구되고, 앱이 그 금액을 화면에 그대로 보여줍니다. 그 위에 얹히는 요금제는 없습니다.",
+    shot_5_t:"비용 공개",shot_5:"무료 티어로 실제 청구가 없을 때도 유료 티어 기준 예상 비용은 세션별로 확인할 수 있습니다.",
+    terms_title:"무료로 사용하세요. 구독할 것도 없습니다.",
+    terms_body:"Demo Mode는 API 키 없이 실행됩니다. 라이브 AI 연습에는 Google 계정으로 만든 Gemini 무료 티어 키를 사용하며, 신용카드 등록이나 결제 설정은 필요하지 않습니다. 이 페이지에 나온 모든 연습은 무료 티어 안에서 진행되어 실제 청구액은 0원이었습니다.",
+    term_1:"구독 없음",term_2:"Bedside English 계정 없음",term_3:"광고 없음",term_4:"오픈소스",
+    cost_figure:"0원 청구",
+    cost_label:"이 페이지에 나온 실제 연습 전체",
+    cost_note:"앱은 유료 티어를 사용할 경우의 예상 비용도 세션별로 보여주므로 결제를 켜기 전에 잠재 비용을 확인할 수 있습니다. 무료 티어의 모델과 한도는 Google이 정합니다.",
     faq_kicker:"다운로드 전에",faq_title:"물어보기 애매한 것들.",
     q1:"API 키 없이도 써볼 수 있나요?",
     a1:"네. Demo Mode에 대본 환자 3명이 들어 있고 바로 실행됩니다 — 키도, 계정도, 별도 설정도 필요 없습니다. 아무것도 결정하기 전에 흐름이 나에게 맞는지 보라고 넣어둔 모드입니다.",
     q2:"왜 Gemini 키를 직접 발급해야 하나요?",
-    a2:"그러지 않으면 구독료를 받아야 하기 때문입니다. 가볍게 연습하는 정도는 Google 무료 등급으로 충분하고, 키 발급은 2분이면 되며, 키는 휴대폰에만 저장됩니다 — 저희 서버로 가지 않습니다. 애초에 저희 서버가 없습니다.",
-    q3:"의대생이 아닌데 쓸모가 있나요?",
-    a3:"서바이벌 영어가 통째로 일상 장면 모드입니다 — 카페, 전화 통화, 영화의 밤. 실시간 음성도, 채점도, 간격 반복 복습도 똑같이 적용됩니다. 임상 쪽은 체크리스트가 필요했던 부분일 뿐입니다.",
+    a2:"앱을 구독 없이 제공하기 위해서입니다. Google 계정으로 Gemini 무료 티어 키를 만들 수 있으며, 신용카드 등록이나 결제 설정은 필요하지 않습니다. 나중에 유료 티어를 직접 선택할 때만 결제 정보를 추가합니다. 이 페이지의 모든 연습은 무료 티어에서 진행되어 실제 청구액은 0원이었고, 키는 휴대폰에 암호화되어 저장됩니다.",
+    q3:"일상 영어도 연습할 수 있나요?",
+    a3:"네. 서바이벌 영어는 장소가 이동하고, 시간이 흐르며, 새로운 사람이 등장하는 완전한 일상 영어 모드입니다. 혼자 심부름을 다녀와 들은 내용을 기억해 전달하기도 합니다. 실시간 음성, 피드백, 발음 훈련과 간격 반복 복습도 그대로 적용됩니다.",
     q4:"녹음과 대화록은 어디로 가나요?",
-    a4:"기기에 남습니다. 음성은 분석을 위해 본인 키로 Google에 전송되고, 그 외에는 휴대폰 밖으로 나가는 것이 없습니다 — 계정도, 광고도, 추적도 없습니다. 말만 믿기 어려우시면 소스가 공개되어 있습니다.",
+    a4:"세션 기록은 기기에 저장됩니다. AI 기능에 필요한 음성, 텍스트와 연습 정보는 본인 키로 Google에 직접 전송되며, Bedside English 계정이나 연습 서버를 거치지 않습니다. 광고는 없고 현재 배포본의 텔레메트리는 비활성 상태입니다.",
     q5:"의료기기인가요?",
     a5:"아닙니다. 영어 말하기 연습 도구입니다. 임상 체크리스트는 대화에 형태를 주기 위한 것이지, 의학을 가르치거나 실제 진료 판단을 돕기 위한 것이 아닙니다.",
     final_title:"다음에는 영어가 먼저 나오게 만드세요.",
-    final_body:"혼자서, 소리 내어, 대답하는 환자와 연습하세요. 계정 없이 Android에서 무료로 사용할 수 있습니다.",
+    final_body:"AI 환자와 소리 내어 임상 영어를 연습하고, 같은 말하기 습관을 일상 영어 모드에서도 이어가세요. Bedside English 계정 없이 Android에서 무료로 사용할 수 있습니다.",
     source_link:"GitHub에서 소스 보기",footer_note:"Bedside English · 무료 오픈소스 · 의료기기가 아님",
     privacy:"개인정보 처리방침",desktop:"데스크톱 앱"
   };
