@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05070c">
+  <meta name="theme-color" content="#f5efdc">
   <title>Bedside English — Clinical English with AI Patients</title>
   <meta name="description" content="Practise clinical English aloud with AI patients. Get real-time checklist guidance, precise feedback, pronunciation drills, and corrections that return as speaking practice. A full Everyday English mode is included.">
   <meta property="og:type" content="website">
@@ -25,331 +25,209 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
   <style>
-    :root{
-      /* Two greys carry the whole page: --void for the base band, --ink for the
-         alternating one. The section rhythm is the only thing separating them,
-         so neither needs a border to read as a new section. */
-      --void:#05070c;--ink:#080c15;
-      /* Three surface tiers, and only three. Anything that is not one of these
-         is not a container. */
-      --panel:#0e1524;--panel-hi:#141d30;--line:#1d2942;--line-2:#2b3b59;
-      /* --fog 7.4:1, --fog2 5.1:1 on --void. --fog2 is caption-only; anything
-         the reader must act on is --fog or brighter. */
-      --fog:#9caabf;--fog2:#7b8aa1;--chalk:#eef2f9;
-      /* One interactive accent (blue) plus two strictly semantic colours:
-         green means "the app confirmed / corrected this", red means "this is
-         what you got wrong". Amber appears exactly once, on the store status
-         dot, because pending is a status and not a decoration. */
-      --blue:#3d7dfa;--blue2:#9dbcff;--green:#3fd898;--red:#ef5f5c;--amber:#f0b34a;
-      --display:"Instrument Serif","Pretendard Variable",Pretendard,Georgia,serif;
-      --ui:Inter,"Pretendard Variable",Pretendard,system-ui,-apple-system,sans-serif;
-      --shell:min(1160px,calc(100% - 44px));
-      --band:clamp(76px,9vw,116px);
-    }
-    /* Hangul has no serif here, so under KO the display face becomes Pretendard
-       at a weight heavy enough to hold the same optical presence. */
-    html[lang="ko"]{--display:"Pretendard Variable",Pretendard,system-ui,sans-serif}
-    html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] .quote{font-weight:800;letter-spacing:-.035em}
-    html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3,html[lang="ko"] p,html[lang="ko"] li{word-break:keep-all}
+    /* Hallmark — pre-emit critique: P5 H5 E4 S5 R5 V5 */
+    /* Hallmark — macrostructure: Marquee Long Document — tone: clinical field guide — anchor hue: cobalt
+     * contrast: pass (40–41) — nav: N1b compact utility — footer: Ft2 inline — slop: pass (42–45)
+     * honest: pass (46) — chrome: pass (47) — tokens: pass (48) — responsive: pass (49) — icons: pass (30)
+     * mobile: static pass (34, 49, 50–57)
+     */
+    @import url("tokens.css");
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--void);color:var(--chalk);font-family:var(--ui);font-size:16px;line-height:1.6;
-      -webkit-font-smoothing:antialiased;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}
+    html,body{overflow-x:clip}
+    html{scroll-behavior:smooth;background:var(--color-paper)}
+    body{margin:0;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-md);line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration-thickness:var(--rule-hairline);text-underline-offset:0.22em}
+    a:active{color:var(--color-accent)}
     button{font:inherit;color:inherit}
     img,video{display:block;max-width:100%}
-    .shell{width:var(--shell);margin-inline:auto}
-    .skip{position:fixed;left:12px;top:12px;z-index:100;padding:10px 14px;background:var(--blue);border-radius:8px;transform:translateY(-200%)}
+    h1,h2,h3,.quote{font-style:normal;overflow-wrap:anywhere;min-width:0}
+    h1,h2,.quote{font-family:var(--font-display);font-weight:400;letter-spacing:-0.025em}
+    h1{max-width:11ch;margin:0;font-size:var(--text-display-s);line-height:0.92}
+    h1 em{display:block;margin-inline-start:0.72em;color:var(--color-accent);font-style:normal}
+    h2{margin:0;font-size:clamp(2.4rem,5vw,4.8rem);line-height:0.98}
+    h3{margin:0;font-family:var(--font-body);font-size:var(--text-lg);line-height:1.3}
+    html[lang="ko"]{--font-display:var(--font-ko)}
+    html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] .quote{font-weight:760;letter-spacing:-0.04em;line-height:1.12}
+    html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3,html[lang="ko"] p,html[lang="ko"] li{word-break:keep-all}
+
+    .shell{width:min(76rem,calc(100% - 2rem));margin-inline:auto}
+    .skip{position:fixed;inset-block-start:var(--space-xs);inset-inline-start:var(--space-xs);z-index:100;padding:var(--space-xs) var(--space-sm);background:var(--color-accent);color:var(--color-accent-ink);transform:translateY(-200%)}
     .skip:focus{transform:none}
-    :focus-visible{outline:2px solid var(--blue2);outline-offset:3px;border-radius:4px}
+    :focus-visible{outline:var(--rule-bold) solid var(--color-focus);outline-offset:var(--space-3xs)}
 
-    /* The only page-wide texture. A single grain plate at 3.5% replaces the
-       radial-glow-plus-grid stack, which is the exact background combination
-       every generated dark landing page ships with. Grain also stops the large
-       flat panels from banding on cheap phone displays. */
-    body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.035;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    header{position:sticky;inset-block-start:0;z-index:50;background:var(--color-paper-glass);border-block-end:var(--rule-hairline) solid transparent;backdrop-filter:blur(14px)}
+    header.is-stuck{border-block-end-color:var(--color-rule)}
+    nav{min-height:4.25rem;display:flex;align-items:center;gap:var(--space-md)}
+    .brand{display:flex;align-items:center;gap:var(--space-xs);font-weight:700;text-decoration:none;white-space:nowrap}
+    .brand-mark{width:2rem;height:2rem;display:grid;place-items:center;background:var(--color-ink);color:var(--color-paper);transform:rotate(-2deg)}
+    .brand-mark svg{width:1.1rem}
+    .nav-links{display:flex;align-items:center;gap:var(--space-lg);margin-inline-start:auto;color:var(--color-ink-2);font-size:var(--text-sm)}
+    .nav-links>a,.footer-links a{white-space:nowrap;text-decoration:none}
+    .nav-links>a:hover,.footer-links a:hover{color:var(--color-accent);text-decoration:underline}
+    .lang{display:flex;border:var(--rule-hairline) solid var(--color-rule-strong)}
+    .lang button{border:0;padding:var(--space-2xs) var(--space-xs);background:transparent;color:var(--color-ink-2);cursor:pointer;font-size:var(--text-xs);font-weight:700;white-space:nowrap}
+    .lang button.on{background:var(--color-ink);color:var(--color-paper)}
+    .lang button:hover{color:var(--color-accent)}
+    .lang button:active{background:var(--color-paper-2)}
+    .lang button:disabled,.step:disabled{opacity:0.5;cursor:not-allowed}
 
-    /* ---------- type scale ---------- */
-    h1{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(3rem,6.2vw,5.1rem);line-height:1.0;letter-spacing:-.02em}
-    h1 em{display:block;font-style:normal;color:var(--blue2)}
-    html[lang="ko"] h1{font-size:clamp(2.35rem,4.8vw,3.9rem);line-height:1.16}
-    h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,3.9vw,3.2rem);line-height:1.08;letter-spacing:-.018em;text-wrap:balance}
-    html[lang="ko"] h2{font-size:clamp(1.75rem,3.2vw,2.6rem);line-height:1.24}
-    h3{margin:0;font-family:var(--ui);font-weight:700;font-size:1.16rem;line-height:1.34;letter-spacing:-.015em}
-    /* Sentence-case, tracked a hair, never uppercase-mono. The uppercase
-       letterspaced mono eyebrow on every section is the loudest template tell
-       on a page like this, so there is one label style and it is quiet. */
-    .kicker{margin:0 0 20px;color:var(--blue2);font-size:.82rem;font-weight:600;letter-spacing:.01em}
-    .kicker::before{content:"";display:inline-block;width:22px;height:1px;margin:0 10px 4px 0;background:currentColor;vertical-align:middle}
-    .lede{margin:20px 0 0;max-width:50ch;color:var(--fog);font-size:1.05rem;line-height:1.68}
+    .btn{min-height:3rem;padding-inline:var(--space-lg);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);border:var(--rule-hairline) solid var(--color-ink);border-radius:var(--radius-input);background:transparent;font-size:var(--text-sm);font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;transition:transform var(--dur-short) var(--ease-out),background var(--dur-short) var(--ease-out),color var(--dur-short) var(--ease-out)}
+    .btn svg{width:1rem;flex:0 0 auto}
+    .btn-primary{background:var(--color-ink);color:var(--color-paper)}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary:hover{background:var(--color-accent)}
+    .btn-ghost:hover{background:var(--color-paper-2)}
+    .btn:active{transform:translateY(0)}
+    .btn[disabled],.btn[aria-disabled="true"]{opacity:0.5;cursor:not-allowed;transform:none}
 
-    /* ---------- header ---------- */
-    header{position:sticky;top:0;z-index:50;background:rgba(5,7,12,.78);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .25s}
-    header.is-stuck{border-bottom-color:var(--line)}
-    nav{min-height:64px;display:flex;align-items:center;gap:24px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1rem;letter-spacing:-.02em}
-    .brand-mark{width:29px;height:29px;display:grid;place-items:center;border-radius:8px;background:linear-gradient(150deg,#4b8cff,#1c40ad)}
-    .brand-mark svg{width:17px}
-    .nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-size:.9rem;font-weight:500;color:var(--fog)}
-    .nav-links a:hover{color:var(--chalk)}
-    .lang{display:flex;gap:2px;padding:2px;border:1px solid var(--line);border-radius:8px}
-    .lang button{border:0;padding:5px 9px;border-radius:6px;background:transparent;color:var(--fog2);cursor:pointer;font-size:.72rem;font-weight:600;letter-spacing:.04em}
-    .lang button.on{background:var(--panel-hi);color:var(--chalk)}
+    .kicker{margin:0 0 var(--space-lg);color:var(--color-accent);font-size:var(--text-xs);font-weight:700;letter-spacing:0.02em}
+    .kicker::before{content:"";display:inline-block;width:2.5rem;height:var(--rule-bold);margin-inline-end:var(--space-xs);background:currentColor;vertical-align:0.2em}
+    .lede{max-width:52ch;margin:var(--space-md) 0 0;color:var(--color-ink-2);font-size:var(--text-lg)}
 
-    /* ---------- buttons ---------- */
-    .btn{min-height:50px;padding:0 22px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      border:1px solid transparent;font-size:.95rem;font-weight:600;letter-spacing:-.005em;cursor:pointer;transition:.18s ease}
-    .btn-primary{color:#fff;background:var(--blue);border-color:#5a91ff}
-    .btn-primary:hover{background:#4e8bff;transform:translateY(-1px)}
-    .btn-ghost{color:var(--chalk);border-color:var(--line-2);background:transparent}
-    .btn-ghost:hover{border-color:#3d4f70;background:rgba(255,255,255,.035)}
-    .btn svg{width:17px;flex:0 0 auto}
-
-    /* Store status is a sentence with a dot, not a dead button. A disabled
-       primary button repeated down the page reads as four refusals; one honest
-       line reads as a launch date. */
-    .store-status{display:inline-flex;align-items:center;gap:9px;margin:18px 0 0;color:var(--fog);font-size:.85rem;line-height:1.5}
-    .store-dot{position:relative;flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--amber)}
-    .store-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--amber);opacity:.4}
-    .store-live .store-dot{background:var(--green)}
-    .store-live .store-dot::after{border-color:var(--green)}
-
-    /* ---------- hero ---------- */
-    .hero{position:relative;padding:clamp(44px,6vh,76px) 0 var(--band);overflow:clip}
-    /* The one glow on the page, anchored behind the phone rather than washed
-       across the viewport, so it reads as light coming off the screen. */
-    .hero::before{content:"";position:absolute;z-index:-1;top:-6%;right:-4%;width:min(760px,72vw);aspect-ratio:1;
-      background:radial-gradient(closest-side,rgba(61,125,250,.19),transparent 70%)}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 324px;column-gap:clamp(56px,7vw,110px);align-items:center}
-    .hero-copy{margin:22px 0 0;max-width:46ch;color:var(--fog);font-size:clamp(1.02rem,1.5vw,1.13rem);line-height:1.66}
-    .audience-link{margin:13px 0 0;color:var(--fog2);font-size:.88rem}
-    .audience-link a{color:var(--chalk);text-decoration:underline;text-decoration-color:rgba(237,240,247,.28);text-underline-offset:4px}
-    .audience-link a:hover{color:#fff;text-decoration-color:var(--red)}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-
-    /* The first-screen proof is the amount actually charged in testing, not a
-       paid-tier equivalent calculated from a mixed set of short and long runs. */
-    .chips{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:24px 0 0;padding:0;list-style:none}
-    .chips li{padding:7px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02);
-      color:var(--fog);font-size:.83rem;font-weight:500}
-    .chips li b{color:var(--green);font-weight:700;letter-spacing:-.01em}
-
+    .hero{position:relative;padding-block:clamp(var(--space-lg),5vw,var(--space-xl)) var(--space-2xl);border-block-end:var(--rule-hairline) solid var(--color-rule);overflow:clip}
+    .hero::after{content:"CLINICAL / EVERYDAY";position:absolute;inset-inline-end:-0.05em;inset-block-end:-0.22em;z-index:-1;color:var(--color-paper-2);font-family:var(--font-body);font-size:clamp(4rem,14vw,13rem);font-weight:800;line-height:0.8;white-space:nowrap}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(15.5rem,0.65fr);gap:clamp(var(--space-xl),7vw,var(--space-3xl));align-items:center}
+    .hero-copy{max-width:48ch;margin:var(--space-lg) 0 0;color:var(--color-ink-2);font-size:var(--text-lg)}
+    .audience-link{margin:var(--space-sm) 0 0;color:var(--color-ink-2);font-size:var(--text-sm)}
+    .audience-link a{color:var(--color-ink);font-weight:650}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin-block-start:var(--space-lg)}
+    .chips{display:flex;flex-wrap:wrap;gap:0;margin:var(--space-lg) 0 0;padding:0;list-style:none;border-block:var(--rule-hairline) solid var(--color-rule)}
+    .chips li{padding:var(--space-2xs) var(--space-sm);color:var(--color-ink-2);font-size:var(--text-xs);border-inline-end:var(--rule-hairline) solid var(--color-rule)}
+    .chips li:first-child{padding-inline-start:0}
+    .chips li b{color:var(--color-positive)}
     .stage{position:relative;display:flex;flex-direction:column;align-items:center}
-    /* One device component for every screenshot and the hero clip alike. The
-       screen keeps the exact aspect of the exported captures (780x1636) so
-       nothing is letterboxed or cut. */
-    .device{position:relative;width:var(--dw,324px);padding:calc(var(--dw,324px) * .032);
-      border-radius:calc(var(--dw,324px) * .135);background:linear-gradient(160deg,#2b364c,#0a0f19 42%,#05070c);
-      box-shadow:0 0 0 1px rgba(255,255,255,.07),0 40px 80px -32px #000}
-    .screen{position:relative;aspect-ratio:780/1636;overflow:hidden;border-radius:calc(var(--dw,324px) * .104);background:#0b1220}
+    .device{position:relative;width:var(--dw,16rem);padding:0;border:var(--rule-hairline) solid var(--color-rule-strong);background:var(--color-paper-3);box-shadow:0 1.8rem 4rem var(--color-shadow)}
+    .screen{position:relative;aspect-ratio:780/1636;overflow:hidden;background:var(--color-ink)}
     .screen img,.screen video{width:100%;height:100%;object-fit:cover;object-position:top}
-
-    /* Whole-phone shots are decoration at this size - at 324px wide the app's
-       body text lands under 5px and nothing on it can be read. The callout is
-       the same capture cropped to the one band that carries the claim and
-       scaled up, pinned level with that band on the phone beside it so it reads
-       as a magnifier over the screen rather than a second card below it. */
-    .callout{position:absolute;z-index:3;left:-104px;top:61%;transform:translateY(-50%);width:428px;margin:0;
-      border:1px solid var(--line-2);border-radius:12px;background:var(--panel);overflow:hidden;
-      box-shadow:0 30px 56px -24px #000}
-    .callout img{width:100%;height:auto}
-    .callout figcaption{display:flex;align-items:center;gap:8px;padding:10px 13px;border-top:1px solid var(--line);
-      color:var(--fog);font-size:.77rem;line-height:1.4}
-    .callout figcaption::before{content:"";flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:var(--green);
-      box-shadow:0 0 0 3px rgba(63,216,152,.16)}
-
-    /* The clip runs silent, so the viewer has no way to know a voice is being
-       spoken or which pixel just changed. This strip is the narration: it is
-       driven off video.currentTime rather than burned into the frames, so it
-       translates with the rest of the page and stays crisp at any scale. */
-    .vo{display:flex;align-items:center;gap:11px;width:100%;max-width:324px;min-height:54px;margin:18px 0 0;
-      padding:11px 14px;border:1px solid var(--line);border-radius:11px;background:var(--panel)}
-    .vo-dot{position:relative;flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:var(--red)}
-    .vo-dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--red);opacity:.5;animation:ring 1.8s ease-out infinite}
-    @keyframes ring{to{transform:scale(2);opacity:0}}
-    .vo-text{margin:0;color:var(--chalk);font-size:.83rem;font-weight:500;line-height:1.45;transition:opacity .2s}
+    .callout{position:absolute;z-index:3;inset-inline-start:-8rem;inset-block-end:4rem;width:22rem;margin:0;border:var(--rule-hairline) solid var(--color-rule-strong);background:var(--color-paper-3);box-shadow:0 1.4rem 3rem var(--color-shadow)}
+    .callout img{width:100%}
+    .callout figcaption{padding:var(--space-xs) var(--space-sm);border-block-start:var(--rule-hairline) solid var(--color-rule);color:var(--color-ink-2);font-size:var(--text-xs)}
+    .vo{width:100%;max-width:16rem;display:flex;align-items:center;gap:var(--space-xs);margin:var(--space-sm) 0 0;padding:var(--space-xs) 0;border-block-end:var(--rule-hairline) solid var(--color-rule);color:var(--color-ink);font-size:var(--text-xs)}
+    .vo-dot,.store-dot{width:0.5rem;height:0.5rem;flex:0 0 auto;border-radius:var(--radius-pill);background:var(--color-negative)}
+    .vo-text{margin:0;transition:opacity var(--dur-short) var(--ease-out)}
     .vo-text.swap{opacity:0}
+    .store-status{display:inline-flex;align-items:center;gap:var(--space-xs);margin:var(--space-sm) 0 0;color:var(--color-ink-2);font-size:var(--text-xs)}
+    .store-dot{background:var(--color-pending)}
+    .store-live .store-dot{background:var(--color-positive)}
 
-    /* ---------- problem ---------- */
-    /* Left-aligned and held to eight of twelve columns. Five consecutive
-       centred section heads is the layout signature this page is trying to
-       lose, so the two sections that carry the argument are set like an
-       article instead. */
-    .problem{padding:var(--band) 0;background:var(--ink)}
-    .quote{max-width:17ch;margin:0;font-family:var(--display);font-weight:400;
-      font-size:clamp(2.3rem,5vw,4rem);line-height:1.06;letter-spacing:-.02em}
-    .quote em{font-style:italic;color:var(--blue2)}
-    html[lang="ko"] .quote{max-width:15ch;font-size:clamp(1.9rem,3.9vw,3rem);line-height:1.24}
-    html[lang="ko"] .quote em{font-style:normal}
-    .problem-after{max-width:46ch;margin:28px 0 0;color:var(--fog);font-size:1.05rem;line-height:1.72}
-    .problem-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(30px,5vw,72px);align-items:end}
+    .problem{padding-block:var(--space-3xl);background:var(--color-ink);color:var(--color-paper)}
+    .problem-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,0.55fr);gap:clamp(var(--space-lg),6vw,var(--space-3xl));align-items:end}
+    .quote{max-width:18ch;margin:0;font-size:clamp(2.8rem,6.2vw,6rem);line-height:0.96}
+    .quote em{color:var(--color-accent-2);font-style:normal}
+    .problem-after{max-width:45ch;margin:0;color:var(--color-paper-2);font-size:var(--text-lg)}
 
-    /* ---------- loop ---------- */
-    /* Was three sections - a numbered 01/02/03 strip, three feature cards and a
-       five-step tour - all making the same three claims. One section, five
-       steps, driven by the reader. */
-    .loop{padding:var(--band) 0;scroll-margin-top:64px;overflow:clip}
-    .loop-head{max-width:620px}
-    /* A horizontal pill strip put five short labels on one line and left the
-       column under them empty for the whole height of the phone. Stacked, the
-       five titles fill that column themselves and the sequence reads top to
-       bottom without anything being clicked. */
-    .loop-stage{display:grid;grid-template-columns:minmax(0,1fr) 324px;gap:clamp(36px,5vw,86px);align-items:start;margin-top:40px}
-    .steps{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
-    .steps>li{border-bottom:1px solid var(--line)}
-    .step{width:100%;display:flex;align-items:baseline;gap:14px;padding:17px 0;border:0;background:none;text-align:left;cursor:pointer}
-    .step i{flex:0 0 auto;font-style:normal;font-size:.74rem;font-weight:600;color:var(--fog2);font-variant-numeric:tabular-nums;
-      transition:color .18s}
-    .step b{font-family:var(--display);font-weight:400;font-size:clamp(1.35rem,2.3vw,1.85rem);line-height:1.16;letter-spacing:-.015em;
-      color:var(--fog);transition:color .18s}
-    html[lang="ko"] .step b{font-weight:700;font-size:clamp(1.1rem,1.8vw,1.35rem);line-height:1.4;letter-spacing:-.03em}
-    .step:hover b{color:var(--chalk)}
-    .step[aria-selected="true"] b{color:var(--chalk)}
-    .step[aria-selected="true"] i{color:var(--blue2)}
+    .loop{padding-block:var(--space-3xl);scroll-margin-top:var(--space-2xl)}
+    .loop-head{display:block;max-width:58rem}
+    .loop-head .lede{margin-block-start:var(--space-md)}
+    .loop-stage{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(15rem,0.65fr);gap:clamp(var(--space-lg),7vw,var(--space-3xl));align-items:start;margin-block-start:var(--space-2xl);border-block-start:var(--rule-bold) solid var(--color-ink)}
+    .steps{margin:0;padding:0;list-style:none}
+    .steps>li{border-block-end:var(--rule-hairline) solid var(--color-rule)}
+    .step{width:100%;display:grid;grid-template-columns:2.25rem minmax(0,1fr);gap:var(--space-sm);align-items:start;padding-block:var(--space-md);border:0;background:none;text-align:start;cursor:pointer}
+    .step i{font-style:normal;color:var(--color-accent);font-size:var(--text-xs);font-weight:800}
+    .step b{overflow:hidden;font-family:var(--font-display);font-size:clamp(1.55rem,3vw,2.6rem);font-weight:400;line-height:1.05;color:var(--color-ink-2);text-overflow:ellipsis;white-space:nowrap}
+    .step[aria-selected="true"] b,.step:hover b{color:var(--color-ink)}
+    .step:active b{color:var(--color-accent)}
     .panel[hidden]{display:none}
-    .panel{padding:0 0 22px 34px;animation:rise .3s ease}
-    @keyframes rise{from{opacity:0;transform:translateY(6px)}}
-    .panel p{max-width:46ch;margin:0;color:var(--fog);font-size:1rem;line-height:1.72}
-    .tags{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 0;padding:0;list-style:none}
-    .tags li{padding:5px 10px;border:1px solid var(--line);border-radius:7px;color:var(--fog2);font-size:.78rem;font-weight:500}
-    .loop-device{justify-self:center;position:sticky;top:96px}
-    .loop-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .3s ease}
+    .panel{padding:0 0 var(--space-lg) var(--space-xl);animation:panel-in var(--dur-medium) var(--ease-out)}
+    .panel p{max-width:55ch;margin:0;color:var(--color-ink-2)}
+    .tags{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin:var(--space-md) 0 0;padding:0;list-style:none}
+    .tags li{padding:var(--space-3xs) var(--space-2xs);background:var(--color-accent-wash);color:var(--color-accent);font-size:var(--text-xs);font-weight:700}
+    .loop-device{position:sticky;inset-block-start:6rem;justify-self:end;padding-block-start:var(--space-lg)}
+    .loop-device .device{--dw:17rem;box-shadow:none}
+    .loop-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity var(--dur-medium) var(--ease-out)}
     .loop-shot.active{opacity:1}
+    @keyframes panel-in{from{opacity:0;transform:translateY(0.4rem)}}
 
-    /* ---------- correction band ---------- */
-    /* The one thing on the page that shows the reader their own future output.
-       It was a thumbnail inside the third of three cards. */
-    .fix{padding:var(--band) 0;background:var(--ink)}
-    .fix-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(34px,5vw,76px);align-items:center}
-    .fix-lines{margin:28px 0 0;padding:0;list-style:none;font-size:clamp(1.05rem,1.9vw,1.4rem);line-height:1.45}
-    .fix-lines li{padding:14px 0 14px 17px;border-left:2px solid}
-    .fix-lines li+li{margin-top:4px}
-    .fix-lines .label{display:block;margin-bottom:5px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-    .fix-said{border-left-color:var(--red)}
-    .fix-said .label{color:var(--red)}
-    .fix-said span.text{color:var(--fog);text-decoration:line-through;text-decoration-color:rgba(239,95,92,.7);text-decoration-thickness:1.5px}
-    .fix-say{border-left-color:var(--green)}
-    .fix-say .label{color:var(--green)}
-    .fix-say span.text{color:var(--green);font-weight:600}
-    .fix-why{margin:24px 0 0;padding:18px 20px;border-left:2px solid var(--blue);border-radius:0 10px 10px 0;background:var(--panel);
-      color:var(--fog);font-size:.94rem;line-height:1.7}
-    .fix-shot{border:1px solid var(--line-2);border-radius:14px;overflow:hidden;background:var(--panel);box-shadow:0 32px 60px -32px #000}
-    .fix-shot img{width:100%;height:auto}
-    .fix-shot figcaption{padding:11px 15px;border-top:1px solid var(--line);color:var(--fog2);font-size:.78rem}
+    .fix{padding-block:var(--space-3xl);background:var(--color-paper-2)}
+    .fix-grid{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:clamp(var(--space-xl),7vw,var(--space-3xl));align-items:center}
+    .fix-lines{margin:var(--space-lg) 0 0;padding:0;list-style:none;font-size:var(--text-xl)}
+    .fix-lines li{padding:var(--space-sm);border-inline-start:var(--rule-bold) solid}
+    .fix-lines li+li{margin-block-start:var(--space-xs)}
+    .fix-lines .label{display:block;margin-block-end:var(--space-3xs);font-size:var(--text-xs);font-weight:800}
+    .fix-said{border-color:var(--color-negative);background:var(--color-negative-wash)}
+    .fix-said .label{color:var(--color-negative)}
+    .fix-said .text{text-decoration:line-through;text-decoration-color:var(--color-negative)}
+    .fix-say{border-color:var(--color-positive);background:var(--color-positive-wash)}
+    .fix-say .label,.fix-say .text{color:var(--color-positive)}
+    .fix-why{margin:var(--space-lg) 0 0;padding-block-start:var(--space-md);border-block-start:var(--rule-hairline) solid var(--color-rule-strong);color:var(--color-ink-2)}
+    .fix-shot{margin:0;border:var(--rule-hairline) solid var(--color-rule-strong);background:var(--color-paper-3)}
+    .fix-shot img{width:100%}
+    .fix-shot figcaption{padding:var(--space-xs) var(--space-sm);border-block-start:var(--rule-hairline) solid var(--color-rule);color:var(--color-ink-2);font-size:var(--text-xs)}
 
-    /* ---------- proof ---------- */
-    .proof{padding:var(--band) 0;overflow:clip}
-    .proof-head{max-width:640px}
-    .rail{display:flex;gap:22px;margin-top:40px;padding:4px calc((100% - var(--shell)) / 2) 26px;
-      overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
-    .rail::-webkit-scrollbar{height:7px}
-    .rail::-webkit-scrollbar-thumb{border-radius:99px;background:var(--line-2)}
-    .shot{flex:0 0 auto;width:224px;margin:0;scroll-snap-align:center}
-    .shot .device{--dw:224px}
-    .shot h3{margin:16px 0 0;font-size:.95rem}
-    .shot figcaption{margin-top:5px;color:var(--fog2);font-size:.83rem;line-height:1.5}
+    .proof{padding-block:var(--space-3xl);overflow:clip}
+    .proof-head{display:block;max-width:58rem}
+    .proof-head .lede{margin-block-start:var(--space-md)}
+    .rail{display:flex;gap:var(--space-lg);margin-block-start:var(--space-2xl);padding:0 max(var(--space-sm),calc((100% - 76rem)/2)) var(--space-lg);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-color:var(--color-rule-strong) transparent}
+    .shot{flex:0 0 13rem;margin:0;scroll-snap-align:start}
+    .shot .device{--dw:13rem;box-shadow:none}
+    .shot h3{margin-block-start:var(--space-sm);font-size:var(--text-md)}
+    .shot figcaption{margin-block-start:var(--space-2xs);color:var(--color-ink-2);font-size:var(--text-sm)}
+    .terms{margin-block-start:var(--space-xl);padding-block:var(--space-xl);border-block:var(--rule-bold) solid var(--color-ink);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,0.8fr);gap:var(--space-xl);align-items:end}
+    .terms p{max-width:55ch;margin:var(--space-sm) 0 0;color:var(--color-ink-2)}
+    .terms-list{display:flex;flex-wrap:wrap;gap:var(--space-xs) var(--space-lg);margin:var(--space-md) 0 0;padding:0;list-style:none;color:var(--color-positive);font-size:var(--text-sm);font-weight:700}
+    .cost-figure{font-family:var(--font-display);font-size:clamp(3.5rem,7vw,6.5rem);line-height:0.86;color:var(--color-positive)}
+    .cost-label{display:block;margin-block-start:var(--space-sm);font-weight:700}
+    .cost-note{font-size:var(--text-sm)}
 
-    /* trust + running cost, previously two stacked cards saying one thing */
-    .terms{margin-top:52px;padding:clamp(26px,3.4vw,40px);border:1px solid var(--line);border-radius:16px;background:var(--panel);
-      display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,4vw,60px);align-items:center}
-    .terms p{max-width:46ch;margin:16px 0 0;color:var(--fog);font-size:1rem;line-height:1.7}
-    .cost-figure{font-family:var(--display);font-size:clamp(3rem,5.5vw,4.4rem);line-height:1;letter-spacing:-.02em;color:var(--green)}
-    html[lang="ko"] .cost-figure{font-weight:800}
-    .cost-label{display:block;margin-top:8px;color:var(--fog);font-size:.88rem;font-weight:600}
-    .cost-note{margin:14px 0 0;color:var(--fog2);font-size:.85rem;line-height:1.6}
-    .terms-list{margin:22px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,max-content);gap:11px 28px;
-      font-size:.92rem;font-weight:500}
-    .terms-list li{display:flex;align-items:center;gap:9px;color:var(--fog)}
-    .terms-list li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--green)}
-
-    /* ---------- faq ---------- */
-    /* Heading in the left column, questions in the right. Same content as a
-       centred stack, but it stops the page ending on its fifth identical
-       section head. */
-    .faq{padding:var(--band) 0;background:var(--ink)}
-    .faq-grid{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:start}
-    details{border-top:1px solid var(--line)}
-    details:last-of-type{border-bottom:1px solid var(--line)}
-    summary{position:relative;padding:20px 36px 20px 0;color:var(--chalk);font-size:1rem;font-weight:600;cursor:pointer;list-style:none}
+    .faq{padding-block:var(--space-3xl);background:var(--color-ink);color:var(--color-paper)}
+    .faq-grid{display:grid;grid-template-columns:minmax(0,0.7fr) minmax(0,1.3fr);gap:clamp(var(--space-lg),7vw,var(--space-3xl));align-items:start}
+    .faq .kicker{color:var(--color-accent-2)}
+    details{border-block-start:var(--rule-hairline) solid var(--color-ink-2)}
+    details:last-of-type{border-block-end:var(--rule-hairline) solid var(--color-ink-2)}
+    summary{position:relative;padding:var(--space-md) var(--space-xl) var(--space-md) 0;cursor:pointer;list-style:none;font-weight:700}
     summary::-webkit-details-marker{display:none}
-    summary::after{content:"";position:absolute;right:8px;top:50%;width:9px;height:9px;margin-top:-6px;
-      border-right:1.5px solid var(--blue2);border-bottom:1.5px solid var(--blue2);transform:rotate(45deg);transition:transform .2s}
-    details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
-    .faq-grid p{margin:0 0 22px;max-width:60ch;color:var(--fog);font-size:.96rem;line-height:1.74}
+    summary:hover{color:var(--color-accent-2)}
+    summary::after{content:"+";position:absolute;inset-inline-end:0;color:var(--color-accent-2);font-size:var(--text-xl);font-weight:400}
+    details[open] summary::after{content:"−"}
+    summary:active{color:var(--color-accent-2)}
+    .faq-grid details p{max-width:60ch;margin:0 0 var(--space-md);color:var(--color-paper-2)}
 
-    /* ---------- final ---------- */
-    .final{position:relative;padding:var(--band) 0;text-align:center;overflow:clip}
-    .final::before{content:"";position:absolute;z-index:-1;inset:auto 0 -40% 0;height:100%;
-      background:radial-gradient(50% 100% at 50% 100%,rgba(61,125,250,.17),transparent 72%)}
-    .final h2{max-width:16ch;margin-inline:auto}
-    .final .lede{margin-inline:auto;max-width:44ch}
-    .final-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:30px}
-    .final .store-status{justify-content:center}
+    .final{position:relative;padding-block:var(--space-3xl);text-align:start;overflow:clip}
+    .final::after{content:"SPEAK";position:absolute;inset-inline-end:-0.03em;inset-block-end:-0.28em;z-index:-1;color:var(--color-paper-2);font-size:clamp(7rem,25vw,20rem);font-weight:850;line-height:0.8}
+    .final h2{max-width:14ch}
+    .final .lede{max-width:48ch}
+    .final-actions{display:flex;gap:var(--space-xs);margin-block-start:var(--space-lg)}
+    footer{padding-block:var(--space-lg);border-block-start:var(--rule-hairline) solid var(--color-rule);color:var(--color-ink-2);font-size:var(--text-xs)}
+    .footer-inner{display:flex;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap}
+    .footer-links{display:flex;gap:var(--space-lg);flex-wrap:wrap}
+    .mobile-bar{display:none}
 
-    footer{padding:30px 0 40px;border-top:1px solid var(--line);color:var(--fog2);font-size:.84rem}
-    .footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
-    .footer-links{display:flex;gap:20px;flex-wrap:wrap}
-    .footer-links a:hover{color:var(--blue2)}
-
-    @media(max-width:960px){
-      .hero-grid{grid-template-columns:1fr;row-gap:34px}
-      /* display:contents promotes the lead and the tail to grid items in their
-         own right, so the phone can be ordered between the headline and the
-         buttons instead of being pushed under three lines of prose. */
-      .hero-copy-col{display:contents}
-      .hero-lead{order:1}
-      .stage{order:2}
-      .hero-tail{order:3}
-      /* The callout exists because a 324px phone renders the app's body text at
-         about 5px. Below this breakpoint the device is 268px inside a viewport
-         barely wider, so the same band is already legible on the screenshot
-         itself and the crop would only be the same rows a second time. */
-      .callout{display:none}
-      .problem-grid,.fix-grid,.terms,.faq-grid{grid-template-columns:1fr}
-      .problem-grid{gap:26px}
-      .nav-links>a{display:none}
-      /* The phone first, then the steps: tapping a step has to change something
-         the thumb can already see. */
-      .loop-stage{grid-template-columns:1fr;gap:26px;margin-top:26px}
-      .loop-device{grid-row:1;position:static}
-      .steps{grid-row:2}
-      .loop-device .device{--dw:262px}
-      .panel{padding-left:32px}
-      .panel p{max-width:none}
+    @media (max-width:60rem){
+      .hero-grid{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
+      .hero-copy-col{display:contents}.hero-lead{order:1}.stage{order:2}.hero-tail{order:3}
+      .stage{justify-self:center}.callout{display:none}
+      .problem-grid,.fix-grid,.terms,.faq-grid{grid-template-columns:minmax(0,1fr)}
+      .loop-stage{grid-template-columns:minmax(0,1fr)}
+      .loop-device{grid-row:1;position:static;justify-self:center}
+      .steps{grid-row:2}.loop-device .device{--dw:16rem}
     }
-    @media(max-width:620px){
-      :root{--shell:calc(100% - 32px);--band:64px}
-      nav{gap:12px}
-      .hero{padding-top:30px}
-      h1{font-size:2.65rem}
-      html[lang="ko"] h1{font-size:2.05rem}
-      .hero-actions{display:grid}
-      .hero-actions .btn{width:100%}
-      .hero .device{--dw:268px}
-      .vo{max-width:268px}
-      .shot{width:200px}
-      .shot .device{--dw:200px}
-      .terms-list{grid-template-columns:1fr}
-      .fix-lines{font-size:1.02rem}
-      footer{padding-bottom:84px}
-      /* One persistent status bar on a phone, and it carries the launch state
-         rather than a fourth copy of a button that cannot be pressed. */
-      .mobile-bar{position:fixed;z-index:60;left:10px;right:10px;bottom:10px;min-height:52px;display:flex;align-items:center;justify-content:center;gap:9px;
-        padding:0 16px;border:1px solid var(--line-2);border-radius:12px;background:rgba(14,21,36,.94);backdrop-filter:blur(14px);
-        box-shadow:0 14px 36px rgba(0,0,0,.55);color:var(--chalk);font-size:.86rem;font-weight:600;text-align:center;
-        transform:translateY(150%);transition:transform .3s cubic-bezier(.2,.75,.25,1)}
+    @media (max-width:45rem){
+      .nav-links>a{display:none}
+      .hero::after,.final::after{display:none}
+      .hero h1{font-size:clamp(3rem,17vw,5rem)}
+      .hero-actions{display:grid}.hero-actions .btn{width:100%}
+      .chips{display:grid}.chips li{border-inline-end:0;border-block-end:var(--rule-hairline) solid var(--color-rule);padding-inline:0}
+      .chips li:last-child{border-block-end:0}
+      .quote{font-size:clamp(2.7rem,13vw,4.2rem)}
+      .panel{padding-inline-start:0}
+      .step{grid-template-columns:1.75rem minmax(0,1fr)}
+      .step b{font-size:clamp(1.4rem,7vw,2rem)}
+      .fix-lines{font-size:var(--text-lg)}
+      footer{padding-block-end:var(--space-3xl)}
+      .mobile-bar{position:fixed;z-index:60;inset-inline:var(--space-xs);inset-block-end:var(--space-xs);min-height:3.25rem;display:flex;align-items:center;justify-content:center;gap:var(--space-xs);padding-inline:var(--space-sm);border:var(--rule-hairline) solid var(--color-rule-strong);background:var(--color-paper-glass);box-shadow:0 1rem 2rem var(--color-shadow-deep);color:var(--color-ink);font-size:var(--text-xs);font-weight:700;transform:translateY(150%);transition:transform var(--dur-medium) var(--ease-out)}
       .mobile-bar.is-visible{transform:none}
     }
-    .mobile-bar{display:none}
-    @media(max-width:620px){.mobile-bar{display:flex}}
-
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      .vo-dot::after,.panel{animation:none}
-      .vo-text,.loop-shot,.btn{transition:none}
-      .rail{scroll-snap-type:none}
+    @media (max-width:22rem){
+      .shell{width:min(76rem,calc(100% - 1.25rem))}
+      .brand{font-size:var(--text-sm)}
+      .lang button{padding-inline:var(--space-2xs)}
+      .stage .device{--dw:16.5rem}
+      .vo{max-width:16.5rem}
+    }
+    @media (hover:hover) and (pointer:fine){.step:hover i{color:var(--color-negative)}}
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}.panel{animation:none}.vo-text,.loop-shot,.btn,.mobile-bar{transition-duration:50ms;transition-property:opacity}
     }
   </style>
 </head>
@@ -411,7 +289,7 @@
       <div class="stage">
         <div class="device">
           <div class="screen">
-            <video id="clip" muted loop playsinline autoplay preload="auto"
+            <video id="clip" muted loop playsinline autoplay preload="auto" fetchpriority="high"
                    poster="assets/video/encounter-loop-poster.webp"
                    aria-label="Eight seconds of a real encounter in the Android app: the patient answers a question out loud, the clinical checklist moves from zero to two items covered, and two more spoken exchanges follow.">
               <source src="assets/video/encounter-loop.webm" type="video/webm">
@@ -450,7 +328,7 @@
         <ol class="steps" role="tablist" aria-label="Practice loop steps" aria-orientation="vertical">
           <li>
             <button class="step" type="button" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true">
-              <i>01</i><b data-i18n="loop_1_title">Speak. The patient answers — out loud and unscripted.</b>
+              <i>01</i><b data-i18n="loop_1_title">Live patient</b>
             </button>
             <div class="panel" role="tabpanel" id="panel-0" aria-labelledby="tab-0" tabindex="0">
               <p data-i18n="loop_1_body">Talk to an AI patient in your own words. The checklist marks what you actually covered; if you dry up, a question idea and the Open Book are one tap away. Everyday mode uses the same live voice and unscripted conversation engine in non-clinical scenes.</p>
@@ -459,7 +337,7 @@
           </li>
           <li>
             <button class="step" type="button" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false">
-              <i>02</i><b data-i18n="loop_2_title">Keep talking outside the clinic, too.</b>
+              <i>02</i><b data-i18n="loop_2_title">Everyday mode</b>
             </button>
             <div class="panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0" hidden>
               <p data-i18n="loop_2_body">At an airport gate, you may choose to go to the information desk alone. Remember the new boarding time and gate, then come back. The AI asks what you learned — now you have to relay it in English. The conversation can also move somewhere else, skip ahead in time, or bring in someone new, and you decide whether each change happens.</p>
@@ -468,7 +346,7 @@
           </li>
           <li>
             <button class="step" type="button" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false">
-              <i>03</i><b data-i18n="loop_3_title">Feedback that names the exact fix.</b>
+              <i>03</i><b data-i18n="loop_3_title">Exact feedback</b>
             </button>
             <div class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" hidden>
               <p data-i18n="loop_3_body">Naturalness, interaction, comprehension and fluency, each out of 100 and each measured from what you really said. One error is marked "Fix this first" and explained in your own language.</p>
@@ -477,7 +355,7 @@
           </li>
           <li>
             <button class="step" type="button" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false">
-              <i>04</i><b data-i18n="loop_4_title">Fix the sound, not only the sentence.</b>
+              <i>04</i><b data-i18n="loop_4_title">Pronunciation</b>
             </button>
             <div class="panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" hidden>
               <p data-i18n="loop_4_body">Say "quite" so it lands closer to "koit" and the app hears it. It becomes a minimal-pair drill, and you have to identify the sound three times in a row before it lets you try saying it — you can only fix a sound you can hear.</p>
@@ -486,7 +364,7 @@
           </li>
           <li>
             <button class="step" type="button" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false">
-              <i>05</i><b data-i18n="loop_5_title">Tomorrow it comes back as a speaking task.</b>
+              <i>05</i><b data-i18n="loop_5_title">Speak it tomorrow</b>
             </button>
             <div class="panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" tabindex="0" hidden>
               <p data-i18n="loop_5_body">The correction becomes a spaced card — but you do not flip it and nod. You are dropped into a new situation and asked to say the corrected sentence out loud before you can mark it as learned.</p>
@@ -738,6 +616,14 @@
     source_link:"GitHub에서 소스 보기",footer_note:"Bedside English · 무료 오픈소스 · 의료기기가 아님",
     privacy:"개인정보 처리방침",desktop:"데스크톱 앱"
   };
+
+  /* Compact tab labels remain one-line affordances in both languages; the
+     full meaning stays in each panel immediately below the selected label. */
+  KO.loop_1_title = "실시간 환자";
+  KO.loop_2_title = "일상 영어";
+  KO.loop_3_title = "정확한 피드백";
+  KO.loop_4_title = "발음 교정";
+  KO.loop_5_title = "내일 다시 말하기";
 
   var currentLang = "en";
   var t = function(key, fallback){ return currentLang === "ko" && KO[key] ? KO[key] : fallback; };

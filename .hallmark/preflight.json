@@ -1,0 +1,9 @@
+{
+  "date": "2026-08-10",
+  "framework": "vanilla HTML",
+  "font_stack": "Instrument Serif + Inter + Pretendard",
+  "palette": "existing dark navy with blue accent; redesigned to warm paper with ink and cobalt",
+  "motion": "motion-cut; native CSS transitions only",
+  "spacing": "4-point named scale introduced in tokens.css",
+  "source": "android.html"
+}
