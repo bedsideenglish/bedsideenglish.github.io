@@ -1,0 +1,57 @@
+daniel','george'];
+    const hints=role==='patient'?patientHints:attendingHints;
+    return pool.find(v=>hints.some(h=>(v.name||'').toLowerCase().includes(h)))||pool[role==='patient'?0:Math.min(1,pool.length-1)];
+  }
+  function say(text,role='patient',opts={}){
+    return new Promise(resolve=>{
+      const {rate=role==='patient'?.9:.95,pitch=role==='patient'?1:.93,volume=.92}=opts;
+      if(!canSpeak){setTimeout(resolve,Math.max(900,Math.min(3200,text.length*39)));return}
+      let settled=false;const done=()=>{if(settled)return;settled=true;clearTimeout(watchdog);resolve()};
+      const u=new SpeechSynthesisUtterance(text),v=pickVoice(role);if(v)u.voice=v;u.lang='en-US';u.rate=rate;u.pitch=pitch;u.volume=volume;u.onend=done;u.onerror=done;
+      const watchdog=setTimeout(()=>{try{speechSynthesis.cancel()}catch(e){}done()},Math.max(2200,Math.min(6500,text.length*105)));speechSynthesis.speak(u);
+    })
+  }
+  function stopSpeech(){if(canSpeak)speechSynthesis.cancel()}
+  function live(on){wave.classList.toggle('live',!!on)}
+  function typeText(text,d=1100){
+    line.innerHTML='';const n=document.createTextNode(''),c=document.createElement('span');c.className='caret';line.append(n,c);const t=performance.now();
+    function tick(now){const q=Math.min(1,(now-t)/d);n.nodeValue=text.slice(0,Math.max(1,Math.floor(text.length*q)));if(q<1)requestAnimationFrame(tick);else c.remove()}requestAnimationFrame(tick)
+  }
+  function setRole(role){const patient=role==='patient';speaker.textContent=patient?'Patient':'Your turn';line.classList.toggle('you',!patient)}
+
+  // Subtle room tone generated locally after the required user gesture. No audio file or tracking.
+  let audioCtx=null,noiseNode=null,noiseGain=null,roundTimer=null,roundSeconds=58;
+  function startRoomTone(){
+    try{
+      const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC();
+      const len=audioCtx.sampleRate*2,buf=audioCtx.createBuffer(1,len,audioCtx.sampleRate),data=buf.getChannelData(0);for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*.11;
+      noiseNode=audioCtx.createBufferSource();noiseNode.buffer=buf;noiseNode.loop=true;const filter=audioCtx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=460;noiseGain=audioCtx.createGain();noiseGain.gain.value=.018;noiseNode.connect(filter).connect(noiseGain).connect(audioCtx.destination);noiseNode.start();
+    }catch(e){}
+  }
+  function stopRoomTone(){try{if(noiseGain)noiseGain.gain.setTargetAtTime(0,audioCtx.currentTime,.18);setTimeout(()=>audioCtx&&audioCtx.close(),450)}catch(e){}}
+  function startRoundClock(){roundSeconds=58;const paint=()=>{if(roundClock)roundClock.textContent=`00:${String(Math.max(0,roundSeconds)).padStart(2,'0')}`};paint();clearInterval(roundTimer);roundTimer=setInterval(()=>{roundSeconds--;paint();if(roundSeconds<=0)clearInterval(roundTimer)},1000)}
+  function stopRoundClock(){clearInterval(roundTimer);roundTimer=null}
+
+  async function openingPatient(){
+    setRole('patient');hold.hidden=true;sub.hidden=true;waiting.classList.remove('show');live(true);typeText("Doctor... I've got this pain in my chest. It started this morning.",1650);
+    if(canSpeak){speechSynthesis.cancel();await say('Doctor...','patient',{rate:.82,pitch:.98});await new Promise(r=>setTimeout(r,320));await say("I've got this pain in my chest. It started this morning.",'patient',{rate:.88,pitch:.98})}else await new Promise(r=>setTimeout(r,2900));
+    live(false);await new Promise(r=>setTimeout(r,700));waiting.classList.add('show');await new Promise(r=>setTimeout(r,450));prepareTurn();
+  }
+  async function patientReply(text){
+    setRole('patient');hold.hidden=true;sub.hidden=true;waiting.classList.remove('show');live(true);typeText(text,Math.min(1600,Math.max(950,text.length*24)));await say(text,'patient',{rate:.9,pitch:.99});live(false);await new Promise(r=>setTimeout(r,550));
+    if(ti<turns.length-1){ti++;busy=false;prepareTurn()}else{await new Promise(r=>setTimeout(r,250));showCallback()}
+  }
+  function prepareTurn(){
+    setRole('doctor');line.textContent='';p=base=0;hold.style.setProperty('--p','0');hold.hidden=false;sub.hidden=false;holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO SPEAK';sub.textContent=ti?'Keep the history moving.':'No choices. Ask it out loud.';signal.classList.remove('show');signal.textContent='';live(false)
+  }
+  function renderDoctor(){
+    const text=turns[ti].doctor,q=Math.max(0,Math.min(1,p)),n=Math.floor(text.length*q);line.innerHTML='';line.append(document.createTextNode(text.slice(0,n)));if(q>0&&q<1){const c=document.createElement('span');c.className='caret';line.append(c)}hold.style.setProperty('--p',String(q*100))
+  }
+  function startHold(){
+    if(down||busy||hold.hidden)return;down=true;hold.classList.add('down');holdText.textContent='SPEAKING…';live(true);start=performance.now();base=p;
+    const words=turns[ti].doctor.split(/\s+/),wi=Math.min(words.length-1,Math.floor(words.length*p));if(canSpeak){speechSynthesis.cancel();say(words.slice(wi).join(' ')||turns[ti].doctor,'doctor',{rate:.96,pitch:.94,volume:.82})}
+    function tick(now){if(!down)return;p=Math.min(1,base+(now-start)/2300);renderDoctor();if(p>=1){finishTurn();return}raf=requestAnimationFrame(tick)}raf=requestAnimationFrame(tick)
+  }
+  function stopHold(){if(!down)return;down=false;cancelAnimationFrame(raf);stopSpeech();hold.classList.remove('down');live(false);if(p<1)holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO CONTINUE'}
+  async function finishTurn(){
+    down=false;busy=true;cancelAnimationFrame(raf);stopSpeech();p=1;renderDoctor();hold.classList
