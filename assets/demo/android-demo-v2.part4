@@ -1,0 +1,75 @@
+d="brief" aria-labelledby="briefTitle">
+    <div class="corridor" aria-hidden="true"><div class="door"><span class="room-plate">23</span></div></div>
+    <div class="brief-top"><span class="pulse-dot"></span><span>07:42 · Ward 5B · Morning rounds</span></div>
+    <div class="brief-center">
+      <article class="brief-card">
+        <p class="attending">Attending</p>
+        <div class="bedline"><strong>Bed 23</strong><span>34F · Chest pain</span></div>
+        <h1 id="briefTitle">Take the <em>history.</em></h1>
+        <p class="instruction">We’re coming back in one minute. <strong>Be ready to tell me what you found.</strong></p>
+        <button class="go" id="goRoom" type="button"><span>GO TO BED 23</span><span class="arrow">→</span></button>
+      </article>
+    </div>
+    <div class="brief-foot">Clinical speaking simulation · no microphone access in this preview</div>
+  </section>
+
+  <section class="room" id="room" aria-label="Bed 23 encounter">
+    <div class="room-grid" aria-hidden="true"></div>
+    <div class="room-top"><span>ROOM 23 · 34F</span><span class="returning"><span>ROUNDING TEAM · <b id="roundClock">00:58</b></span><span class="track"><i></i></span></span></div>
+    <div class="bedscene" aria-hidden="true">
+      <div class="windowglow"></div><div class="curtain"></div>
+      <div class="patient"><div class="pillow"></div><div class="head"></div><div class="torso"></div><div class="blanket"></div><div class="hand"></div><div class="rail"></div></div>
+      <div class="vignette"></div>
+    </div>
+    <div class="encounter">
+      <div class="panel">
+        <div class="identity"><p>Patient</p><strong>Bed 23</strong></div>
+        <div class="dialog">
+          <p class="speaker" id="speaker">Patient</p>
+          <p class="line" id="line" aria-live="polite"></p>
+          <div class="wave" id="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="waiting" id="waiting">She’s waiting.</p>
+          <button class="hold" id="hold" type="button" hidden aria-label="Hold to speak"><span class="fill"></span><span class="hold-inner"><svg class="mic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="3.5" width="8" height="12" rx="4" stroke="currentColor" stroke-width="2"/><path d="M5.5 11.5a6.5 6.5 0 0013 0M12 18v3M8.5 21h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span id="holdText">HOLD TO SPEAK</span></span></button>
+          <p class="sub" id="sub" hidden>No choices. Ask it out loud.</p>
+          <div class="signal-area"><span class="signal" id="signal"></span></div>
+          <div class="checks" id="checks" aria-label="Captured clinical signals"><span class="check" data-check="radiation">Radiation</span><span class="check" data-check="provoking">Provoking</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="callback" id="callback" aria-labelledby="callbackTitle">
+    <div class="callback-inner"><p class="callback-tag">Attending · back at the bedside</p><h2 id="callbackTitle">How’s the patient <em>in bed 23?</em></h2><p class="silence">Your turn<span class="blinkdot"></span></p></div>
+  </section>
+
+  <section class="truth" id="truth" aria-labelledby="truthTitle">
+    <div class="truth-inner">
+      <p class="truth-kicker">Bedside English · Talk & Train</p>
+      <h2 id="truthTitle">You knew what to ask.<span>Could you say it?</span></h2>
+      <p class="truth-copy">Practice clinical English out loud before the moment you need it.</p>
+      <p class="brand"><b>Speak.</b> Get a response. Keep going.</p>
+      <div class="ctas">
+        <a class="cta primary" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&pcampaignid=web_share" target="_blank" rel="noopener">Get it on Google Play</a>
+        <a class="cta" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip" target="_blank" rel="noopener">Download for Windows</a>
+      </div>
+      <button class="continue" id="continue" type="button">Explore how it works ↓</button>
+    </div>
+  </section>
+</main>
+<script>
+(()=>{
+  const $=s=>document.querySelector(s), stage=$('#stage'),brief=$('#brief'),room=$('#room'),line=$('#line'),speaker=$('#speaker'),wave=$('#wave'),waiting=$('#waiting'),hold=$('#hold'),holdText=$('#holdText'),sub=$('#sub'),signal=$('#signal'),callback=$('#callback'),truth=$('#truth'),goRoom=$('#goRoom'),roundClock=$('#roundClock');
+  const turns=[
+    {doctor:'Does the pain go anywhere else?',key:'radiation',label:'Radiation identified',patient:'Yeah... into my left shoulder. Should I be worried?'},
+    {doctor:'Is it worse when you take a deep breath?',key:'provoking',label:'Provoking factor identified',patient:'Yes. Much sharper. I keep taking these shallow breaths.'}
+  ];
+  let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,transitioning=false,voices=[];
+  const canSpeak='speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  const landingHTML=fetch('android.html',{cache:'no-store'}).then(r=>r.ok?r.text():null).catch(()=>null);
+
+  function loadVoices(){if(canSpeak)voices=speechSynthesis.getVoices()||[]}
+  loadVoices(); if(canSpeak)speechSynthesis.addEventListener('voiceschanged',loadVoices);
+  function pickVoice(role){
+    const en=voices.filter(v=>/^en[-_]/i.test(v.lang||'')),pool=en.length?en:voices;if(!pool.length)return null;
+    const patientHints=['aria','jenny','sonia','samantha','zira','libby','ava','emma'];
+    const attendingHints=['guy','david','mark','ryan','
