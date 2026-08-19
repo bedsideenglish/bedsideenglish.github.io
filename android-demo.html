@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5efdc">
-<title>Bedside English — Interactive speaking preview</title>
-<meta name="description" content="An interactive speaking preview of Bedside English: Talk & Train.">
-<meta property="og:title" content="A patient is waiting. What would you say?"><meta property="og:description" content="An interactive speaking preview of Bedside English."><meta property="og:image" content="https://boyskier.github.io/bedside-english/assets/social/og-cover.png">
-<style>html,body{margin:0;min-height:100%;background:#f5efdc;color:#152033;font:600 14px system-ui,sans-serif}body{display:grid;place-items:center}.boot{display:flex;align-items:center;gap:10px;letter-spacing:.08em;text-transform:uppercase}.boot:before{content:"";width:34px;height:3px;background:#1d5fc4}</style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101827">
+<title>Bedside English — Bed 23</title>
+<meta name="description" content="An immersive speaking preview of Bedside English: Talk & Train.">
+<meta property="og:title" content="Bed 23. Chest pain. You're up."><meta property="og:description" content="A short interactive speaking preview of Bedside English."><meta property="og:image" content="https://boyskier.github.io/bedside-english/assets/social/og-cover.png">
+<style>html,body{margin:0;min-height:100%;background:#101827;color:#f3eddf;font:700 12px system-ui,sans-serif}body{display:grid;place-items:center}.boot{display:flex;align-items:center;gap:10px;letter-spacing:.13em;text-transform:uppercase;opacity:.72}.boot:before{content:"";width:7px;height:7px;border-radius:50%;background:#da7556;box-shadow:0 0 0 5px rgba(218,117,86,.12)}</style>
 </head>
-<body><div class="boot">Interactive preview</div>
+<body><div class="boot">Preparing Bed 23</div>
 <script>
-(async()=>{try{const u=['assets/demo/android-demo.part1','assets/demo/android-demo.part2','assets/demo/android-demo.part3','assets/demo/android-demo.part4'];const b=await Promise.all(u.map(x=>fetch(x,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('preview payload');return r.arrayBuffer()})));const n=b.reduce((s,x)=>s+x.byteLength,0),a=new Uint8Array(n);let o=0;for(const x of b){a.set(new Uint8Array(x),o);o+=x.byteLength}const h=new TextDecoder().decode(a);document.open();document.write(h);document.close()}catch(e){location.replace('android.html')}})();
+(async()=>{try{const u=['assets/demo/android-demo-v2.part1','assets/demo/android-demo-v2.part2','assets/demo/android-demo-v2.part3','assets/demo/android-demo-v2.part4','assets/demo/android-demo-v2.part5','assets/demo/android-demo-v2.part6'];const h=(await Promise.all(u.map(x=>fetch(x,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('preview payload');return r.text()})))).join('');document.open();document.write(h);document.close()}catch(e){location.replace('android.html')}})();
 </script></body></html>
