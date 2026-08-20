@@ -20,11 +20,13 @@ const patches=[
  ['left:44%;bottom:34%;width:31%;height:26%','left:47%;bottom:34%;width:32%;height:26%'],
  ['background:rgba(255,250,240,.91);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(8px)','background:rgba(255,250,240,.86);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(4px)'],
  ['.bedscene{opacity:.21}','.bedscene{opacity:.34}'],
- ['openingLine?850:500','openingLine?1200:500']
+ ['openingLine?850:500','openingLine?1300:500']
 ];
 for(const [a,b] of patches)h=h.replace(a,b);
 
 const morphCSS=`
+.patient-line{transition:opacity .68s var(--ease),transform .68s var(--ease),filter .68s var(--ease)}
+.patient-line.linger-out{opacity:.2;transform:translateY(-7px);filter:blur(.35px)}
 .morph{position:fixed;z-index:100;margin:0;border:1px solid rgba(13,22,38,.2);background:#fffaf0;box-shadow:0 28px 80px rgba(0,0,0,.34);overflow:hidden;pointer-events:none;transform-origin:top left;transition:transform 1s var(--ease),border-radius 1s var(--ease)}
 .morph .cover{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:#fffaf0;transition:opacity .32s .36s}
 .morph.go .cover{opacity:0}
@@ -35,7 +37,27 @@ const morphCSS=`
 `;
 h=h.replace('</style>',morphCSS+'</style>');
 h=h.replace('<button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button></div></section>','<button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button><p class="gesture">scroll or swipe to continue</p></div></section>');
-h=h.replace('let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,voices=[];','let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,final=false,readyAt=0,touchY=null,voices=[];');
+h=h.replace('let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,voices=[];','let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,final=false,readyAt=0,touchY=null,openingTurn=true,voices=[];');
+
+const oldPrepare="function prepare(){role('doctor');patientLine.textContent='';p=base=0;hold.style.setProperty('--p','0');hold.hidden=false;sub.hidden=false;holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO SPEAK';sub.textContent=ti?'She is waiting. Keep the history moving.':'No choices. Say what you would ask.';setTimeout(()=>waiting.classList.add('show'),450)}";
+const naturalPrepare=`function prepare(){
+ const linger=openingTurn;
+ if(linger){
+  openingTurn=false;
+  speaker.textContent='Your turn';
+  p=base=0;hold.style.setProperty('--p','0');hold.hidden=true;sub.hidden=true;
+  holdText.textContent='HOLD TO SPEAK';sub.textContent='No choices. Say what you would ask.';
+  patientLine.classList.add('linger-out');
+  setTimeout(()=>{if(!down&&!busy){hold.hidden=false;sub.hidden=false}},360);
+  setTimeout(()=>waiting.classList.add('show'),560);
+  setTimeout(()=>{if(patientLine.classList.contains('linger-out')){patientLine.textContent='';patientLine.classList.remove('linger-out');patientLine.style.fontFamily='Inter,ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight='750'}},680);
+  return;
+ }
+ role('doctor');patientLine.textContent='';p=base=0;hold.style.setProperty('--p','0');hold.hidden=false;sub.hidden=false;holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO SPEAK';sub.textContent=ti?'She is waiting. Keep the history moving.':'No choices. Say what you would ask.';setTimeout(()=>waiting.classList.add('show'),450)
+}`;
+h=h.replace(oldPrepare,naturalPrepare);
+h=h.replace("function startHold(){if(down||busy||hold.hidden)return;down=true;","function startHold(){if(down||busy||hold.hidden)return;patientLine.classList.remove('linger-out');patientLine.style.fontFamily='Inter,ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight='750';down=true;");
+
 h=h.replace("setTimeout(()=>truth.classList.add('show'),2600)","setTimeout(()=>{truth.classList.add('show');final=true;readyAt=performance.now()+500},2600)");
 h=h.replace('async function fullLanding(){if(transitioning)return;transitioning=true;clearInterval(timerId);','async function fullLanding(){if(transitioning)return;transitioning=true;final=false;clearInterval(timerId);');
 
