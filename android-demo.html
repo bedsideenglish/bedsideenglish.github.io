@@ -9,5 +9,56 @@
 </head>
 <body><div class="boot">Morning rounds · Bed 23</div>
 <script>
-(async()=>{try{const u=['assets/demo/android-demo-v3.part1','assets/demo/android-demo-v3.part2','assets/demo/android-demo-v3.part3','assets/demo/android-demo-v3.part4','assets/demo/android-demo-v3.part5'];let h=(await Promise.all(u.map(x=>fetch(x,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('preview payload');return r.text()})))).join('');const patches=[['width:min(980px,102vw);height:min(760px,92vh);transform:translate(-50%,-46%);pointer-events:none;opacity:.27','width:min(1180px,116vw);height:min(760px,92vh);transform:translate(-50%,-46%);pointer-events:none;opacity:.43'],['left:8%;top:7%;width:20%;height:76%;border-left:2px solid #243449;border-right:1px solid #243449;background:repeating-linear-gradient(90deg,rgba(36,52,73,.18) 0 10px,transparent 10px 22px)','left:5%;top:7%;width:20%;height:76%;border-left:2px solid #243449;border-right:1px solid #243449;background:repeating-linear-gradient(90deg,rgba(36,52,73,.2) 0 10px,transparent 10px 22px)'],['left:27%;right:15%;bottom:13%;height:25%','left:14%;right:4%;bottom:12%;height:26%'],['left:20%;right:7%;bottom:28%;height:12%','left:10%;right:1%;bottom:28%;height:12%'],['left:44%;bottom:34%;width:31%;height:26%','left:47%;bottom:34%;width:32%;height:26%'],['background:rgba(255,250,240,.91);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(8px)','background:rgba(255,250,240,.86);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(4px)'],['.bedscene{opacity:.21}','.bedscene{opacity:.34}'],['openingLine?850:500','openingLine?1200:500']];for(const [a,b] of patches)h=h.replace(a,b);document.open();document.write(h);document.close()}catch(e){location.replace('android.html')}})();
+(async()=>{try{
+const u=['assets/demo/android-demo-v3.part1','assets/demo/android-demo-v3.part2','assets/demo/android-demo-v3.part3','assets/demo/android-demo-v3.part4','assets/demo/android-demo-v3.part5'];
+let h=(await Promise.all(u.map(x=>fetch(x,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('preview payload');return r.text()})))).join('');
+const patches=[
+ ['width:min(980px,102vw);height:min(760px,92vh);transform:translate(-50%,-46%);pointer-events:none;opacity:.27','width:min(1180px,116vw);height:min(760px,92vh);transform:translate(-50%,-46%);pointer-events:none;opacity:.43'],
+ ['left:8%;top:7%;width:20%;height:76%;border-left:2px solid #243449;border-right:1px solid #243449;background:repeating-linear-gradient(90deg,rgba(36,52,73,.18) 0 10px,transparent 10px 22px)','left:5%;top:7%;width:20%;height:76%;border-left:2px solid #243449;border-right:1px solid #243449;background:repeating-linear-gradient(90deg,rgba(36,52,73,.2) 0 10px,transparent 10px 22px)'],
+ ['left:27%;right:15%;bottom:13%;height:25%','left:14%;right:4%;bottom:12%;height:26%'],
+ ['left:20%;right:7%;bottom:28%;height:12%','left:10%;right:1%;bottom:28%;height:12%'],
+ ['left:44%;bottom:34%;width:31%;height:26%','left:47%;bottom:34%;width:32%;height:26%'],
+ ['background:rgba(255,250,240,.91);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(8px)','background:rgba(255,250,240,.86);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(4px)'],
+ ['.bedscene{opacity:.21}','.bedscene{opacity:.34}'],
+ ['openingLine?850:500','openingLine?1200:500']
+];
+for(const [a,b] of patches)h=h.replace(a,b);
+
+const morphCSS=`
+.morph{position:fixed;z-index:100;margin:0;border:1px solid rgba(13,22,38,.2);background:#fffaf0;box-shadow:0 28px 80px rgba(0,0,0,.34);overflow:hidden;pointer-events:none;transform-origin:top left;transition:transform 1s var(--ease),border-radius 1s var(--ease)}
+.morph .cover{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:#fffaf0;transition:opacity .32s .36s}
+.morph.go .cover{opacity:0}
+.morph .cover b{width:58px;height:58px;display:grid;place-items:center;background:var(--ink);color:#fffaf0;font-family:Georgia,"Times New Roman",serif;font-size:34px;font-weight:400}
+.morph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .36s .43s}
+.morph.go img{opacity:1}
+.gesture{margin:5px 0 0;color:rgba(216,210,199,.4);font-size:8px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+`;
+h=h.replace('</style>',morphCSS+'</style>');
+h=h.replace('<button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button></div></section>','<button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button><p class="gesture">scroll or swipe to continue</p></div></section>');
+h=h.replace('let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,voices=[];','let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,final=false,readyAt=0,touchY=null,voices=[];');
+h=h.replace("setTimeout(()=>truth.classList.add('show'),2600)","setTimeout(()=>{truth.classList.add('show');final=true;readyAt=performance.now()+500},2600)");
+h=h.replace('async function fullLanding(){if(transitioning)return;transitioning=true;clearInterval(timerId);','async function fullLanding(){if(transitioning)return;transitioning=true;final=false;clearInterval(timerId);');
+
+const morphJS=`function morph(){
+ if(transitioning)return;
+ transitioning=true;final=false;clearInterval(timerId);if(canSpeak)speechSynthesis.cancel();
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches){transitioning=false;fullLanding();return}
+ const source=document.querySelector('.truth-inner').getBoundingClientRect(),m=document.createElement('div');
+ m.className='morph';Object.assign(m.style,{left:source.left+'px',top:source.top+'px',width:source.width+'px',height:source.height+'px'});
+ m.innerHTML='<div class="cover"><b>+</b></div><img src="assets/android/encounter-live.webp" alt="">';document.body.append(m);truth.style.opacity='0';
+ const ratio=780/1636,maxH=innerHeight*.72,maxW=Math.min(296,innerWidth*.72),w=Math.min(maxW,maxH*ratio),h2=w/ratio,x=(innerWidth-w)/2,y=(innerHeight-h2)/2;
+ requestAnimationFrame(()=>{m.classList.add('go');m.style.borderRadius='26px';m.style.transform='translate('+(x-source.left)+'px,'+(y-source.top)+'px) scale('+(w/source.width)+','+(h2/source.height)+')'});
+ setTimeout(()=>{m.remove();transitioning=false;fullLanding()},1050)
+}
+`;
+h=h.replace("hold.addEventListener('pointerdown'",morphJS+"hold.addEventListener('pointerdown'");
+h=h.replace("go.addEventListener('click',fullLanding);","go.addEventListener('click',morph);");
+h=h.replace("document.addEventListener('visibilitychange'",`addEventListener('wheel',e=>{if(final&&performance.now()>=readyAt&&e.deltaY>28)morph()},{passive:true});
+addEventListener('touchstart',e=>{if(final&&e.touches.length===1)touchY=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{if(!final||touchY==null||performance.now()<readyAt){touchY=null;return}const y=e.changedTouches[0]?.clientY??touchY;if(touchY-y>38)morph();touchY=null},{passive:true});
+addEventListener('keydown',e=>{if(final&&performance.now()>=readyAt&&(e.code==='ArrowDown'||e.code==='PageDown'||e.code==='Space'))morph()});
+document.addEventListener('visibilitychange'`);
+
+document.open();document.write(h);document.close()
+}catch(e){location.replace('android.html')}})();
 </script></body></html>
