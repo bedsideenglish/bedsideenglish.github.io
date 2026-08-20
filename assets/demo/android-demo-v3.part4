@@ -9,10 +9,10 @@ function setBrief(main,sub=''){briefLine.classList.remove('impact');void briefLi
 function startTimer(){deadline=Date.now()+59000;const tick=()=>{const sec=Math.max(0,Math.ceil((deadline-Date.now())/1000)),txt='00:'+String(sec).padStart(2,'0');briefTimer.textContent=txt;roomTimer.textContent=txt};tick();timerId=setInterval(tick,250)}
 function opening(){
  setBrief('');
- setTimeout(()=>{setBrief('<span class="accent">You.</span>');say('You.','attending')},350);
- setTimeout(()=>{setBrief('Bed 23.');say('Bed twenty-three.','attending')},1250);
+ setTimeout(()=>{setBrief('<span class="accent">YOU.</span>');say('You.','attending')},350);
+ setTimeout(()=>{setBrief('BED 23.');say('Bed twenty-three.','attending')},1250);
  setTimeout(()=>{setBrief('34-year-old woman.<br><span class="accent">Chest pain.</span>');briefSub.textContent='';say('Thirty-four-year-old woman. Chest pain.','attending')},2300);
- setTimeout(()=>{setBrief('Take the history.');briefSub.textContent='';say('Take the history.','attending')},3750);
+ setTimeout(()=>{setBrief('TAKE THE HISTORY.');briefSub.textContent='';say('Take the history.','attending')},3750);
  setTimeout(()=>{setBrief('We’ll come back<br><span class="accent">to you.</span>');briefSub.textContent='Be ready to present her.';pressure.classList.add('show');startTimer();say("We'll come back to you.",'attending')},4950);
  setTimeout(enterRoom,6900);
 }
