@@ -24,7 +24,15 @@ const patches=[
 ];
 for(const [a,b] of patches)h=h.replace(a,b);
 
+h=h.replace('<div class="hud"><span><strong>07:42</strong> · WARD 5B</span><span class="live">MORNING ROUNDS</span></div>','');
+h=h.replace('<div class="attending">\n      <p class="label">Attending</p>','<div class="attending">\n      <div class="scene-stamp" aria-label="Ward 5B, morning rounds"><span class="ward">WARD 5B</span><span class="dot">·</span><strong class="rounds">MORNING ROUNDS</strong></div>\n      <p class="label" id="attendingLabel">Attending</p>');
+
 const morphCSS=`
+.scene-stamp{margin:0 0 18px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:8px 13px;border:1px solid rgba(247,241,228,.14);border-radius:999px;background:rgba(247,241,228,.045);box-shadow:0 12px 34px rgba(0,0,0,.13);backdrop-filter:blur(4px);color:rgba(247,241,228,.62);font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;animation:stampIn .45s var(--ease) both}
+.scene-stamp .ward{color:rgba(247,241,228,.58)}.scene-stamp .dot{color:#ffab87;opacity:.9}.scene-stamp .rounds{color:#f7f1e4;font-weight:900}
+#attendingLabel{opacity:0;transform:translateY(4px);transition:opacity .3s var(--ease),transform .3s var(--ease)}#attendingLabel.show{opacity:1;transform:none}
+@keyframes stampIn{0%{opacity:0;transform:translateY(-5px)}100%{opacity:1;transform:none}}
+@media(max-width:600px){.scene-stamp{margin-bottom:15px;padding:7px 11px;gap:7px;font-size:8px;letter-spacing:.13em}}
 .patient-line{transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
 .patient-line.linger-out{opacity:0;transform:translateY(-5px);filter:blur(.2px)}
 .morph{position:fixed;z-index:100;margin:0;border:1px solid rgba(13,22,38,.2);background:#fffaf0;box-shadow:0 28px 80px rgba(0,0,0,.34);overflow:hidden;pointer-events:none;transform-origin:top left;transition:transform 1s var(--ease),border-radius 1s var(--ease)}
@@ -38,6 +46,7 @@ const morphCSS=`
 h=h.replace('</style>',morphCSS+'</style>');
 h=h.replace('<button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button></div></section>','<button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button><p class="gesture">scroll or swipe to continue</p></div></section>');
 h=h.replace('let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,voices=[];','let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,final=false,readyAt=0,touchY=null,openingTurn=true,voices=[];');
+h=h.replace("function opening(){\n setBrief('');","function opening(){\n setBrief('');\n setTimeout(()=>document.querySelector('#attendingLabel')?.classList.add('show'),180);");
 
 const oldPrepare="function prepare(){role('doctor');patientLine.textContent='';p=base=0;hold.style.setProperty('--p','0');hold.hidden=false;sub.hidden=false;holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO SPEAK';sub.textContent=ti?'She is waiting. Keep the history moving.':'No choices. Say what you would ask.';setTimeout(()=>waiting.classList.add('show'),450)}";
 const naturalPrepare=`function prepare(){
