@@ -551,8 +551,6 @@ def generate(specs: list[PageSpec], output_root: Path, check: bool) -> int:
             related = pages_by_slug.get(spec.related_slug)
             if not related:
                 raise GenerationError(f"{spec.slug}: unknown `related_slug` `{spec.related_slug}`")
-        if not related:
-            related = next((page for page in sorted(all_pages, key=lambda item: item.title.lower()) if page.slug != spec.slug), None)
         page, _ = build_page(spec, data, related)
         write_or_check(learning_root / spec.slug / "index.html", page, check, mismatches)
     write_or_check(learning_root / "index.html", build_hub(all_pages), check, mismatches)

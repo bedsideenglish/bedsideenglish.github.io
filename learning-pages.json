@@ -84,7 +84,6 @@
     {
       "case": "gi/gi_010.json",
       "slug": "abdominal-pain-history-questions",
-      "related_slug": "blood-in-urine-history-questions",
       "h1": "How to take an abdominal pain history in English",
       "meta_description": "Learn natural English questions for a crampy abdominal pain history, including bowel patterns, associated symptoms, triggers, family history, and patient concerns.",
       "language_standard": "en-US",
@@ -233,7 +232,6 @@
     {
       "case": "neuro/neuro_004.json",
       "slug": "headache-history-questions",
-      "related_slug": "depression-history-questions",
       "h1": "How to take a headache history in English",
       "meta_description": "Learn clear, structured English questions for a headache consultation, including pain location, throbbing character, nausea, light sensitivity, and dark-room relief.",
       "language_standard": "en-US",
@@ -296,7 +294,6 @@
     {
       "case": "psych/psych_003.json",
       "slug": "depression-history-questions",
-      "related_slug": "headache-history-questions",
       "h1": "How to ask about depression and low mood in English",
       "meta_description": "Learn empathetic, professional English questions for assessing low mood, loss of interest, early waking, energy levels, and sensitive safety screening.",
       "language_standard": "en-US",
@@ -376,7 +373,7 @@
       "patient_answer_assumptions_checked": true,
       "lede": "Learn how to communicate calmly with worried parents, ask about barking cough and noisy breathing, and explain next steps in clear, supportive English.",
       "scenario": "A parent brings a young toddler to urgent care in the middle of the night because of a sudden harsh cough and noisy breathing.",
-      "quick_answer": "Ask the parent what the cough sounds like, whether the noisy breathing happens while resting quietly, if it worsens when lying flat, check for drooling or swallowing trouble, and explain that the team will monitor the child closely.",
+      "quick_answer": "Ask the parent what the cough sounds like, whether they hear a harsh, high-pitched noise when the child breathes in at rest, if breathing worsens when lying flat, check for drooling or swallowing trouble, and reassure the family.",
       "reviewed_on": "2026-08-23",
       "question_edits": [
         {
@@ -400,10 +397,16 @@
         {
           "objective": "Ask about stridor and its timing",
           "phrases": [
-            "Have you heard a high-pitched, whistling sound when he breathes in, especially when he is resting quietly?"
+            "Have you heard a harsh, high-pitched noise when he breathes in, especially when he is resting quietly?"
           ],
-          "purpose": "Ask if the parent hears noisy, high-pitched breathing when the child breathes in at rest",
-          "why_this_wording": "Clarifying whether the breathing noise happens while the child is resting quietly is important for understanding severity while remaining easy for parents to answer."
+          "purpose": "Ask if the parent hears a harsh, high-pitched noise when the child breathes in at rest",
+          "why_this_wording": "Describing stridor as a “harsh, high-pitched noise” when breathing in helps parents distinguish it clearly from the expiratory whistling of a wheeze.",
+          "alternatives": [
+            {
+              "label": "Sound check",
+              "phrase": "Does his breathing sound noisy or harsh when he takes a breath in?"
+            }
+          ]
         },
         {
           "objective": "Ask about worsening with lying down or agitation",
@@ -422,10 +425,10 @@
         {
           "objective": "Explain the steroid and epinephrine treatment",
           "phrases": [
-            "We are going to monitor his breathing closely here and make sure he is getting plenty of air comfortably."
+            "We’ll keep a close eye on his breathing and make sure he’s breathing comfortably."
           ],
           "purpose": "Reassure the parent and explain that the clinical team will monitor the child's breathing closely",
-          "why_this_wording": "Calmly explaining that the team is closely monitoring the child's breathing reassures anxious parents without overwhelming them with clinical details or making rigid treatment claims.",
+          "why_this_wording": "Calmly explaining that the team is closely monitoring the child's breathing reassures anxious parents without making rigid treatment claims.",
           "alternatives": [
             {
               "label": "Reassuring explanation",
@@ -501,7 +504,6 @@
     {
       "case": "rheum/rheum_006.json",
       "slug": "lower-back-pain-history-questions",
-      "related_slug": "abdominal-pain-history-questions",
       "h1": "How to take a back pain history in English",
       "meta_description": "Learn targeted English questions for back pain, asking about morning stiffness, response to exercise, heel pain, eye symptoms, and family history.",
       "language_standard": "en-US",
@@ -627,7 +629,6 @@
     {
       "case": "urology/urology_004.json",
       "slug": "blood-in-urine-history-questions",
-      "related_slug": "abdominal-pain-history-questions",
       "h1": "How to ask about blood in the urine in English",
       "meta_description": "Learn clear, sensitive English questions for a hematuria history, including pain character, blood clots, smoking history, chemical exposures, and urinary burning.",
       "language_standard": "en-US",
