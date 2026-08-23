@@ -1,0 +1,16 @@
+{
+  "pages": [
+    {
+      "case": "cardio/cardio_001.json",
+      "slug": "chest-pain-history-questions",
+      "h1": "How to ask about chest pain in English",
+      "meta_description": "Learn natural, patient-friendly English questions for a chest pain history, including location, timing, character, associated symptoms, risk factors, and concerns."
+    },
+    {
+      "case": "gi/gi_010.json",
+      "slug": "abdominal-pain-history-questions",
+      "h1": "How to take an abdominal pain history in English",
+      "meta_description": "Learn natural English questions for a crampy abdominal pain history, including bowel patterns, associated symptoms, triggers, family history, and patient concerns."
+    }
+  ]
+}

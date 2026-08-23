@@ -1,0 +1,422 @@
+#!/usr/bin/env python3
+"""Generate reviewed clinical-English learning pages from selected case JSON.
+
+The generator deliberately has no "all cases" mode. A page must be named in the
+editorial manifest or passed explicitly with --case.
+"""
+
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import re
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+TEMPLATE_ROOT = Path(__file__).resolve().parent / "learning_templates"
+DEFAULT_SOURCE_ROOT = ROOT.parent / "Medvoicetrainer-android-app-version" / "data" / "cases"
+DEFAULT_MANIFEST = ROOT / "learning-pages.json"
+SITE_ORIGIN = "https://boyskier.github.io/bedside-english"
+SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+PLACEHOLDER_RE = re.compile(r"{{([A-Z0-9_]+)}}")
+PAGE_META_RE = re.compile(
+    r'<article class="learning-page" data-case-id="([^"]+)" '
+    r'data-page-title="([^"]+)" data-summary="([^"]+)">'
+)
+
+GROUPS = (
+    ("The symptom story", {"location", "radiation", "onset_duration", "character", "progression", "severity", "aggravating", "relieving"}),
+    ("Associated symptoms", {"associated_symptoms"}),
+    ("Health background", {"pmh", "medications", "allergies", "family_hx", "smoking", "alcohol", "drugs"}),
+    ("The patient's perspective", {"ideas", "concerns", "expectations"}),
+    ("Daily life and context", {"living_work", "diet", "travel", "sexual_hx"}),
+)
+
+
+class GenerationError(RuntimeError):
+    """A case cannot be safely converted to the supported public schema."""
+
+
+@dataclass(frozen=True)
+class PageSpec:
+    source: Path
+    slug: str
+    h1: str
+    meta_description: str
+
+
+@dataclass(frozen=True)
+class PageMeta:
+    case_id: str
+    slug: str
+    title: str
+    summary: str
+
+
+def escaped(value: Any) -> str:
+    return html.escape(str(value), quote=True)
+
+
+def render_template(path: Path, values: dict[str, str]) -> str:
+    text = path.read_text(encoding="utf-8")
+    expected = set(PLACEHOLDER_RE.findall(text))
+    missing = expected - values.keys()
+    if missing:
+        raise GenerationError(f"Template values missing for {path.name}: {', '.join(sorted(missing))}")
+    rendered = PLACEHOLDER_RE.sub(lambda match: values[match.group(1)], text)
+    leftovers = PLACEHOLDER_RE.findall(rendered)
+    if leftovers:
+        raise GenerationError(f"Unresolved placeholders in {path.name}: {', '.join(sorted(set(leftovers)))}")
+    return rendered.rstrip() + "\n"
+
+
+def load_json(path: Path) -> Any:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError as exc:
+        raise GenerationError(f"File not found: {path}") from exc
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise GenerationError(f"Invalid UTF-8 JSON in {path}: {exc}") from exc
+
+
+def require_text(data: dict[str, Any], key: str, path: Path) -> str:
+    value = data.get(key)
+    if not isinstance(value, str) or not value.strip():
+        raise GenerationError(f"{path}: required field `{key}` must be a non-empty string")
+    return value.strip()
+
+
+def resolve_case(selector: str, source_root: Path) -> Path:
+    supplied = Path(selector)
+    direct_candidates = [supplied, source_root / supplied]
+    for candidate in direct_candidates:
+        if candidate.is_file():
+            return candidate.resolve()
+
+    case_id = supplied.stem if supplied.suffix.lower() == ".json" else selector
+    matches = sorted(source_root.rglob(f"{case_id}.json"))
+    if not matches:
+        raise GenerationError(f"No case matching `{selector}` under {source_root}")
+    if len(matches) > 1:
+        choices = ", ".join(str(path.relative_to(source_root)) for path in matches)
+        raise GenerationError(f"Case ID `{case_id}` is ambiguous: {choices}")
+    return matches[0].resolve()
+
+
+def default_spec(source: Path, data: dict[str, Any], slug_override: str | None) -> PageSpec:
+    case_id = require_text(data, "id", source)
+    complaint = require_text(data, "chief_complaint", source)
+    slug = slug_override or f"clinical-english-{case_id.lower().replace('_', '-')}"
+    h1 = f"How to ask about {complaint} in English"
+    description = f"Learn patient-friendly English questions for a clinical history involving {complaint}."
+    return PageSpec(source=source, slug=slug, h1=h1, meta_description=description)
+
+
+def validate_slug(slug: str, context: str) -> None:
+    if not SLUG_RE.fullmatch(slug):
+        raise GenerationError(f"{context}: slug must contain lowercase letters, numbers, and single hyphens: {slug!r}")
+
+
+def specs_from_manifest(path: Path, source_root: Path) -> list[PageSpec]:
+    manifest = load_json(path)
+    if not isinstance(manifest, dict) or not isinstance(manifest.get("pages"), list):
+        raise GenerationError(f"{path}: expected an object containing a `pages` list")
+    specs: list[PageSpec] = []
+    for index, item in enumerate(manifest["pages"]):
+        where = f"{path}: pages[{index}]"
+        if not isinstance(item, dict):
+            raise GenerationError(f"{where} must be an object")
+        for key in ("case", "slug", "h1", "meta_description"):
+            if not isinstance(item.get(key), str) or not item[key].strip():
+                raise GenerationError(f"{where}.{key} must be a non-empty string")
+        source = resolve_case(item["case"], source_root)
+        slug = item["slug"].strip()
+        validate_slug(slug, where)
+        specs.append(PageSpec(source, slug, item["h1"].strip(), item["meta_description"].strip()))
+    if not specs:
+        raise GenerationError(f"{path}: the manifest contains no selected pages")
+    return specs
+
+
+def validate_case(data: Any, source: Path) -> dict[str, Any]:
+    if not isinstance(data, dict):
+        raise GenerationError(f"{source}: top-level JSON must be an object")
+    for key in ("id", "system", "difficulty", "chief_complaint"):
+        require_text(data, key, source)
+    teaching = data.get("teaching")
+    if not isinstance(teaching, dict):
+        raise GenerationError(f"{source}: supported patient-history cases require a `teaching` object")
+    asks = teaching.get("must_ask")
+    if not isinstance(asks, list) or not asks:
+        raise GenerationError(f"{source}: `teaching.must_ask` must be a non-empty list")
+    for index, ask in enumerate(asks):
+        where = f"{source}: teaching.must_ask[{index}]"
+        if not isinstance(ask, dict):
+            raise GenerationError(f"{where} must be an object")
+        for key in ("objective", "say"):
+            if not isinstance(ask.get(key), str) or not ask[key].strip():
+                raise GenerationError(f"{where}.{key} must be a non-empty string")
+        domains = ask.get("domains", [])
+        if not isinstance(domains, list) or any(not isinstance(domain, str) for domain in domains):
+            raise GenerationError(f"{where}.domains must be a list of strings when present")
+    return data
+
+
+def humanize(value: str) -> str:
+    return value.replace("_", " ").strip().title()
+
+
+def oxford_join(items: list[str]) -> str:
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    return ", ".join(items[:-1]) + f", and {items[-1]}"
+
+
+def question_group(ask: dict[str, Any]) -> str:
+    domains = set(ask.get("domains", []))
+    for label, group_domains in GROUPS:
+        if domains & group_domains:
+            return label
+    return "Other useful questions"
+
+
+def render_question_sections(asks: list[dict[str, Any]]) -> str:
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for ask in asks:
+        grouped.setdefault(question_group(ask), []).append(ask)
+    ordered_labels = [label for label, _ in GROUPS] + ["Other useful questions"]
+    sections: list[str] = []
+    for label in ordered_labels:
+        rows = grouped.get(label)
+        if not rows:
+            continue
+        cards = []
+        for ask in rows:
+            cards.append(
+                '              <article class="question-card">\n'
+                f'                <p class="phrase">“{escaped(ask["say"].strip())}”</p>\n'
+                f'                <p class="purpose"><strong>Purpose:</strong> {escaped(ask["objective"].strip())}.</p>\n'
+                "              </article>"
+            )
+        sections.append(
+            '            <section class="question-group">\n'
+            f"              <h3>{escaped(label)}</h3>\n"
+            '              <div class="question-list">\n'
+            + "\n".join(cards)
+            + "\n              </div>\n            </section>"
+        )
+    return "\n".join(sections)
+
+
+def structured_data(spec: PageSpec, data: dict[str, Any], canonical_url: str) -> str:
+    payload = {
+        "@context": "https://schema.org",
+        "@type": ["WebPage", "LearningResource"],
+        "name": spec.h1,
+        "description": spec.meta_description,
+        "url": canonical_url,
+        "inLanguage": "en",
+        "isAccessibleForFree": True,
+        "learningResourceType": "Clinical communication guide",
+        "educationalLevel": data["difficulty"].strip().lower(),
+        "teaches": spec.h1,
+        "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "Medical student or healthcare professional",
+        },
+        "isPartOf": {"@type": "WebSite", "name": "Bedside English", "url": f"{SITE_ORIGIN}/"},
+    }
+    return json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+
+
+def existing_pages(learning_root: Path) -> dict[str, PageMeta]:
+    pages: dict[str, PageMeta] = {}
+    if not learning_root.exists():
+        return pages
+    for path in sorted(learning_root.glob("*/index.html")):
+        match = PAGE_META_RE.search(path.read_text(encoding="utf-8"))
+        if not match:
+            continue
+        case_id, title, summary = (html.unescape(value) for value in match.groups())
+        pages[path.parent.name] = PageMeta(case_id, path.parent.name, title, summary)
+    return pages
+
+
+def build_page(spec: PageSpec, data: dict[str, Any], related: PageMeta | None) -> tuple[str, PageMeta]:
+    case_id = data["id"].strip()
+    asks = data["teaching"]["must_ask"]
+    objectives = [ask["objective"].strip().lower() for ask in asks[:4]]
+    quick_answer = (
+        "Start with an open invitation, then use focused questions about "
+        f"{oxford_join(objectives)}. The phrases below are selected for this scenario, so adapt them to the patient's answers."
+    )
+    complaint = data["chief_complaint"].strip()
+    scenario = f"A patient reports {complaint}. Your task is to explore the history in natural English without overwhelming the patient with clinical jargon."
+    lede = f"Use clear, patient-friendly questions to explore a history of {complaint}. Learn what each phrase is trying to clarify, then say it aloud."
+    canonical_url = f"{SITE_ORIGIN}/learning/{spec.slug}/"
+    has_radiation = any("radiation" in ask.get("domains", []) for ask in asks)
+    language_note = (
+        'A plain expression such as “Does it move anywhere else?” can be easier for a patient to understand than a technical term such as “Does it radiate?”'
+        if has_radiation
+        else "Short, direct questions are often easier to answer. Ask one idea at a time, then follow the patient's wording when you need more detail."
+    )
+    related_html = (
+        f'<a href="../{escaped(related.slug)}/">{escaped(related.title)} <span aria-hidden="true">→</span></a>'
+        if related
+        else '<a href="../">Browse all clinical English guides <span aria-hidden="true">→</span></a>'
+    )
+    values = {
+        "PAGE_TITLE": escaped(f"{spec.h1} | Bedside English"),
+        "META_DESCRIPTION": escaped(spec.meta_description),
+        "CANONICAL_URL": escaped(canonical_url),
+        "OG_IMAGE_URL": escaped(f"{SITE_ORIGIN}/assets/social/og-cover.png"),
+        "STRUCTURED_DATA": structured_data(spec, data, canonical_url),
+        "CASE_ID": escaped(case_id),
+        "H1": escaped(spec.h1),
+        "LEVEL": escaped(humanize(data["difficulty"])),
+        "SYSTEM": escaped(humanize(data["system"])),
+        "LEDE": escaped(lede),
+        "QUICK_ANSWER": escaped(quick_answer),
+        "FEATURED_QUESTION": escaped(asks[0]["say"].strip()),
+        "SCENARIO": escaped(scenario),
+        "LANGUAGE_NOTE": escaped(language_note),
+        "QUESTION_SECTIONS": render_question_sections(asks),
+        "RELATED_LINK": related_html,
+    }
+    rendered = render_template(TEMPLATE_ROOT / "page.html", values)
+    return rendered, PageMeta(case_id, spec.slug, spec.h1, spec.meta_description)
+
+
+def build_hub(pages: list[PageMeta]) -> str:
+    cards = []
+    for index, page in enumerate(sorted(pages, key=lambda item: item.title.lower()), start=1):
+        cards.append(
+            f'<a class="guide-card" href="{escaped(page.slug)}/">'
+            f'<span class="card-index">GUIDE {index:02d}</span>'
+            f'<h3>{escaped(page.title)}</h3><p>{escaped(page.summary)}</p>'
+            '<span class="card-link">Read the guide →</span></a>'
+        )
+    return render_template(
+        TEMPLATE_ROOT / "index.html",
+        {
+            "HUB_URL": escaped(f"{SITE_ORIGIN}/learning/"),
+            "OG_IMAGE_URL": escaped(f"{SITE_ORIGIN}/assets/social/og-cover.png"),
+            "GUIDE_CARDS": "\n        ".join(cards),
+        },
+    )
+
+
+def build_sitemap(pages: list[PageMeta]) -> str:
+    urls = [
+        f"{SITE_ORIGIN}/",
+        f"{SITE_ORIGIN}/android.html",
+        f"{SITE_ORIGIN}/android-everyday.html",
+        f"{SITE_ORIGIN}/desktop/",
+        f"{SITE_ORIGIN}/privacy.html",
+        f"{SITE_ORIGIN}/learning/",
+    ]
+    urls.extend(f"{SITE_ORIGIN}/learning/{page.slug}/" for page in sorted(pages, key=lambda item: item.slug))
+    body = "\n".join(f"  <url><loc>{escaped(url)}</loc></url>" for url in urls)
+    return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>\n'
+
+
+def write_or_check(path: Path, content: str, check: bool, mismatches: list[Path]) -> None:
+    if check:
+        if not path.is_file() or path.read_text(encoding="utf-8") != content:
+            mismatches.append(path)
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8", newline="\n")
+
+
+def generate(specs: list[PageSpec], output_root: Path, check: bool) -> int:
+    if not specs:
+        raise GenerationError("Select at least one case")
+    slugs = [spec.slug for spec in specs]
+    if len(slugs) != len(set(slugs)):
+        raise GenerationError("Selected pages contain duplicate slugs")
+
+    learning_root = output_root / "learning"
+    known = existing_pages(learning_root)
+    loaded: list[tuple[PageSpec, dict[str, Any]]] = []
+    case_ids: dict[str, str] = {meta.case_id: slug for slug, meta in known.items()}
+    for spec in specs:
+        validate_slug(spec.slug, str(spec.source))
+        data = validate_case(load_json(spec.source), spec.source)
+        case_id = data["id"].strip()
+        occupant = known.get(spec.slug)
+        if occupant and occupant.case_id != case_id:
+            raise GenerationError(f"Slug collision: `{spec.slug}` already belongs to case `{occupant.case_id}`")
+        other_slug = case_ids.get(case_id)
+        if other_slug and other_slug != spec.slug:
+            raise GenerationError(f"Case `{case_id}` is already published at slug `{other_slug}`")
+        case_ids[case_id] = spec.slug
+        loaded.append((spec, data))
+
+    combined = dict(known)
+    for spec, data in loaded:
+        combined[spec.slug] = PageMeta(data["id"].strip(), spec.slug, spec.h1, spec.meta_description)
+    all_pages = list(combined.values())
+
+    mismatches: list[Path] = []
+    for spec, data in loaded:
+        related = next((page for page in sorted(all_pages, key=lambda item: item.title.lower()) if page.slug != spec.slug), None)
+        page, _ = build_page(spec, data, related)
+        write_or_check(learning_root / spec.slug / "index.html", page, check, mismatches)
+    write_or_check(learning_root / "index.html", build_hub(all_pages), check, mismatches)
+    write_or_check(output_root / "sitemap.xml", build_sitemap(all_pages), check, mismatches)
+
+    if mismatches:
+        print("Generated output is out of date:", file=sys.stderr)
+        for path in mismatches:
+            print(f"  {path}", file=sys.stderr)
+        return 1
+    verb = "Verified" if check else "Generated"
+    print(f"{verb} {len(loaded)} learning page(s).")
+    for spec, _ in loaded:
+        print(f"  learning/{spec.slug}/index.html")
+    return 0
+
+
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source-root", type=Path, default=DEFAULT_SOURCE_ROOT, help="root directory containing case JSON files")
+    parser.add_argument("--manifest", type=Path, help="editorial page-selection manifest (default when --case is omitted)")
+    parser.add_argument("--case", action="append", default=[], help="case ID or JSON path; may be repeated")
+    parser.add_argument("--slug", help="reviewed URL slug; only valid with one --case")
+    parser.add_argument("--output-root", type=Path, default=ROOT, help=argparse.SUPPRESS)
+    parser.add_argument("--check", action="store_true", help="verify that generated files are current without writing")
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = parse_args(argv)
+    try:
+        source_root = args.source_root.resolve()
+        if args.case and args.manifest:
+            raise GenerationError("Use either --manifest or --case, not both")
+        if args.slug and len(args.case) != 1:
+            raise GenerationError("--slug requires exactly one --case")
+        if args.case:
+            specs = []
+            for selector in args.case:
+                source = resolve_case(selector, source_root)
+                data = validate_case(load_json(source), source)
+                specs.append(default_spec(source, data, args.slug))
+        else:
+            specs = specs_from_manifest((args.manifest or DEFAULT_MANIFEST).resolve(), source_root)
+        return generate(specs, args.output_root.resolve(), args.check)
+    except GenerationError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

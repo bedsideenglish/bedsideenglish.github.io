@@ -5,6 +5,15 @@ on:
     paths:
       - index.html
       - android.html
+      - android-everyday.html
+      - learning-pages.json
+      - learning/**
+      - robots.txt
+      - sitemap.xml
+      - tools/generate-learning-pages.py
+      - tools/check-learning-pages.py
+      - tools/learning_templates/**
+      - tools/test_generate_learning_pages.py
       - tools/sync-landing-pages.py
       - .github/workflows/verify-landing-pages.yml
   push:
@@ -13,6 +22,15 @@ on:
     paths:
       - index.html
       - android.html
+      - android-everyday.html
+      - learning-pages.json
+      - learning/**
+      - robots.txt
+      - sitemap.xml
+      - tools/generate-learning-pages.py
+      - tools/check-learning-pages.py
+      - tools/learning_templates/**
+      - tools/test_generate_learning_pages.py
       - tools/sync-landing-pages.py
       - .github/workflows/verify-landing-pages.yml
 
@@ -28,3 +46,6 @@ jobs:
         with:
           python-version: '3.x'
       - run: python tools/sync-landing-pages.py
+      - run: python tools/test_generate_learning_pages.py
+      - run: python tools/generate-learning-pages.py --check
+      - run: python tools/check-learning-pages.py

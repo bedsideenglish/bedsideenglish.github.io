@@ -11,7 +11,33 @@ A single static `index.html` (no build step) presenting both platforms of the pr
 
 Served via GitHub Pages from the `main` branch root. Edit `index.html` and push to update the live site.
 
-`android.html` is the source for `index.html`; the two differ only in their `canonical`/`og:url` and brand link. After editing `android.html`, update the root page with:
+## Clinical English learning pages
+
+Reviewed patient-case JSON files can be converted into static communication guides under
+`learning/`. The publication allowlist and reviewed titles live in `learning-pages.json`; page
+markup lives in `tools/learning_templates/` and shared presentation lives in
+`learning/styles.css`. No source case JSON is copied into the public site.
+
+Generate the reviewed selection from this workspace on Windows:
+
+```powershell
+python tools\generate-learning-pages.py
+```
+
+Generate one specific case by ID or path (a neutral ID-based slug is used unless `--slug` is
+provided):
+
+```powershell
+python tools\generate-learning-pages.py --case gi_011 --slug swallowing-difficulty-history-questions
+```
+
+The default case source is the sibling Android repository at
+`..\Medvoicetrainer-android-app-version\data\cases`. Override it with `--source-root` when the
+workspace layout differs. The generator has intentionally no mass-generation option.
+
+`android.html` is the structural source for `index.html`. The sync tool preserves the root route's
+canonical URLs, brand link, and broader two-track problem statement. After editing `android.html`,
+update the root page with:
 
 ```sh
 python tools/sync-landing-pages.py --write
