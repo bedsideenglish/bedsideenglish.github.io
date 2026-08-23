@@ -5,9 +5,12 @@
       "slug": "chest-pain-history-questions",
       "h1": "How to ask about chest pain in English",
       "meta_description": "Learn natural, patient-friendly English questions for a chest pain history, including location, timing, character, associated symptoms, risk factors, and concerns.",
+      "language_standard": "en-US",
+      "patient_answer_assumptions_checked": true,
+      "lede": "Use clear, patient-friendly questions to explore chest pain without assuming what the patient will say. Learn why each phrase works, then say it aloud.",
+      "scenario": "A patient has had chest pain for two hours.",
       "quick_answer": "Start with an open question, then ask where the pain is, when it started, what it feels like, whether it spreads, and about symptoms such as shortness of breath, nausea, or sweating.",
       "reviewed_on": "2026-08-23",
-      "review_status": "Editorial language review completed for this sample; no named clinical reviewer is currently listed.",
       "question_edits": [
         {
           "objective": "Site and radiation of the pain",
@@ -17,6 +20,12 @@
             {"label": "More clinical", "phrase": "Does the pain radiate anywhere?"},
             {"label": "Patient-friendly", "phrase": "Does the pain move or spread anywhere else?"}
           ]
+        },
+        {
+          "objective": "Onset and duration",
+          "phrases": ["When did it start? Has it been there continuously, or does it come and go?"],
+          "purpose": "Find out when the pain began and whether it is continuous or intermittent",
+          "why_this_wording": "The follow-up offers both continuous and intermittent patterns instead of assuming that the pain occurs in repeated episodes."
         },
         {
           "objective": "Character of the pain",
@@ -29,6 +38,7 @@
         },
         {
           "objective": "Associated autonomic symptoms",
+          "phrases": ["Have you felt sweaty, nauseated, or short of breath with the pain?"],
           "purpose": "Check for symptoms that happened with the pain"
         },
         {
@@ -54,9 +64,12 @@
       "slug": "abdominal-pain-history-questions",
       "h1": "How to take an abdominal pain history in English",
       "meta_description": "Learn natural English questions for a crampy abdominal pain history, including bowel patterns, associated symptoms, triggers, family history, and patient concerns.",
+      "language_standard": "en-US",
+      "patient_answer_assumptions_checked": true,
+      "lede": "Use clear, patient-friendly American English to explore cramping abdominal pain and changes in bowel habits. Learn why each phrase works, then say it aloud.",
+      "scenario": "A patient reports more than a year of cramping abdominal pain and loose stools.",
       "quick_answer": "Start with an open question, then ask where the pain is, how it relates to bowel movements, whether symptoms occur at night, whether there is any blood or unplanned weight loss, and what seems to trigger the symptoms.",
       "reviewed_on": "2026-08-23",
-      "review_status": "Editorial language review completed for this sample; no named clinical reviewer is currently listed.",
       "question_edits": [
         {
           "objective": "Relation to bowel movement",
@@ -64,12 +77,12 @@
           "purpose": "Find out whether the pain changes after a bowel movement",
           "why_this_wording": "“Get better” and “have a bowel movement” are widely understood and avoid building an exact timing or answer into the first question.",
           "alternatives": [
-            {"label": "Another natural option", "phrase": "Does the pain ease after you open your bowels?"}
+            {"label": "Another natural option", "phrase": "Does the pain improve after a bowel movement?"}
           ]
         },
         {
           "objective": "Nocturnal symptoms",
-          "phrases": ["Do you ever need to get up at night to open your bowels?"],
+          "phrases": ["Do you ever need to get up at night to have a bowel movement?"],
           "purpose": "Ask whether bowel symptoms interrupt sleep",
           "why_this_wording": "This describes the concrete experience of getting up at night instead of using the technical word “nocturnal”."
         },

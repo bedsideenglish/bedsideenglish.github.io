@@ -97,7 +97,6 @@ class GeneratorTests(unittest.TestCase):
             meta_description="A reviewed wording guide.",
             quick_answer="Ask one clear question at a time.",
             reviewed_on="2026-08-23",
-            review_status="Editorial sample review complete.",
             question_edits={
                 "Pain location & radiation": {
                     "phrases": ["Where is the pain?", "Does it spread anywhere else?"],
@@ -112,6 +111,20 @@ class GeneratorTests(unittest.TestCase):
         self.assertIn("Why this wording", output)
         self.assertIn("Does it spread anywhere else?", output)
         self.assertIn("23 August 2026", output)
+
+    def test_presupposition_lint_rejects_each_time(self) -> None:
+        with self.assertRaisesRegex(generator.GenerationError, "episodic"):
+            generator.enforce_assumption_safe_questions(
+                [("Onset and duration", "How long does it last each time?")],
+                "sample",
+            )
+
+    def test_us_style_lint_rejects_british_patient_language(self) -> None:
+        with self.assertRaisesRegex(generator.GenerationError, "bowel movement"):
+            generator.enforce_us_style(
+                [("question", "Do you need to open your bowels at night?")],
+                "sample",
+            )
 
 
 if __name__ == "__main__":

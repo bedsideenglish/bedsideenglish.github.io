@@ -23,6 +23,31 @@ EXCLUDED_FIELDS = {
     "doorknob_probability", "reference_soap", "learning_objectives",
 }
 EXCLUDED_TEACHING_FIELDS = {"diagnosis", "one_liner", "differentials", "red_flags", "closing"}
+US_STYLE_BANNED = {
+    "practise": "practice",
+    "practised": "practiced",
+    "practising": "practicing",
+    "diarrhoea": "diarrhea",
+    "haemorrhage": "hemorrhage",
+    "melaena": "melena",
+    "oedema": "edema",
+    "paediatric": "pediatric",
+    "colour": "color",
+    "behaviour": "behavior",
+    "centre": "center",
+    "metres": "meters",
+    "litres": "liters",
+    "recognise": "recognize",
+    "organise": "organize",
+    "whilst": "while",
+    "open your bowels": "have a bowel movement",
+    "felt sick": "felt nauseated",
+}
+ASSUMPTION_MARKERS = {
+    "each time": "may assume an episodic symptom",
+    "you mentioned": "assumes an earlier patient answer",
+    "you said": "assumes an earlier patient answer",
+}
 
 
 class DocumentParser(HTMLParser):
@@ -36,6 +61,7 @@ class DocumentParser(HTMLParser):
         self.title_count = 0
         self.canonicals: list[str] = []
         self.json_ld: list[str] = []
+        self.html_langs: list[str] = []
         self._capture_json = False
         self._json_parts: list[str] = []
 
@@ -50,6 +76,8 @@ class DocumentParser(HTMLParser):
             self.hrefs.append(values["href"] or "")
         if tag == "h1":
             self.h1_count += 1
+        if tag == "html" and values.get("lang"):
+            self.html_langs.append(values["lang"] or "")
         if tag == "title":
             self.title_count += 1
         if tag == "link" and values.get("rel") == "canonical" and values.get("href"):
@@ -141,6 +169,8 @@ def check_page(path: Path, site_root: Path, cache: dict[Path, DocumentParser]) -
         errors.append(f"expected one title, found {parser.title_count}")
     if len(parser.canonicals) != 1:
         errors.append(f"expected one canonical link, found {len(parser.canonicals)}")
+    if parser.html_langs != ["en-US"]:
+        errors.append(f"expected html lang=en-US, found {parser.html_langs}")
     for payload in parser.json_ld:
         try:
             json.loads(payload)
@@ -208,6 +238,15 @@ def main() -> int:
             errors.append(f"learning/{entry['slug']}/index.html: expected at least two wording-coaching blocks, found {coaching_count}")
         if "Learning level" in output or "educationalLevel" in output:
             errors.append(f"learning/{entry['slug']}/index.html: ambiguous case difficulty is exposed as a learning level")
+        if "Review status:" in output:
+            errors.append(f"learning/{entry['slug']}/index.html: removed review-status copy is still present")
+        lowered_output = output.lower()
+        for british, preferred in US_STYLE_BANNED.items():
+            if british in lowered_output:
+                errors.append(f"learning/{entry['slug']}/index.html: US style violation {british!r}; use {preferred!r}")
+        for marker, reason in ASSUMPTION_MARKERS.items():
+            if marker in lowered_output:
+                errors.append(f"learning/{entry['slug']}/index.html: assumption marker {marker!r} {reason}")
 
     if errors:
         print("Learning-page validation failed:")

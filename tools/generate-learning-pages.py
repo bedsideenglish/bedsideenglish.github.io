@@ -39,6 +39,32 @@ GROUPS = (
     ("Daily life and context", {"living_work", "diet", "travel", "sexual_hx"}),
 )
 
+US_STYLE_RULES = (
+    (re.compile(r"\bpractis(?:e|ed|ing)\b", re.IGNORECASE), "use US `practice/practiced/practicing`"),
+    (re.compile(r"\bdiarrhoea\b", re.IGNORECASE), "use US `diarrhea`"),
+    (re.compile(r"\bhaemorrhage\b", re.IGNORECASE), "use US `hemorrhage`"),
+    (re.compile(r"\boesophag\w*\b", re.IGNORECASE), "use US `esophag-` spelling"),
+    (re.compile(r"\bpaediatric\w*\b", re.IGNORECASE), "use US `pediatric`"),
+    (re.compile(r"\banaesth\w*\b", re.IGNORECASE), "use US `anesth-` spelling"),
+    (re.compile(r"\b(?:colour|behaviour|favour)\w*\b", re.IGNORECASE), "use the corresponding US `-or` spelling"),
+    (re.compile(r"\bcentre\b", re.IGNORECASE), "use US `center`"),
+    (re.compile(r"\bmetres?\b", re.IGNORECASE), "use US `meter/meters`"),
+    (re.compile(r"\blitres?\b", re.IGNORECASE), "use US `liter/liters`"),
+    (re.compile(r"\b(?:recognise|organise|realise)(?:d|s|ing)?\b", re.IGNORECASE), "use the corresponding US `-ize` spelling"),
+    (re.compile(r"\b(?:labelled|travelling|counselling)\b", re.IGNORECASE), "use US single-l spelling"),
+    (re.compile(r"\b(?:melaena|oedema|foetus)\b", re.IGNORECASE), "use the corresponding US medical spelling"),
+    (re.compile(r"\bwhilst\b", re.IGNORECASE), "use US `while`"),
+    (re.compile(r"\bopen your bowels\b", re.IGNORECASE), "use `have a bowel movement` for US-facing patient language"),
+    (re.compile(r"\bfelt sick\b", re.IGNORECASE), "use `felt nauseated` when nausea is intended"),
+)
+
+PRESUPPOSITION_RULES = (
+    (re.compile(r"\beach time\b", re.IGNORECASE), "may assume the symptom is episodic"),
+    (re.compile(r"\byou (?:mentioned|said)\b", re.IGNORECASE), "assumes a patient answer not present on the public page"),
+    (re.compile(r"\bas (?:you|we) (?:discussed|said)\b", re.IGNORECASE), "assumes an earlier answer or discussion"),
+    (re.compile(r"\bwhen it happens again\b", re.IGNORECASE), "assumes the symptom will recur"),
+)
+
 
 class GenerationError(RuntimeError):
     """A case cannot be safely converted to the supported public schema."""
@@ -50,9 +76,10 @@ class PageSpec:
     slug: str
     h1: str
     meta_description: str
+    lede: str = "Use clear, patient-friendly questions to explore this scenario, understand what each phrase clarifies, and then say it aloud."
+    scenario: str = "A patient presents for a clinical history."
     quick_answer: str = "Start with an open question, then use the selected patient-friendly questions below to explore the symptom and the patient's concerns."
     reviewed_on: str = ""
-    review_status: str = "Preview generated from source data; editorial review is still required."
     question_edits: dict[str, dict[str, Any]] = field(default_factory=dict)
 
 
@@ -128,6 +155,23 @@ def validate_slug(slug: str, context: str) -> None:
         raise GenerationError(f"{context}: slug must contain lowercase letters, numbers, and single hyphens: {slug!r}")
 
 
+def enforce_us_style(texts: list[tuple[str, str]], context: str) -> None:
+    for label, value in texts:
+        for pattern, guidance in US_STYLE_RULES:
+            if pattern.search(value):
+                raise GenerationError(f"{context}.{label}: {guidance}; found {pattern.pattern!r}")
+
+
+def enforce_assumption_safe_questions(questions: list[tuple[str, str]], context: str) -> None:
+    for objective, phrase in questions:
+        for pattern, guidance in PRESUPPOSITION_RULES:
+            if pattern.search(phrase):
+                raise GenerationError(
+                    f"{context}: question for {objective!r} {guidance}: {phrase!r}. "
+                    "Rewrite it in `question_edits` without assuming the patient's answer."
+                )
+
+
 def specs_from_manifest(path: Path, source_root: Path) -> list[PageSpec]:
     manifest = load_json(path)
     if not isinstance(manifest, dict) or not isinstance(manifest.get("pages"), list):
@@ -137,9 +181,13 @@ def specs_from_manifest(path: Path, source_root: Path) -> list[PageSpec]:
         where = f"{path}: pages[{index}]"
         if not isinstance(item, dict):
             raise GenerationError(f"{where} must be an object")
-        for key in ("case", "slug", "h1", "meta_description", "quick_answer", "reviewed_on", "review_status"):
+        for key in ("case", "slug", "h1", "meta_description", "lede", "scenario", "quick_answer", "reviewed_on"):
             if not isinstance(item.get(key), str) or not item[key].strip():
                 raise GenerationError(f"{where}.{key} must be a non-empty string")
+        if item.get("language_standard") != "en-US":
+            raise GenerationError(f"{where}.language_standard must be `en-US`")
+        if item.get("patient_answer_assumptions_checked") is not True:
+            raise GenerationError(f"{where}.patient_answer_assumptions_checked must be true after editorial QA")
         try:
             date.fromisoformat(item["reviewed_on"])
         except ValueError as exc:
@@ -193,14 +241,36 @@ def specs_from_manifest(path: Path, source_root: Path) -> list[PageSpec]:
             edits[objective] = edit
         if coaching_count < 2:
             raise GenerationError(f"{where}: reviewed pages require at least two `why_this_wording` coaching notes")
+        final_questions: list[tuple[str, str]] = []
+        editorial_texts = [
+            ("h1", item["h1"].strip()),
+            ("meta_description", item["meta_description"].strip()),
+            ("lede", item["lede"].strip()),
+            ("scenario", item["scenario"].strip()),
+            ("quick_answer", item["quick_answer"].strip()),
+        ]
+        for ask in data["teaching"]["must_ask"]:
+            objective = ask["objective"].strip()
+            edit = edits.get(objective, {})
+            phrases = edit.get("phrases") or [ask["say"].strip()]
+            final_questions.extend((objective, phrase.strip()) for phrase in phrases)
+            for key in ("purpose", "why_this_wording"):
+                if edit.get(key):
+                    editorial_texts.append((f"question_edits[{objective}].{key}", edit[key].strip()))
+            for alternative in edit.get("alternatives", []):
+                editorial_texts.append((f"question_edits[{objective}].alternative", alternative["phrase"].strip()))
+        editorial_texts.extend((f"question[{objective}]", phrase) for objective, phrase in final_questions)
+        enforce_us_style(editorial_texts, where)
+        enforce_assumption_safe_questions(final_questions, where)
         specs.append(PageSpec(
             source=source,
             slug=slug,
             h1=item["h1"].strip(),
             meta_description=item["meta_description"].strip(),
+            lede=item["lede"].strip(),
+            scenario=item["scenario"].strip(),
             quick_answer=item["quick_answer"].strip(),
             reviewed_on=item["reviewed_on"].strip(),
-            review_status=item["review_status"].strip(),
             question_edits=edits,
         ))
     if not specs:
@@ -319,7 +389,7 @@ def structured_data(spec: PageSpec, data: dict[str, Any], canonical_url: str) ->
         "name": spec.h1,
         "description": spec.meta_description,
         "url": canonical_url,
-        "inLanguage": "en",
+        "inLanguage": "en-US",
         "isAccessibleForFree": True,
         "learningResourceType": "Clinical communication guide",
         "teaches": spec.h1,
@@ -348,9 +418,7 @@ def existing_pages(learning_root: Path) -> dict[str, PageMeta]:
 def build_page(spec: PageSpec, data: dict[str, Any], related: PageMeta | None) -> tuple[str, PageMeta]:
     case_id = data["id"].strip()
     asks = data["teaching"]["must_ask"]
-    complaint = data["chief_complaint"].strip()
-    scenario = f"A patient reports {complaint}. Your task is to explore the history in natural English without overwhelming the patient with clinical jargon."
-    lede = f"Use clear, patient-friendly questions to explore a history of {complaint}. Learn what each phrase is trying to clarify, then say it aloud."
+    scenario = f"{spec.scenario} Your task is to explore the history in natural English without overwhelming the patient with clinical jargon."
     canonical_url = f"{SITE_ORIGIN}/learning/{spec.slug}/"
     has_radiation = any("radiation" in ask.get("domains", []) for ask in asks)
     language_note = (
@@ -379,7 +447,7 @@ def build_page(spec: PageSpec, data: dict[str, Any], related: PageMeta | None) -
         "SOURCE_SHA256": hashlib.sha256(spec.source.read_bytes()).hexdigest(),
         "H1": escaped(spec.h1),
         "SYSTEM": escaped(humanize(data["system"])),
-        "LEDE": escaped(lede),
+        "LEDE": escaped(spec.lede),
         "QUICK_ANSWER": escaped(spec.quick_answer),
         "FEATURED_QUESTION": escaped((spec.question_edits.get(asks[0]["objective"].strip(), {}).get("phrases") or [asks[0]["say"].strip()])[0]),
         "SCENARIO": escaped(scenario),
@@ -388,7 +456,6 @@ def build_page(spec: PageSpec, data: dict[str, Any], related: PageMeta | None) -
         "RELATED_LINK": related_html,
         "REVIEWED_ON_ISO": escaped(spec.reviewed_on),
         "REVIEWED_ON_DISPLAY": escaped(reviewed_display),
-        "REVIEW_STATUS": escaped(spec.review_status),
     }
     rendered = render_template(TEMPLATE_ROOT / "page.html", values)
     return rendered, PageMeta(case_id, spec.slug, spec.h1, spec.meta_description)

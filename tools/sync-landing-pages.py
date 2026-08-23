@@ -27,7 +27,7 @@ ROOT_ROUTE_REPLACEMENTS = {
         '<!-- The shared problem behind both tracks: real conversations change before\n'
         '       a learner has time to translate a rehearsed sentence. -->',
     '<p class="quote" data-i18n="problem_quote">You know the words.<em>They just don’t come when you need them.</em></p>\n'
-    '      <p class="problem-after" data-i18n="problem_after">Practise answering out loud before you translate—in clinical encounters and everyday situations.</p>':
+    '      <p class="problem-after" data-i18n="problem_after">Practice answering out loud before you translate—in clinical encounters and everyday situations.</p>':
         '<p class="quote" data-i18n="problem_quote">English does not stop at the bedside. It follows you into the hallway, onto the phone, and <em>out into everyday life.</em></p>\n'
         '      <p class="problem-after" data-i18n="problem_after">The skill is the same: understand what changed, answer out loud, and keep the conversation moving before you have time to translate.</p>',
     'problem_quote:"영어를 모르는 게 아닙니다.<em>필요한 순간에 나오지 않는 게 문제입니다.</em>",\n'

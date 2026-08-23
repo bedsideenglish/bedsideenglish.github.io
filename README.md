@@ -36,10 +36,17 @@ The default case source is the sibling Android repository at
 workspace layout differs. The generator has intentionally no mass-generation option.
 
 Published manifest entries must include a plain-language quick answer, an editorial update date,
-an honest review-status note, and at least two reviewed wording explanations. `question_edits`
-can replace or split a source question and add `Why this wording` comparisons without changing the
-application's source case. Each generated page also records the source JSON SHA-256 in an HTML
-comment, so `--check` catches stale pages after any source-case change.
+and at least two reviewed wording explanations. `question_edits` can replace or split a source
+question and add `Why this wording` comparisons without changing the application's source case.
+Each generated page also records the source JSON SHA-256 in an HTML comment, so `--check` catches
+stale pages after any source-case change.
+
+Public learning content follows **American English (`en-US`)**, matching the app's USMLE audience.
+Every manifest entry must set `language_standard` to `en-US` and confirm
+`patient_answer_assumptions_checked`. Generation fails on known British-style patient wording such
+as `practise`, `felt sick`, or `open your bowels`, and on presupposition markers such as `each time`
+or `you mentioned`. These deterministic checks are a review aid, not a replacement for reading each
+question for subtler leading assumptions before publication.
 
 ### Search discovery on GitHub Pages
 
