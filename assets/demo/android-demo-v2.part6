@@ -1,0 +1,24 @@
+.remove('down');hold.hidden=true;sub.hidden=true;live(false);waiting.classList.remove('show');
+    signal.textContent=turns[ti].label;requestAnimationFrame(()=>signal.classList.add('show'));await new Promise(r=>setTimeout(r,760));document.querySelector(`[data-check="${turns[ti].key}"]`)?.classList.add('done');await new Promise(r=>setTimeout(r,390));await patientReply(turns[ti].patient)
+  }
+  function enterRoom(){
+    stage.classList.add('in-room');startRoomTone();startRoundClock();brief.classList.add('exit');room.classList.add('show');setTimeout(()=>{brief.hidden=true;openingPatient()},700)
+  }
+  async function showCallback(){
+    stopSpeech();stopRoomTone();stopRoundClock();callback.classList.add('show');room.style.opacity='0';await new Promise(r=>setTimeout(r,2250));truth.classList.add('show');callback.classList.remove('show')
+  }
+  async function fullLanding(){
+    if(transitioning)return;transitioning=true;stopSpeech();stopRoomTone();stopRoundClock();const html=await landingHTML;if(html){history.replaceState(null,'','android.html');document.open();document.write(html);document.close()}else location.href='android.html'
+  }
+  function morph(){
+    if(transitioning)return;transitioning=true;stopSpeech();stopRoomTone();stopRoundClock();if(matchMedia('(prefers-reduced-motion:reduce)').matches){transitioning=false;fullLanding();return}
+    const source=document.querySelector('.truth-inner').getBoundingClientRect(),m=document.createElement('div');m.className='morph';Object.assign(m.style,{left:source.left+'px',top:source.top+'px',width:source.width+'px',height:source.height+'px'});m.innerHTML='<div class="cover"><b>+</b></div><img src="assets/android/encounter-live.webp" alt="">';document.body.append(m);truth.style.opacity='0';
+    const ratio=780/1636,maxH=innerHeight*.72,maxW=Math.min(296,innerWidth*.72),w=Math.min(maxW,maxH*ratio),h=w/ratio,x=(innerWidth-w)/2,y=(innerHeight-h)/2;requestAnimationFrame(()=>{m.classList.add('go');m.style.borderRadius='26px';m.style.transform=`translate(${x-source.left}px,${y-source.top}px) scale(${w/source.width},${h/source.height})`});setTimeout(()=>{m.remove();transitioning=false;fullLanding()},1050)
+  }
+  goRoom.addEventListener('click',enterRoom);$('#skip').addEventListener('click',fullLanding);$('#continue').addEventListener('click',morph);
+  hold.addEventListener('pointerdown',e=>{e.preventDefault();try{hold.setPointerCapture(e.pointerId)}catch{}startHold()});hold.addEventListener('pointerup',e=>{e.preventDefault();stopHold()});hold.addEventListener('pointercancel',stopHold);hold.addEventListener('lostpointercapture',stopHold);hold.addEventListener('contextmenu',e=>e.preventDefault());hold.addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='Enter')&&!e.repeat){e.preventDefault();startHold()}});hold.addEventListener('keyup',e=>{if(e.code==='Space'||e.code==='Enter'){e.preventDefault();stopHold()}});
+  addEventListener('beforeunload',()=>{stopSpeech();stopRoomTone()});document.addEventListener('visibilitychange',()=>{if(document.hidden){stopHold();stopSpeech()}})
+})();
+</script>
+</body>
+</html>
