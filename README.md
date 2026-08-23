@@ -2,7 +2,7 @@
 
 ![Talk to an AI patient. In English. Out loud.](assets/social/og-cover.png)
 
-Source for the public landing page at **https://boyskier.github.io/bedside-english/**.
+Source for the public landing page at **https://bedsideenglish.github.io/**.
 
 A single static `index.html` (no build step) presenting both platforms of the product:
 
@@ -50,14 +50,11 @@ question for subtler leading assumptions before publication.
 
 ### Search discovery on GitHub Pages
 
-This repository is deployed at the GitHub Pages **project path** `/bedside-english/`. A standards-
-compliant crawler policy would have to live at `https://boyskier.github.io/robots.txt`, which this
-project repository cannot publish. For that reason there is intentionally no misleading project-
-path `robots.txt`. Crawling remains allowed by default while the hostname root returns no policy.
+This repository is deployed at the GitHub Pages hostname root. Its crawler policy is published at
+`https://bedsideenglish.github.io/robots.txt` and points to the sitemap.
 
-Submit `https://boyskier.github.io/bedside-english/sitemap.xml` directly in Google Search Console
-and Bing Webmaster Tools. If the site moves to a custom domain, add `/robots.txt` at that domain
-root and point it to the sitemap there.
+Submit `https://bedsideenglish.github.io/sitemap.xml` directly in Google Search Console and Bing
+Webmaster Tools.
 
 `android.html` is the structural source for `index.html`. The sync tool preserves the root route's
 canonical URLs, brand link, and broader two-track problem statement. After editing `android.html`,

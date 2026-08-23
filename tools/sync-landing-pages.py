@@ -15,8 +15,8 @@ INDEX = ROOT / "index.html"
 # android.html is the structural source. The root route keeps its established
 # broader two-track problem statement in addition to route-specific URLs.
 ROOT_ROUTE_REPLACEMENTS = {
-    'content="https://boyskier.github.io/bedside-english/android.html"': 'content="https://boyskier.github.io/bedside-english/"',
-    'href="https://boyskier.github.io/bedside-english/android.html"': 'href="https://boyskier.github.io/bedside-english/"',
+    'content="https://bedsideenglish.github.io/android.html"': 'content="https://bedsideenglish.github.io/"',
+    'href="https://bedsideenglish.github.io/android.html"': 'href="https://bedsideenglish.github.io/"',
     'class="brand" href="android.html"': 'class="brand" href="./"',
     '.quote{max-width:20ch;margin:0;font-size:clamp(2.8rem,5.5vw,5.5rem);line-height:0.96}\n'
     '    .quote em{display:block;color:var(--color-accent-2);font-style:normal}':
