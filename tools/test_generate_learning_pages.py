@@ -127,5 +127,17 @@ class GeneratorTests(unittest.TestCase):
             )
 
 
+    def test_semantic_related_slug_linking(self) -> None:
+        source_a = self.write_case(valid_case("case_a"), "a.json")
+        source_b = self.write_case(valid_case("case_b"), "b.json")
+        spec_a = generator.PageSpec(source_a, "page-a", "Page A", "Page A summary", related_slug="page-b")
+        spec_b = generator.PageSpec(source_b, "page-b", "Page B", "Page B summary", related_slug="page-a")
+        self.assertEqual(generator.generate([spec_a, spec_b], self.root, False), 0)
+        output_a = (self.root / "learning/page-a/index.html").read_text(encoding="utf-8")
+        self.assertIn('href="../page-b/"', output_a)
+        output_b = (self.root / "learning/page-b/index.html").read_text(encoding="utf-8")
+        self.assertIn('href="../page-a/"', output_b)
+
+
 if __name__ == "__main__":
     unittest.main()

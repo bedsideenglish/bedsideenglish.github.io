@@ -80,6 +80,7 @@ class PageSpec:
     scenario: str = "A patient presents for a clinical history."
     quick_answer: str = "Start with an open question, then use the selected patient-friendly questions below to explore the symptom and the patient's concerns."
     reviewed_on: str = ""
+    related_slug: str | None = None
     question_edits: dict[str, dict[str, Any]] = field(default_factory=dict)
 
 
@@ -196,6 +197,13 @@ def specs_from_manifest(path: Path, source_root: Path) -> list[PageSpec]:
         data = validate_case(load_json(source), source)
         slug = item["slug"].strip()
         validate_slug(slug, where)
+        raw_related_slug = item.get("related_slug")
+        related_slug: str | None = None
+        if raw_related_slug is not None:
+            if not isinstance(raw_related_slug, str) or not raw_related_slug.strip():
+                raise GenerationError(f"{where}.related_slug must be a non-empty string when present")
+            related_slug = raw_related_slug.strip()
+            validate_slug(related_slug, f"{where}.related_slug")
         raw_edits = item.get("question_edits", [])
         if not isinstance(raw_edits, list):
             raise GenerationError(f"{where}.question_edits must be a list")
@@ -271,6 +279,7 @@ def specs_from_manifest(path: Path, source_root: Path) -> list[PageSpec]:
             scenario=item["scenario"].strip(),
             quick_answer=item["quick_answer"].strip(),
             reviewed_on=item["reviewed_on"].strip(),
+            related_slug=related_slug,
             question_edits=edits,
         ))
     if not specs:
@@ -533,8 +542,17 @@ def generate(specs: list[PageSpec], output_root: Path, check: bool) -> int:
     all_pages = list(combined.values())
 
     mismatches: list[Path] = []
+    pages_by_slug = {page.slug: page for page in all_pages}
     for spec, data in loaded:
-        related = next((page for page in sorted(all_pages, key=lambda item: item.title.lower()) if page.slug != spec.slug), None)
+        related: PageMeta | None = None
+        if spec.related_slug:
+            if spec.related_slug == spec.slug:
+                raise GenerationError(f"{spec.slug}: `related_slug` cannot point to itself")
+            related = pages_by_slug.get(spec.related_slug)
+            if not related:
+                raise GenerationError(f"{spec.slug}: unknown `related_slug` `{spec.related_slug}`")
+        if not related:
+            related = next((page for page in sorted(all_pages, key=lambda item: item.title.lower()) if page.slug != spec.slug), None)
         page, _ = build_page(spec, data, related)
         write_or_check(learning_root / spec.slug / "index.html", page, check, mismatches)
     write_or_check(learning_root / "index.html", build_hub(all_pages), check, mismatches)

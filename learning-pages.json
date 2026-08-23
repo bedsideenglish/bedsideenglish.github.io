@@ -3,6 +3,7 @@
     {
       "case": "cardio/cardio_001.json",
       "slug": "chest-pain-history-questions",
+      "related_slug": "thyroid-and-palpitations-questions",
       "h1": "How to ask about chest pain in English",
       "meta_description": "Learn natural, patient-friendly English questions for a chest pain history, including location, timing, character, associated symptoms, risk factors, and concerns.",
       "language_standard": "en-US",
@@ -14,7 +15,7 @@
       "question_edits": [
         {
           "objective": "Site and radiation of the pain",
-          "purpose": "Find where the pain is and whether it spreads",
+          "purpose": "Find where the pain is and whether it moves to other areas",
           "why_this_wording": "“Move anywhere else” uses everyday language that many patients understand more readily than the clinical term “radiate”.",
           "alternatives": [
             {
@@ -32,7 +33,7 @@
           "phrases": [
             "When did it start? Has it been there continuously, or does it come and go?"
           ],
-          "purpose": "Find out when the pain began and whether it is continuous or intermittent",
+          "purpose": "Find out when the pain began and whether it is continuous or comes and goes",
           "why_this_wording": "The follow-up offers both continuous and intermittent patterns instead of assuming that the pain occurs in repeated episodes."
         },
         {
@@ -40,7 +41,7 @@
           "phrases": [
             "How would you describe the pain?"
           ],
-          "purpose": "Understand what the pain feels like",
+          "purpose": "Ask the patient to describe what the pain feels like",
           "why_this_wording": "An open question lets the patient describe the pain in their own words before you offer examples.",
           "alternatives": [
             {
@@ -54,7 +55,7 @@
           "phrases": [
             "Have you felt sweaty, nauseated, or short of breath with the pain?"
           ],
-          "purpose": "Check for symptoms that happened with the pain"
+          "purpose": "Ask whether sweating, nausea, or shortness of breath accompanied the chest pain"
         },
         {
           "objective": "Cardiac risk factors",
@@ -75,13 +76,15 @@
           "objective": "Family history of early heart disease",
           "phrases": [
             "Has anyone in your family had a heart attack at a young age?"
-          ]
+          ],
+          "purpose": "Ask if heart conditions run in the family"
         }
       ]
     },
     {
       "case": "gi/gi_010.json",
       "slug": "abdominal-pain-history-questions",
+      "related_slug": "blood-in-urine-history-questions",
       "h1": "How to take an abdominal pain history in English",
       "meta_description": "Learn natural English questions for a crampy abdominal pain history, including bowel patterns, associated symptoms, triggers, family history, and patient concerns.",
       "language_standard": "en-US",
@@ -110,7 +113,7 @@
           "phrases": [
             "Do you ever need to get up at night to have a bowel movement?"
           ],
-          "purpose": "Ask whether bowel symptoms interrupt sleep",
+          "purpose": "Ask whether bowel symptoms wake the patient at night",
           "why_this_wording": "This describes the concrete experience of getting up at night instead of using the technical word “nocturnal”."
         },
         {
@@ -118,6 +121,7 @@
           "phrases": [
             "Have you noticed any blood in your stool?"
           ],
+          "purpose": "Check if the patient has seen blood in their stool",
           "why_this_wording": "The question is direct and neutral. A familiar everyday alternative can help when “stool” is not the patient's usual word.",
           "alternatives": [
             {
@@ -131,7 +135,7 @@
           "phrases": [
             "Do your symptoms get worse during stressful or busy periods?"
           ],
-          "purpose": "Explore whether stress or busy periods are linked with symptoms",
+          "purpose": "Ask whether stress or busy periods seem to worsen the symptoms",
           "why_this_wording": "“Get worse” is plainer and more widely understood than the idiom “flare up”.",
           "alternatives": [
             {
@@ -144,20 +148,22 @@
           "objective": "Caffeine intake",
           "phrases": [
             "How many cups of coffee do you usually drink a day?"
-          ]
+          ],
+          "purpose": "Ask about daily coffee or caffeine intake"
         },
         {
           "objective": "Family history of Crohn's",
           "phrases": [
             "Does anyone in your family have Crohn's disease or another bowel condition?"
           ],
-          "purpose": "Ask about relevant bowel conditions in the family without assuming the patient has already mentioned one"
+          "purpose": "Ask about relevant bowel conditions in the family"
         }
       ]
     },
     {
       "case": "pulm/pulm_003.json",
       "slug": "wheezing-and-asthma-questions",
+      "related_slug": "croup-and-barking-cough-questions",
       "h1": "How to ask about wheezing and asthma in English",
       "meta_description": "Learn patient-friendly clinical English questions for a respiratory history involving wheezing, chest tightness, nighttime coughing, triggers, and inhaler use.",
       "language_standard": "en-US",
@@ -172,7 +178,7 @@
           "phrases": [
             "Do you hear a high-pitched whistling sound when you breathe out, or feel tightness in your chest?"
           ],
-          "purpose": "Check for wheezing and chest tightness during breathing",
+          "purpose": "Ask whether the patient notices wheezing or chest tightness when breathing out",
           "why_this_wording": "Describing the sound as a “high-pitched whistling sound” helps patients identify wheezing even if they are unfamiliar with the clinical term.",
           "alternatives": [
             {
@@ -190,7 +196,7 @@
           "phrases": [
             "Do your cough or breathing symptoms tend to get worse at night or early in the morning?"
           ],
-          "purpose": "Find out if symptoms interrupt sleep or follow a daily pattern",
+          "purpose": "Ask if coughing or breathing trouble is worse at night or early in the morning",
           "why_this_wording": "Asking about night and early morning timing helps identify variable airway patterns without presupposing how often waking occurs.",
           "alternatives": [
             {
@@ -204,29 +210,30 @@
           "phrases": [
             "Do things like cold air, exercise, dust, or being around animals seem to bring on your breathing trouble?"
           ],
-          "purpose": "Identify environmental or physical triggers for breathing symptoms",
-          "why_this_wording": "Listing common everyday examples gives patients clear reference points without making the question overly rigid."
+          "purpose": "Ask what environmental or physical factors seem to bring on breathing trouble",
+          "why_this_wording": "Listing everyday examples like cold air, exercise, or dust gives patients helpful reference points without making the inquiry rigid."
         },
         {
           "objective": "Atopic triad screening",
           "phrases": [
             "Do you or anyone in your family have a history of asthma, allergies, or eczema?"
           ],
-          "purpose": "Check for a personal or family history of allergic conditions",
-          "why_this_wording": "Using everyday terms like “allergies” and “eczema” makes the question clearer than technical phrasing like “atopic triad” or “allergic rhinitis”."
+          "purpose": "Ask if the patient or family members have a history of asthma, allergies, or eczema",
+          "why_this_wording": "Using everyday terms like “allergies” alongside “eczema” makes the question clearer than technical phrasing like “atopic triad” or “allergic rhinitis”."
         },
         {
           "objective": "Reliever inhaler response",
           "phrases": [
             "If you use a rescue inhaler, how quickly does it help ease your breathing?"
           ],
-          "purpose": "Ask about response to quick-relief medication without assuming regular inhaler use"
+          "purpose": "Ask how quickly a rescue inhaler helps when breathing difficulty occurs"
         }
       ]
     },
     {
       "case": "neuro/neuro_004.json",
       "slug": "headache-history-questions",
+      "related_slug": "depression-history-questions",
       "h1": "How to take a headache history in English",
       "meta_description": "Learn clear, structured English questions for a headache consultation, including pain location, throbbing character, nausea, light sensitivity, and dark-room relief.",
       "language_standard": "en-US",
@@ -241,7 +248,7 @@
           "phrases": [
             "Where do you feel the headache, and what does the pain feel like?"
           ],
-          "purpose": "Explore where the headache is located and whether it feels throbbing, dull, or sharp",
+          "purpose": "Ask where the headache is located and what the pain feels like",
           "why_this_wording": "Starting with an open question avoids leading the patient to say the pain is only one-sided before they describe it in their own words.",
           "alternatives": [
             {
@@ -259,22 +266,22 @@
           "phrases": [
             "When you have a headache, do you feel nauseated, or do bright lights and loud sounds bother you?"
           ],
-          "purpose": "Screen for nausea, light sensitivity, and sound sensitivity",
-          "why_this_wording": "Using “bother you” offers a natural, conversational way to check for photophobia and phonophobia without using complex terminology."
+          "purpose": "Ask about nausea as well as sensitivity to light and sound during headaches",
+          "why_this_wording": "Using “bother you” offers a natural, conversational way to check for light and sound sensitivity without using technical terms."
         },
         {
           "objective": "Frequency and duration",
           "phrases": [
             "How often do you get these headaches, and how long does a typical one last?"
           ],
-          "purpose": "Determine the frequency and typical duration of headache episodes"
+          "purpose": "Ask how often headaches happen and how long they typically last"
         },
         {
           "objective": "Relief measures",
           "phrases": [
             "Does resting in a quiet, dark room help relieve the pain?"
           ],
-          "purpose": "Ask what measures or environments make the headache better",
+          "purpose": "Ask if resting in a dark, quiet room helps ease the headache",
           "why_this_wording": "Asking about a quiet, dark room provides a specific, practical example of a non-medication relieving factor."
         },
         {
@@ -282,13 +289,14 @@
           "phrases": [
             "Is there anything in particular you are most concerned about regarding these headaches?"
           ],
-          "purpose": "Understand the patient's underlying worries and expectations"
+          "purpose": "Explore what worries the patient most about their headaches"
         }
       ]
     },
     {
       "case": "psych/psych_003.json",
       "slug": "depression-history-questions",
+      "related_slug": "headache-history-questions",
       "h1": "How to ask about depression and low mood in English",
       "meta_description": "Learn empathetic, professional English questions for assessing low mood, loss of interest, early waking, energy levels, and sensitive safety screening.",
       "language_standard": "en-US",
@@ -303,8 +311,8 @@
           "phrases": [
             "Have you found yourself losing interest or pleasure in activities you normally enjoy?"
           ],
-          "purpose": "Explore low mood and loss of interest in everyday activities",
-          "why_this_wording": "An open-ended question about activities the patient normally enjoys allows them to share their own personal experiences rather than assuming specific hobbies.",
+          "purpose": "Ask about low mood and whether the patient has lost interest in usual activities",
+          "why_this_wording": "An open question about activities the patient normally enjoys allows them to share their own experiences rather than assuming specific hobbies.",
           "alternatives": [
             {
               "label": "Gentle exploration",
@@ -321,7 +329,7 @@
           "phrases": [
             "How has your sleep been? Do you find yourself waking up very early in the morning and unable to get back to sleep?"
           ],
-          "purpose": "Check for sleep changes, especially early morning awakening",
+          "purpose": "Ask about sleep changes, particularly waking up early and being unable to return to sleep",
           "why_this_wording": "Asking broadly about sleep first, then offering early waking as a specific pattern, creates a supportive opening for discussing sleep disruption."
         },
         {
@@ -329,23 +337,23 @@
           "phrases": [
             "Have you felt as though everyday tasks take a lot more effort than usual?"
           ],
-          "purpose": "Assess energy levels, physical slowness, and emotional strain"
+          "purpose": "Ask if everyday activities feel like they require much more effort than usual"
         },
         {
           "objective": "Suicidality and safety screen",
           "phrases": [
             "When people feel very down, they sometimes have thoughts that life is not worth living. Have you had any thoughts of hurting yourself or ending your life?"
           ],
-          "purpose": "Conduct a compassionate, direct safety screen for thoughts of self-harm",
-          "why_this_wording": "Normalizing the question by framing it as a common experience when people feel low reduces stigma and makes it easier for patients to speak honestly.",
+          "purpose": "Conduct a direct, compassionate safety check for thoughts of self-harm or suicide",
+          "why_this_wording": "Normalizing the question by framing it as a recognized experience when people feel low helps reduce stigma, while keeping the inquiry direct and unambiguous.",
           "alternatives": [
             {
               "label": "Direct safety check",
-              "phrase": "Have you had any thoughts of ending your life?"
+              "phrase": "Have you had any thoughts of wanting to end your life?"
             },
             {
-              "label": "Gentle transition",
-              "phrase": "Have things gotten so difficult that you have thought about giving up?"
+              "label": "Clear, gentle check",
+              "phrase": "Have you felt that life is no longer worth living, or had thoughts of harming yourself?"
             }
           ]
         },
@@ -354,20 +362,21 @@
           "phrases": [
             "Have you ever had times when you felt unusually energized, full of ideas, and needed much less sleep than usual?"
           ],
-          "purpose": "Screen for past periods of elevated mood or unusually high energy"
+          "purpose": "Ask if the patient has ever experienced times of unusually high energy or reduced need for sleep"
         }
       ]
     },
     {
       "case": "peds/peds_007.json",
       "slug": "croup-and-barking-cough-questions",
+      "related_slug": "wheezing-and-asthma-questions",
       "h1": "How to ask about a child's cough and stridor in English",
-      "meta_description": "Learn clear, reassuring English questions for a pediatric respiratory history, including barking cough, stridor, swallowing difficulty, and explaining care to parents.",
+      "meta_description": "Learn clear, reassuring English questions for a pediatric respiratory history, including barking cough, stridor, swallowing difficulty, and reassuring parents.",
       "language_standard": "en-US",
       "patient_answer_assumptions_checked": true,
       "lede": "Learn how to communicate calmly with worried parents, ask about barking cough and noisy breathing, and explain next steps in clear, supportive English.",
       "scenario": "A parent brings a young toddler to urgent care in the middle of the night because of a sudden harsh cough and noisy breathing.",
-      "quick_answer": "Ask the parent what the cough sounds like, whether the noisy breathing happens while resting quietly, if it worsens when lying flat, check for drooling or swallowing trouble, and explain breathing treatments clearly.",
+      "quick_answer": "Ask the parent what the cough sounds like, whether the noisy breathing happens while resting quietly, if it worsens when lying flat, check for drooling or swallowing trouble, and explain that the team will monitor the child closely.",
       "reviewed_on": "2026-08-23",
       "question_edits": [
         {
@@ -375,7 +384,7 @@
           "phrases": [
             "How would you describe his cough? Does it sound harsh or barking, like a seal?"
           ],
-          "purpose": "Help the parent describe the specific character of the child's cough",
+          "purpose": "Help the parent describe what the child's cough sounds like",
           "why_this_wording": "Comparing the sound to a seal or dog bark gives parents a clear, memorable reference point for croup cough without using clinical jargon.",
           "alternatives": [
             {
@@ -393,60 +402,67 @@
           "phrases": [
             "Have you heard a high-pitched, whistling sound when he breathes in, especially when he is resting quietly?"
           ],
-          "purpose": "Check for inspiratory stridor and whether it occurs at rest or only when agitated",
-          "why_this_wording": "Clarifying whether the breathing noise happens while the child is resting quietly is critical for assessing severity while remaining easy for parents to answer."
+          "purpose": "Ask if the parent hears noisy, high-pitched breathing when the child breathes in at rest",
+          "why_this_wording": "Clarifying whether the breathing noise happens while the child is resting quietly is important for understanding severity while remaining easy for parents to answer."
         },
         {
           "objective": "Ask about worsening with lying down or agitation",
           "phrases": [
             "Does his breathing seem harder or noisier when he lies down or gets upset?"
           ],
-          "purpose": "Explore whether positioning or crying affects breathing difficulty"
+          "purpose": "Ask if the breathing difficulty gets worse when the child lies down or cries"
         },
         {
           "objective": "Confirm absence of drooling (rule out epiglottitis)",
           "phrases": [
             "Is he able to swallow liquids normally, or have you noticed any unusual drooling?"
           ],
-          "purpose": "Screen for difficulty swallowing or excess drooling to evaluate airway safety"
+          "purpose": "Check if the child is swallowing liquids normally or having unusual drooling"
         },
         {
           "objective": "Explain the steroid and epinephrine treatment",
           "phrases": [
-            "We can give him a liquid medicine to help reduce swelling in his airway, and keep a close eye on his breathing here for a little while."
+            "We are going to monitor his breathing closely here and make sure he is getting plenty of air comfortably."
           ],
-          "purpose": "Explain the next steps and airway management in clear, reassuring terms",
-          "why_this_wording": "Describing medication as “reducing swelling in the airway” gives parents an intuitive understanding of the treatment and eases anxiety."
+          "purpose": "Reassure the parent and explain that the clinical team will monitor the child's breathing closely",
+          "why_this_wording": "Calmly explaining that the team is closely monitoring the child's breathing reassures anxious parents without overwhelming them with clinical details or making rigid treatment claims.",
+          "alternatives": [
+            {
+              "label": "Reassuring explanation",
+              "phrase": "We'll keep a close eye on his breathing right now to make sure he stays comfortable."
+            }
+          ]
         }
       ]
     },
     {
       "case": "derm/derm_010.json",
       "slug": "eczema-and-rash-history-questions",
+      "related_slug": "wheezing-and-asthma-questions",
       "h1": "How to take a rash and eczema history in English",
       "meta_description": "Learn practical English questions for a skin and rash consultation, covering lesion locations, itch severity, weeping patches, sleep impact, triggers, and infection signs.",
       "language_standard": "en-US",
       "patient_answer_assumptions_checked": true,
       "lede": "Practice clear American English questions to assess itchy rashes, describe skin changes accurately, and understand how symptoms affect daily comfort.",
       "scenario": "A parent brings a school-age child for evaluation of an intensely itchy, irritated rash inside the elbows and behind the knees.",
-      "quick_answer": "Ask where the rash is located and whether it is weeping, how badly it itches, if it disturbs sleep, whether there is a personal history of allergies or asthma, and check for signs of skin infection like yellow crusting.",
+      "quick_answer": "Ask where the rash is located and whether it is oozing fluid, how badly it itches, if it disturbs sleep, whether there is a personal history of allergies or asthma, and check for signs of skin infection like yellow crusting.",
       "reviewed_on": "2026-08-23",
       "question_edits": [
         {
           "objective": "Location and character",
           "phrases": [
-            "Where on the body is the rash, and are any areas weeping, crusting, or oozing?"
+            "Where on the body is the rash, and are any areas weeping, crusting, or oozing fluid?"
           ],
-          "purpose": "Identify the distribution of the rash and whether active weeping or crusting is present",
-          "why_this_wording": "Plain descriptive words like “weeping” and “oozing” accurately describe acute eczema flares in language patients and parents immediately recognize.",
+          "purpose": "Ask where the rash is and whether any areas are weeping, crusting, or oozing fluid",
+          "why_this_wording": "Everyday descriptive words like “oozing fluid” or “weeping” help parents describe active skin irritation clearly without needing specialized dermatologic terms.",
           "alternatives": [
             {
-              "label": "Open question",
+              "label": "Open description",
               "phrase": "Where is the rash located, and how does the skin look?"
             },
             {
               "label": "Direct follow-up",
-              "phrase": "Are the patches dry and scaly, or are they moist and weeping?"
+              "phrase": "Is the skin mostly dry and flaky, or is it red and oozing fluid?"
             }
           ]
         },
@@ -455,43 +471,44 @@
           "phrases": [
             "How severe is the itching, and does it keep her awake or wake her up at night?"
           ],
-          "purpose": "Assess the intensity of the itch and its impact on nighttime sleep",
-          "why_this_wording": "Asking specifically about sleep disruption provides an objective measure of itch severity and quality-of-life impact."
+          "purpose": "Ask how severe the itching is and whether it keeps the child awake at night",
+          "why_this_wording": "Asking specifically about sleep disruption provides a practical, concrete indicator of how much the itching is affecting the child's night and daily comfort."
         },
         {
           "objective": "Background atopy",
           "phrases": [
             "Has she ever had asthma, seasonal allergies, or sensitive skin in the past?"
           ],
-          "purpose": "Check for a personal history of allergic or atopic conditions"
+          "purpose": "Ask if the child has a personal history of asthma, seasonal allergies, or sensitive skin"
         },
         {
           "objective": "Triggers",
           "phrases": [
             "Have you noticed anything that seems to make the rash flare up, like certain soaps, fabrics, or sweating?"
           ],
-          "purpose": "Identify potential irritants or environmental triggers"
+          "purpose": "Ask if soaps, fabrics, sweating, or other factors seem to worsen the rash"
         },
         {
           "objective": "Signs of infection",
           "phrases": [
             "Have you noticed any yellow crusting, pus, increased warmth, or has she had a fever?"
           ],
-          "purpose": "Screen for signs of secondary bacterial infection on the affected skin",
-          "why_this_wording": "Asking about “yellow crusting” and “warmth” helps identify secondary infection without requiring the parent to know medical terminology like impetiginization."
+          "purpose": "Ask about signs of secondary skin infection such as yellow crusting, pus, or fever",
+          "why_this_wording": "Asking about “yellow crusting” and “warmth” helps identify skin infection in plain language without requiring medical terminology like impetiginization."
         }
       ]
     },
     {
       "case": "rheum/rheum_006.json",
       "slug": "lower-back-pain-history-questions",
+      "related_slug": "abdominal-pain-history-questions",
       "h1": "How to take a back pain history in English",
-      "meta_description": "Learn targeted English questions for back pain, distinguishing inflammatory from mechanical pain, morning stiffness, response to exercise, heel pain, and family history.",
+      "meta_description": "Learn targeted English questions for back pain, asking about morning stiffness, response to exercise, heel pain, eye symptoms, and family history.",
       "language_standard": "en-US",
       "patient_answer_assumptions_checked": true,
-      "lede": "Master precise English questions to evaluate back pain, distinguish inflammatory from mechanical causes, and ask about joint stiffness clearly.",
+      "lede": "Master precise English questions to evaluate back pain, explore patterns of joint stiffness, and ask about related symptoms clearly.",
       "scenario": "A young adult patient presents with persistent lower back pain and morning stiffness that has been present for several months.",
-      "quick_answer": "Ask if the back pain is worse in the morning and whether exercise helps, how long it has lasted, if there is heel or tendon tenderness, past eye redness, and whether any family members have similar joint or spine conditions.",
+      "quick_answer": "Ask if the back pain is worse in the morning and whether gentle movement helps, how long it has lasted, if there is heel or foot tenderness, past eye redness, and whether family members have similar joint or spine conditions.",
       "reviewed_on": "2026-08-23",
       "question_edits": [
         {
@@ -499,8 +516,8 @@
           "phrases": [
             "Is your back pain worse when you first wake up in the morning, and does moving around or exercising help relieve it?"
           ],
-          "purpose": "Distinguish inflammatory back pain from mechanical strain based on rest and movement patterns",
-          "why_this_wording": "Explicitly contrasting rest and movement helps patients describe whether physical activity relieves or worsens their stiffness.",
+          "purpose": "Ask whether the back pain is worse in the morning and whether gentle movement or exercise helps",
+          "why_this_wording": "Contrasting morning rest with movement helps patients describe whether physical activity relieves or worsens their stiffness.",
           "alternatives": [
             {
               "label": "Open exploration",
@@ -517,29 +534,29 @@
           "phrases": [
             "How long have you been experiencing this back pain?"
           ],
-          "purpose": "Establish the chronological timeline and chronicity of the back pain"
+          "purpose": "Ask how long the back pain and stiffness have been present"
         },
         {
           "objective": "Enthesitis symptoms",
           "phrases": [
             "Have you had any tenderness or pain at the back of your heel or under your feet?"
           ],
-          "purpose": "Check for tendon or enthesis inflammation such as Achilles tenderness",
-          "why_this_wording": "Specifying “the back of your heel or under your feet” translates the medical concept of enthesitis into concrete anatomy that anyone can locate."
+          "purpose": "Ask about pain or tenderness around the heels or the bottom of the feet",
+          "why_this_wording": "Specifying “the back of your heel or under your feet” translates the medical concept of enthesitis into everyday anatomy that patients recognize immediately."
         },
         {
           "objective": "Eye symptoms",
           "phrases": [
             "Have you ever had a painful, red eye or sudden blurriness in your vision?"
           ],
-          "purpose": "Screen for extra-articular inflammatory manifestations such as anterior uveitis"
+          "purpose": "Ask if the patient has ever had episodes of painful, red eyes or blurred vision"
         },
         {
           "objective": "Family history",
           "phrases": [
             "Has anyone in your family been diagnosed with chronic back conditions, psoriasis, or arthritis?"
           ],
-          "purpose": "Explore genetic and family history of inflammatory joint or spine conditions",
+          "purpose": "Ask if family members have been diagnosed with chronic back conditions, psoriasis, or arthritis",
           "why_this_wording": "Including related conditions like psoriasis or chronic back conditions broadens the family inquiry beyond generic arthritis."
         }
       ]
@@ -547,6 +564,7 @@
     {
       "case": "endo/endo_003.json",
       "slug": "thyroid-and-palpitations-questions",
+      "related_slug": "chest-pain-history-questions",
       "h1": "How to ask about palpitations and thyroid symptoms in English",
       "meta_description": "Learn natural English questions to assess racing heartbeat, unexplained weight loss, heat intolerance, eye changes, and family thyroid history.",
       "language_standard": "en-US",
@@ -561,7 +579,7 @@
           "phrases": [
             "Does your heart ever feel like it is beating unusually fast, fluttering, or pounding, even when you are resting?"
           ],
-          "purpose": "Assess palpitations, resting tachycardia, and irregular heart rhythms",
+          "purpose": "Ask if the patient experiences a racing, fluttering, or pounding heartbeat at rest",
           "why_this_wording": "Giving everyday descriptors such as “racing, fluttering, or pounding” helps patients articulate heart sensations accurately.",
           "alternatives": [
             {
@@ -579,22 +597,22 @@
           "phrases": [
             "Have you noticed any change in your weight recently, even if your appetite has stayed the same or increased?"
           ],
-          "purpose": "Screen for unintentional weight loss alongside changes in appetite",
-          "why_this_wording": "Asking about weight change and appetite together highlights the classic metabolic mismatch without assuming an exact number of pounds lost."
+          "purpose": "Ask if the patient has noticed weight loss despite maintaining or increasing their appetite",
+          "why_this_wording": "Asking about weight change and appetite together highlights the metabolic contrast without assuming an exact number of pounds lost."
         },
         {
           "objective": "Heat intolerance and sweating",
           "phrases": [
             "Do you find yourself feeling uncomfortably hot or sweating more than usual, even in a cool room?"
           ],
-          "purpose": "Evaluate temperature sensitivity and excessive perspiration"
+          "purpose": "Ask if the patient feels unusually hot or sweats more than others in normal temperatures"
         },
         {
           "objective": "Eye symptoms",
           "phrases": [
             "Have you noticed any changes in your eyes, such as feeling gritty, dry, or looking more prominent?"
           ],
-          "purpose": "Screen for thyroid-related eye symptoms including gritty sensation or proptosis",
+          "purpose": "Ask if the patient has noticed their eyes feeling gritty, dry, or looking more prominent",
           "why_this_wording": "Phrasing as “feeling gritty or looking more prominent” is much more sensitive and conversational than using technical terms like exophthalmos."
         },
         {
@@ -602,13 +620,14 @@
           "phrases": [
             "Does anyone in your family have a history of thyroid conditions or other autoimmune disorders?"
           ],
-          "purpose": "Ask about hereditary thyroid and autoimmune disease"
+          "purpose": "Ask if thyroid conditions or autoimmune disorders run in the family"
         }
       ]
     },
     {
       "case": "urology/urology_004.json",
       "slug": "blood-in-urine-history-questions",
+      "related_slug": "abdominal-pain-history-questions",
       "h1": "How to ask about blood in the urine in English",
       "meta_description": "Learn clear, sensitive English questions for a hematuria history, including pain character, blood clots, smoking history, chemical exposures, and urinary burning.",
       "language_standard": "en-US",
@@ -623,8 +642,8 @@
           "phrases": [
             "When you notice blood in your urine, is there any pain or burning, or is it completely painless?"
           ],
-          "purpose": "Differentiate painless hematuria from painful urinary conditions and evaluate the stream",
-          "why_this_wording": "Asking directly whether passing blood is painful or painless helps clarify the clinical picture without prompting a specific answer.",
+          "purpose": "Ask if the blood in the urine occurs with pain or is completely painless",
+          "why_this_wording": "Asking directly whether passing blood is painful or painless helps clarify the symptom without prompting a specific answer.",
           "alternatives": [
             {
               "label": "Stream timing",
@@ -641,7 +660,7 @@
           "phrases": [
             "Have you noticed any blood clots or stringy pieces in your urine?"
           ],
-          "purpose": "Check for the passage of macroscopic blood clots in the urine",
+          "purpose": "Ask if the patient has noticed blood clots or stringy pieces in the urine",
           "why_this_wording": "Using everyday terms like “blood clots or stringy pieces” helps patients recognize and report macroscopic clotting clearly."
         },
         {
@@ -649,7 +668,7 @@
           "phrases": [
             "Do you currently smoke cigarettes, or have you smoked in the past?"
           ],
-          "purpose": "Assess tobacco use history and duration in a neutral, non-judgmental tone",
+          "purpose": "Ask about current and past smoking history in a neutral, non-judgmental tone",
           "why_this_wording": "A neutral phrasing separates current from past smoking without making the patient feel judged."
         },
         {
@@ -657,14 +676,14 @@
           "phrases": [
             "In your work or past jobs, have you ever worked around industrial chemicals, dyes, or solvents?"
           ],
-          "purpose": "Screen for occupational exposures to aromatic amines and solvents"
+          "purpose": "Ask if the patient has worked around industrial chemicals, dyes, or solvents"
         },
         {
           "objective": "Irritative LUTS screening",
           "phrases": [
             "Have you had any burning when you urinate, or felt the need to go to the bathroom more frequently than usual?"
           ],
-          "purpose": "Check for lower urinary tract symptoms such as dysuria, urgency, or frequency"
+          "purpose": "Ask if the patient has experienced burning with urination or increased urinary frequency"
         }
       ]
     }
