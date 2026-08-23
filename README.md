@@ -35,6 +35,23 @@ The default case source is the sibling Android repository at
 `..\Medvoicetrainer-android-app-version\data\cases`. Override it with `--source-root` when the
 workspace layout differs. The generator has intentionally no mass-generation option.
 
+Published manifest entries must include a plain-language quick answer, an editorial update date,
+an honest review-status note, and at least two reviewed wording explanations. `question_edits`
+can replace or split a source question and add `Why this wording` comparisons without changing the
+application's source case. Each generated page also records the source JSON SHA-256 in an HTML
+comment, so `--check` catches stale pages after any source-case change.
+
+### Search discovery on GitHub Pages
+
+This repository is deployed at the GitHub Pages **project path** `/bedside-english/`. A standards-
+compliant crawler policy would have to live at `https://boyskier.github.io/robots.txt`, which this
+project repository cannot publish. For that reason there is intentionally no misleading project-
+path `robots.txt`. Crawling remains allowed by default while the hostname root returns no policy.
+
+Submit `https://boyskier.github.io/bedside-english/sitemap.xml` directly in Google Search Console
+and Bing Webmaster Tools. If the site moves to a custom domain, add `/robots.txt` at that domain
+root and point it to the sitemap there.
+
 `android.html` is the structural source for `index.html`. The sync tool preserves the root route's
 canonical URLs, brand link, and broader two-track problem statement. After editing `android.html`,
 update the root page with:

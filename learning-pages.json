@@ -4,13 +4,102 @@
       "case": "cardio/cardio_001.json",
       "slug": "chest-pain-history-questions",
       "h1": "How to ask about chest pain in English",
-      "meta_description": "Learn natural, patient-friendly English questions for a chest pain history, including location, timing, character, associated symptoms, risk factors, and concerns."
+      "meta_description": "Learn natural, patient-friendly English questions for a chest pain history, including location, timing, character, associated symptoms, risk factors, and concerns.",
+      "quick_answer": "Start with an open question, then ask where the pain is, when it started, what it feels like, whether it spreads, and about symptoms such as shortness of breath, nausea, or sweating.",
+      "reviewed_on": "2026-08-23",
+      "review_status": "Editorial language review completed for this sample; no named clinical reviewer is currently listed.",
+      "question_edits": [
+        {
+          "objective": "Site and radiation of the pain",
+          "purpose": "Find where the pain is and whether it spreads",
+          "why_this_wording": "“Move anywhere else” uses everyday language that many patients understand more readily than the clinical term “radiate”.",
+          "alternatives": [
+            {"label": "More clinical", "phrase": "Does the pain radiate anywhere?"},
+            {"label": "Patient-friendly", "phrase": "Does the pain move or spread anywhere else?"}
+          ]
+        },
+        {
+          "objective": "Character of the pain",
+          "phrases": ["How would you describe the pain?"],
+          "purpose": "Understand what the pain feels like",
+          "why_this_wording": "An open question lets the patient describe the pain in their own words before you offer examples.",
+          "alternatives": [
+            {"label": "If the patient is unsure", "phrase": "Would you say it feels sharp, burning, tight, or something else?"}
+          ]
+        },
+        {
+          "objective": "Associated autonomic symptoms",
+          "purpose": "Check for symptoms that happened with the pain"
+        },
+        {
+          "objective": "Cardiac risk factors",
+          "phrases": [
+            "Do you have high blood pressure, diabetes, or high cholesterol?",
+            "Do you smoke?"
+          ],
+          "purpose": "Ask about relevant health conditions and smoking without packing everything into one question",
+          "why_this_wording": "Separating medical conditions from smoking makes the questions easier to follow and gives the patient space to answer each part.",
+          "alternatives": [
+            {"label": "Softer transition", "phrase": "Can I ask whether you smoke?"}
+          ]
+        },
+        {
+          "objective": "Family history of early heart disease",
+          "phrases": ["Has anyone in your family had a heart attack at a young age?"]
+        }
+      ]
     },
     {
       "case": "gi/gi_010.json",
       "slug": "abdominal-pain-history-questions",
       "h1": "How to take an abdominal pain history in English",
-      "meta_description": "Learn natural English questions for a crampy abdominal pain history, including bowel patterns, associated symptoms, triggers, family history, and patient concerns."
+      "meta_description": "Learn natural English questions for a crampy abdominal pain history, including bowel patterns, associated symptoms, triggers, family history, and patient concerns.",
+      "quick_answer": "Start with an open question, then ask where the pain is, how it relates to bowel movements, whether symptoms occur at night, whether there is any blood or unplanned weight loss, and what seems to trigger the symptoms.",
+      "reviewed_on": "2026-08-23",
+      "review_status": "Editorial language review completed for this sample; no named clinical reviewer is currently listed.",
+      "question_edits": [
+        {
+          "objective": "Relation to bowel movement",
+          "phrases": ["Does the cramping get better after you have a bowel movement?"],
+          "purpose": "Find out whether the pain changes after a bowel movement",
+          "why_this_wording": "“Get better” and “have a bowel movement” are widely understood and avoid building an exact timing or answer into the first question.",
+          "alternatives": [
+            {"label": "Another natural option", "phrase": "Does the pain ease after you open your bowels?"}
+          ]
+        },
+        {
+          "objective": "Nocturnal symptoms",
+          "phrases": ["Do you ever need to get up at night to open your bowels?"],
+          "purpose": "Ask whether bowel symptoms interrupt sleep",
+          "why_this_wording": "This describes the concrete experience of getting up at night instead of using the technical word “nocturnal”."
+        },
+        {
+          "objective": "Blood in stool",
+          "phrases": ["Have you noticed any blood in your stool?"],
+          "why_this_wording": "The question is direct and neutral. A familiar everyday alternative can help when “stool” is not the patient's usual word.",
+          "alternatives": [
+            {"label": "Everyday alternative", "phrase": "Have you noticed any blood when you go to the toilet?"}
+          ]
+        },
+        {
+          "objective": "Stress and trigger pattern",
+          "phrases": ["Do your symptoms get worse during stressful or busy periods?"],
+          "purpose": "Explore whether stress or busy periods are linked with symptoms",
+          "why_this_wording": "“Get worse” is plainer and more widely understood than the idiom “flare up”.",
+          "alternatives": [
+            {"label": "Another natural option", "phrase": "Do stress or busy periods seem to trigger your symptoms?"}
+          ]
+        },
+        {
+          "objective": "Caffeine intake",
+          "phrases": ["How many cups of coffee do you usually drink a day?"]
+        },
+        {
+          "objective": "Family history of Crohn's",
+          "phrases": ["Does anyone in your family have Crohn's disease or another bowel condition?"],
+          "purpose": "Ask about relevant bowel conditions in the family without assuming the patient has already mentioned one"
+        }
+      ]
     }
   ]
 }

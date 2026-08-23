@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -193,11 +194,20 @@ def main() -> int:
         teaching = case.get("teaching", {})
         for field in EXCLUDED_TEACHING_FIELDS:
             forbidden.extend(strings(teaching.get(field)))
-        output = html.unescape((ROOT / "learning" / entry["slug"] / "index.html").read_text(encoding="utf-8"))
+        output_path = ROOT / "learning" / entry["slug"] / "index.html"
+        output = html.unescape(output_path.read_text(encoding="utf-8"))
         leaked = sorted({value for value in forbidden if value and value in output})
         if leaked:
             preview = "; ".join(repr(value[:80]) for value in leaked[:3])
             errors.append(f"learning/{entry['slug']}/index.html: excluded source content found: {preview}")
+        expected_hash = hashlib.sha256(case_path.read_bytes()).hexdigest()
+        if f"source-sha256: {expected_hash}" not in output:
+            errors.append(f"learning/{entry['slug']}/index.html: source hash is missing or stale")
+        coaching_count = output.count('class="wording-coach"')
+        if coaching_count < 2:
+            errors.append(f"learning/{entry['slug']}/index.html: expected at least two wording-coaching blocks, found {coaching_count}")
+        if "Learning level" in output or "educationalLevel" in output:
+            errors.append(f"learning/{entry['slug']}/index.html: ambiguous case difficulty is exposed as a learning level")
 
     if errors:
         print("Learning-page validation failed:")

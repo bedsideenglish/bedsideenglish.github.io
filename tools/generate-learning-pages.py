@@ -8,11 +8,13 @@ editorial manifest or passed explicitly with --case.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import re
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -26,7 +28,7 @@ SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 PLACEHOLDER_RE = re.compile(r"{{([A-Z0-9_]+)}}")
 PAGE_META_RE = re.compile(
     r'<article class="learning-page" data-case-id="([^"]+)" '
-    r'data-page-title="([^"]+)" data-summary="([^"]+)">'
+    r'data-page-title="([^"]+)" data-summary="([^"]+)"[^>]*>'
 )
 
 GROUPS = (
@@ -48,6 +50,10 @@ class PageSpec:
     slug: str
     h1: str
     meta_description: str
+    quick_answer: str = "Start with an open question, then use the selected patient-friendly questions below to explore the symptom and the patient's concerns."
+    reviewed_on: str = ""
+    review_status: str = "Preview generated from source data; editorial review is still required."
+    question_edits: dict[str, dict[str, Any]] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -131,13 +137,72 @@ def specs_from_manifest(path: Path, source_root: Path) -> list[PageSpec]:
         where = f"{path}: pages[{index}]"
         if not isinstance(item, dict):
             raise GenerationError(f"{where} must be an object")
-        for key in ("case", "slug", "h1", "meta_description"):
+        for key in ("case", "slug", "h1", "meta_description", "quick_answer", "reviewed_on", "review_status"):
             if not isinstance(item.get(key), str) or not item[key].strip():
                 raise GenerationError(f"{where}.{key} must be a non-empty string")
+        try:
+            date.fromisoformat(item["reviewed_on"])
+        except ValueError as exc:
+            raise GenerationError(f"{where}.reviewed_on must use YYYY-MM-DD format") from exc
         source = resolve_case(item["case"], source_root)
+        data = validate_case(load_json(source), source)
         slug = item["slug"].strip()
         validate_slug(slug, where)
-        specs.append(PageSpec(source, slug, item["h1"].strip(), item["meta_description"].strip()))
+        raw_edits = item.get("question_edits", [])
+        if not isinstance(raw_edits, list):
+            raise GenerationError(f"{where}.question_edits must be a list")
+        source_objectives = {ask["objective"].strip() for ask in data["teaching"]["must_ask"]}
+        edits: dict[str, dict[str, Any]] = {}
+        coaching_count = 0
+        allowed_edit_keys = {"objective", "phrases", "purpose", "why_this_wording", "alternatives"}
+        for edit_index, edit in enumerate(raw_edits):
+            edit_where = f"{where}.question_edits[{edit_index}]"
+            if not isinstance(edit, dict):
+                raise GenerationError(f"{edit_where} must be an object")
+            unknown = set(edit) - allowed_edit_keys
+            if unknown:
+                raise GenerationError(f"{edit_where} contains unsupported keys: {', '.join(sorted(unknown))}")
+            objective = edit.get("objective")
+            if not isinstance(objective, str) or objective.strip() not in source_objectives:
+                raise GenerationError(f"{edit_where}.objective must exactly match a source must_ask objective")
+            objective = objective.strip()
+            if objective in edits:
+                raise GenerationError(f"{edit_where}: duplicate edit for objective {objective!r}")
+            phrases = edit.get("phrases")
+            if phrases is not None and (
+                not isinstance(phrases, list)
+                or not phrases
+                or any(not isinstance(phrase, str) or not phrase.strip() for phrase in phrases)
+            ):
+                raise GenerationError(f"{edit_where}.phrases must be a non-empty list of strings")
+            for text_key in ("purpose", "why_this_wording"):
+                if text_key in edit and (not isinstance(edit[text_key], str) or not edit[text_key].strip()):
+                    raise GenerationError(f"{edit_where}.{text_key} must be a non-empty string")
+            alternatives = edit.get("alternatives", [])
+            if not isinstance(alternatives, list):
+                raise GenerationError(f"{edit_where}.alternatives must be a list")
+            if alternatives and not edit.get("why_this_wording"):
+                raise GenerationError(f"{edit_where}.alternatives requires `why_this_wording`")
+            for alt_index, alternative in enumerate(alternatives):
+                if not isinstance(alternative, dict) or set(alternative) != {"label", "phrase"}:
+                    raise GenerationError(f"{edit_where}.alternatives[{alt_index}] requires only `label` and `phrase`")
+                if any(not isinstance(alternative[key], str) or not alternative[key].strip() for key in ("label", "phrase")):
+                    raise GenerationError(f"{edit_where}.alternatives[{alt_index}] values must be non-empty strings")
+            if edit.get("why_this_wording"):
+                coaching_count += 1
+            edits[objective] = edit
+        if coaching_count < 2:
+            raise GenerationError(f"{where}: reviewed pages require at least two `why_this_wording` coaching notes")
+        specs.append(PageSpec(
+            source=source,
+            slug=slug,
+            h1=item["h1"].strip(),
+            meta_description=item["meta_description"].strip(),
+            quick_answer=item["quick_answer"].strip(),
+            reviewed_on=item["reviewed_on"].strip(),
+            review_status=item["review_status"].strip(),
+            question_edits=edits,
+        ))
     if not specs:
         raise GenerationError(f"{path}: the manifest contains no selected pages")
     return specs
@@ -146,7 +211,7 @@ def specs_from_manifest(path: Path, source_root: Path) -> list[PageSpec]:
 def validate_case(data: Any, source: Path) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise GenerationError(f"{source}: top-level JSON must be an object")
-    for key in ("id", "system", "difficulty", "chief_complaint"):
+    for key in ("id", "system", "chief_complaint"):
         require_text(data, key, source)
     teaching = data.get("teaching")
     if not isinstance(teaching, dict):
@@ -187,7 +252,7 @@ def question_group(ask: dict[str, Any]) -> str:
     return "Other useful questions"
 
 
-def render_question_sections(asks: list[dict[str, Any]]) -> str:
+def render_question_sections(asks: list[dict[str, Any]], edits: dict[str, dict[str, Any]]) -> str:
     grouped: dict[str, list[dict[str, Any]]] = {}
     for ask in asks:
         grouped.setdefault(question_group(ask), []).append(ask)
@@ -199,10 +264,42 @@ def render_question_sections(asks: list[dict[str, Any]]) -> str:
             continue
         cards = []
         for ask in rows:
+            edit = edits.get(ask["objective"].strip(), {})
+            phrases = edit.get("phrases") or [ask["say"].strip()]
+            phrases_html = "\n".join(
+                f'                  <p class="phrase">“{escaped(phrase.strip())}”</p>' for phrase in phrases
+            )
+            purpose = edit.get("purpose", ask["objective"].strip())
+            coaching_html = ""
+            why = edit.get("why_this_wording")
+            alternatives = edit.get("alternatives", [])
+            if why or alternatives:
+                option_rows = ""
+                if alternatives:
+                    option_rows = (
+                        '\n                  <dl class="wording-options">\n'
+                        + "\n".join(
+                            '                    <div>'
+                            f'<dt>{escaped(option["label"].strip())}</dt>'
+                            f'<dd>“{escaped(option["phrase"].strip())}”</dd></div>'
+                            for option in alternatives
+                        )
+                        + "\n                  </dl>"
+                    )
+                coaching_html = (
+                    '\n                <div class="wording-coach">\n'
+                    '                  <h4>Why this wording</h4>\n'
+                    f'                  <p>{escaped(why.strip())}</p>'
+                    + option_rows
+                    + "\n                </div>"
+                )
             cards.append(
                 '              <article class="question-card">\n'
-                f'                <p class="phrase">“{escaped(ask["say"].strip())}”</p>\n'
-                f'                <p class="purpose"><strong>Purpose:</strong> {escaped(ask["objective"].strip())}.</p>\n'
+                '                <div class="phrase-list">\n'
+                f"{phrases_html}\n"
+                '                </div>\n'
+                f'                <p class="purpose"><strong>Purpose:</strong> {escaped(purpose.strip())}.</p>'
+                f"{coaching_html}\n"
                 "              </article>"
             )
         sections.append(
@@ -225,7 +322,6 @@ def structured_data(spec: PageSpec, data: dict[str, Any], canonical_url: str) ->
         "inLanguage": "en",
         "isAccessibleForFree": True,
         "learningResourceType": "Clinical communication guide",
-        "educationalLevel": data["difficulty"].strip().lower(),
         "teaches": spec.h1,
         "audience": {
             "@type": "EducationalAudience",
@@ -252,11 +348,6 @@ def existing_pages(learning_root: Path) -> dict[str, PageMeta]:
 def build_page(spec: PageSpec, data: dict[str, Any], related: PageMeta | None) -> tuple[str, PageMeta]:
     case_id = data["id"].strip()
     asks = data["teaching"]["must_ask"]
-    objectives = [ask["objective"].strip().lower() for ask in asks[:4]]
-    quick_answer = (
-        "Start with an open invitation, then use focused questions about "
-        f"{oxford_join(objectives)}. The phrases below are selected for this scenario, so adapt them to the patient's answers."
-    )
     complaint = data["chief_complaint"].strip()
     scenario = f"A patient reports {complaint}. Your task is to explore the history in natural English without overwhelming the patient with clinical jargon."
     lede = f"Use clear, patient-friendly questions to explore a history of {complaint}. Learn what each phrase is trying to clarify, then say it aloud."
@@ -272,6 +363,12 @@ def build_page(spec: PageSpec, data: dict[str, Any], related: PageMeta | None) -
         if related
         else '<a href="../">Browse all clinical English guides <span aria-hidden="true">→</span></a>'
     )
+    reviewed_date = date.fromisoformat(spec.reviewed_on) if spec.reviewed_on else None
+    reviewed_display = (
+        f"{reviewed_date.day} {reviewed_date.strftime('%B %Y')}"
+        if reviewed_date
+        else "Not yet reviewed"
+    )
     values = {
         "PAGE_TITLE": escaped(f"{spec.h1} | Bedside English"),
         "META_DESCRIPTION": escaped(spec.meta_description),
@@ -279,16 +376,19 @@ def build_page(spec: PageSpec, data: dict[str, Any], related: PageMeta | None) -
         "OG_IMAGE_URL": escaped(f"{SITE_ORIGIN}/assets/social/og-cover.png"),
         "STRUCTURED_DATA": structured_data(spec, data, canonical_url),
         "CASE_ID": escaped(case_id),
+        "SOURCE_SHA256": hashlib.sha256(spec.source.read_bytes()).hexdigest(),
         "H1": escaped(spec.h1),
-        "LEVEL": escaped(humanize(data["difficulty"])),
         "SYSTEM": escaped(humanize(data["system"])),
         "LEDE": escaped(lede),
-        "QUICK_ANSWER": escaped(quick_answer),
-        "FEATURED_QUESTION": escaped(asks[0]["say"].strip()),
+        "QUICK_ANSWER": escaped(spec.quick_answer),
+        "FEATURED_QUESTION": escaped((spec.question_edits.get(asks[0]["objective"].strip(), {}).get("phrases") or [asks[0]["say"].strip()])[0]),
         "SCENARIO": escaped(scenario),
         "LANGUAGE_NOTE": escaped(language_note),
-        "QUESTION_SECTIONS": render_question_sections(asks),
+        "QUESTION_SECTIONS": render_question_sections(asks, spec.question_edits),
         "RELATED_LINK": related_html,
+        "REVIEWED_ON_ISO": escaped(spec.reviewed_on),
+        "REVIEWED_ON_DISPLAY": escaped(reviewed_display),
+        "REVIEW_STATUS": escaped(spec.review_status),
     }
     rendered = render_template(TEMPLATE_ROOT / "page.html", values)
     return rendered, PageMeta(case_id, spec.slug, spec.h1, spec.meta_description)

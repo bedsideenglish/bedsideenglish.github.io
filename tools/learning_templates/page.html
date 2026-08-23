@@ -38,9 +38,10 @@
   </header>
 
   <main id="main">
-    <article class="learning-page" data-case-id="{{CASE_ID}}" data-page-title="{{H1}}" data-summary="{{META_DESCRIPTION}}">
+    <!-- source-case: {{CASE_ID}}; source-sha256: {{SOURCE_SHA256}} -->
+    <article class="learning-page" data-case-id="{{CASE_ID}}" data-page-title="{{H1}}" data-summary="{{META_DESCRIPTION}}" data-reviewed-on="{{REVIEWED_ON_ISO}}">
       <header class="hero shell">
-        <p class="eyebrow">Clinical English learning guide · {{LEVEL}}</p>
+        <p class="eyebrow">Clinical English learning guide</p>
         <h1>{{H1}}</h1>
         <p class="lede">{{LEDE}}</p>
         <div class="hero-actions">
@@ -56,6 +57,7 @@
           <a href="#scenario">Scenario</a>
           <a href="#questions">Useful questions</a>
           <a href="#practice">Speaking pattern</a>
+          <a href="#about">About this guide</a>
         </aside>
 
         <div class="article-body">
@@ -73,7 +75,6 @@
               <p><strong>Imagine this consultation:</strong> {{SCENARIO}}</p>
               <dl>
                 <div><dt>Clinical area</dt><dd>{{SYSTEM}}</dd></div>
-                <div><dt>Learning level</dt><dd>{{LEVEL}}</dd></div>
                 <div><dt>Your focus</dt><dd>Clear, patient-friendly history taking</dd></div>
               </dl>
             </div>
@@ -113,6 +114,17 @@
             <h2>Another clinical English guide</h2>
             {{RELATED_LINK}}
           </nav>
+
+          <section class="about-guide" id="about" aria-labelledby="about-title">
+            <p class="section-label">Publication notes</p>
+            <h2 id="about-title">About this guide</h2>
+            <ul>
+              <li>Based on a simulated Bedside English clinical scenario.</li>
+              <li>Phrases are selected and edited for patient-friendly clinical communication.</li>
+              <li><strong>Review status:</strong> {{REVIEW_STATUS}}</li>
+              <li><strong>Last editorial update:</strong> <time datetime="{{REVIEWED_ON_ISO}}">{{REVIEWED_ON_DISPLAY}}</time>.</li>
+            </ul>
+          </section>
 
           <aside class="disclaimer">
             <p><strong>Educational use only.</strong> This page supports clinical communication practice. It is not medical advice, a diagnostic protocol, or a complete history-taking checklist. Follow your local guidance and clinical supervision.</p>

@@ -8,7 +8,6 @@ on:
       - android-everyday.html
       - learning-pages.json
       - learning/**
-      - robots.txt
       - sitemap.xml
       - tools/generate-learning-pages.py
       - tools/check-learning-pages.py
@@ -25,7 +24,6 @@ on:
       - android-everyday.html
       - learning-pages.json
       - learning/**
-      - robots.txt
       - sitemap.xml
       - tools/generate-learning-pages.py
       - tools/check-learning-pages.py

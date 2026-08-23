@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://boyskier.github.io/bedside-english/sitemap.xml
