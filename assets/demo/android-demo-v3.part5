@@ -1,7 +1,0 @@
-meout(()=>truth.classList.add('show'),2600)}
-async function fullLanding(){if(transitioning)return;transitioning=true;clearInterval(timerId);if(canSpeak)speechSynthesis.cancel();const html=await landingHTML;if(html){history.replaceState(null,'','android.html');document.open();document.write(html);document.close()}else location.href='android.html'}
-hold.addEventListener('pointerdown',e=>{e.preventDefault();try{hold.setPointerCapture(e.pointerId)}catch{}startHold()});hold.addEventListener('pointerup',e=>{e.preventDefault();stopHold()});hold.addEventListener('pointercancel',stopHold);hold.addEventListener('lostpointercapture',stopHold);hold.addEventListener('contextmenu',e=>e.preventDefault());hold.addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='Enter')&&!e.repeat){e.preventDefault();startHold()}});hold.addEventListener('keyup',e=>{if(e.code==='Space'||e.code==='Enter'){e.preventDefault();stopHold()}});$('#skip').addEventListener('click',fullLanding);go.addEventListener('click',fullLanding);document.addEventListener('visibilitychange',()=>{if(document.hidden){stopHold();if(canSpeak)speechSynthesis.cancel()}});addEventListener('beforeunload',()=>{clearInterval(timerId);if(canSpeak)speechSynthesis.cancel()});opening();
-})();
-</script>
-</body>
-</html>
