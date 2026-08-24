@@ -82,6 +82,14 @@
     .lookup{display:inline-flex;align-items:center;gap:0.4em;margin:var(--space-2xs) 0 var(--space-md);padding:0.55rem 0.9rem;border:var(--rule-hairline) solid var(--color-ink);border-radius:var(--radius-input);font-size:var(--text-sm);font-weight:700;text-decoration:none;color:var(--color-ink)}
     .lookup:hover{background:var(--color-ink);color:var(--color-paper)}
 
+    .walkthrough-intro{font-size:var(--text-sm);color:var(--color-ink-2);font-style:italic;margin:var(--space-md) 0 var(--space-sm)}
+    .walkthrough{display:grid;gap:var(--space-lg);margin:0 0 var(--space-lg);padding:0;list-style:none;counter-reset:stepnum}
+    .walkthrough>li{counter-increment:stepnum;margin:0}
+    .step-shot{margin:0;padding:0}
+    .step-shot img{width:100%;height:auto;display:block;border-radius:var(--radius-card);border:var(--rule-hairline) solid var(--color-rule-strong);background:#111}
+    .step-shot figcaption{display:flex;gap:0.6em;align-items:baseline;margin-block-start:var(--space-2xs);font-size:var(--text-sm);color:var(--color-ink-2)}
+    .step-shot figcaption::before{content:counter(stepnum);flex:0 0 auto;width:1.5em;height:1.5em;display:grid;place-items:center;border-radius:50%;background:var(--color-accent);color:var(--color-accent-ink);font-size:0.8em;font-weight:700}
+
     .refs{padding-block-start:var(--space-lg);border-block-start:var(--rule-hairline) solid var(--color-rule)}
     .refs h2{font-size:var(--text-lg);font-family:var(--font-body);font-weight:700}
     .refs ol{list-style:none;padding:0;margin:0;counter-reset:refnum}
@@ -133,6 +141,40 @@
           <p class="fact"><span data-i18n="s1_p2">The key is issued from Google AI Studio's API key screen, not from the general Cloud Console billing flow.</span><sup>[<a href="#ref2">2</a>]</sup></p>
           <p class="fact"><span data-i18n="s1_p3">You can attach the key to a brand-new Google Cloud project or to one you already have — either way, no billing account is required to receive a working free-tier key.</span><sup>[<a href="#ref1">1</a>]</sup></p>
           <a class="lookup" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" data-i18n="s1_cta">Get a key on Google AI Studio ↗</a>
+
+          <p class="walkthrough-intro" data-i18n="wt_intro">Screenshots from an actual Google AI Studio account, walking through the exact five clicks. The API key value is partly blurred below — yours will show in full.</p>
+          <ol class="walkthrough">
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-01-consent.jpg" width="830" height="924" loading="lazy" decoding="async" alt="AI Studio welcome dialog with the developer-agreement checkbox and the Continue button both circled.">
+                <figcaption data-i18n="wt_1">Check the agreement box, then click <strong>Continue</strong>.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-02-create-button.jpg" width="1400" height="536" loading="lazy" decoding="async" alt="The API Keys page in Google AI Studio with the Create API key button circled.">
+                <figcaption data-i18n="wt_2">On the <strong>API Keys</strong> page, click <strong>Create API key</strong>.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-03-name-and-create.jpg" width="830" height="515" loading="lazy" decoding="async" alt="The Create a new key dialog with a key name, a project picker, and the Create key button circled.">
+                <figcaption data-i18n="wt_3">Name the key, pick a project, click <strong>Create key</strong>.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-04-key-details.jpg" width="863" height="844" loading="lazy" decoding="async" alt="The API key details dialog with the key value partly blurred and the Copy key button circled.">
+                <figcaption data-i18n="wt_4">This is the only time the full key is shown — copy it now. (Blurred here for this screenshot only; yours won't be.)</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-05-confirm-free-tier.jpg" width="1400" height="536" loading="lazy" decoding="async" alt="The API Keys list with the new key's Free tier badge circled.">
+                <figcaption data-i18n="wt_5">Back on the list, confirm the new key reads <strong>Free tier</strong> — no card attached.</figcaption>
+              </figure>
+            </li>
+          </ol>
         </section>
 
         <section id="what-free-costs">
@@ -214,6 +256,12 @@
         s1_p2:"키는 일반 Cloud Console의 결제 흐름이 아니라 Google AI Studio의 API 키 발급 화면에서 발급된다.",
         s1_p3:"새로 만든 Google Cloud 프로젝트든 기존에 있던 프로젝트든 키를 붙일 수 있고, 어느 쪽이든 무료 등급 키를 받는 데 결제 계정은 필요 없다.",
         s1_cta:"Google AI Studio에서 키 발급받기 ↗",
+        wt_intro:"실제 Google AI Studio 계정에서 다섯 번의 클릭을 그대로 캡처했다. 아래 API 키 값은 공개용으로 일부만 흐리게 처리했고, 실제로 발급받으면 전체 값이 그대로 보인다.",
+        wt_1:"동의 체크박스를 누른 뒤 <strong>Continue</strong>를 클릭한다.",
+        wt_2:"<strong>API Keys</strong> 페이지에서 <strong>Create API key</strong>를 클릭한다.",
+        wt_3:"키 이름을 정하고 프로젝트를 선택한 뒤 <strong>Create key</strong>를 클릭한다.",
+        wt_4:"전체 키 값이 보이는 건 이때뿐이다 — 지금 복사해둘 것. (이 스크린샷만 공개용으로 흐리게 처리했고, 실제 발급 화면은 그렇지 않다.)",
+        wt_5:"목록으로 돌아가 새 키가 <strong>Free tier</strong>로 표시되는지 확인한다 — 카드가 연결되지 않았다는 뜻이다.",
         s2_h:"'무료'가 실제로 요구하는 것: 당신의 데이터",
         s2_p1:"무료(비유료) 등급에서는 당신이 보낸 프롬프트와 받은 응답을 구글이 자사 제품과 머신러닝 모델 개선에 사용할 수 있다.",
         s2_p2:"프로젝트에 Cloud Billing 계정을 연결해 유료 등급으로 전환되는 순간부터는, 같은 트래픽이라도 제품 개선 목적 사용 대상에서 제외된다.",
