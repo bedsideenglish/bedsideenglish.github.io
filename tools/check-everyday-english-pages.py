@@ -140,6 +140,8 @@ def check_common(path: Path, canonical: str) -> tuple[DocumentParser, list[str]]
         errors.append("unresolved template marker")
     if re.search(r"\b(?:TODO|Lorem ipsum)\b", source):
         errors.append("placeholder copy")
+    if "In review" in source or "Coming soon" in source:
+        errors.append("unpublished review placeholder")
     if "Under Google Play review" in source or "Google Play 심사 중" in source:
         errors.append("stale Google Play review copy")
     if parser.html_langs != ["en-US"]:

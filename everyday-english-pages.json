@@ -259,9 +259,9 @@
           "description": "Browse practical listening and conversation-repair practice."
         },
         {
-          "href": "../../android-everyday.html",
-          "label": "Live Survival English practice",
-          "description": "Continue with app conversations that respond to you."
+          "href": "../confirm-a-wait-time-and-phone-number/",
+          "label": "Confirm a wait time and phone number",
+          "description": "Practice catching the numbers a restaurant host gives you."
         }
       ],
       "review": {
@@ -272,6 +272,246 @@
         "browser_tts_limit_disclosed": true,
         "search_task_satisfied": true
       }
+    },
+    {
+      "slug": "coffee-name-and-order-in-english",
+      "source_drill_id": "coffee_name_order",
+      "title": "How to Confirm a Coffee Order and Name in English",
+      "h1": "How to confirm a coffee order and name in English",
+      "meta_description": "Learn how to confirm a drink, customer name, and order changes in English with natural phrases and a short listening exercise.",
+      "lede": "Catch the name, drink, and changes without making the barista repeat the whole order.",
+      "category": "Food & Drink",
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "how to confirm a coffee order",
+        "supporting_queries": ["how to ask for a name again in English", "how to confirm a drink order", "what to say when a barista calls your name"],
+        "reader_task": "The reader can ask for the unclear part of a coffee order and repeat the confirmed name and drink back once."
+      },
+      "quick_answer": "At a coffee counter, ask for the one part you missed, then confirm the name and drink together. A short check is faster than guessing or asking for the entire order again. Use the name, drink, and any change you heard, then let the barista correct one detail before you take the cup.",
+      "quick_answer_steps": [
+        {"label": "Missed the name", "phrase": "Sorry, I didn’t catch the name. Could you say it again?", "guidance": "Ask for the exact missing part."},
+        {"label": "Heard the order", "phrase": "Was that Leo’s large cappuccino?", "guidance": "Offer one complete candidate."},
+        {"label": "Ready to take it", "phrase": "So that’s Leo, a large cappuccino, and no syrup—right?", "guidance": "Repeat the usable order once."}
+      ],
+      "practice_intro": "Listen once, then enter the name, drink, and changes you heard before the transcript appears.",
+      "response_ladder": [
+        {"label": "Repeat", "when": "The name or drink was unclear.", "phrase": "Sorry, I didn’t catch the name. Could you say it again?", "why": "The barista knows exactly what to repeat."},
+        {"label": "Confirm", "when": "You have a likely order.", "phrase": "Was that Leo’s large cappuccino?", "why": "One yes-or-no question checks the main detail."},
+        {"label": "Say it back", "when": "You are about to take the cup.", "phrase": "So that’s Leo, a large cappuccino, and no syrup—right?", "why": "A short repeat catches a final mismatch."}
+      ],
+      "decision_map": [
+        {"signal": "You missed the name", "move": "Ask for the name", "example": "Sorry, what name was that?"},
+        {"signal": "You missed the drink", "move": "Name the drink", "example": "Sorry, what was the drink again?"},
+        {"signal": "You heard both", "move": "Confirm once", "example": "Was that Leo’s large cappuccino?"},
+        {"signal": "You are taking the cup", "move": "Say the order back", "example": "Leo, large cappuccino—right?"}
+      ],
+      "dialogue": [
+        {"speaker": "Barista", "text": "Iced americano for Drew, with room for milk.", "note": "The name and drink arrive together."},
+        {"speaker": "You", "text": "Sorry, did you say Drew?", "note": "Check the uncertain name only."},
+        {"speaker": "Barista", "text": "Yes—Drew. Iced americano, with room for milk.", "note": "The answer repeats the useful details."},
+        {"speaker": "You", "text": "Got it—Drew’s iced americano. Thanks.", "note": "A compact repeat closes the exchange."}
+      ],
+      "mistakes": [
+        {"problem": "Taking a cup because the drink sounds familiar", "repair": "Check the name first: “Was that Leo?”"},
+        {"problem": "Asking only “What?”", "repair": "Name the part: “Sorry, what was the drink?”"},
+        {"problem": "Listing several drinks", "repair": "Offer one candidate, then wait for correction."}
+      ],
+      "transfer_prompts": [
+        {"setting": "Bakery", "heard": "The pastry and pickup name were unclear.", "say": "Sorry, was that Nora’s almond croissant?"},
+        {"setting": "Takeout counter", "heard": "One change to the order was unclear.", "say": "Just to confirm, no onions on the burger?"},
+        {"setting": "Office kitchen", "heard": "A coworker offered the last drink.", "say": "Did you say the tea is for me?"}
+      ],
+      "faq": [
+        {"question": "Is it okay to ask a barista to repeat a name?", "answer": "Yes. Ask briefly and name the part you missed."},
+        {"question": "Should I repeat the whole order?", "answer": "Only when several details matter. Otherwise, confirm the one unclear part."},
+        {"question": "How do I check the spelling of a name?", "answer": "Say, “Could you spell the name for me?” and repeat the letters back once."}
+      ],
+      "related_links": [
+        {"href": "../", "label": "More everyday listening guides", "description": "Browse short listening and conversation-repair practice."},
+        {"href": "../ask-again-and-confirm-details/", "label": "Ask again and confirm details", "description": "Practice a general pattern for names, numbers, and times."}
+      ],
+      "review": {"app_source_checked": true, "scoring_cases_checked": true, "transcript_hidden_until_commit": true, "us_english_read_aloud": true, "browser_tts_limit_disclosed": true, "search_task_satisfied": true}
+    },
+    {
+      "slug": "confirm-a-changed-meeting-time",
+      "source_drill_id": "meeting_room_change",
+      "title": "How to Confirm a Changed Meeting Time in English",
+      "h1": "How to confirm a changed meeting time and room in English",
+      "meta_description": "Learn how to catch a corrected meeting time or room in English, confirm the final detail, and avoid acting on the old information.",
+      "lede": "When someone says “not” or corrects a time, confirm the new plan—not the first number you heard.",
+      "category": "Campus & Lab",
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "how to confirm a changed meeting time",
+        "supporting_queries": ["how to confirm a meeting room in English", "what to say when someone corrects a time", "how to ask about a schedule change in English"],
+        "reader_task": "The reader can identify the corrected room or time and repeat the final plan back before the meeting starts."
+      },
+      "quick_answer": "When a meeting detail changes, listen for the correction and confirm the final value. Do not repeat the first time or room just because it arrived first. Ask which detail is current, then say the room and time back together so you can act on one clear plan.",
+      "quick_answer_steps": [
+        {"label": "Heard two values", "phrase": "Sorry, was it 2:45 or 3:00?", "guidance": "Ask the speaker to choose the current value."},
+        {"label": "Heard a correction", "phrase": "So the meeting is at 2:45, not 3:00?", "guidance": "Make the correction explicit."},
+        {"label": "Need the plan", "phrase": "Room 108 at 2:45—right?", "guidance": "Say both usable details back."}
+      ],
+      "practice_intro": "Listen once. Enter the room and final meeting time before the transcript appears.",
+      "response_ladder": [
+        {"label": "Separate", "when": "You heard two possible times.", "phrase": "Sorry, was it 2:45 or 3:00?", "why": "A choice question makes the correction clear."},
+        {"label": "Confirm", "when": "You heard the new time.", "phrase": "So the meeting is at 2:45, not 3:00?", "why": "It checks which value replaced the other."},
+        {"label": "Say it back", "when": "You are about to go.", "phrase": "Room 108 at 2:45—right?", "why": "One compact plan is easy to use."}
+      ],
+      "decision_map": [
+        {"signal": "You heard “not”", "move": "Ask for the final value", "example": "Sorry, which time is correct?"},
+        {"signal": "The room was unclear", "move": "Confirm the room", "example": "Did you say Room 108?"},
+        {"signal": "The time changed", "move": "Name both values", "example": "2:45, not 3:00?"},
+        {"signal": "You have the plan", "move": "Say it back", "example": "Room 108 at 2:45—right?"}
+      ],
+      "dialogue": [
+        {"speaker": "Classmate", "text": "The workshop is in Room 108 at 2:45, not 3:00.", "note": "The correction comes at the end."},
+        {"speaker": "You", "text": "So Room 108 at 2:45?", "note": "Confirm the final plan."},
+        {"speaker": "Classmate", "text": "Exactly. The old time was 3:00.", "note": "The reply separates old and current information."},
+        {"speaker": "You", "text": "Perfect, thanks.", "note": "The confirmation is complete."}
+      ],
+      "mistakes": [
+        {"problem": "Keeping the first number you hear", "repair": "Listen for “not,” “instead,” or “changed to.”"},
+        {"problem": "Confirming only the time", "repair": "When both matter, say the room and time together."},
+        {"problem": "Asking for the full message again", "repair": "Ask which time or room is current."}
+      ],
+      "transfer_prompts": [
+        {"setting": "Doctor’s office", "heard": "The appointment day changed.", "say": "Just to confirm, Friday instead of Thursday?"},
+        {"setting": "Restaurant", "heard": "The reservation time changed.", "say": "So the table is for 7:00, not 7:30?"},
+        {"setting": "Video call", "heard": "The meeting link changed.", "say": "Could you send the new link once more?"}
+      ],
+      "faq": [
+        {"question": "How do I check which time is correct?", "answer": "Ask, “Which time is correct?” or offer the two values as a choice."},
+        {"question": "Is “not 3:00?” polite?", "answer": "Yes, when your tone is neutral and you are checking a clear correction."},
+        {"question": "Should I repeat the room too?", "answer": "Yes, if going to the wrong room would cause a problem."}
+      ],
+      "related_links": [
+        {"href": "../", "label": "More everyday listening guides", "description": "Browse short listening and conversation-repair practice."},
+        {"href": "../ask-for-and-confirm-bus-directions/", "label": "Ask for and confirm bus directions", "description": "Practice confirming a sequence of travel details."}
+      ],
+      "review": {"app_source_checked": true, "scoring_cases_checked": true, "transcript_hidden_until_commit": true, "us_english_read_aloud": true, "browser_tts_limit_disclosed": true, "search_task_satisfied": true}
+    },
+    {
+      "slug": "ask-for-and-confirm-bus-directions",
+      "source_drill_id": "bus_transfer",
+      "title": "How to Ask for and Confirm Bus Directions in English",
+      "h1": "How to ask for and confirm bus directions in English",
+      "meta_description": "Learn how to ask for and confirm bus directions in English, including the stop, street, route number, and direction of travel.",
+      "lede": "Turn a fast set of directions into one clear route before you get off the bus.",
+      "category": "Travel & Transit",
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "how to ask for and confirm bus directions",
+        "supporting_queries": ["how to ask which bus to take in English", "how to confirm a bus stop in English", "English phrases for transfer directions"],
+        "reader_task": "The reader can ask for one unclear direction and repeat the stop, route, and destination back in the right order."
+      },
+      "quick_answer": "For bus directions, ask about the missing step, then repeat the route in order. Confirm the stop, street, bus number, and destination only when each one matters. A short route summary helps the driver correct one turn before you get off, instead of leaving you to guess after the bus has moved on.",
+      "quick_answer_steps": [
+        {"label": "Missed one step", "phrase": "Sorry, which street do I cross?", "guidance": "Ask for the exact part you missed."},
+        {"label": "Heard the route", "phrase": "Do I take the 14 toward Central Station?", "guidance": "Confirm the route and direction together."},
+        {"label": "Ready to move", "phrase": "Get off at the museum, cross King Street, then take the 14—right?", "guidance": "Repeat the steps in order."}
+      ],
+      "practice_intro": "Listen once, then enter the landmark, street, bus number, and direction before the transcript appears.",
+      "response_ladder": [
+        {"label": "Locate", "when": "One landmark or street was unclear.", "phrase": "Sorry, which street do I cross?", "why": "A specific question repairs one step."},
+        {"label": "Confirm", "when": "You have the bus and destination.", "phrase": "Do I take the 14 toward Central Station?", "why": "Route number and direction belong together."},
+        {"label": "Say it back", "when": "You are ready to get off.", "phrase": "Get off at the museum, cross King Street, then take the 14—right?", "why": "The order matters as much as the words."}
+      ],
+      "decision_map": [
+        {"signal": "You missed the stop", "move": "Ask for the landmark", "example": "Which stop do I get off at?"},
+        {"signal": "You missed the turn", "move": "Ask for the street", "example": "Which street do I cross?"},
+        {"signal": "You missed the route", "move": "Confirm number and direction", "example": "Is it the 14 toward Central Station?"},
+        {"signal": "You have the sequence", "move": "Say it back", "example": "Museum, King Street, then the 14—right?"}
+      ],
+      "dialogue": [
+        {"speaker": "Driver", "text": "Get off at the museum, cross King Street, then take the 14 toward Central Station.", "note": "The route contains three ordered steps."},
+        {"speaker": "You", "text": "Sorry, the 14 toward Central Station?", "note": "Confirm the final bus and direction."},
+        {"speaker": "Driver", "text": "That’s right. Cross King Street first.", "note": "The reply restores the order."},
+        {"speaker": "You", "text": "Museum, King Street, then the 14. Thanks.", "note": "A short route summary closes the loop."}
+      ],
+      "mistakes": [
+        {"problem": "Remembering the bus number but not the direction", "repair": "Ask for both together: “Which bus toward where?”"},
+        {"problem": "Confirming steps out of order", "repair": "Use “then” when you say the route back."},
+        {"problem": "Asking for every detail again", "repair": "Name the one step that disappeared."}
+      ],
+      "transfer_prompts": [
+        {"setting": "Train station", "heard": "The platform sequence was unclear.", "say": "So I change at Oak Street, then take Platform 6?"},
+        {"setting": "Museum", "heard": "The entrance direction was unclear.", "say": "Do I turn left after the ticket desk?"},
+        {"setting": "Walking tour", "heard": "The next landmark was unclear.", "say": "Which building do we meet in front of?"}
+      ],
+      "faq": [
+        {"question": "How do I ask which bus to take?", "answer": "Say, “Which bus should I take toward Central Station?”"},
+        {"question": "Should I repeat every step?", "answer": "Repeat the steps that affect your next move; keep it short."},
+        {"question": "What if I miss the street name?", "answer": "Ask directly: “Sorry, which street do I cross?”"}
+      ],
+      "related_links": [
+        {"href": "../", "label": "More everyday listening guides", "description": "Browse short listening and conversation-repair practice."},
+        {"href": "../confirm-a-changed-meeting-time/", "label": "Confirm a changed meeting time", "description": "Practice separating the final detail from an earlier value."}
+      ],
+      "review": {"app_source_checked": true, "scoring_cases_checked": true, "transcript_hidden_until_commit": true, "us_english_read_aloud": true, "browser_tts_limit_disclosed": true, "search_task_satisfied": true}
+    },
+    {
+      "slug": "confirm-a-wait-time-and-phone-number",
+      "source_drill_id": "restaurant_wait",
+      "title": "How to Confirm a Wait Time and Phone Number in English",
+      "h1": "How to confirm a wait time and phone number in English",
+      "meta_description": "Learn how to confirm a restaurant wait time and phone-number ending in English with short, natural phrases and listening practice.",
+      "lede": "Catch the time and digits once, then repeat them back before the host sends a text.",
+      "category": "Food & Drink",
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "how to confirm a wait time and phone number",
+        "supporting_queries": ["how to confirm a phone number in English", "how to ask about a restaurant wait in English", "how to repeat phone digits in English"],
+        "reader_task": "The reader can confirm a wait estimate and phone-number ending without confusing or losing a digit."
+      },
+      "quick_answer": "When a host gives a wait and phone-number ending, check the time first and repeat the digits slowly. Ask for one number again if you are unsure; do not guess. A brief readout lets the host correct a single digit before they send the text, which is easier than fixing a missed message later.",
+      "quick_answer_steps": [
+        {"label": "Missed the wait", "phrase": "Sorry, how long is the wait?", "guidance": "Ask for the time alone."},
+        {"label": "Missed a digit", "phrase": "Was the number ending 4-8-1-7?", "guidance": "Say each digit clearly."},
+        {"label": "Need the text", "phrase": "About 20 minutes, and the number ends 4-8-1-7—right?", "guidance": "Confirm both details once."}
+      ],
+      "practice_intro": "Listen once, then enter the wait and phone-number ending before the transcript appears.",
+      "response_ladder": [
+        {"label": "Repeat", "when": "The wait time was unclear.", "phrase": "Sorry, how long is the wait?", "why": "Ask for the one number you missed."},
+        {"label": "Confirm", "when": "You heard the phone ending.", "phrase": "Was the number ending 4-8-1-7?", "why": "Separate digits are easy to check."},
+        {"label": "Say it back", "when": "The host is about to text you.", "phrase": "About 20 minutes, and the number ends 4-8-1-7—right?", "why": "A final repeat protects both details."}
+      ],
+      "decision_map": [
+        {"signal": "You missed the estimate", "move": "Ask for the wait", "example": "Sorry, how long is the wait?"},
+        {"signal": "One digit is unclear", "move": "Repeat the ending", "example": "Was that 4-8-1-7?"},
+        {"signal": "You heard all digits", "move": "Check the whole ending", "example": "The number ends 4-8-1-7, right?"},
+        {"signal": "You have both details", "move": "Say them back", "example": "About 20 minutes and 4-8-1-7—right?"}
+      ],
+      "dialogue": [
+        {"speaker": "Host", "text": "It will be around 20 minutes. Can I text the number ending 4-8-1-7?", "note": "The time and digits arrive in one turn."},
+        {"speaker": "You", "text": "Yes—about 20 minutes, ending 4-8-1-7?", "note": "Repeat both details before agreeing."},
+        {"speaker": "Host", "text": "Exactly. We’ll text you when the table is ready.", "note": "The host confirms the contact detail."},
+        {"speaker": "You", "text": "Great, thank you.", "note": "The exchange is complete."}
+      ],
+      "mistakes": [
+        {"problem": "Saying a digit group too quickly", "repair": "Say each digit separately when you confirm it."},
+        {"problem": "Confirming the phone number but not the wait", "repair": "Repeat both when the timing affects your plan."},
+        {"problem": "Guessing one missing digit", "repair": "Ask for that digit again before the text is sent."}
+      ],
+      "transfer_prompts": [
+        {"setting": "Clinic reception", "heard": "The callback number was unclear.", "say": "Could I confirm the last four digits—4-8-1-7?"},
+        {"setting": "Delivery driver", "heard": "The arrival window was unclear.", "say": "So you’ll arrive in about 20 minutes?"},
+        {"setting": "Hair salon", "heard": "The reminder number was unclear.", "say": "Is the number ending 4-8-1-7?"}
+      ],
+      "faq": [
+        {"question": "How should I say phone digits?", "answer": "Say one digit at a time when accuracy matters."},
+        {"question": "Can I ask for only the last four digits?", "answer": "Yes. “Could I confirm the last four digits?” is natural and specific."},
+        {"question": "What if the wait is only an estimate?", "answer": "Say “about” when you repeat it: “About 20 minutes, right?”"}
+      ],
+      "related_links": [
+        {"href": "../", "label": "More everyday listening guides", "description": "Browse short listening and conversation-repair practice."},
+        {"href": "../ask-again-and-confirm-details/", "label": "Ask again and confirm details", "description": "Practice a general pattern for names, numbers, and times."}
+      ],
+      "review": {"app_source_checked": true, "scoring_cases_checked": true, "transcript_hidden_until_commit": true, "us_english_read_aloud": true, "browser_tts_limit_disclosed": true, "search_task_satisfied": true}
     }
   ]
 }

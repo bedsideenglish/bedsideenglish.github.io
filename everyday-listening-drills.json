@@ -27,6 +27,70 @@
         "type": "generated_tts",
         "license": "Generated on demand with the learner's Gemini API account"
       }
+    },
+    {
+      "id": "coffee_name_order",
+      "category": "Food & Drink",
+      "difficulty": 1,
+      "context": "A barista calls out a drink and a name.",
+      "transcript": "Oat flat white for Mina, with an extra shot and no sugar.",
+      "details": [
+        {"key": "name", "label": "name", "answers": ["mina", "meena"]},
+        {"key": "drink", "label": "drink", "answers": ["oat flat white", "flat white"]},
+        {"key": "extra_shot", "label": "extra shot", "answers": ["extra shot", "one extra shot"]},
+        {"key": "sugar", "label": "sugar preference", "answers": ["no sugar", "without sugar", "zero sugar"]}
+      ],
+      "receptive_tags": ["names", "food_choices", "reductions"],
+      "productive_tags": ["confirmation"],
+      "accent_candidates": ["us", "ca", "nz", "ph"],
+      "source": {"type": "generated_tts", "license": "Generated on demand with the learner's Gemini API account"}
+    },
+    {
+      "id": "meeting_room_change",
+      "category": "Campus & Lab",
+      "difficulty": 1,
+      "context": "A labmate gives a quick meeting update.",
+      "transcript": "Quick heads-up, lab meeting is in room two fourteen at three fifteen, not three thirty.",
+      "details": [
+        {"key": "room", "label": "room", "answers": ["214", "2 14", "two fourteen", "room 214"]},
+        {"key": "time", "label": "correct time", "answers": ["3:15", "three fifteen", "3 15"]}
+      ],
+      "receptive_tags": ["numbers", "times", "contrast_correction"],
+      "productive_tags": ["readback"],
+      "accent_candidates": ["us", "uk", "in", "ng"],
+      "source": {"type": "generated_tts", "license": "Generated on demand with the learner's Gemini API account"}
+    },
+    {
+      "id": "bus_transfer",
+      "category": "Travel & Transit",
+      "difficulty": 2,
+      "context": "A driver gives transfer directions.",
+      "transcript": "Get off after the library, cross Pine Street, then take the number twenty-seven toward Riverside.",
+      "details": [
+        {"key": "landmark", "label": "landmark", "answers": ["library", "after the library"]},
+        {"key": "street", "label": "street", "answers": ["pine street", "pine"]},
+        {"key": "bus", "label": "bus number", "answers": ["27", "twenty seven", "twenty-seven"]},
+        {"key": "direction", "label": "direction", "answers": ["riverside", "toward riverside"]}
+      ],
+      "receptive_tags": ["directions", "numbers", "sequence"],
+      "productive_tags": ["readback", "clarification"],
+      "accent_candidates": ["uk", "ie", "sco", "aus", "za"],
+      "source": {"type": "generated_tts", "license": "Generated on demand with the learner's Gemini API account"}
+    },
+    {
+      "id": "restaurant_wait",
+      "category": "Food & Drink",
+      "difficulty": 2,
+      "context": "A host gives a wait estimate and asks for a phone number.",
+      "transcript": "It'll be about thirty-five minutes; can I text you at the number ending zero six nine two?",
+      "details": [
+        {"key": "wait", "label": "wait", "answers": ["35 minutes", "thirty five minutes", "thirty-five"]},
+        {"key": "digits", "label": "phone ending", "answers": ["0692", "0 6 9 2", "zero six nine two"]}
+      ],
+      "receptive_tags": ["numbers", "phone_digits", "reductions"],
+      "productive_tags": ["confirmation", "consent"],
+      "accent_candidates": ["us", "in", "es", "de"],
+      "source": {"type": "generated_tts", "license": "Generated on demand with the learner's Gemini API account"}
     }
   ]
 }
