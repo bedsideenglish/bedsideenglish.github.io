@@ -39,7 +39,6 @@
 .enter{margin:28px auto 0;min-height:60px;padding:0 30px;display:inline-flex;align-items:center;justify-content:center;gap:11px;border:1px solid #f7f1e4;border-radius:999px;background:#f7f1e4;color:var(--ink);font-size:13px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;transition:transform .16s var(--ease),box-shadow .16s}
 .enter:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.32)}
 .enter b{color:var(--red)}
-.cover .fine{margin:14px 0 0;color:rgba(247,241,228,.38);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 
 /* 1 · PRESSURE OPENING */
 .brief{position:absolute;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 44%,#18253a 0,transparent 48%),linear-gradient(180deg,#0b121e,#0c1320 65%,#09111d);transition:opacity .5s var(--ease),transform .7s var(--ease),visibility .5s}
@@ -110,12 +109,11 @@
   <section class="cover" id="cover" aria-labelledby="coverTitle">
     <div class="cover-inner">
       <p class="stamp"><span>Ward 5B</span><i>·</i><span>07:42</span><i>·</i><b>Morning rounds</b></p>
-      <h1 id="coverTitle">You&#8217;re up<span>.</span></h1>
+      <h1 id="coverTitle">Your turn<span>.</span></h1>
       <p class="lede">The attending gives you a patient and walks away. Sixty seconds later, you present her &mdash; out loud, in English.</p>
       <p class="meta"><span>Speak out loud</span><i>&middot;</i><span>No multiple choice</span><i>&middot;</i><span>60 seconds</span></p>
       <p class="note">Freezing is expected &mdash; that moment is exactly what this trains.</p>
       <button class="enter" id="enter" type="button">Begin rounds <b>&rarr;</b></button>
-      <p class="fine">Under two minutes &middot; Sound on</p>
     </div>
   </section>
 
