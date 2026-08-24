@@ -1,112 +1,412 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c1320">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c1320">
 <title>Bedside English — Bed 23</title>
 <meta name="description" content="An immersive speaking preview of Bedside English: Talk & Train.">
-<meta property="og:title" content="You. Bed 23. Chest pain."><meta property="og:description" content="Morning rounds. Take the history. Be ready when the attending comes back."><meta property="og:image" content="https://bedsideenglish.github.io/assets/social/og-cover.png">
-<style>html,body{margin:0;min-height:100%;background:#0c1320;color:#f7f1e4;font:700 12px system-ui,sans-serif}body{display:grid;place-items:center}.boot{display:flex;align-items:center;gap:10px;letter-spacing:.13em;text-transform:uppercase;opacity:.72}.boot:before{content:"";width:7px;height:7px;border-radius:50%;background:#d96c4d;box-shadow:0 0 0 5px rgba(217,108,77,.13)}</style>
-</head>
-<body><div class="boot">Morning rounds · Bed 23</div>
-<script>
-(async()=>{try{
-const u=['assets/demo/android-demo-v3.part1','assets/demo/android-demo-v3.part2','assets/demo/android-demo-v3.part3','assets/demo/android-demo-v3.part4','assets/demo/android-demo-v3.part5'];
-let h=(await Promise.all(u.map(x=>fetch(x,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('preview payload');return r.text()})))).join('');
-const patches=[
- ['width:min(980px,102vw);height:min(760px,92vh);transform:translate(-50%,-46%);pointer-events:none;opacity:.27','width:min(1180px,116vw);height:min(760px,92vh);transform:translate(-50%,-46%);pointer-events:none;opacity:.43'],
- ['left:8%;top:7%;width:20%;height:76%;border-left:2px solid #243449;border-right:1px solid #243449;background:repeating-linear-gradient(90deg,rgba(36,52,73,.18) 0 10px,transparent 10px 22px)','left:5%;top:7%;width:20%;height:76%;border-left:2px solid #243449;border-right:1px solid #243449;background:repeating-linear-gradient(90deg,rgba(36,52,73,.2) 0 10px,transparent 10px 22px)'],
- ['left:27%;right:15%;bottom:13%;height:25%','left:14%;right:4%;bottom:12%;height:26%'],
- ['left:20%;right:7%;bottom:28%;height:12%','left:10%;right:1%;bottom:28%;height:12%'],
- ['left:44%;bottom:34%;width:31%;height:26%','left:47%;bottom:34%;width:32%;height:26%'],
- ['background:rgba(255,250,240,.91);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(8px)','background:rgba(255,250,240,.86);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(4px)'],
- ['.bedscene{opacity:.21}','.bedscene{opacity:.34}'],
- ['openingLine?850:500','openingLine?1300:500']
-];
-for(const [a,b] of patches)h=h.replace(a,b);
+<meta property="og:title" content="You. Bed 23. Chest pain.">
+<meta property="og:description" content="Morning rounds. Take the history. Be ready when the attending comes back.">
+<meta property="og:image" content="https://bedsideenglish.github.io/assets/social/og-cover.png">
+<style>
+:root{--ink:#0d1626;--paper:#f4efdf;--paper2:#fffaf0;--navy:#0c1320;--navy2:#111c2c;--red:#d96c4d;--red2:#f08a67;--muted:#697384;--rule:rgba(255,255,255,.15);--positive:#2d7f62;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--navy);color:#f7f1e4;-webkit-font-smoothing:antialiased}body{overflow:hidden}button,a{font:inherit;color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #f6c7a9;outline-offset:4px}[hidden]{display:none!important}
+.preview{position:fixed;inset:0;overflow:hidden;background:var(--navy)}
+.noise{position:absolute;inset:0;pointer-events:none;opacity:.2;background-image:radial-gradient(rgba(255,255,255,.12) .7px,transparent .7px);background-size:6px 6px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+.skip{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));z-index:40;border:0;background:transparent;color:rgba(247,241,228,.5);font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.sound{position:fixed;left:max(14px,env(safe-area-inset-left));bottom:max(14px,env(safe-area-inset-bottom));z-index:40;display:none;align-items:center;gap:7px;padding:8px 12px;border:1px solid rgba(247,241,228,.16);border-radius:999px;background:rgba(12,19,32,.5);color:rgba(247,241,228,.62);font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(6px)}
+.sound.show{display:inline-flex}.sound.muted{color:rgba(247,241,228,.38)}
+.sound svg{width:14px;height:14px}
 
-h=h.replace('<div class="hud"><span><strong>07:42</strong> · WARD 5B</span><span class="live">MORNING ROUNDS</span></div>','');
-h=h.replace('<div class="attending">\n      <p class="label">Attending</p>','<div class="attending">\n      <div class="scene-stamp" aria-label="Ward 5B, morning rounds"><span class="ward">WARD 5B</span><span class="dot">·</span><strong class="rounds">MORNING ROUNDS</strong></div>\n      <p class="label" id="attendingLabel">Attending</p>');
+/* 0 · COVER — the room stays completely still until the learner opts in */
+.cover{position:absolute;inset:0;z-index:26;display:grid;place-items:center;padding:26px;background:radial-gradient(circle at 50% 36%,#182539 0,transparent 54%),linear-gradient(180deg,#0b121e,#0c1320 65%,#09111d);transition:opacity .55s var(--ease),visibility .55s}
+.cover.leave{opacity:0;visibility:hidden;pointer-events:none}
+.cover-inner{width:min(620px,92vw);text-align:center;animation:coverIn .6s var(--ease) both}
+@keyframes coverIn{0%{opacity:0;transform:translateY(9px)}100%{opacity:1;transform:none}}
+.cover .stamp{display:inline-flex;align-items:center;gap:9px;margin:0 0 26px;padding:8px 14px;border:1px solid rgba(247,241,228,.14);border-radius:999px;background:rgba(247,241,228,.045);color:rgba(247,241,228,.6);font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.cover .stamp b{color:#f7f1e4}.cover .stamp i{color:#ffab87;font-style:normal}
+.cover h1{margin:0;font-size:clamp(34px,6.4vw,58px);font-weight:850;line-height:1.03;letter-spacing:-.035em}
+.cover h1 span{color:#ffab87}
+.cover .lede{margin:16px auto 0;max-width:44ch;color:rgba(247,241,228,.66);font-size:clamp(13px,1.7vw,16px);font-weight:600;line-height:1.55}
+.rules{margin:26px auto 0;padding:0;max-width:430px;list-style:none;counter-reset:r;text-align:left}
+.rules li{counter-increment:r;position:relative;padding:9px 0 9px 34px;border-top:1px solid rgba(247,241,228,.1);color:rgba(247,241,228,.78);font-size:13px;font-weight:600;line-height:1.45}
+.rules li:last-child{border-bottom:1px solid rgba(247,241,228,.1)}
+.rules li::before{content:counter(r);position:absolute;left:0;top:9px;width:20px;height:20px;display:grid;place-items:center;border-radius:50%;background:rgba(247,241,228,.09);color:#ffab87;font-size:10px;font-weight:900}
+.rules b{color:#f7f1e4;font-weight:800}
+.ko-note{margin:18px auto 0;max-width:40ch;color:rgba(247,241,228,.44);font-size:12px;font-weight:600;line-height:1.6;word-break:keep-all}
+.enter{margin:28px auto 0;min-height:60px;padding:0 30px;display:inline-flex;align-items:center;justify-content:center;gap:11px;border:1px solid #f7f1e4;border-radius:999px;background:#f7f1e4;color:var(--ink);font-size:13px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;transition:transform .16s var(--ease),box-shadow .16s}
+.enter:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.32)}
+.enter b{color:var(--red)}
+.cover .fine{margin:14px 0 0;color:rgba(247,241,228,.38);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 
-const morphCSS=`
+/* 1 · PRESSURE OPENING */
+.brief{position:absolute;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 44%,#18253a 0,transparent 48%),linear-gradient(180deg,#0b121e,#0c1320 65%,#09111d);transition:opacity .5s var(--ease),transform .7s var(--ease),visibility .5s}
+.brief.leave{opacity:0;transform:scale(1.035);visibility:hidden}.brief::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.035),transparent 16%,transparent 84%,rgba(255,255,255,.025));pointer-events:none}
+.team{position:absolute;left:50%;bottom:-1.5%;width:min(840px,110vw);height:34vh;transform:translateX(-50%);opacity:.12;filter:blur(.4px);pointer-events:none}.person{position:absolute;bottom:0;width:20%;height:78%;border-radius:50% 50% 12% 12%;background:linear-gradient(180deg,#f7f1e4 0 24%,#f7f1e4 25% 100%)}.person::before{content:"";position:absolute;left:50%;top:-23%;width:46%;aspect-ratio:1;border-radius:50%;background:#f7f1e4;transform:translateX(-50%)}.person.p1{left:5%;height:64%;opacity:.62}.person.p2{left:24%;height:88%;opacity:.95}.person.p3{left:49%;height:80%;opacity:.76}.person.p4{left:71%;height:69%;opacity:.55}
+.attending{position:relative;width:min(780px,92vw);min-height:420px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;transform:translateY(-2vh)}
 .scene-stamp{margin:0 0 18px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:8px 13px;border:1px solid rgba(247,241,228,.14);border-radius:999px;background:rgba(247,241,228,.045);box-shadow:0 12px 34px rgba(0,0,0,.13);backdrop-filter:blur(4px);color:rgba(247,241,228,.62);font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;animation:stampIn .45s var(--ease) both}
 .scene-stamp .ward{color:rgba(247,241,228,.58)}.scene-stamp .dot{color:#ffab87;opacity:.9}.scene-stamp .rounds{color:#f7f1e4;font-weight:900}
-#attendingLabel{opacity:0;transform:translateY(4px);transition:opacity .3s var(--ease),transform .3s var(--ease)}#attendingLabel.show{opacity:1;transform:none}
 @keyframes stampIn{0%{opacity:0;transform:translateY(-5px)}100%{opacity:1;transform:none}}
-@media(max-width:600px){.scene-stamp{margin-bottom:15px;padding:7px 11px;gap:7px;font-size:8px;letter-spacing:.13em}}
-.patient-line{transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
+.label{margin:0 0 28px;color:rgba(247,241,228,.54);font-size:11px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;opacity:0;transform:translateY(4px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.label.show{opacity:1;transform:none}
+.label::after{content:"";display:block;width:34px;height:2px;margin:12px auto 0;background:var(--red)}
+.line{margin:0;min-height:1.25em;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:clamp(38px,7vw,78px);font-weight:850;line-height:1.02;letter-spacing:-.035em;text-wrap:balance;text-shadow:0 12px 45px rgba(0,0,0,.25)}
+.line .accent{color:#ffab87}.subline{min-height:1.5em;margin:18px 0 0;color:rgba(247,241,228,.63);font-size:clamp(13px,1.7vw,16px);font-weight:700;letter-spacing:.035em}
+.pressure{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);display:flex;align-items:center;gap:11px;color:rgba(247,241,228,.58);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .35s}.pressure.show{opacity:1}.pressure b{color:#f7f1e4;font-variant-numeric:tabular-nums;font-size:13px}.pulse-ring{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(217,108,77,.32);animation:pulse 1.25s infinite}@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(217,108,77,0)}100%{box-shadow:0 0 0 0 rgba(217,108,77,0)}}
+.impact{animation:impact .28s var(--ease)}@keyframes impact{0%{transform:translateY(4px);opacity:.25;filter:blur(2px)}100%{transform:none;opacity:1;filter:none}}
+
+/* 2 · ROOM */
+.room{position:absolute;inset:0;z-index:10;background:radial-gradient(circle at 50% 40%,#fffaf0 0 20%,#f1ead8 68%,#e9e1cd);color:var(--ink);opacity:0;visibility:hidden;transform:scale(.985);transition:opacity .65s var(--ease),transform .85s var(--ease),visibility .65s}.room.show{opacity:1;visibility:visible;transform:none}.room-grid{position:absolute;inset:0;opacity:.32;background-image:linear-gradient(to right,rgba(16,24,39,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(16,24,39,.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(circle at 50% 50%,#000 0 34%,transparent 76%)}
+.bedscene{position:absolute;left:50%;top:50%;width:min(1180px,116vw);height:min(760px,92vh);transform:translate(-50%,-46%);pointer-events:none;opacity:.43}.curtain{position:absolute;left:5%;top:7%;width:20%;height:76%;border-left:2px solid #243449;border-right:1px solid #243449;background:repeating-linear-gradient(90deg,rgba(36,52,73,.2) 0 10px,transparent 10px 22px);filter:blur(.2px)}.bed{position:absolute;left:14%;right:4%;bottom:12%;height:26%;border:4px solid #27384c;border-radius:18px 18px 10px 10px;transform:skewX(-5deg)}.rail{position:absolute;left:10%;right:1%;bottom:28%;height:12%;border:4px solid #27384c;border-bottom:0;border-radius:18px 18px 0 0}.patient-shape{position:absolute;left:47%;bottom:34%;width:32%;height:26%;transform:rotate(-9deg);animation:breathe 3.6s ease-in-out infinite;transform-origin:65% 85%}.torso{position:absolute;left:0;right:0;bottom:0;height:58%;border-radius:55% 42% 20% 20%;background:#26384c}.head{position:absolute;right:3%;top:0;width:28%;aspect-ratio:1;border-radius:50%;background:#26384c}.hand{position:absolute;left:31%;top:35%;width:23%;height:13%;border-radius:55% 45% 55% 45%;background:#506276;transform:rotate(18deg)}@keyframes breathe{0%,100%{transform:rotate(-9deg) scaleY(1)}50%{transform:rotate(-9deg) scaleY(1.025)}}
+.panel{position:absolute;left:50%;top:50%;z-index:4;width:min(700px,calc(100vw - 28px));min-height:min(600px,calc(100svh - 110px));transform:translate(-50%,-48%);display:flex;flex-direction:column;align-items:center;padding:0 clamp(22px,4vw,40px) clamp(22px,4vw,40px);border:1px solid rgba(16,24,39,.17);background:rgba(255,250,240,.86);box-shadow:0 26px 70px rgba(39,49,63,.18);backdrop-filter:blur(4px);text-align:center}
+.panel-body{flex:1;width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center}
+
+/* the case card — the identifiers live ON the card, not in the screen corners */
+.chart{width:calc(100% + 2*clamp(22px,4vw,40px));margin:0 clamp(-40px,-4vw,-22px) clamp(18px,2.6vw,26px);padding:13px clamp(18px,3vw,24px);display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(16,24,39,.15);background:rgba(13,22,38,.045);font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+.chart-id{display:flex;align-items:baseline;gap:8px;color:#697384}
+.chart-id b{color:var(--ink);font-size:14px;letter-spacing:.05em}
+.chart-cc{padding:4px 9px;border:1px solid rgba(217,108,77,.4);border-radius:3px;background:rgba(217,108,77,.1);color:#b8512f;font-size:10px;letter-spacing:.1em}
+.chart-timer{display:flex;align-items:center;gap:8px;color:#697384;white-space:nowrap}
+.chart-timer i{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(217,108,77,.35);animation:pulse 1.25s infinite}
+.chart-timer b{color:var(--ink);font-size:15px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.chart-timer.urgent{color:var(--red)}.chart-timer.urgent b{color:var(--red)}
+.chart-timer.urgent i{animation-duration:.6s}
+@media(max-width:600px){.chart{margin:0 -16px 16px;width:calc(100% + 32px);padding:11px 16px;font-size:9px;letter-spacing:.08em}.chart-id b{font-size:12px}.chart-timer b{font-size:13px}.chart-cc{font-size:8px;padding:3px 6px}}
+
+.patient-label{margin:0 0 8px;color:#697384;font-size:10px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+.patient-line{min-height:118px;margin:0;display:grid;place-items:center;font-family:Georgia,"Times New Roman",serif;font-size:clamp(29px,5vw,48px);line-height:1.06;letter-spacing:-.025em;text-wrap:balance;transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}
 .patient-line.linger-out{opacity:0;transform:translateY(-5px);filter:blur(.2px)}
+.waiting{margin:8px 0 0;color:var(--red);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;opacity:0;transform:translateY(5px);transition:.35s}.waiting.show{opacity:1;transform:none}
+.wave{height:34px;margin:10px 0 4px;display:flex;align-items:center;justify-content:center;gap:4px;color:var(--red);opacity:.22}.wave.live{opacity:1}.wave i{display:block;width:3px;height:10px;border-radius:999px;background:currentColor;animation:wave .72s ease-in-out infinite;animation-play-state:paused}.wave.live i{animation-play-state:running}.wave i:nth-child(2n){animation-delay:-.16s}.wave i:nth-child(3n){animation-delay:-.34s}.wave i:nth-child(5n){animation-delay:-.52s}@keyframes wave{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(2.4)}}
+.hold{position:relative;width:min(330px,94%);height:62px;margin:14px auto 0;border:1px solid var(--ink);border-radius:999px;overflow:hidden;background:var(--ink);color:var(--paper2);font-size:12px;font-weight:900;letter-spacing:.05em;user-select:none;touch-action:none;transition:transform .12s,background .15s}.hold.down{transform:scale(.988);background:var(--red)}.fill{position:absolute;left:0;top:0;bottom:0;width:calc(var(--p,0)*1%);background:rgba(255,255,255,.14)}.hold-inner{position:relative;min-height:60px;display:flex;align-items:center;justify-content:center;gap:10px}.mic{width:17px;height:17px}.sub{margin:7px 0 0;color:#697384;font-size:11px;line-height:1.4}
+.signal-area{min-height:42px;margin-top:10px;display:flex;align-items:center;justify-content:center}.signal{padding:8px 12px;border:1px solid var(--positive);background:#e9f4ee;color:var(--positive);font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;opacity:0;transform:translateY(8px) scale(.96);transition:.42s var(--ease)}.signal.show{opacity:1;transform:none}
+.checks{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:4px}.check{padding:7px 10px;border:1px solid rgba(16,24,39,.13);background:rgba(255,250,240,.72);color:#697384;font-size:9px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;opacity:0;transform:translateY(7px) scale(.96);transition:.38s var(--ease)}.check.done{border-color:var(--positive);background:#e9f4ee;color:var(--positive);opacity:1;transform:none}.check.done::before{content:"✓ ";font-weight:900}
+.caret{display:inline-block;width:.08em;height:.9em;margin-left:.08em;background:var(--red);vertical-align:-.06em;animation:blink .72s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+
+/* 3 · ATTENDING RETURN / REVEAL */
+.return{position:absolute;inset:0;z-index:30;display:grid;place-items:center;padding:24px;background:#0b121e;color:#f7f1e4;opacity:0;visibility:hidden;transition:.45s}.return.show{opacity:1;visibility:visible}.return-inner{width:min(820px,94vw);text-align:center}.return-kicker{margin:0 0 20px;color:rgba(247,241,228,.52);font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}.return-question{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,8vw,84px);font-weight:400;line-height:1;letter-spacing:-.035em}.return-wait{margin:20px 0 0;color:rgba(247,241,228,.52);font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.truth{position:absolute;inset:0;z-index:35;display:grid;place-items:center;padding:24px;background:var(--ink);color:var(--paper2);opacity:0;visibility:hidden;transition:.48s}.truth.show{opacity:1;visibility:visible}.truth-inner{width:min(900px,96vw);text-align:center}.truth-kicker{margin:0 0 14px;color:#ffab87;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.truth h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(44px,8vw,82px);font-weight:400;line-height:.94;letter-spacing:-.035em}.truth h2 span{display:block;color:#ffab87}.truth-copy{margin:18px auto 0;color:#d8d2c7;font-size:clamp(14px,2vw,17px)}
+.ctas{margin:26px auto 0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.cta{min-height:50px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.28);border-radius:10px;text-decoration:none;font-size:12px;font-weight:900;transition:.16s}.cta.primary{background:#f7f1e4;color:var(--ink);border-color:#f7f1e4}.cta:hover{transform:translateY(-2px)}.trust{margin:16px 0 0;color:#d8d2c7;font-size:9px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}.fine{margin:4px 0 0;color:rgba(216,210,199,.48);font-size:8px}.continue{margin-top:17px;border:0;background:transparent;color:#d8d2c7;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.continue b{color:#ffab87;margin-left:5px}
+.gesture{margin:5px 0 0;color:rgba(216,210,199,.4);font-size:8px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+
+/* landing morph */
 .morph{position:fixed;z-index:100;margin:0;border:1px solid rgba(13,22,38,.2);background:#fffaf0;box-shadow:0 28px 80px rgba(0,0,0,.34);overflow:hidden;pointer-events:none;transform-origin:top left;transition:transform 1s var(--ease),border-radius 1s var(--ease)}
-.morph .cover{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:#fffaf0;transition:opacity .32s .36s}
-.morph.go .cover{opacity:0}
-.morph .cover b{width:58px;height:58px;display:grid;place-items:center;background:var(--ink);color:#fffaf0;font-family:Georgia,"Times New Roman",serif;font-size:34px;font-weight:400}
+.morph .plate{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:#fffaf0;transition:opacity .32s .36s}
+.morph.go .plate{opacity:0}
+.morph .plate b{width:58px;height:58px;display:grid;place-items:center;background:var(--ink);color:#fffaf0;font-family:Georgia,"Times New Roman",serif;font-size:34px;font-weight:400}
 .morph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .36s .43s}
 .morph.go img{opacity:1}
-.gesture{margin:5px 0 0;color:rgba(216,210,199,.4);font-size:8px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
-`;
-h=h.replace('</style>',morphCSS+'</style>');
-h=h.replace('<button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button></div></section>','<button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button><p class="gesture">scroll or swipe to continue</p></div></section>');
-h=h.replace('let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,voices=[];','let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,deadline=0,timerId=0,transitioning=false,final=false,readyAt=0,touchY=null,openingTurn=true,voices=[];');
-h=h.replace("function opening(){\n setBrief('');","function opening(){\n setBrief('');\n setTimeout(()=>document.querySelector('#attendingLabel')?.classList.add('show'),180);");
 
-const oldPrepare="function prepare(){role('doctor');patientLine.textContent='';p=base=0;hold.style.setProperty('--p','0');hold.hidden=false;sub.hidden=false;holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO SPEAK';sub.textContent=ti?'She is waiting. Keep the history moving.':'No choices. Say what you would ask.';setTimeout(()=>waiting.classList.add('show'),450)}";
-const naturalPrepare=`function prepare(){
+@media(max-width:600px){.attending{min-height:360px;transform:translateY(-4vh)}.scene-stamp{margin-bottom:15px;padding:7px 11px;gap:7px;font-size:8px;letter-spacing:.13em}.label{margin-bottom:22px}.line{font-size:clamp(40px,12vw,62px)}.subline{font-size:12px}.team{height:29vh;bottom:-3%}.pressure{bottom:25px;font-size:8px}.panel{min-height:min(570px,calc(100svh - 92px));padding:0 16px 24px}.patient-line{min-height:112px;font-size:clamp(30px,9vw,42px)}.hold{height:58px}.hold-inner{min-height:56px}.bedscene{opacity:.34}.return-question{font-size:clamp(46px,13vw,70px)}.truth h2{font-size:clamp(43px,12vw,64px)}.ctas{display:grid;grid-template-columns:1fr;width:min(330px,94%)}.cta{width:100%}.cover h1{font-size:clamp(32px,9vw,44px)}.rules li{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important}}
+</style>
+</head>
+<body>
+<section class="preview" id="preview">
+  <div class="noise" aria-hidden="true"></div>
+
+  <section class="cover" id="cover" aria-labelledby="coverTitle">
+    <div class="cover-inner">
+      <p class="stamp"><span>Ward 5B</span><i>·</i><span>07:42</span><i>·</i><b>Morning rounds</b></p>
+      <h1 id="coverTitle">Before we<br>start<span>.</span></h1>
+      <p class="lede">This preview does not test what you know. It tests whether it comes out of your mouth in time.</p>
+      <ol class="rules">
+        <li>The attending hands you the case. <b>It comes fast.</b></li>
+        <li>You take the history <b>out loud, in English</b>. No multiple choice.</li>
+        <li>In <b>60 seconds</b> they come back and ask you to present her.</li>
+      </ol>
+      <p class="ko-note" id="koNote" hidden>영어가 입에서 안 나오는 그 순간을 일부러 재현합니다. 소리를 켜고 60초를 버텨보세요.</p>
+      <button class="enter" id="enter" type="button">Begin rounds <b>→</b></button>
+      <p class="fine">Sound on · headphones recommended</p>
+    </div>
+  </section>
+
+  <section class="brief" id="brief" aria-labelledby="briefLine">
+    <div class="team" aria-hidden="true"><i class="person p1"></i><i class="person p2"></i><i class="person p3"></i><i class="person p4"></i></div>
+    <div class="attending">
+      <div class="scene-stamp" aria-label="Ward 5B, morning rounds"><span class="ward">WARD 5B</span><span class="dot">·</span><strong class="rounds">MORNING ROUNDS</strong></div>
+      <p class="label" id="attendingLabel">Attending</p>
+      <h1 class="line" id="briefLine" aria-live="assertive"></h1>
+      <p class="subline" id="briefSub"></p>
+    </div>
+    <div class="pressure" id="pressure"><i class="pulse-ring"></i><span>ROUNDS RETURNING</span><b id="briefTimer">00:59</b></div>
+  </section>
+
+  <section class="room" id="room" aria-label="Bed 23 encounter">
+    <div class="room-grid" aria-hidden="true"></div>
+    <div class="bedscene" aria-hidden="true"><div class="curtain"></div><div class="bed"></div><div class="rail"></div><div class="patient-shape"><i class="torso"></i><i class="head"></i><i class="hand"></i></div></div>
+    <article class="panel">
+      <header class="chart">
+        <span class="chart-id"><b>ROOM 23</b><span>34F</span></span>
+        <span class="chart-cc">Chest pain</span>
+        <span class="chart-timer" id="chartTimer"><i aria-hidden="true"></i>Rounds <b id="roomTimer">00:59</b></span>
+      </header>
+      <div class="panel-body">
+        <p class="patient-label" id="speaker">Patient</p>
+        <p class="patient-line" id="patientLine" aria-live="polite"></p>
+        <p class="waiting" id="waiting">She’s waiting.</p>
+        <div class="wave" id="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <button class="hold" id="hold" type="button" hidden aria-label="Hold to speak"><span class="fill"></span><span class="hold-inner"><svg class="mic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="3.5" width="8" height="12" rx="4" stroke="currentColor" stroke-width="2"/><path d="M5.5 11.5a6.5 6.5 0 0013 0M12 18v3M8.5 21h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span id="holdText">HOLD TO SPEAK</span></span></button>
+        <p class="sub" id="sub" hidden>No choices. Say what you would ask.</p>
+        <div class="signal-area"><div class="signal" id="signal"></div></div>
+        <div class="checks"><div class="check" data-check="radiation">Radiation</div><div class="check" data-check="provoking">Provoking</div></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="return" id="return"><div class="return-inner"><p class="return-kicker">Attending</p><h2 class="return-question" id="returnQuestion">How’s the patient<br>in bed 23?</h2><p class="return-wait" id="returnWait">They’re waiting for your answer.</p></div></section>
+
+  <section class="truth" id="truth"><div class="truth-inner"><p class="truth-kicker" id="truthKicker">Bedside English</p><h2 id="truthHead">You knew what to ask.<span id="truthHeadSpan">Could you say it?</span></h2><p class="truth-copy" id="truthCopy">Practice the words before the room is waiting.</p><div class="ctas"><a class="cta primary" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&pcampaignid=web_share" target="_blank" rel="noopener">Get it on Google Play</a><a class="cta" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip" target="_blank" rel="noopener">Download for Windows</a></div><p class="trust">$0 · NO CREDIT CARD · OPEN SOURCE</p><p class="fine">Live AI uses Gemini Free Tier. Usage limits apply.</p><button class="continue" id="continue" type="button">Explore how it works <b>↓</b></button><p class="gesture">scroll or swipe to continue</p></div></section>
+
+  <button class="sound" id="soundToggle" type="button" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path id="soundIcon" d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4zM16 9a4 4 0 010 6" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span id="soundLabel">Sound on</span></button>
+  <button class="skip" id="skip" type="button">Skip preview →</button>
+</section>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),
+ cover=$('#cover'),enterBtn=$('#enter'),koNote=$('#koNote'),
+ brief=$('#brief'),briefLine=$('#briefLine'),briefSub=$('#briefSub'),attendingLabel=$('#attendingLabel'),
+ pressure=$('#pressure'),briefTimer=$('#briefTimer'),
+ room=$('#room'),roomTimer=$('#roomTimer'),chartTimer=$('#chartTimer'),
+ speaker=$('#speaker'),patientLine=$('#patientLine'),waiting=$('#waiting'),wave=$('#wave'),
+ hold=$('#hold'),holdText=$('#holdText'),sub=$('#sub'),signal=$('#signal'),
+ returnScene=$('#return'),returnQuestion=$('#returnQuestion'),returnWait=$('#returnWait'),
+ truth=$('#truth'),truthKicker=$('#truthKicker'),truthHead=$('#truthHead'),truthCopy=$('#truthCopy'),
+ go=$('#continue'),soundToggle=$('#soundToggle'),soundLabel=$('#soundLabel'),soundIcon=$('#soundIcon');
+
+const turns=[
+ {doctor:'Does the pain go anywhere else?',capture:'radiation',response:'Yeah... into my left shoulder. Should I be worried?'},
+ {doctor:'Is it worse when you take a deep breath?',capture:'provoking',response:'Yes — much sharper. I keep taking these shallow breaths.'}
+];
+
+/* ── VOICE LAYER ───────────────────────────────────────────────────────────
+   Every spoken line in this demo goes through speak(text, role, done).
+   Three roles, three distinct voices: the attending, the patient, and you.
+   The engine below is a placeholder — the browser's own SpeechSynthesis.
+   To move to Gemini TTS, keep the (text, role, done) signature: fetch or
+   preload one audio clip per line/role, play it, call done() on 'ended',
+   and route stop() through shush(). Nothing outside this block changes. */
+const ROLES={
+ attending:{rate:1.04,pitch:.78,hints:['david','mark','guy','ryan','daniel','george','christopher','arthur']},
+ patient  :{rate:.90,pitch:1.04,hints:['zira','aria','jenny','samantha','sonia','libby','eva','emma']},
+ learner  :{rate:.99,pitch:.96,hints:['alex','fred','tom','oliver','brian','james','nathan']}
+};
+const canSpeak='speechSynthesis' in window&&'SpeechSynthesisUtterance' in window;
+let voices=[],voiceFor={},muted=false,audioReady=false,speaking=false;
+function loadVoices(){if(!canSpeak)return;voices=speechSynthesis.getVoices()||[];assignVoices()}
+function assignVoices(){
+ const en=voices.filter(v=>/^en[-_]/i.test(v.lang||'')),pool=en.length?en:voices;
+ voiceFor={};if(!pool.length)return;const taken=new Set();
+ for(const role of ['attending','patient','learner']){
+  const hints=ROLES[role].hints;
+  const v=pool.find(x=>!taken.has(x.name)&&hints.some(h=>(x.name||'').toLowerCase().includes(h)))
+        ||pool.find(x=>!taken.has(x.name))||pool[0];
+  taken.add(v.name);voiceFor[role]=v;
+ }
+}
+loadVoices();if(canSpeak)speechSynthesis.addEventListener('voiceschanged',loadVoices);
+const silentMs=t=>Math.min(2600,Math.max(700,t.length*42));
+function speak(text,role='patient',done){
+ const finish=()=>{speaking=false;done&&done()};
+ if(!canSpeak||muted||!audioReady){speaking=true;setTimeout(finish,silentMs(text));return}
+ try{speechSynthesis.cancel()}catch(e){}
+ const cfg=ROLES[role]||ROLES.patient,u=new SpeechSynthesisUtterance(text),v=voiceFor[role];
+ if(v)u.voice=v;u.lang=(v&&v.lang)||'en-US';u.rate=cfg.rate;u.pitch=cfg.pitch;
+ let fired=false;const end=()=>{if(fired)return;fired=true;clearTimeout(guard);finish()};
+ const guard=setTimeout(end,Math.min(6200,Math.max(1300,text.length*60)));
+ u.onend=end;u.onerror=end;speaking=true;
+ try{speechSynthesis.speak(u)}catch(e){end()}
+}
+function shush(){speaking=false;if(canSpeak){try{speechSynthesis.cancel()}catch(e){}}}
+function unlockAudio(){
+ audioReady=true;if(!canSpeak)return;
+ try{speechSynthesis.resume();const w=new SpeechSynthesisUtterance(' ');w.volume=0;speechSynthesis.speak(w)}catch(e){}
+ loadVoices();
+}
+/* ── end voice layer ─────────────────────────────────────────────────────*/
+
+let ti=0,p=0,base=0,start=0,raf=0,down=false,busy=false,transitioning=false,
+    final=false,readyAt=0,touchY=null,openingTurn=true,
+    deadline=0,timerId=0,remaining=59000,running=false,warned=false,timedOut=false,ended=false,nudgeId=0;
+const landingHTML=fetch('android.html',{cache:'no-store'}).then(r=>r.ok?r.text():null).catch(()=>null);
+
+function live(on){wave.classList.toggle('live',!!on)}
+function setBrief(main,sub=''){briefLine.classList.remove('impact');void briefLine.offsetWidth;briefLine.innerHTML=main;briefSub.textContent=sub;briefLine.classList.add('impact')}
+
+/* clock — pauses when the tab is hidden so the 60 s stays honest */
+function paint(){
+ const ms=Math.max(0,deadline-Date.now()),sec=Math.ceil(ms/1000),txt='00:'+String(sec).padStart(2,'0');
+ briefTimer.textContent=txt;roomTimer.textContent=txt;
+ chartTimer.classList.toggle('urgent',sec<=20);
+ if(sec<=20&&!warned){warned=true;if(!down&&!busy&&!speaking&&!ended)speak('Twenty seconds. Then you present her.','attending')}
+ if(ms<=0){stopTimer();timedOut=true;showReturn()}
+}
+function startTimer(){if(ended||remaining<=0)return;deadline=Date.now()+remaining;running=true;paint();timerId=setInterval(paint,250)}
+function stopTimer(){running=false;clearInterval(timerId);timerId=0}
+function pauseTimer(){if(!running)return;remaining=Math.max(0,deadline-Date.now());stopTimer()}
+
+/* 1 · the attending's brief */
+function opening(){
+ setBrief('');
+ setTimeout(()=>attendingLabel.classList.add('show'),180);
+ setTimeout(()=>{setBrief('<span class="accent">YOU.</span>');speak('You.','attending')},700);
+ setTimeout(()=>{setBrief('BED 23.');speak('Bed twenty-three.','attending')},1600);
+ setTimeout(()=>{setBrief('34-year-old woman.<br><span class="accent">Chest pain.</span>');briefSub.textContent='';speak('Thirty-four-year-old woman. Chest pain.','attending')},2650);
+ setTimeout(()=>{setBrief('TAKE THE HISTORY.');briefSub.textContent='';speak('Take the history.','attending')},4100);
+ setTimeout(()=>{setBrief('We’ll come back<br><span class="accent">to you.</span>');briefSub.textContent='Be ready to present her.';pressure.classList.add('show');startTimer();speak("We'll come back to you.",'attending')},5300);
+ setTimeout(enterRoom,7250);
+}
+function enterRoom(){
+ brief.classList.add('leave');room.classList.add('show');
+ setTimeout(()=>patient("Doctor... I've got this pain in my chest. It started this morning.",prepare,true),650);
+}
+
+/* 2 · the encounter */
+function role(r){const isPatient=r==='patient';speaker.textContent=isPatient?'Patient':'Your turn';patientLine.style.fontFamily=isPatient?'Georgia,Times New Roman,serif':'Inter,ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight=isPatient?'400':'750'}
+function type(text,d=1050,done){patientLine.innerHTML='';const box=document.createElement('span'),n=document.createTextNode(''),c=document.createElement('span');c.className='caret';box.append(n,c);patientLine.append(box);const t=performance.now();function tick(now){const q=Math.min(1,(now-t)/d);n.nodeValue=text.slice(0,Math.max(1,Math.floor(text.length*q)));if(q<1)requestAnimationFrame(tick);else{n.nodeValue=text;c.remove();done&&done()}}requestAnimationFrame(tick)}
+function patient(text,next,openingLine=false){
+ role('patient');hold.hidden=true;sub.hidden=true;waiting.classList.remove('show');signal.classList.remove('show');clearNudge();live(true);
+ let typed=false,spoken=false,advanced=false;
+ const advance=()=>{if(advanced||!typed||!spoken)return;advanced=true;setTimeout(()=>next&&next(),openingLine?1300:500)};
+ type(text,Math.min(1800,Math.max(950,text.length*24)),()=>{typed=true;advance()});
+ speak(text,'patient',()=>{spoken=true;live(false);advance()});
+}
+function clearNudge(){clearTimeout(nudgeId);nudgeId=0}
+/* she does not wait politely for ever — silence is answered out loud */
+function armNudge(){
+ clearNudge();
+ nudgeId=setTimeout(()=>{
+  if(down||busy||ended||hold.hidden||speaking)return;
+  const line=ti?'Doctor? Is that a bad sign?':'Doctor? Are you going to ask me something?';
+  waiting.textContent='“'+line+'”';waiting.classList.add('show');
+  speak(line,'patient');
+ },7000);
+}
+function prepare(){
  if(openingTurn){
   openingTurn=false;
   p=base=0;hold.style.setProperty('--p','0');hold.hidden=true;sub.hidden=true;
   holdText.textContent='HOLD TO SPEAK';sub.textContent='No choices. Say what you would ask.';
-
-  // The patient has just finished speaking. Keep the room completely still first.
-  // This function is entered only after the 1.3 s post-speech pause above.
+  // She has just stopped talking. Let the room stay still before the turn changes hands.
   patientLine.classList.add('linger-out');
-
-  // Only after the patient's sentence has nearly disappeared do we hand over the turn.
   setTimeout(()=>{
    if(patientLine.classList.contains('linger-out')){
-    patientLine.textContent='';
-    patientLine.classList.remove('linger-out');
-    role('doctor');
+    patientLine.textContent='';patientLine.classList.remove('linger-out');role('doctor');
    }
   },820);
-
-  // Give YOUR TURN a beat of its own before introducing the control.
-  setTimeout(()=>{
-   if(!down&&!busy){hold.hidden=false;sub.hidden=false}
-  },1070);
-
-  // Pressure comes last, and only if the learner still has not started speaking.
-  setTimeout(()=>{
-   if(!down&&!busy&&p===0)waiting.classList.add('show')
-  },2350);
+  setTimeout(()=>{if(!down&&!busy){hold.hidden=false;sub.hidden=false}},1070);
+  setTimeout(()=>{if(!down&&!busy&&p===0){waiting.textContent='She’s waiting.';waiting.classList.add('show');armNudge()}},2350);
   return;
  }
- role('doctor');patientLine.textContent='';p=base=0;hold.style.setProperty('--p','0');hold.hidden=false;sub.hidden=false;holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO SPEAK';sub.textContent=ti?'She is waiting. Keep the history moving.':'No choices. Say what you would ask.';setTimeout(()=>waiting.classList.add('show'),450)
-}`;
-h=h.replace(oldPrepare,naturalPrepare);
-h=h.replace("function startHold(){if(down||busy||hold.hidden)return;down=true;","function startHold(){if(down||busy||hold.hidden)return;patientLine.classList.remove('linger-out');patientLine.style.fontFamily='Inter,ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight='750';down=true;");
+ role('doctor');patientLine.textContent='';p=base=0;hold.style.setProperty('--p','0');
+ hold.hidden=false;sub.hidden=false;
+ holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO SPEAK';
+ sub.textContent=ti?'She is waiting. Keep the history moving.':'No choices. Say what you would ask.';
+ setTimeout(()=>{waiting.textContent='She’s waiting.';waiting.classList.add('show');armNudge()},450);
+}
+function render(){const text=turns[ti].doctor,q=Math.max(0,Math.min(1,p)),n=Math.floor(text.length*q);patientLine.innerHTML='';const box=document.createElement('span');box.append(document.createTextNode(text.slice(0,n)));if(q>0&&q<1){const c=document.createElement('span');c.className='caret';box.append(c)}patientLine.append(box);hold.style.setProperty('--p',String(q*100))}
+function startHold(){
+ if(down||busy||hold.hidden||ended)return;
+ clearNudge();patientLine.classList.remove('linger-out');
+ patientLine.style.fontFamily='Inter,ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight='750';
+ down=true;hold.classList.add('down');holdText.textContent='SPEAKING…';waiting.classList.remove('show');live(true);
+ start=performance.now();base=p;
+ const words=turns[ti].doctor.split(/\s+/),wi=Math.min(words.length-1,Math.floor(words.length*p));
+ speak(words.slice(wi).join(' ')||turns[ti].doctor,'learner');
+ function tick(now){if(!down)return;p=Math.min(1,base+(now-start)/2300);render();if(p>=1){finish();return}raf=requestAnimationFrame(tick)}
+ raf=requestAnimationFrame(tick);
+}
+function stopHold(){
+ if(!down)return;down=false;cancelAnimationFrame(raf);shush();hold.classList.remove('down');live(false);
+ if(p<1){holdText.textContent=ti?'HOLD — KEEP GOING':'HOLD TO CONTINUE';setTimeout(()=>{if(!down&&!busy&&!ended){waiting.textContent='She’s waiting.';waiting.classList.add('show');armNudge()}},300)}
+}
+function finish(){
+ down=false;busy=true;cancelAnimationFrame(raf);shush();clearNudge();
+ p=1;render();hold.classList.remove('down');hold.hidden=true;sub.hidden=true;waiting.classList.remove('show');live(false);
+ const key=turns[ti].capture;
+ signal.textContent=key==='provoking'?'Provoking factor captured':'Radiation captured';
+ signal.classList.add('show');
+ document.querySelector('[data-check="'+key+'"]')?.classList.add('done');
+ setTimeout(()=>patient(turns[ti].response,()=>{
+  if(ended)return;
+  if(ti<turns.length-1){ti++;busy=false;setTimeout(prepare,300)}
+  else setTimeout(showReturn,650);
+ }),700);
+}
 
-h=h.replace("setTimeout(()=>truth.classList.add('show'),2600)","setTimeout(()=>{truth.classList.add('show');final=true;readyAt=performance.now()+500},2600)");
-h=h.replace('async function fullLanding(){if(transitioning)return;transitioning=true;clearInterval(timerId);','async function fullLanding(){if(transitioning)return;transitioning=true;final=false;clearInterval(timerId);');
+/* 3 · rounds come back — on your last answer, or when the clock runs out */
+function showReturn(){
+ if(ended)return;ended=true;
+ clearNudge();stopTimer();shush();down=false;busy=true;live(false);
+ room.classList.remove('show');returnScene.classList.add('show');
+ if(timedOut){
+  returnQuestion.innerHTML='So — how’s the patient<br>in bed 23?';
+  returnWait.textContent='Rounds came back. Ready or not.';
+  truthKicker.textContent='Rounds came back';
+  truthHead.innerHTML='Time ran out.<span>It usually does.</span>';
+  truthCopy.textContent='You knew the questions. Getting them out in time is the part you can train.';
+ }
+ speak(timedOut?"Time. So, how's the patient in bed twenty-three?":"How's the patient in bed twenty-three?",'attending');
+ setTimeout(()=>{truth.classList.add('show');final=true;readyAt=performance.now()+500},2600);
+}
 
-const morphJS=`function morph(){
+/* 4 · hand off to the full landing page */
+function morph(){
  if(transitioning)return;
- transitioning=true;final=false;clearInterval(timerId);if(canSpeak)speechSynthesis.cancel();
+ transitioning=true;final=false;stopTimer();shush();
  if(matchMedia('(prefers-reduced-motion:reduce)').matches){transitioning=false;fullLanding();return}
  const source=document.querySelector('.truth-inner').getBoundingClientRect(),m=document.createElement('div');
  m.className='morph';Object.assign(m.style,{left:source.left+'px',top:source.top+'px',width:source.width+'px',height:source.height+'px'});
- m.innerHTML='<div class="cover"><b>+</b></div><img src="assets/android/encounter-live.webp" alt="">';document.body.append(m);truth.style.opacity='0';
+ m.innerHTML='<div class="plate"><b>+</b></div><img src="assets/android/encounter-live.webp" alt="">';
+ document.body.append(m);truth.style.opacity='0';
  const ratio=780/1636,maxH=innerHeight*.72,maxW=Math.min(296,innerWidth*.72),w=Math.min(maxW,maxH*ratio),h2=w/ratio,x=(innerWidth-w)/2,y=(innerHeight-h2)/2;
  requestAnimationFrame(()=>{m.classList.add('go');m.style.borderRadius='26px';m.style.transform='translate('+(x-source.left)+'px,'+(y-source.top)+'px) scale('+(w/source.width)+','+(h2/source.height)+')'});
- setTimeout(()=>{m.remove();transitioning=false;fullLanding()},1050)
+ setTimeout(()=>{m.remove();transitioning=false;fullLanding()},1050);
 }
-`;
-h=h.replace("hold.addEventListener('pointerdown'",morphJS+"hold.addEventListener('pointerdown'");
-h=h.replace("go.addEventListener('click',fullLanding);","go.addEventListener('click',morph);");
-h=h.replace("document.addEventListener('visibilitychange'",`addEventListener('wheel',e=>{if(final&&performance.now()>=readyAt&&e.deltaY>28)morph()},{passive:true});
+async function fullLanding(){
+ if(transitioning)return;transitioning=true;final=false;stopTimer();shush();
+ const html=await landingHTML;
+ if(html){history.replaceState(null,'','android.html');document.open();document.write(html);document.close()}
+ else location.href='android.html';
+}
+
+/* controls */
+if(/^ko/i.test(navigator.language||''))koNote.hidden=false;
+enterBtn.addEventListener('click',()=>{
+ unlockAudio();
+ cover.classList.add('leave');soundToggle.classList.add('show');
+ setTimeout(()=>{cover.hidden=true;opening()},520);
+},{once:true});
+soundToggle.addEventListener('click',()=>{
+ muted=!muted;soundToggle.classList.toggle('muted',muted);
+ soundToggle.setAttribute('aria-pressed',String(!muted));
+ soundLabel.textContent=muted?'Sound off':'Sound on';
+ soundIcon.setAttribute('d',muted?'M4 9.5h3.5L12 5.5v13L7.5 14.5H4zM16.5 9.5l5 5m0-5l-5 5':'M4 9.5h3.5L12 5.5v13L7.5 14.5H4zM16 9a4 4 0 010 6');
+ if(muted)shush();
+});
+hold.addEventListener('pointerdown',e=>{e.preventDefault();try{hold.setPointerCapture(e.pointerId)}catch(err){}startHold()});
+hold.addEventListener('pointerup',e=>{e.preventDefault();stopHold()});
+hold.addEventListener('pointercancel',stopHold);
+hold.addEventListener('lostpointercapture',stopHold);
+hold.addEventListener('contextmenu',e=>e.preventDefault());
+hold.addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='Enter')&&!e.repeat){e.preventDefault();startHold()}});
+hold.addEventListener('keyup',e=>{if(e.code==='Space'||e.code==='Enter'){e.preventDefault();stopHold()}});
+$('#skip').addEventListener('click',fullLanding);
+go.addEventListener('click',morph);
+addEventListener('wheel',e=>{if(final&&performance.now()>=readyAt&&e.deltaY>28)morph()},{passive:true});
 addEventListener('touchstart',e=>{if(final&&e.touches.length===1)touchY=e.touches[0].clientY},{passive:true});
 addEventListener('touchend',e=>{if(!final||touchY==null||performance.now()<readyAt){touchY=null;return}const y=e.changedTouches[0]?.clientY??touchY;if(touchY-y>38)morph();touchY=null},{passive:true});
-addEventListener('keydown',e=>{if(final&&performance.now()>=readyAt&&(e.code==='ArrowDown'||e.code==='PageDown'||e.code==='Space'))morph()});
-document.addEventListener('visibilitychange'`);
-
-document.open();document.write(h);document.close()
-}catch(e){location.replace('android.html')}})();
-</script></body></html>
+addEventListener('keydown',e=>{
+ if(e.code==='Escape'){fullLanding();return}
+ if(final&&performance.now()>=readyAt&&(e.code==='ArrowDown'||e.code==='PageDown'||e.code==='Space'))morph();
+});
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden){stopHold();shush();clearNudge();pauseTimer()}
+ else if(!ended&&remaining>0&&pressure.classList.contains('show'))startTimer();
+});
+addEventListener('beforeunload',()=>{stopTimer();shush()});
+})();
+</script>
+</body>
+</html>
