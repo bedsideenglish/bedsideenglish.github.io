@@ -437,6 +437,11 @@ h1 { max-width: 12ch; margin-bottom: 1.25rem; font-size: var(--text-display-s); 
 /* The interactive guide retains its controls, but now lives in the same family. */
 .answer-capsule, .lab-card, .ladder-card, .transfer-card, details, .mistake { border-color: #b9beb2; border-radius: .35rem; background: var(--surface); box-shadow: none; }
 .answer-capsule { border-left-color: var(--coral); }
+.answer-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+.answer-steps li { padding: 1rem; border: 1px solid var(--line); background: #fffdf7; }
+.answer-steps strong { display: block; color: var(--coral); font-size: var(--text-xs); letter-spacing: .08em; text-transform: uppercase; }
+.answer-steps .phrase { margin: .65rem 0; font-size: var(--text-sm); }
+.answer-steps li > p:last-child { margin: 0; color: var(--muted); font-size: var(--text-sm); }
 .lab-top, .result-panel, .dialogue { background: var(--ink); }
 .lab-top p, .result-panel p { color: #cbd7d3; }
 .level-pill, .button.secondary { color: var(--ink); background: var(--signal); }
@@ -448,10 +453,18 @@ h1 { max-width: 12ch; margin-bottom: 1.25rem; font-size: var(--text-display-s); 
 .decision-list li:not(:last-child)::before { background: #c8c9bd; }
 .turn-speaker, .transcript-box span, .transfer-card .setting { color: var(--signal); }
 .transcript-box { background: var(--surface); }
+.related-guides { border-top: 1px solid var(--line); }
+.related-guide-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; margin: 0; padding: 0; list-style: none; }
+.related-guide-list a { display: block; min-height: 100%; padding: 1.25rem; border: 1px solid var(--line); background: var(--surface); text-decoration: none; }
+.related-guide-list a:hover { border-color: var(--coral); }
+.related-guide-list strong, .related-guide-list span { display: block; }
+.related-guide-list strong { margin-bottom: .4rem; }
+.related-guide-list span { color: var(--muted); font-size: var(--text-sm); }
 
 @media (max-width: 840px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-card { max-width: 32rem; }
+  .answer-steps, .related-guide-list { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {

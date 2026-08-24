@@ -159,8 +159,8 @@ def validate_page(raw: Any, where: str) -> dict[str, Any]:
         raise GenerationError(f"{where} must be an object")
     required = {
         "slug", "source_drill_id", "title", "h1", "meta_description", "lede", "category",
-        "published_on", "reviewed_on", "search", "quick_answer", "practice_intro",
-        "response_ladder", "decision_map", "dialogue", "mistakes", "transfer_prompts", "faq", "review",
+        "published_on", "reviewed_on", "search", "quick_answer", "quick_answer_steps", "practice_intro",
+        "response_ladder", "decision_map", "dialogue", "mistakes", "transfer_prompts", "faq", "related_links", "review",
     }
     exact_keys(raw, required, where)
     for key in ("slug", "source_drill_id", "title", "h1", "meta_description", "lede", "category", "published_on", "reviewed_on", "quick_answer", "practice_intro"):
@@ -194,11 +194,17 @@ def validate_page(raw: Any, where: str) -> dict[str, Any]:
         raise GenerationError(f"{where}: primary_query must appear naturally in the title or h1")
 
     validate_list_of_objects(raw, "response_ladder", {"label", "when", "phrase", "why"}, where, 3, 4)
+    validate_list_of_objects(raw, "quick_answer_steps", {"label", "phrase", "guidance"}, where, 3, 3)
     validate_list_of_objects(raw, "decision_map", {"signal", "move", "example"}, where, 4, 6)
     validate_list_of_objects(raw, "dialogue", {"speaker", "text", "note"}, where, 4, 8)
     validate_list_of_objects(raw, "mistakes", {"problem", "repair"}, where, 3, 6)
     validate_list_of_objects(raw, "transfer_prompts", {"setting", "heard", "say"}, where, 3, 5)
     validate_list_of_objects(raw, "faq", {"question", "answer"}, where, 3, 6)
+    related_links = validate_list_of_objects(raw, "related_links", {"href", "label", "description"}, where, 2, 4)
+    for index, link in enumerate(related_links):
+        href = link["href"]
+        if not href.startswith("../") or href.startswith("//") or "://" in href or "#" in href:
+            raise GenerationError(f"{where}.related_links[{index}].href must be a relative internal link")
 
     review = raw["review"]
     required_reviews = {
@@ -322,6 +328,14 @@ def render_page(page: dict[str, Any], drill: dict[str, Any], profiles: list[dict
         '<p class="field-feedback" hidden></p></div>'
         for detail in drill["details"]
     )
+    quick_answer_steps = "".join(
+        '<li><strong>{label}</strong><p class="phrase">“{phrase}”</p><p>{guidance}</p></li>'.format(
+            label=escaped(item["label"]),
+            phrase=escaped(item["phrase"]),
+            guidance=escaped(item["guidance"]),
+        )
+        for item in page["quick_answer_steps"]
+    )
     response_ladder = "".join(
         '<article class="ladder-card">'
         f'<span class="step-number">{index}</span><h3>{escaped(item["label"])}</h3>'
@@ -352,6 +366,14 @@ def render_page(page: dict[str, Any], drill: dict[str, Any], profiles: list[dict
     faq = "".join(
         f'<details><summary>{escaped(item["question"])}</summary><p>{escaped(item["answer"])}</p></details>'
         for item in page["faq"]
+    )
+    related_links = "".join(
+        '<li><a href="{href}"><strong>{label}</strong><span>{description}</span></a></li>'.format(
+            href=escaped(item["href"]),
+            label=escaped(item["label"]),
+            description=escaped(item["description"]),
+        )
+        for item in page["related_links"]
     )
     canonical = f"{SITE_ORIGIN}/everyday-english/{page['slug']}/"
     lab_config = {
@@ -409,6 +431,7 @@ def render_page(page: dict[str, Any], drill: dict[str, Any], profiles: list[dict
         "CATEGORY": escaped(page["category"]),
         "LEDE": escaped(page["lede"]),
         "QUICK_ANSWER": escaped(page["quick_answer"]),
+        "QUICK_ANSWER_STEPS": quick_answer_steps,
         "PRACTICE_INTRO": escaped(page["practice_intro"]),
         "DRILL_CONTEXT": escaped(drill["context"]),
         "DRILL_CATEGORY": escaped(drill["category"]),
@@ -421,6 +444,7 @@ def render_page(page: dict[str, Any], drill: dict[str, Any], profiles: list[dict
         "MISTAKES": mistakes,
         "TRANSFER_PROMPTS": transfer_prompts,
         "FAQ": faq,
+        "RELATED_LINKS": related_links,
         "LAB_CONFIG": json_script(lab_config),
         "JSON_LD": json_script(json_ld),
         "REVIEWED_ON": escaped(page["reviewed_on"]),

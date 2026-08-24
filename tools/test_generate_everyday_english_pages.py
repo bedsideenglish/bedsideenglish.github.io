@@ -36,11 +36,21 @@ class EverydayEnglishGeneratorTests(unittest.TestCase):
         self.assertIn('id="commit-answer"', rendered)
         self.assertIn('id="revealed-transcript"', rendered)
         self.assertIn("Transcript revealed after commit", rendered)
+        self.assertIn('id="quick-answer-steps"', rendered)
+        self.assertIn('id="related-guides"', rendered)
+        self.assertIn(page["quick_answer_steps"][0]["phrase"], rendered)
+        self.assertIn(page["related_links"][0]["href"], rendered)
         self.assertIn(generator.source_hash(drill), rendered)
 
     def test_unchecked_editorial_attestation_blocks_publication(self) -> None:
         page = copy.deepcopy(self.pages[0])
         page["review"]["scoring_cases_checked"] = False
+        with self.assertRaises(generator.GenerationError):
+            generator.validate_page(page, "page")
+
+    def test_external_related_link_blocks_publication(self) -> None:
+        page = copy.deepcopy(self.pages[0])
+        page["related_links"][0]["href"] = "https://example.com/"
         with self.assertRaises(generator.GenerationError):
             generator.validate_page(page, "page")
 

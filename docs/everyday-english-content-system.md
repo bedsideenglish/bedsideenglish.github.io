@@ -100,18 +100,28 @@ The web version intentionally uses structured fields. This prevents relation rev
 The template is designed around the reader's task, not the patient-question template:
 
 1. query-shaped H1 and concise lede;
-2. self-contained quick answer;
+2. self-contained quick answer followed by three static, scannable action steps;
 3. interactive hear–commit–verify lab;
 4. audio-source disclosure;
-5. repeat → confirm → read-back response ladder;
+5. repeat → confirm → say-it-back response ladder;
 6. decision map based on how much was heard;
 7. annotated complete repair dialogue using values different from the scored clip;
 8. common failures and repairs;
 9. transfer prompts in three different settings;
 10. short FAQs;
-11. contextual app CTA and visible editorial boundary.
+11. two or more contextual internal links with descriptive anchor text;
+12. contextual app CTA and visible editorial boundary.
 
 Keep the practice close to the top, but do not weaken the direct answer. The page must remain useful when audio or JavaScript is unavailable.
+
+### Editorial language contract
+
+- The title and H1 must use the reader's likely wording, not an internal teaching label. If either promises a detail type such as names, spelling, dates, numbers, or times, include a natural example that teaches that exact repair.
+- Write the Quick answer as a complete answer, then give exactly three visible action steps: missed it, heard a likely answer, and need to act on it. Each step needs a natural phrase and a one-sentence reason.
+- Use precise repair language. Prefer “I didn’t catch the gate number” over ambiguous wording such as “I missed the gate.”
+- Teach general learners to “say it back” or “repeat the details back.” Use “read-back” only as an optional explanatory term, not as the primary learner-facing label.
+- Confirmation examples must form a complete, natural question: for example, “Just to confirm, is it Room 214 at 3:30?”
+- Include at least two curated relative internal links in `related_links`. Their anchor text must describe the destination and the benefit; never use “click here” or a generic “learn more.”
 
 ## Editorial workflow
 
@@ -133,6 +143,9 @@ Minimum human review:
 
 - listen to every approved audio profile actually published;
 - read all response phrases and dialogues aloud in US English;
+- confirm every concrete detail type promised by the title or H1 has a matching repair example;
+- confirm the Quick answer has three visible action steps and can be understood without the exercise;
+- confirm every related-link destination and anchor text are relevant to the reader's next task;
 - confirm the teaching examples do not disclose scored answers;
 - try blank, correct, wrong, negated, uncertain, and alternative-list answers;
 - complete the exercise with keyboard only and on a narrow screen;
@@ -142,7 +155,7 @@ Minimum human review:
 
 Generation blocks invalid dates, slugs, metadata lengths, missing search fields, duplicate source drills, unknown voice profiles, non-US spelling, race-based profile descriptions, underspecified sections, or unchecked attestations.
 
-Output QA blocks stale Google Play review copy, missing metadata, broken links, malformed JSON-LD, missing interaction IDs, source transcript/detail/profile drift, a visible pre-commit transcript, missing social art, wrong social-art dimensions, unknown audio profiles, missing reviewed audio files, and sitemap omissions.
+Output QA blocks stale Google Play review copy, missing metadata, broken links, missing static Quick-answer phrases, missing related internal-link anchors, malformed JSON-LD, missing interaction IDs, source transcript/detail/profile drift, a visible pre-commit transcript, missing social art, wrong social-art dimensions, unknown audio profiles, missing reviewed audio files, and sitemap omissions.
 
 Automation cannot certify whether a synthetic accent sounds authentic or whether a phrase is socially natural in every setting. Those remain human review responsibilities.
 
@@ -160,14 +173,14 @@ python tools\check-everyday-english-pages.py
 
 ## SEO and generative-search rules
 
-- The quick answer must stand on its own and align with title, H1, description, social metadata, and structured data.
+- The quick answer must stand on its own and align with title, H1, description, social metadata, and structured data. Its three action steps must be static HTML, not UI state.
 - Important teaching content stays in static HTML; JavaScript owns only the exercise state.
 - Use stable section IDs and descriptive headings.
 - Use `Article`, `LearningResource`, `CollectionPage`, `ItemList`, and `BreadcrumbList` only for visible or verifiable properties.
 - There is no special GEO schema or required `llms.txt` file.
 - Do not create pages for every query variation, drill, speaker profile, or scenario.
 - Original value must come from the scored task, repair logic, annotated example, and transfer—not keyword repetition.
-- Keep internal links among the everyday hub, patient guides, team guides, landing pages, and Google Play listing.
+- Keep internal links among the everyday hub, patient guides, team guides, and relevant landing pages. Each guide must include at least two page-specific, descriptive internal anchors through `related_links`; the Google Play link remains a separate product CTA.
 - Refresh a page when its app drill, scoring contract, audio, search intent, product claim, or language review changes.
 
 ## Pilot decision rule

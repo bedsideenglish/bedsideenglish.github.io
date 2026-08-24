@@ -16,10 +16,10 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE_ORIGIN = "https://bedsideenglish.github.io"
 PLAY_URL = "https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish"
 REQUIRED_IDS = {
-    "main", "quick-answer", "listening-practice", "accent-profile", "voice-status", "play-clip",
+    "main", "quick-answer", "quick-answer-steps", "listening-practice", "accent-profile", "voice-status", "play-clip",
     "repeat-clip", "slow-clip", "lab-status", "listening-answer-form", "commit-answer",
     "listening-result", "result-headline", "result-meta", "revealed-transcript", "try-again",
-    "listening-lab-config", "response-ladder", "decision-guide", "common-mistakes", "transfer-practice", "faq",
+    "listening-lab-config", "response-ladder", "decision-guide", "common-mistakes", "transfer-practice", "faq", "related-guides",
 }
 
 
@@ -252,6 +252,16 @@ def main() -> int:
                 if not target.is_file():
                     errors.append(f"everyday-english/{slug}/index.html: reviewed audio is missing: {relative_path}")
         visible = " ".join(parser.visible_text)
+        if page["quick_answer"] not in visible:
+            errors.append(f"everyday-english/{slug}/index.html: quick answer is not visible static text")
+        for step in page["quick_answer_steps"]:
+            if step["phrase"] not in visible:
+                errors.append(f"everyday-english/{slug}/index.html: quick-answer phrase is not visible static text")
+        for link in page["related_links"]:
+            if link["href"] not in parser.hrefs:
+                errors.append(f"everyday-english/{slug}/index.html: related internal link is missing: {link['href']}")
+            if link["label"] not in visible:
+                errors.append(f"everyday-english/{slug}/index.html: related-link anchor text is not visible: {link['label']}")
         if drill["transcript"] in visible:
             errors.append(f"everyday-english/{slug}/index.html: practice transcript is visible before commit")
         if "hidden" not in parser.ids.get("listening-result", {}):

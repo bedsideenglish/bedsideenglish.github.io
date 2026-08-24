@@ -95,30 +95,47 @@
     {
       "slug": "ask-again-and-confirm-details",
       "source_drill_id": "airport_gate_time",
-      "title": "How to Ask Again and Confirm Details in English",
-      "h1": "How to ask again and confirm names, numbers, and times in English",
-      "meta_description": "Hear a short airport message, commit the gate and time, get exact-detail scoring, and learn natural English for asking again and confirming what you heard.",
+      "title": "How to Ask Someone to Repeat and Confirm Details in English",
+      "h1": "How to ask someone to repeat names, numbers, and times in English",
+      "meta_description": "Learn how to ask someone to repeat a name, number, or time in English—with natural phrases, a listening exercise, and confirmation practice.",
       "lede": "A practical hear–commit–verify guide for the moments when one missed letter, number, name, or time changes what you need to do next.",
       "category": "Listening repair",
       "published_on": "2026-08-24",
       "reviewed_on": "2026-08-24",
       "search": {
-        "primary_query": "how to ask again and confirm",
+        "primary_query": "how to ask someone to repeat",
         "supporting_queries": [
           "how to ask someone to repeat a number in English",
           "how to confirm a time in English",
           "what to say when you did not catch a name",
           "natural English phrases for checking details"
         ],
-        "reader_task": "The reader can identify exactly what they missed, ask for that part again, and read back the answer without pretending to understand."
+        "reader_task": "The reader can identify exactly what they missed, ask for that part again, and say the confirmed answer back without pretending to understand."
       },
-      "quick_answer": "When you miss one important detail, name the missing part and confirm what you think you heard: “Sorry, I missed the gate. Did you say D14?” If two values are possible, ask which one is right: “Was that 7:20 or 7:40?” After the answer, read it back once. This is clearer and more useful than pretending you understood or asking the speaker to repeat everything.",
+      "quick_answer": "When a name, number, or time is unclear, make a specific request instead of asking for the whole message again. Say what you missed, confirm a likely answer, then repeat the important detail back before acting. This lets the other person correct one small part and helps you leave with the right instruction.",
+      "quick_answer_steps": [
+        {
+          "label": "Missed it",
+          "phrase": "Sorry, I didn’t catch the gate number. Could you say it again?",
+          "guidance": "Name the exact part you missed."
+        },
+        {
+          "label": "Heard a likely answer",
+          "phrase": "Did you say gate D14?",
+          "guidance": "Offer one candidate for the speaker to confirm or correct."
+        },
+        {
+          "label": "Need to act on it",
+          "phrase": "So that’s D14, boarding at 7:20, right?",
+          "guidance": "Repeat the important details back once."
+        }
+      ],
       "practice_intro": "Listen once before typing. Enter only the gate and boarding time you heard, then commit both answers. The transcript stays hidden until you submit.",
       "response_ladder": [
         {
           "label": "Repeat",
-          "when": "You missed the whole detail.",
-          "phrase": "Sorry, I missed the gate. Could you say that again?",
+          "when": "You missed a detail.",
+          "phrase": "Sorry, I didn’t catch the gate number. Could you say it again?",
           "why": "Naming the missing part gives the speaker a smaller, easier request."
         },
         {
@@ -128,10 +145,10 @@
           "why": "The speaker can answer yes or correct one precise item."
         },
         {
-          "label": "Read back",
+          "label": "Say it back",
           "when": "The detail affects what you do next.",
           "phrase": "So that’s D14, boarding at 7:20—right?",
-          "why": "One short read-back checks the two details as a usable instruction."
+          "why": "One short repeat checks the two details as a usable instruction."
         }
       ],
       "decision_map": [
@@ -143,7 +160,7 @@
         {
           "signal": "One part is missing",
           "move": "Name that part",
-          "example": "Sorry, what was the gate number?"
+          "example": "Sorry, I didn’t catch the gate number. Could you say it again?"
         },
         {
           "signal": "You have a likely answer",
@@ -152,7 +169,7 @@
         },
         {
           "signal": "Two details guide the next action",
-          "move": "Read both back once",
+          "move": "Say both details back once",
           "example": "D14 at 7:20—is that right?"
         }
       ],
@@ -175,7 +192,7 @@
         {
           "speaker": "You",
           "text": "Got it—C9 at 7:25. Thanks.",
-          "note": "A compact read-back closes the loop naturally."
+          "note": "A compact repeat closes the loop naturally."
         }
       ],
       "mistakes": [
@@ -205,12 +222,12 @@
         {
           "setting": "Class or meeting",
           "heard": "The room and start time came too quickly.",
-          "say": "Could I confirm that—room 214 at 3:30?"
+          "say": "Just to confirm, is it Room 214 at 3:30?"
         },
         {
-          "setting": "Hospital hallway",
-          "heard": "A coworker gave a non-clinical meeting place and time.",
-          "say": "Sorry, did you say the west lobby at twelve-fifteen?"
+          "setting": "Reception desk",
+          "heard": "A visitor’s last name and appointment time were unclear.",
+          "say": "Sorry, could you spell the last name? And is the appointment at 12:15?"
         }
       ],
       "faq": [
@@ -224,11 +241,27 @@
         },
         {
           "question": "What if I am not sure between two numbers?",
-          "answer": "Offer the two candidates as a question, listen to the correction, and then read back only the confirmed number."
+          "answer": "Offer the two candidates as a question, listen to the correction, and then say back only the confirmed number."
+        },
+        {
+          "question": "How can I ask someone to spell a name?",
+          "answer": "Say, “Sorry, I didn’t catch your name. Could you spell it?” Then repeat the letters or name back once."
         },
         {
           "question": "Does replaying the practice audio count as failure?",
           "answer": "No. The page records a replay as assisted practice so you can distinguish first-listen recall from successful repair. Both are useful skills."
+        }
+      ],
+      "related_links": [
+        {
+          "href": "../",
+          "label": "More everyday listening guides",
+          "description": "Browse practical listening and conversation-repair practice."
+        },
+        {
+          "href": "../../android-everyday.html",
+          "label": "Live Survival English practice",
+          "description": "Continue with app conversations that respond to you."
         }
       ],
       "review": {
