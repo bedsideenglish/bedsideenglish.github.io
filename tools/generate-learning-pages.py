@@ -20,7 +20,13 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-TEMPLATE_ROOT = Path(__file__).resolve().parent / "learning_templates"
+TOOLS_ROOT = Path(__file__).resolve().parent
+if str(TOOLS_ROOT) not in sys.path:
+    sys.path.insert(0, str(TOOLS_ROOT))
+from site_map import build_sitemap  # noqa: E402
+
+
+TEMPLATE_ROOT = TOOLS_ROOT / "learning_templates"
 DEFAULT_SOURCE_ROOT = ROOT.parent / "Medvoicetrainer-android-app-version" / "data" / "cases"
 DEFAULT_MANIFEST = ROOT / "learning-pages.json"
 SITE_ORIGIN = "https://bedsideenglish.github.io"
@@ -489,20 +495,6 @@ def build_hub(pages: list[PageMeta]) -> str:
     )
 
 
-def build_sitemap(pages: list[PageMeta]) -> str:
-    urls = [
-        f"{SITE_ORIGIN}/",
-        f"{SITE_ORIGIN}/android.html",
-        f"{SITE_ORIGIN}/android-everyday.html",
-        f"{SITE_ORIGIN}/desktop/",
-        f"{SITE_ORIGIN}/privacy.html",
-        f"{SITE_ORIGIN}/learning/",
-    ]
-    urls.extend(f"{SITE_ORIGIN}/learning/{page.slug}/" for page in sorted(pages, key=lambda item: item.slug))
-    body = "\n".join(f"  <url><loc>{escaped(url)}</loc></url>" for url in urls)
-    return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}\n</urlset>\n'
-
-
 def write_or_check(path: Path, content: str, check: bool, mismatches: list[Path]) -> None:
     if check:
         if not path.is_file() or path.read_text(encoding="utf-8") != content:
@@ -554,7 +546,7 @@ def generate(specs: list[PageSpec], output_root: Path, check: bool) -> int:
         page, _ = build_page(spec, data, related)
         write_or_check(learning_root / spec.slug / "index.html", page, check, mismatches)
     write_or_check(learning_root / "index.html", build_hub(all_pages), check, mismatches)
-    write_or_check(output_root / "sitemap.xml", build_sitemap(all_pages), check, mismatches)
+    write_or_check(output_root / "sitemap.xml", build_sitemap(output_root), check, mismatches)
 
     if mismatches:
         print("Generated output is out of date:", file=sys.stderr)

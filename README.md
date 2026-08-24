@@ -48,6 +48,34 @@ as `practise`, `felt sick`, or `open your bowels`, and on presupposition markers
 or `you mentioned`. These deterministic checks are a review aid, not a replacement for reading each
 question for subtler leading assumptions before publication.
 
+## Healthcare team communication guides
+
+Team-to-team content is managed separately under `communication/`. It uses a chart-to-message model rather than the patient-history question template: every guide includes a fictional source chart, framework steps, a generated complete script, wording contrasts, a receiver check-back, and source-backed editorial notes.
+
+The reviewed publication allowlist is `team-communication-pages.json`. The generator, templates, QA checker, and regression tests live under `tools/`; the complete management and editorial standard is in `docs/team-communication-content-system.md`.
+
+Generate the reviewed team-communication library:
+
+```powershell
+python tools\generate-team-communication-pages.py
+```
+
+Generate one manifest entry during editing:
+
+```powershell
+python tools\generate-team-communication-pages.py --page sbar-nursing-handoff-example
+```
+
+Run the publication gate:
+
+```powershell
+python tools\test_generate_team_communication_pages.py
+python tools\generate-team-communication-pages.py --check
+python tools\check-team-communication-pages.py
+```
+
+The initial sample is `communication/sbar-nursing-handoff-example/`. Do not edit generated HTML directly; edit the manifest or templates and regenerate.
+
 ### Search discovery on GitHub Pages
 
 This repository is deployed at the GitHub Pages hostname root. Its crawler policy is published at

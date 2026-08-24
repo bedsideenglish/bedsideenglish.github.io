@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b35">
+  <title>{{PAGE_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bedside English">
+  <meta property="og:title" content="{{H1}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL_URL}}">
+  <meta property="og:image" content="{{OG_IMAGE_URL}}">
+  <meta property="og:image:alt" content="A fictional chart flowing through the four SBAR steps into a spoken team handoff">
+  <meta property="og:image:width" content="1731">
+  <meta property="og:image:height" content="909">
+  <meta property="article:published_time" content="{{PUBLISHED_ON}}">
+  <meta property="article:modified_time" content="{{REVIEWED_ON}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{H1}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="{{OG_IMAGE_URL}}">
+  <meta name="twitter:image:alt" content="A fictional chart flowing through the four SBAR steps into a spoken team handoff">
+  <link rel="canonical" href="{{CANONICAL_URL}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">{{STRUCTURED_DATA}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the guide</a>
+  <header class="site-header">
+    <nav class="shell nav" aria-label="Primary navigation">
+      <a class="brand" href="../../" aria-label="Bedside English home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Bedside English</span></a>
+      <div class="nav-links"><a href="../">Team guides</a><a href="../../learning/">Patient guides</a><a class="store-badge nav-store" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" decoding="async"></a></div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="communication-page" data-guide-slug="{{SLUG}}" data-page-title="{{H1}}" data-summary="{{META_DESCRIPTION}}" data-reviewed-on="{{REVIEWED_ON}}">
+      <header class="hero">
+        <div class="shell">
+          <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span>/</span><a href="../">Team communication</a><span>/</span><span>SBAR</span></nav>
+          <p class="eyebrow">{{CATEGORY}} · Worked communication guide</p>
+          <h1>{{H1}}</h1>
+          <p class="lede">{{LEDE}}</p>
+          <div class="hero-actions"><a class="button button-primary" href="#example">Read the complete message <span aria-hidden="true">↓</span></a><a class="button" href="#chart">See the sample chart</a></div>
+        </div>
+      </header>
+
+      <div class="content shell">
+        <aside class="contents" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#quick-answer">Quick answer</a>
+          <a href="#scenario">Scenario</a>
+          <a href="#chart">Sample chart</a>
+          <a href="#framework">SBAR script</a>
+          <a href="#example">Full example</a>
+          <a href="#checklist">Checklist</a>
+          <a href="#faq">Questions</a>
+          <a href="#sources">Sources</a>
+        </aside>
+
+        <div class="article-body">
+          <section class="quick-answer" id="quick-answer" aria-labelledby="quick-answer-title">
+            <p class="section-label">Quick answer</p>
+            <h2 id="quick-answer-title">What is an SBAR nursing handoff?</h2>
+            <p>{{QUICK_ANSWER}}</p>
+            <div class="framework-strip" aria-label="SBAR meaning"><span><b>S</b> Situation</span><span><b>B</b> Background</span><span><b>A</b> Assessment</span><span><b>R</b> Recommendation</span></div>
+          </section>
+
+          <section id="scenario" aria-labelledby="scenario-title">
+            <p class="section-label">The communication task</p>
+            <h2 id="scenario-title">Know who is speaking, why, and what needs to happen</h2>
+            <div class="scenario-grid">
+              <div><span>Setting</span><p>{{SETTING}}</p></div>
+              <div><span>Caller</span><p>{{CALLER}}</p></div>
+              <div><span>Receiver</span><p>{{RECEIVER}}</p></div>
+              <div><span>Reason for contact</span><p>{{REASON}}</p></div>
+              <div class="scenario-goal"><span>Communication goal</span><p>{{GOAL}}</p></div>
+            </div>
+            <p class="boundary-note"><strong>Fictional training scenario:</strong> Names, observations, and timings below are invented for language practice. In clinical work, use the actual chart, local escalation policy, and your scope of practice.</p>
+          </section>
+
+          <section id="chart" aria-labelledby="chart-title">
+            <p class="section-label">Before you call</p>
+            <h2 id="chart-title">Read the example chart, then decide what matters</h2>
+            <p>The chart contains more detail than a spoken handoff needs. Items marked <em>Must say</em> are carried into the generated SBAR below.</p>
+            <div class="chart" aria-label="Fictional example patient chart">
+              <header><div><span class="chart-kicker">Training chart · Not a real patient</span><h3>Acute care communication snapshot</h3></div><span class="chart-status">Needs review</span></header>
+              {{FACT_GROUPS}}
+            </div>
+          </section>
+
+          <section id="framework" aria-labelledby="framework-title">
+            <p class="section-label">Build the message</p>
+            <h2 id="framework-title">{{FRAMEWORK_EXPANDED}}</h2>
+            <p>{{FRAMEWORK_DEFINITION}} {{FRAMEWORK_USE_WHEN}}</p>
+            <div class="sbar-steps">{{SBAR_STEPS}}</div>
+          </section>
+
+          <section id="example" aria-labelledby="example-title">
+            <p class="section-label">Complete spoken example</p>
+            <h2 id="example-title">Put the four parts together without sounding robotic</h2>
+            <div class="transcript">
+              <header><span class="live-dot" aria-hidden="true"></span><span>Nurse-to-resident call · Approximately 1 minute</span></header>
+              {{FULL_MESSAGE}}
+            </div>
+            <div class="check-back">
+              <p class="section-label">Close the loop</p>
+              <div><span>Receiver</span><p>“{{CHECK_BACK_RECEIVER}}”</p></div>
+              <div><span>Sender</span><p>“{{CHECK_BACK_SENDER}}”</p></div>
+              <p class="why"><strong>Why:</strong> {{CHECK_BACK_WHY}}</p>
+            </div>
+          </section>
+
+          <section id="checklist" aria-labelledby="checklist-title">
+            <p class="section-label">Pre-call checklist</p>
+            <h2 id="checklist-title">A 20-second SBAR check</h2>
+            <ol class="checklist">{{CHECKLIST_ITEMS}}</ol>
+          </section>
+
+          <section id="repairs" aria-labelledby="repairs-title">
+            <p class="section-label">Common communication problems</p>
+            <h2 id="repairs-title">Repair a vague or overloaded handoff</h2>
+            <div class="repairs">{{MISTAKE_CARDS}}</div>
+          </section>
+
+          <section id="faq" aria-labelledby="faq-title">
+            <p class="section-label">Frequently asked questions</p>
+            <h2 id="faq-title">SBAR questions, answered briefly</h2>
+            <div class="faq-list">{{FAQ_ITEMS}}</div>
+          </section>
+
+          <section class="cta-panel" aria-labelledby="cta-title">
+            <div>
+              <p class="section-label">Speak, listen, improve</p>
+              <h2 id="cta-title">Build clinical English you can say under pressure</h2>
+              <p>Bedside English is designed for spoken clinical communication practice. Team scenarios are an expanding part of this learning library.</p>
+              <div class="cta-actions"><a class="store-badge cta-store" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a><a href="../../learning/">Practice patient conversations</a></div>
+            </div>
+          </section>
+
+          <section id="sources" aria-labelledby="sources-title">
+            <p class="section-label">Editorial record</p>
+            <h2 id="sources-title">Sources and review boundary</h2>
+            <p>This guide was drafted with a structured content template and checked against the authoritative sources below. It teaches English and message organization; it does not replace local policy, supervision, or clinical judgment.</p>
+            <ul class="sources">{{SOURCE_ITEMS}}</ul>
+            <p class="review-date"><strong>Published:</strong> <time datetime="{{PUBLISHED_ON}}">{{PUBLISHED_ON}}</time> · <strong>Last source and language review:</strong> <time datetime="{{REVIEWED_ON}}">{{REVIEWED_DISPLAY}}</time></p>
+          </section>
+
+          <aside class="disclaimer"><strong>Educational use only.</strong> This fictional example is not patient-specific advice or an institutional handoff protocol. If a patient may be deteriorating, follow your local escalation process and seek appropriate help.</aside>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><span>Bedside English · Clinical communication, spoken aloud</span><div><a href="../">Team guides</a><a href="../../learning/">Patient guides</a><a href="../../privacy.html">Privacy</a><a href="../../">Home</a></div></div></footer>
+</body>
+</html>

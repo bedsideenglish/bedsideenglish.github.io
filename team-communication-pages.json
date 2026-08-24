@@ -1,0 +1,281 @@
+{
+  "pages": [
+    {
+      "slug": "sbar-nursing-handoff-example",
+      "title": "SBAR Nursing Handoff Example: Script and Chart | Bedside English",
+      "h1": "SBAR nursing handoff example in English",
+      "meta_description": "Learn an SBAR nursing handoff with a fictional patient chart, a complete spoken script, phrase-by-phrase coaching, check-back, and a pre-call checklist.",
+      "lede": "Turn a busy chart into a brief, actionable message. This worked example shows what to select, what to say, and how to confirm the next step in natural clinical English.",
+      "category": "Escalation and handoff",
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "SBAR nursing handoff example",
+        "supporting_queries": [
+          "SBAR example for nurses",
+          "SBAR handoff script",
+          "nurse to doctor SBAR example",
+          "how to give an SBAR report in English"
+        ],
+        "reader_task": "Prepare and speak a concise nurse-to-resident escalation call using a fictional chart."
+      },
+      "framework": {
+        "name": "SBAR",
+        "expanded": "Situation, Background, Assessment, Recommendation",
+        "definition": "SBAR is a four-part framework for organizing a focused conversation about a patient's condition.",
+        "use_when": "Use it when the receiver needs the current problem, only the relevant context, your assessment, and a clear request."
+      },
+      "quick_answer": "An SBAR nursing handoff organizes a message into Situation, Background, Assessment, and Recommendation. First identify the patient and immediate concern. Add only the history that changes the decision, state what you think is happening, and finish with a specific request and time frame. The receiver should then confirm the plan so both people leave with the same next step.",
+      "scenario": {
+        "setting": "Evening shift on an adult medical unit",
+        "caller": "Registered nurse caring for the patient",
+        "receiver": "On-call resident who has not yet seen the change",
+        "reason": "New shortness of breath and a falling oxygen saturation",
+        "goal": "Activate the local escalation process, obtain an immediate bedside review, and confirm what to monitor while help is on the way"
+      },
+      "facts": [
+        {
+          "id": "patient",
+          "label": "Patient",
+          "value": "Mr. Han · 68 years old · Room 412",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "change",
+          "label": "New change",
+          "value": "Breathless at rest; speaking in short phrases",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "oxygen",
+          "label": "Oxygen saturation",
+          "value": "88% on room air; 95% twenty minutes earlier",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "observations",
+          "label": "Latest observations",
+          "value": "RR 28 · HR 112 · BP 102/64 · Temp 38.6°C",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "mental_status",
+          "label": "Mental status",
+          "value": "Alert and answering appropriately",
+          "group": "Current concern",
+          "priority": "supporting"
+        },
+        {
+          "id": "diagnosis",
+          "label": "Reason for admission",
+          "value": "Community-acquired pneumonia; admitted yesterday",
+          "group": "Relevant background",
+          "priority": "must"
+        },
+        {
+          "id": "treatment",
+          "label": "Relevant treatment",
+          "value": "Scheduled antibiotic given at 18:00",
+          "group": "Relevant background",
+          "priority": "supporting"
+        },
+        {
+          "id": "allergy",
+          "label": "Recorded allergy",
+          "value": "Penicillin allergy documented",
+          "group": "Relevant background",
+          "priority": "supporting"
+        },
+        {
+          "id": "assessment",
+          "label": "Nurse's assessment",
+          "value": "Respiratory status is worsening",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "request",
+          "label": "Requested response",
+          "value": "Local escalation process activated; immediate bedside review requested",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "contingency",
+          "label": "Clarify before ending",
+          "value": "Monitoring and escalation plan while waiting",
+          "group": "Safety and next steps",
+          "priority": "must"
+        }
+      ],
+      "steps": [
+        {
+          "letter": "S",
+          "name": "Situation",
+          "prompt": "What is happening now?",
+          "statements": [
+            {
+              "text": "This is Mina, the nurse caring for Mr. Han, a 68-year-old in room 412.",
+              "fact_refs": ["patient"]
+            },
+            {
+              "text": "I'm calling because he has become breathless at rest, and his oxygen saturation has fallen from 95% to 88% on room air in the past 20 minutes.",
+              "fact_refs": ["change", "oxygen"]
+            }
+          ],
+          "why_it_works": "The receiver immediately hears who is calling, which patient is involved, what changed, and why the call is urgent.",
+          "language_note": {
+            "less_clear": "I'm calling about a patient who doesn't look good.",
+            "preferred": "His oxygen saturation has fallen to 88% on room air.",
+            "reason": "A concrete change is easier to interpret than a vague judgment."
+          }
+        },
+        {
+          "letter": "B",
+          "name": "Background",
+          "prompt": "Which context changes the decision?",
+          "statements": [
+            {
+              "text": "He was admitted yesterday with community-acquired pneumonia, and his scheduled antibiotic was given at 18:00.",
+              "fact_refs": ["diagnosis", "treatment"]
+            }
+          ],
+          "why_it_works": "The background is short and relevant to the current respiratory change; it does not become a full chart recital.",
+          "language_note": {
+            "less_clear": "He has a long medical history, and there are several things in the chart.",
+            "preferred": "He was admitted yesterday with community-acquired pneumonia.",
+            "reason": "Lead with the piece of history that helps the receiver understand the present concern."
+          }
+        },
+        {
+          "letter": "A",
+          "name": "Assessment",
+          "prompt": "What did you find, and what do you think?",
+          "statements": [
+            {
+              "text": "His respiratory rate is 28, heart rate 112, blood pressure 102 over 64, and temperature 38.6 degrees Celsius; he is alert but can speak only in short phrases.",
+              "fact_refs": ["observations", "mental_status", "change"]
+            },
+            {
+              "text": "I think his respiratory status is worsening.",
+              "fact_refs": ["assessment"]
+            }
+          ],
+          "why_it_works": "Objective findings and the caller's interpretation are clearly separated, so the receiver can hear both the evidence and the concern.",
+          "language_note": {
+            "less_clear": "His vital signs are bad.",
+            "preferred": "His respiratory rate is 28, and I think his respiratory status is worsening.",
+            "reason": "Report the relevant measurement, then state your assessment directly."
+          }
+        },
+        {
+          "letter": "R",
+          "name": "Recommendation",
+          "prompt": "What response do you need, and by when?",
+          "statements": [
+            {
+              "text": "I have activated our unit escalation process. Could you review him at the bedside now?",
+              "fact_refs": ["request"]
+            },
+            {
+              "text": "Please confirm what you want me to monitor while the escalation response is on the way.",
+              "fact_refs": ["contingency"]
+            }
+          ],
+          "why_it_works": "The request names the action already taken, makes the need for immediate review explicit, and asks for a monitoring plan instead of ending with an open-ended update.",
+          "language_note": {
+            "less_clear": "I just wanted to let you know.",
+            "preferred": "I have activated our escalation process. Could you review him now?",
+            "reason": "A specific request makes ownership, urgency, and the expected response easier to confirm."
+          }
+        }
+      ],
+      "check_back": {
+        "receiver": "I'm on my way now. Continue the unit escalation process and repeat his observations in five minutes.",
+        "sender": "To check, you're on your way now. I'll continue the escalation process and repeat his observations in five minutes.",
+        "why": "The sender repeats the action, timing, and contingency so the receiver can correct any misunderstanding before the call ends."
+      },
+      "checklist": [
+        "Confirm the correct patient and receiver.",
+        "Name the immediate change in one sentence.",
+        "Have the latest relevant observations in front of you.",
+        "Choose only the background that affects this decision.",
+        "Separate what you observed from what you think.",
+        "Ask for a specific action and time frame.",
+        "Clarify what to do if the condition changes.",
+        "Repeat back the agreed plan and ownership."
+      ],
+      "mistakes": [
+        {
+          "problem": "Giving the full chart before naming the concern",
+          "repair": "Start with the current change and urgency; add only background that helps the receiver act."
+        },
+        {
+          "problem": "Reporting numbers without an assessment",
+          "repair": "After the key findings, say plainly what you think is happening or what concerns you."
+        },
+        {
+          "problem": "Ending with “Just letting you know”",
+          "repair": "Ask for an action, state a time frame, and clarify the contingency plan."
+        },
+        {
+          "problem": "Assuming silence means agreement",
+          "repair": "Use a check-back to confirm the action, timing, trigger, and owner."
+        }
+      ],
+      "faq": [
+        {
+          "question": "What does SBAR stand for in nursing?",
+          "answer": "SBAR stands for Situation, Background, Assessment, and Recommendation. The sequence helps a nurse move from the current problem to relevant context, findings and interpretation, and a specific request or proposed next step."
+        },
+        {
+          "question": "How long should an SBAR handoff be?",
+          "answer": "There is no universal time limit. It should be brief enough to foreground the concern but complete enough to support the next decision. Urgent calls often begin with a short headline, then expand as the receiver asks questions."
+        },
+        {
+          "question": "Is SBAR only for nurses calling doctors?",
+          "answer": "No. SBAR can structure communication between different healthcare team members and across care settings. Roles and local workflow vary, so the wording and expected response should match the people involved and the situation."
+        },
+        {
+          "question": "What belongs in the Recommendation section?",
+          "answer": "State what you need the receiver to do, how urgent it is, and what should happen if the situation changes. A recommendation can be a request for review, an action, clarification, or agreement on a monitoring and escalation plan."
+        },
+        {
+          "question": "What is the difference between SBAR and a check-back?",
+          "answer": "SBAR organizes the message the sender gives. A check-back closes the loop after the response: the receiver states the plan, the sender repeats the critical details, and the receiver has an opportunity to verify or correct them."
+        }
+      ],
+      "sources": [
+        {
+          "title": "SBAR Tool: Situation-Background-Assessment-Recommendation",
+          "organization": "Institute for Healthcare Improvement",
+          "url": "https://www.ihi.org/library/tools/sbar-tool-situation-background-assessment-recommendation",
+          "accessed_on": "2026-08-24"
+        },
+        {
+          "title": "TeamSTEPPS Tools",
+          "organization": "Agency for Healthcare Research and Quality",
+          "url": "https://www.ahrq.gov/teamstepps-program/resources/modules/index.html",
+          "accessed_on": "2026-08-24"
+        },
+        {
+          "title": "Implement Teamwork and Communication: SBAR and Check-Back",
+          "organization": "Agency for Healthcare Research and Quality",
+          "url": "https://www.ahrq.gov/hai/cusp/modules/implement/alt-text.html",
+          "accessed_on": "2026-08-24"
+        }
+      ],
+      "review": {
+        "source_claims_checked": true,
+        "fictional_case_labeled": true,
+        "local_policy_boundary_checked": true,
+        "plain_language_checked": true,
+        "search_intent_checked": true
+      }
+    }
+  ]
+}

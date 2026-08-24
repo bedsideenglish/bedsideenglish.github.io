@@ -8,12 +8,20 @@ on:
       - android-everyday.html
       - learning-pages.json
       - learning/**
+      - team-communication-pages.json
+      - communication/**
+      - docs/team-communication-content-system.md
       - robots.txt
       - sitemap.xml
       - tools/generate-learning-pages.py
       - tools/check-learning-pages.py
       - tools/learning_templates/**
       - tools/test_generate_learning_pages.py
+      - tools/generate-team-communication-pages.py
+      - tools/check-team-communication-pages.py
+      - tools/team_communication_templates/**
+      - tools/test_generate_team_communication_pages.py
+      - tools/site_map.py
       - tools/sync-landing-pages.py
       - .github/workflows/verify-landing-pages.yml
   push:
@@ -25,12 +33,20 @@ on:
       - android-everyday.html
       - learning-pages.json
       - learning/**
+      - team-communication-pages.json
+      - communication/**
+      - docs/team-communication-content-system.md
       - robots.txt
       - sitemap.xml
       - tools/generate-learning-pages.py
       - tools/check-learning-pages.py
       - tools/learning_templates/**
       - tools/test_generate_learning_pages.py
+      - tools/generate-team-communication-pages.py
+      - tools/check-team-communication-pages.py
+      - tools/team_communication_templates/**
+      - tools/test_generate_team_communication_pages.py
+      - tools/site_map.py
       - tools/sync-landing-pages.py
       - .github/workflows/verify-landing-pages.yml
 
@@ -49,3 +65,6 @@ jobs:
       - run: python tools/test_generate_learning_pages.py
       - run: python tools/generate-learning-pages.py --check
       - run: python tools/check-learning-pages.py
+      - run: python tools/test_generate_team_communication_pages.py
+      - run: python tools/generate-team-communication-pages.py --check
+      - run: python tools/check-team-communication-pages.py

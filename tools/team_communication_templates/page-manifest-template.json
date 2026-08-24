@@ -1,0 +1,90 @@
+{
+  "slug": "framework-task-example",
+  "title": "Primary Query: Specific Task and Asset | Bedside English",
+  "h1": "Primary query in natural English",
+  "meta_description": "Write a specific 110-170 character summary of the scenario, worked example, learning value, and useful page assets.",
+  "lede": "Explain the reader's communication problem and the concrete outcome of this guide.",
+  "category": "Handoff, escalation, closed loop, or mutual support",
+  "published_on": "YYYY-MM-DD",
+  "reviewed_on": "YYYY-MM-DD",
+  "search": {
+    "primary_query": "exact task query",
+    "supporting_queries": ["natural query variant one", "natural query variant two", "natural query variant three"],
+    "reader_task": "The observable speaking task this page enables."
+  },
+  "framework": {
+    "name": "SBAR",
+    "expanded": "Situation, Background, Assessment, Recommendation",
+    "definition": "A source-checked definition in your own words.",
+    "use_when": "A bounded explanation of when this framework fits."
+  },
+  "quick_answer": "Write a 35-90 word self-contained answer that defines the framework, outlines the sequence, and explains the result without requiring the reader to scan the rest of the page.",
+  "scenario": {
+    "setting": "Where and when the exchange occurs",
+    "caller": "Role sending the message",
+    "receiver": "Role receiving the message",
+    "reason": "The specific trigger for communication",
+    "goal": "The action, decision, or shared understanding required"
+  },
+  "facts": [
+    {"id": "patient", "label": "Patient", "value": "Fictional identifiers", "group": "Current concern", "priority": "must"},
+    {"id": "change", "label": "Current change", "value": "Concrete change with timing", "group": "Current concern", "priority": "must"},
+    {"id": "observations", "label": "Latest observations", "value": "Internally consistent findings", "group": "Current concern", "priority": "must"},
+    {"id": "history", "label": "Relevant background", "value": "Context that changes the decision", "group": "Relevant background", "priority": "must"},
+    {"id": "assessment", "label": "Sender assessment", "value": "Interpretation separated from observations", "group": "Safety and next steps", "priority": "must"},
+    {"id": "request", "label": "Requested response", "value": "Action, owner, and time frame", "group": "Safety and next steps", "priority": "must"}
+  ],
+  "steps": [
+    {
+      "letter": "S", "name": "Situation", "prompt": "What is happening now?",
+      "statements": [{"text": "Natural spoken statement.", "fact_refs": ["patient", "change"]}],
+      "why_it_works": "Explain the communication effect.",
+      "language_note": {"less_clear": "Vague wording.", "preferred": "Specific wording.", "reason": "Explain the contrast."}
+    },
+    {
+      "letter": "B", "name": "Background", "prompt": "Which context changes the decision?",
+      "statements": [{"text": "Natural spoken statement.", "fact_refs": ["history"]}],
+      "why_it_works": "Explain the communication effect.",
+      "language_note": {"less_clear": "Overloaded wording.", "preferred": "Relevant wording.", "reason": "Explain the contrast."}
+    },
+    {
+      "letter": "A", "name": "Assessment", "prompt": "What did you find, and what do you think?",
+      "statements": [{"text": "Natural spoken statement.", "fact_refs": ["observations", "assessment"]}],
+      "why_it_works": "Explain the communication effect.",
+      "language_note": {"less_clear": "Unsupported judgment.", "preferred": "Finding plus assessment.", "reason": "Explain the contrast."}
+    },
+    {
+      "letter": "R", "name": "Recommendation", "prompt": "What response do you need, and by when?",
+      "statements": [{"text": "Natural spoken request.", "fact_refs": ["request"]}],
+      "why_it_works": "Explain the communication effect.",
+      "language_note": {"less_clear": "Open-ended ending.", "preferred": "Specific request.", "reason": "Explain the contrast."}
+    }
+  ],
+  "check_back": {
+    "receiver": "Receiver states the action, timing, trigger, and owner.",
+    "sender": "Sender repeats the critical plan in natural spoken English.",
+    "why": "Explain what ambiguity this confirmation removes."
+  },
+  "checklist": ["Check one", "Check two", "Check three", "Check four", "Check five", "Check six"],
+  "mistakes": [
+    {"problem": "Common failure one", "repair": "Specific repair one"},
+    {"problem": "Common failure two", "repair": "Specific repair two"},
+    {"problem": "Common failure three", "repair": "Specific repair three"}
+  ],
+  "faq": [
+    {"question": "A real task-shaped question?", "answer": "Write a self-contained 20-90 word answer grounded in the visible guide and listed sources."},
+    {"question": "A second task-shaped question?", "answer": "Write a self-contained 20-90 word answer grounded in the visible guide and listed sources."},
+    {"question": "A boundary or comparison question?", "answer": "Write a self-contained 20-90 word answer grounded in the visible guide and listed sources."}
+  ],
+  "sources": [
+    {"title": "Authoritative source title", "organization": "Source owner", "url": "https://example.org/source-one", "accessed_on": "YYYY-MM-DD"},
+    {"title": "Second authoritative source", "organization": "Source owner", "url": "https://example.org/source-two", "accessed_on": "YYYY-MM-DD"}
+  ],
+  "review": {
+    "source_claims_checked": false,
+    "fictional_case_labeled": false,
+    "local_policy_boundary_checked": false,
+    "plain_language_checked": false,
+    "search_intent_checked": false
+  }
+}

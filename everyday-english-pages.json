@@ -1,0 +1,244 @@
+{
+  "speaker_profiles": [
+    {
+      "id": "us",
+      "label": "US English",
+      "lang_candidates": ["en-US"],
+      "tts_prompt": "Speak in clear, natural US English at an ordinary conversational pace. Keep names, letters, numbers, and times natural rather than over-enunciated."
+    },
+    {
+      "id": "ca",
+      "label": "Canadian English",
+      "lang_candidates": ["en-CA", "en-US"],
+      "tts_prompt": "Speak in clear, natural Canadian English at an ordinary conversational pace."
+    },
+    {
+      "id": "uk",
+      "label": "British English",
+      "lang_candidates": ["en-GB"],
+      "tts_prompt": "Speak in clear, contemporary British English at an ordinary conversational pace."
+    },
+    {
+      "id": "aus",
+      "label": "Australian English",
+      "lang_candidates": ["en-AU", "en-GB"],
+      "tts_prompt": "Speak in clear, natural Australian English at an ordinary conversational pace."
+    },
+    {
+      "id": "nz",
+      "label": "New Zealand English",
+      "lang_candidates": ["en-NZ", "en-AU", "en-GB"],
+      "tts_prompt": "Speak in clear, natural New Zealand English at an ordinary conversational pace."
+    },
+    {
+      "id": "in",
+      "label": "Indian English",
+      "lang_candidates": ["en-IN", "en-GB"],
+      "tts_prompt": "Speak fluent English with a natural Indian English accent at an ordinary conversational pace."
+    },
+    {
+      "id": "ph",
+      "label": "Filipino English",
+      "lang_candidates": ["en-PH", "en-US"],
+      "tts_prompt": "Speak fluent English with a natural Filipino English accent at an ordinary conversational pace."
+    },
+    {
+      "id": "sg",
+      "label": "Singapore English",
+      "lang_candidates": ["en-SG", "en-GB"],
+      "tts_prompt": "Speak fluent English with a natural Singapore English accent at an ordinary conversational pace."
+    },
+    {
+      "id": "ng",
+      "label": "Nigerian English",
+      "lang_candidates": ["en-NG", "en-GB"],
+      "tts_prompt": "Speak fluent English with a natural Nigerian English accent at an ordinary conversational pace."
+    },
+    {
+      "id": "za",
+      "label": "South African English",
+      "lang_candidates": ["en-ZA", "en-GB"],
+      "tts_prompt": "Speak in clear, natural South African English at an ordinary conversational pace."
+    },
+    {
+      "id": "es",
+      "label": "Spanish-influenced English",
+      "lang_candidates": ["en-US", "en-GB"],
+      "tts_prompt": "Speak fluent English with a natural, moderate Spanish first-language influence. Keep every word intelligible."
+    },
+    {
+      "id": "fr",
+      "label": "French-influenced English",
+      "lang_candidates": ["en-GB", "en-US"],
+      "tts_prompt": "Speak fluent English with a natural, moderate French first-language influence. Keep every word intelligible."
+    },
+    {
+      "id": "de",
+      "label": "German-influenced English",
+      "lang_candidates": ["en-GB", "en-US"],
+      "tts_prompt": "Speak fluent English with a natural, moderate German first-language influence. Keep every word intelligible."
+    },
+    {
+      "id": "ie",
+      "label": "Irish English",
+      "lang_candidates": ["en-IE", "en-GB"],
+      "tts_prompt": "Speak in clear, natural Irish English at an ordinary conversational pace."
+    },
+    {
+      "id": "sco",
+      "label": "Scottish English",
+      "lang_candidates": ["en-GB"],
+      "tts_prompt": "Speak in clear, natural Scottish English at an ordinary conversational pace."
+    }
+  ],
+  "pages": [
+    {
+      "slug": "ask-again-and-confirm-details",
+      "source_drill_id": "airport_gate_time",
+      "title": "How to Ask Again and Confirm Details in English",
+      "h1": "How to ask again and confirm names, numbers, and times in English",
+      "meta_description": "Hear a short airport message, commit the gate and time, get exact-detail scoring, and learn natural English for asking again and confirming what you heard.",
+      "lede": "A practical hear–commit–verify guide for the moments when one missed letter, number, name, or time changes what you need to do next.",
+      "category": "Listening repair",
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "how to ask again and confirm",
+        "supporting_queries": [
+          "how to ask someone to repeat a number in English",
+          "how to confirm a time in English",
+          "what to say when you did not catch a name",
+          "natural English phrases for checking details"
+        ],
+        "reader_task": "The reader can identify exactly what they missed, ask for that part again, and read back the answer without pretending to understand."
+      },
+      "quick_answer": "When you miss one important detail, name the missing part and confirm what you think you heard: “Sorry, I missed the gate. Did you say B12?” If two values are possible, ask which one is right: “Was that 6:40 or 7:40?” After the answer, read it back once. This is clearer and more useful than pretending you understood or asking the speaker to repeat everything.",
+      "practice_intro": "Listen once before typing. Enter only the gate and boarding time you heard, then commit both answers. The transcript stays hidden until you submit.",
+      "response_ladder": [
+        {
+          "label": "Repeat",
+          "when": "You missed the whole detail.",
+          "phrase": "Sorry, I missed the gate. Could you say that again?",
+          "why": "Naming the missing part gives the speaker a smaller, easier request."
+        },
+        {
+          "label": "Confirm",
+          "when": "You think you heard the detail.",
+          "phrase": "Did you say gate B12?",
+          "why": "The speaker can answer yes or correct one precise item."
+        },
+        {
+          "label": "Read back",
+          "when": "The detail affects what you do next.",
+          "phrase": "So that’s B12, boarding at 6:40—right?",
+          "why": "One short read-back checks the two details as a usable instruction."
+        }
+      ],
+      "decision_map": [
+        {
+          "signal": "You heard almost nothing",
+          "move": "Ask for one repeat",
+          "example": "Sorry, could you say that again?"
+        },
+        {
+          "signal": "One part is missing",
+          "move": "Name that part",
+          "example": "Sorry, what was the gate number?"
+        },
+        {
+          "signal": "You have a likely answer",
+          "move": "Confirm the candidate",
+          "example": "Did you say B12?"
+        },
+        {
+          "signal": "Two details guide the next action",
+          "move": "Read both back once",
+          "example": "B12 at 6:40—is that right?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Fellow passenger",
+          "text": "They moved us to gate B12, and boarding starts at 6:40.",
+          "note": "The letter-number code and time arrive in one turn."
+        },
+        {
+          "speaker": "You",
+          "text": "Sorry, did you say B12?",
+          "note": "Confirm the uncertain detail instead of repeating the whole message."
+        },
+        {
+          "speaker": "Fellow passenger",
+          "text": "Yes, B12. Boarding starts at 6:40.",
+          "note": "The answer supplies both actionable details again."
+        },
+        {
+          "speaker": "You",
+          "text": "Got it—B12 at 6:40. Thanks.",
+          "note": "A compact read-back closes the loop naturally."
+        }
+      ],
+      "mistakes": [
+        {
+          "problem": "Saying only “What?”",
+          "repair": "Name the missing item: “Sorry, what was the boarding time?”"
+        },
+        {
+          "problem": "Guessing and moving on",
+          "repair": "Offer your best candidate as a question: “Did you say B12?”"
+        },
+        {
+          "problem": "Repeating several possible answers as if all were correct",
+          "repair": "Ask the speaker to choose: “Was that 6:40 or 7:40?” Then keep only the confirmed value."
+        },
+        {
+          "problem": "Apologizing for too long",
+          "repair": "Use one short apology, then make the request: “Sorry, could you repeat the time?”"
+        }
+      ],
+      "transfer_prompts": [
+        {
+          "setting": "Coffee counter",
+          "heard": "The name or drink size was unclear.",
+          "say": "Sorry, was that Mina with a medium latte?"
+        },
+        {
+          "setting": "Class or meeting",
+          "heard": "The room and start time came too quickly.",
+          "say": "Could I confirm that—room 214 at 3:30?"
+        },
+        {
+          "setting": "Hospital hallway",
+          "heard": "A coworker gave a non-clinical meeting place and time.",
+          "say": "Sorry, did you say the west lobby at twelve-fifteen?"
+        }
+      ],
+      "faq": [
+        {
+          "question": "Is it rude to ask someone to repeat a number or time?",
+          "answer": "No. A short, specific request usually sounds attentive. Name the part you missed and avoid blaming the speaker."
+        },
+        {
+          "question": "Should I say “repeat” or “say that again”?",
+          "answer": "Both work. “Could you say that again?” is broadly natural; “Could you repeat the gate number?” is useful when you can name the exact detail."
+        },
+        {
+          "question": "What if I am not sure between two numbers?",
+          "answer": "Offer the two candidates as a question, listen to the correction, and then read back only the confirmed number."
+        },
+        {
+          "question": "Does replaying the practice audio count as failure?",
+          "answer": "No. The page records a replay as assisted practice so you can distinguish first-listen recall from successful repair. Both are useful skills."
+        }
+      ],
+      "review": {
+        "app_source_checked": true,
+        "scoring_cases_checked": true,
+        "transcript_hidden_until_commit": true,
+        "us_english_read_aloud": true,
+        "browser_tts_limit_disclosed": true,
+        "search_task_satisfied": true
+      }
+    }
+  ]
+}
