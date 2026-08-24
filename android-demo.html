@@ -175,49 +175,64 @@ const turns=[
  {doctor:'Is it worse when you take a deep breath?',capture:'provoking',response:'Yes — much sharper. I keep taking these shallow breaths.'}
 ];
 
-/* ── VOICE LAYER ───────────────────────────────────────────────────────────
-   Every spoken line in this demo goes through speak(text, role, done).
-   Three roles, three distinct voices: the attending, the patient, and you.
-   The engine below is a placeholder — the browser's own SpeechSynthesis.
-   To move to Gemini TTS, keep the (text, role, done) signature: fetch or
-   preload one audio clip per line/role, play it, call done() on 'ended',
-   and route stop() through shush(). Nothing outside this block changes. */
-const ROLES={
- attending:{rate:1.04,pitch:.78,hints:['david','mark','guy','ryan','daniel','george','christopher','arthur']},
- patient  :{rate:.90,pitch:1.04,hints:['zira','aria','jenny','samantha','sonia','libby','eva','emma']},
- learner  :{rate:.99,pitch:.96,hints:['alex','fred','tom','oliver','brian','james','nathan']}
+/* Pre-generated Gemini TTS clips. The public page only plays static WAV
+   assets: visitors never need an API key and browser SpeechSynthesis is not
+   used. The three roles are generated with distinct Gemini voice profiles. */
+const AUDIO_BASE='assets/audio/bed-23/';
+const AUDIO_CLIPS={
+ 'You.':'attending-brief-you.wav',
+ 'Bed twenty-three.':'attending-brief-bed-23.wav',
+ 'Thirty-four-year-old woman. Chest pain.':'attending-brief-patient.wav',
+ 'Take the history.':'attending-brief-history.wav',
+ "We'll come back to you.":'attending-brief-returning.wav',
+ 'Twenty seconds. Then you present her.':'attending-twenty-seconds.wav',
+ "How's the patient in bed twenty-three?":'attending-return.wav',
+ "Time. So, how's the patient in bed twenty-three?":'attending-return-time.wav',
+ "Doctor... I've got this pain in my chest. It started this morning.":'patient-opening.wav',
+ 'Yeah... into my left shoulder. Should I be worried?':'patient-radiation.wav',
+ 'Yes, much sharper. I keep taking these shallow breaths.':'patient-provocation.wav',
+ 'Doctor? Are you going to ask me something?':'patient-nudge-first.wav',
+ 'Doctor? Is that a bad sign?':'patient-nudge-second.wav',
+ 'Does the pain go anywhere else?':'learner-radiation.wav',
+ 'Is it worse when you take a deep breath?':'learner-provocation.wav'
 };
-const canSpeak='speechSynthesis' in window&&'SpeechSynthesisUtterance' in window;
-let voices=[],voiceFor={},muted=false,audioReady=false,speaking=false;
-function loadVoices(){if(!canSpeak)return;voices=speechSynthesis.getVoices()||[];assignVoices()}
-function assignVoices(){
- const en=voices.filter(v=>/^en[-_]/i.test(v.lang||'')),pool=en.length?en:voices;
- voiceFor={};if(!pool.length)return;const taken=new Set();
- for(const role of ['attending','patient','learner']){
-  const hints=ROLES[role].hints;
-  const v=pool.find(x=>!taken.has(x.name)&&hints.some(h=>(x.name||'').toLowerCase().includes(h)))
-        ||pool.find(x=>!taken.has(x.name))||pool[0];
-  taken.add(v.name);voiceFor[role]=v;
- }
-}
-loadVoices();if(canSpeak)speechSynthesis.addEventListener('voiceschanged',loadVoices);
+const audioByText=Object.fromEntries(Object.entries(AUDIO_CLIPS).map(([text,file])=>{
+ const audio=new Audio(AUDIO_BASE+file);audio.preload='auto';return [text,audio];
+}));
+let muted=false,audioReady=false,speaking=false,activeAudio=null,activeCleanup=null;
 const silentMs=t=>Math.min(2600,Math.max(700,t.length*42));
-function speak(text,role='patient',done){
+function speak(text,role='patient',done,startFraction=0){
  const finish=()=>{speaking=false;done&&done()};
- if(!canSpeak||muted||!audioReady){speaking=true;setTimeout(finish,silentMs(text));return}
- try{speechSynthesis.cancel()}catch(e){}
- const cfg=ROLES[role]||ROLES.patient,u=new SpeechSynthesisUtterance(text),v=voiceFor[role];
- if(v)u.voice=v;u.lang=(v&&v.lang)||'en-US';u.rate=cfg.rate;u.pitch=cfg.pitch;
- let fired=false;const end=()=>{if(fired)return;fired=true;clearTimeout(guard);finish()};
- const guard=setTimeout(end,Math.min(6200,Math.max(1300,text.length*60)));
- u.onend=end;u.onerror=end;speaking=true;
- try{speechSynthesis.speak(u)}catch(e){end()}
+ if(muted||!audioReady){speaking=true;setTimeout(finish,silentMs(text));return}
+ const audio=audioByText[text];
+ if(!audio){speaking=true;setTimeout(finish,silentMs(text));return}
+ shush();speaking=true;activeAudio=audio;
+ let fired=false;
+ const cleanup=()=>{
+  clearTimeout(guard);audio.onended=null;audio.onerror=null;
+  if(activeAudio===audio){activeAudio=null;activeCleanup=null}
+ };
+ const end=()=>{if(fired)return;fired=true;cleanup();finish()};
+ const guard=setTimeout(end,9000);
+ audio.onended=end;audio.onerror=end;activeCleanup=cleanup;
+ const play=()=>{
+  if(startFraction&&Number.isFinite(audio.duration))audio.currentTime=Math.min(audio.duration-.05,audio.duration*startFraction);
+  else if(!startFraction)audio.currentTime=0;
+  const started=audio.play();if(started&&typeof started.catch==='function')started.catch(end);
+ };
+ if(startFraction&&!audio.readyState)audio.addEventListener('loadedmetadata',play,{once:true});else play();
 }
-function shush(){speaking=false;if(canSpeak){try{speechSynthesis.cancel()}catch(e){}}}
+function shush(){
+ speaking=false;
+ if(activeAudio){activeAudio.pause();activeAudio.currentTime=0;activeCleanup&&activeCleanup();activeAudio=null;activeCleanup=null}
+}
 function unlockAudio(){
- audioReady=true;if(!canSpeak)return;
- try{speechSynthesis.resume();const w=new SpeechSynthesisUtterance(' ');w.volume=0;speechSynthesis.speak(w)}catch(e){}
- loadVoices();
+ audioReady=true;Object.values(audioByText).forEach(audio=>audio.load());
+ // Start and immediately silence one clip inside the Begin button gesture. This
+ // primes static-media playback on mobile browsers before the timed scene starts.
+ const primer=audioByText['You.'];primer.muted=true;
+ const started=primer.play();
+ if(started&&typeof started.then==='function')started.then(()=>{primer.pause();primer.currentTime=0;primer.muted=false}).catch(()=>{primer.muted=false});
 }
 /* ── end voice layer ─────────────────────────────────────────────────────*/
 
@@ -307,8 +322,7 @@ function startHold(){
  patientLine.style.fontFamily='Inter,-apple-system,"Segoe UI",ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight='750';
  down=true;hold.classList.add('down');holdText.textContent='SPEAKING…';waiting.classList.remove('show');live(true);
  start=performance.now();base=p;
- const words=turns[ti].doctor.split(/\s+/),wi=Math.min(words.length-1,Math.floor(words.length*p));
- speak(words.slice(wi).join(' ')||turns[ti].doctor,'learner');
+ speak(turns[ti].doctor,'learner',null,p);
  function tick(now){if(!down)return;p=Math.min(1,base+(now-start)/2300);render();if(p>=1){finish();return}raf=requestAnimationFrame(tick)}
  raf=requestAnimationFrame(tick);
 }

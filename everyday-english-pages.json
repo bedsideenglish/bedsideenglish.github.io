@@ -112,7 +112,7 @@
         ],
         "reader_task": "The reader can identify exactly what they missed, ask for that part again, and read back the answer without pretending to understand."
       },
-      "quick_answer": "When you miss one important detail, name the missing part and confirm what you think you heard: “Sorry, I missed the gate. Did you say B12?” If two values are possible, ask which one is right: “Was that 6:40 or 7:40?” After the answer, read it back once. This is clearer and more useful than pretending you understood or asking the speaker to repeat everything.",
+      "quick_answer": "When you miss one important detail, name the missing part and confirm what you think you heard: “Sorry, I missed the gate. Did you say D14?” If two values are possible, ask which one is right: “Was that 7:20 or 7:40?” After the answer, read it back once. This is clearer and more useful than pretending you understood or asking the speaker to repeat everything.",
       "practice_intro": "Listen once before typing. Enter only the gate and boarding time you heard, then commit both answers. The transcript stays hidden until you submit.",
       "response_ladder": [
         {
@@ -124,13 +124,13 @@
         {
           "label": "Confirm",
           "when": "You think you heard the detail.",
-          "phrase": "Did you say gate B12?",
+          "phrase": "Did you say gate D14?",
           "why": "The speaker can answer yes or correct one precise item."
         },
         {
           "label": "Read back",
           "when": "The detail affects what you do next.",
-          "phrase": "So that’s B12, boarding at 6:40—right?",
+          "phrase": "So that’s D14, boarding at 7:20—right?",
           "why": "One short read-back checks the two details as a usable instruction."
         }
       ],
@@ -148,33 +148,33 @@
         {
           "signal": "You have a likely answer",
           "move": "Confirm the candidate",
-          "example": "Did you say B12?"
+          "example": "Did you say D14?"
         },
         {
           "signal": "Two details guide the next action",
           "move": "Read both back once",
-          "example": "B12 at 6:40—is that right?"
+          "example": "D14 at 7:20—is that right?"
         }
       ],
       "dialogue": [
         {
           "speaker": "Fellow passenger",
-          "text": "They moved us to gate B12, and boarding starts at 6:40.",
+          "text": "They moved us to gate C9, and boarding starts at 7:25.",
           "note": "The letter-number code and time arrive in one turn."
         },
         {
           "speaker": "You",
-          "text": "Sorry, did you say B12?",
+          "text": "Sorry, did you say C9?",
           "note": "Confirm the uncertain detail instead of repeating the whole message."
         },
         {
           "speaker": "Fellow passenger",
-          "text": "Yes, B12. Boarding starts at 6:40.",
+          "text": "Yes, C9. Boarding starts at 7:25.",
           "note": "The answer supplies both actionable details again."
         },
         {
           "speaker": "You",
-          "text": "Got it—B12 at 6:40. Thanks.",
+          "text": "Got it—C9 at 7:25. Thanks.",
           "note": "A compact read-back closes the loop naturally."
         }
       ],
@@ -185,7 +185,7 @@
         },
         {
           "problem": "Guessing and moving on",
-          "repair": "Offer your best candidate as a question: “Did you say B12?”"
+          "repair": "Offer your best candidate as a question: “Did you say D14?”"
         },
         {
           "problem": "Repeating several possible answers as if all were correct",

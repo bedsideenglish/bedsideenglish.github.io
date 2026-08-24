@@ -5,6 +5,8 @@
   "meta_description": "Write a specific 110-170 character summary of the scenario, worked example, learning value, and useful page assets.",
   "lede": "Explain the reader's communication problem and the concrete outcome of this guide.",
   "category": "Handoff, escalation, closed loop, or mutual support",
+  "audience": {"role": "physician", "label": "Physicians"},
+  "library_order": 1,
   "published_on": "YYYY-MM-DD",
   "reviewed_on": "YYYY-MM-DD",
   "search": {
@@ -18,7 +20,10 @@
     "definition": "A source-checked definition in your own words.",
     "use_when": "A bounded explanation of when this framework fits."
   },
+  "quick_question": "Write the task-shaped question answered by the next paragraph.",
   "quick_answer": "Write a 35-90 word self-contained answer that defines the framework, outlines the sequence, and explains the result without requiring the reader to scan the rest of the page.",
+  "transcript_label": "Sender role-to-receiver role exchange",
+  "transcript_duration": "Approximately 1 minute",
   "scenario": {
     "setting": "Where and when the exchange occurs",
     "caller": "Role sending the message",
@@ -36,25 +41,25 @@
   ],
   "steps": [
     {
-      "letter": "S", "name": "Situation", "prompt": "What is happening now?",
+      "code": "S", "name": "Situation", "prompt": "What is happening now?",
       "statements": [{"text": "Natural spoken statement.", "fact_refs": ["patient", "change"]}],
       "why_it_works": "Explain the communication effect.",
       "language_note": {"less_clear": "Vague wording.", "preferred": "Specific wording.", "reason": "Explain the contrast."}
     },
     {
-      "letter": "B", "name": "Background", "prompt": "Which context changes the decision?",
+      "code": "B", "name": "Background", "prompt": "Which context changes the decision?",
       "statements": [{"text": "Natural spoken statement.", "fact_refs": ["history"]}],
       "why_it_works": "Explain the communication effect.",
       "language_note": {"less_clear": "Overloaded wording.", "preferred": "Relevant wording.", "reason": "Explain the contrast."}
     },
     {
-      "letter": "A", "name": "Assessment", "prompt": "What did you find, and what do you think?",
+      "code": "A", "name": "Assessment", "prompt": "What did you find, and what do you think?",
       "statements": [{"text": "Natural spoken statement.", "fact_refs": ["observations", "assessment"]}],
       "why_it_works": "Explain the communication effect.",
       "language_note": {"less_clear": "Unsupported judgment.", "preferred": "Finding plus assessment.", "reason": "Explain the contrast."}
     },
     {
-      "letter": "R", "name": "Recommendation", "prompt": "What response do you need, and by when?",
+      "code": "R", "name": "Recommendation", "prompt": "What response do you need, and by when?",
       "statements": [{"text": "Natural spoken request.", "fact_refs": ["request"]}],
       "why_it_works": "Explain the communication effect.",
       "language_note": {"less_clear": "Open-ended ending.", "preferred": "Specific request.", "reason": "Explain the contrast."}

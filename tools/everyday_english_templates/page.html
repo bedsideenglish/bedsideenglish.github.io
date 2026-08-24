@@ -1,0 +1,171 @@
+<!doctype html>
+<!-- Generated from app Listening Lab drill {{SOURCE_DRILL_ID}} · SHA-256 {{SOURCE_DRILL_SHA256}}. Edit the manifest or template, not this file. -->
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bedside English">
+  <meta property="og:title" content="{{H1}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:image" content="{{SOCIAL_IMAGE}}">
+  <meta property="og:image:alt" content="A hear, commit, and verify listening practice card for everyday English">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{H1}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="{{SOCIAL_IMAGE}}">
+  <meta name="twitter:image:alt" content="A hear, commit, and verify listening practice card for everyday English">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">{{JSON_LD}}</script>
+</head>
+<body data-reviewed-on="{{REVIEWED_ON}}">
+  <a class="skip-link" href="#main">Skip to the guide</a>
+  <header class="site-header">
+    <nav class="shell nav" aria-label="Primary navigation">
+      <a class="brand" href="../../" aria-label="Bedside English home"><span class="brand-mark" aria-hidden="true">B</span><span>Bedside English</span></a>
+      <div class="nav-links">
+        <a href="../">Everyday guides</a>
+        <a href="../../learning/">Patient guides</a>
+        <a href="../../communication/">Team guides</a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" decoding="async"></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="shell breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../">Everyday English</a></li><li aria-current="page">{{BREADCRUMB}}</li></ol></div>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">{{CATEGORY}} · Hear → commit → verify</p>
+          <h1>{{H1}}</h1>
+          <p class="lede">{{LEDE}}</p>
+        </div>
+        <aside class="hero-card" aria-label="Practice method preview">
+          <div class="wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <strong>Don’t guess the missing detail.</strong>
+          <p>Catch it, ask for it again, and confirm it before the conversation moves on.</p>
+        </aside>
+      </div>
+    </section>
+
+    <article>
+      <section class="content-shell answer-capsule" id="quick-answer">
+        <h2>Quick answer</h2>
+        <p>{{QUICK_ANSWER}}</p>
+      </section>
+
+      <section class="section" id="listening-practice">
+        <div class="content-shell">
+          <div class="section-head">
+            <div><p class="kicker">Try it before reading the transcript</p><h2>Hear, commit, verify</h2></div>
+            <p>{{PRACTICE_INTRO}}</p>
+          </div>
+          <div class="lab-card" data-listening-lab>
+            <div class="lab-top">
+              <div><h3>{{DRILL_CONTEXT}}</h3><p>Catch the exact details that determine what happens next.</p></div>
+              <span class="level-pill">{{DRILL_CATEGORY}} · Level {{DRILL_DIFFICULTY}}</span>
+            </div>
+            <div class="lab-body">
+              <p class="privacy-note"><span aria-hidden="true">◉</span><span><strong>On-device practice.</strong> Your answers and attempt summary stay in this browser. No microphone or API key is used.</span></p>
+              <div class="lab-controls">
+                <div>
+                  <label class="field-label" for="accent-profile">Practice voice profile</label>
+                  <select id="accent-profile">{{PROFILE_OPTIONS}}</select>
+                  <p class="voice-status" id="voice-status">Loading the voices available in this browser…</p>
+                </div>
+                <div class="play-row" aria-label="Audio controls">
+                  <button class="button primary" id="play-clip" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> Play once</button>
+                  <button class="button" id="repeat-clip" type="button"><span aria-hidden="true">↻</span> Ask to repeat</button>
+                  <button class="button" id="slow-clip" type="button"><span aria-hidden="true">½</span> More slowly</button>
+                </div>
+              </div>
+              <p class="lab-status" id="lab-status" role="status" aria-live="polite">Ready. Play the message once, then commit what you heard.</p>
+              <p class="assist-note"><strong>Repeat and slower are skills, not penalties.</strong> The page records them as assisted repair so you can separate first-listen recall from successful recovery.</p>
+
+              <form class="commit-zone" id="listening-answer-form">
+                <h3>Commit what you heard</h3>
+                <p>Type one confident value in each field. The transcript remains hidden until this answer is final.</p>
+                <div class="answer-grid">{{ANSWER_FIELDS}}</div>
+                <div class="commit-actions">
+                  <span class="local-progress" id="local-progress">No attempts saved on this device yet.</span>
+                  <button class="button secondary" id="commit-answer" type="submit">Commit answer before revealing</button>
+                </div>
+              </form>
+
+              <section class="result-panel" id="listening-result" tabindex="-1" hidden aria-live="polite">
+                <h3 id="result-headline"></h3>
+                <p id="result-meta"></p>
+                <div class="transcript-box"><span>Transcript revealed after commit</span><p id="revealed-transcript"></p></div>
+                <button class="button secondary" id="try-again" type="button">Try the clip again</button>
+              </section>
+              <script id="listening-lab-config" type="application/json">{{LAB_CONFIG}}</script>
+            </div>
+          </div>
+          <p class="editorial-note"><strong>Audio transparency:</strong> this public sample uses the speech voices installed in your browser. A selected profile is a voice preference, not a guarantee of a regional accent. Reviewed, pre-generated audio can replace the fallback later without changing the exercise or scoring contract.</p>
+        </div>
+      </section>
+
+      <section class="section tint" id="response-ladder">
+        <div class="content-shell">
+          <div class="section-head"><div><p class="kicker">Use the smallest useful repair</p><h2>A three-step response ladder</h2></div><p>Move from a broad repeat to a precise confirmation, then close with one short read-back.</p></div>
+          <div class="ladder">{{RESPONSE_LADDER}}</div>
+        </div>
+      </section>
+
+      <section class="section" id="decision-guide">
+        <div class="content-shell decision-grid">
+          <div>
+            <p class="kicker">Choose by what you actually heard</p>
+            <h2>What should you say next?</h2>
+            <ol class="decision-list">{{DECISION_MAP}}</ol>
+          </div>
+          <div class="dialogue">
+            <h3>One complete repair</h3>
+            {{DIALOGUE}}
+          </div>
+        </div>
+      </section>
+
+      <section class="section tint" id="common-mistakes">
+        <div class="content-shell">
+          <div class="section-head"><div><p class="kicker">Common failure points</p><h2>Repair the interaction, not your confidence</h2></div><p>A useful response gives the other person a clear way to help.</p></div>
+          <div class="mistake-list">{{MISTAKES}}</div>
+        </div>
+      </section>
+
+      <section class="section" id="transfer-practice">
+        <div class="content-shell">
+          <div class="section-head"><div><p class="kicker">Same move, new setting</p><h2>Transfer the skill</h2></div><p>Do not memorize one airport sentence. Reuse the confirmation pattern wherever a detail matters.</p></div>
+          <div class="transfer-grid">{{TRANSFER_PROMPTS}}</div>
+        </div>
+      </section>
+
+      <section class="section tint" id="faq">
+        <div class="content-shell">
+          <div class="section-head"><div><p class="kicker">Short answers</p><h2>Questions learners ask</h2></div></div>
+          <div class="faq-list">{{FAQ}}</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="content-shell cta-panel">
+          <div><p class="kicker cta-kicker">Keep the conversation moving</p><h2>Practice with a voice that answers back</h2><p>Bedside English turns the same listen–repair–respond skill into live Survival English conversations, with feedback and spaced review.</p></div>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a>
+        </div>
+        <div class="content-shell editorial-note">Reviewed {{REVIEWED_ON}} · American English · Interactive scoring is deterministic and checks each detail separately. This guide teaches everyday communication, not clinical advice.</div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-row"><span>© 2026 Bedside English</span><div class="footer-links"><a href="../">Everyday guides</a><a href="../../privacy.html">Privacy</a><a href="../../">Home</a></div></div></footer>
+  <script src="../listening-lab.js" defer></script>
+</body>
+</html>

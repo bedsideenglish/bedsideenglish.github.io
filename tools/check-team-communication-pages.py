@@ -15,8 +15,8 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
-REQUIRED_META_NAMES = {"description", "robots", "twitter:card", "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"}
-REQUIRED_META_PROPERTIES = {"og:type", "og:site_name", "og:title", "og:description", "og:url", "og:image", "og:image:alt", "og:image:width", "og:image:height"}
+REQUIRED_META_NAMES = {"description", "robots", "twitter:card", "twitter:title", "twitter:description"}
+REQUIRED_META_PROPERTIES = {"og:type", "og:site_name", "og:title", "og:description", "og:url"}
 
 
 class DocumentParser(HTMLParser):
@@ -204,6 +204,16 @@ def main() -> int:
     hub = ROOT / "communication" / "index.html"
     for error in check_document(hub, "https://bedsideenglish.github.io/communication/", cache):
         errors.append(f"communication/index.html: {error}")
+    hub_parser = cache[hub.resolve()]
+    hub_source = hub.read_text(encoding="utf-8")
+    ordered_pages = sorted(pages, key=lambda item: item["library_order"])
+    card_positions = [hub_source.find(f'href="{page["slug"]}/"') for page in ordered_pages]
+    if any(position < 0 for position in card_positions) or card_positions != sorted(card_positions):
+        errors.append("communication/index.html: guide cards do not follow manifest library_order")
+    if hub_parser.meta_properties.get("og:image") != ["https://bedsideenglish.github.io/assets/social/team-communication-og.png"]:
+        errors.append("communication/index.html: hub social image is missing or incorrect")
+    if hub_parser.meta_names.get("twitter:image") != ["https://bedsideenglish.github.io/assets/social/team-communication-og.png"]:
+        errors.append("communication/index.html: hub X social image is missing or incorrect")
 
     for page in pages:
         slug = page["slug"]
@@ -224,9 +234,12 @@ def main() -> int:
             "description": page["meta_description"],
             "twitter:title": page["h1"],
             "twitter:description": page["meta_description"],
-            "twitter:image": expected_image,
-            "twitter:image:alt": "A fictional chart flowing through the four SBAR steps into a spoken team handoff",
         }
+        if page["framework"]["name"] == "SBAR":
+            expected_meta.update({
+                "twitter:image": expected_image,
+                "twitter:image:alt": "A fictional chart flowing through the four SBAR steps into a spoken team handoff",
+            })
         for name, expected in expected_meta.items():
             if parsed.meta_names.get(name) != [expected]:
                 errors.append(f"communication/{slug}/index.html: meta {name!r} differs from visible source record")
@@ -234,16 +247,31 @@ def main() -> int:
             "og:title": page["h1"],
             "og:description": page["meta_description"],
             "og:url": canonical,
-            "og:image": expected_image,
-            "og:image:alt": "A fictional chart flowing through the four SBAR steps into a spoken team handoff",
-            "og:image:width": "1731",
-            "og:image:height": "909",
         }
+        if page["framework"]["name"] == "SBAR":
+            expected_properties.update({
+                "og:image": expected_image,
+                "og:image:alt": "A fictional chart flowing through the four SBAR steps into a spoken team handoff",
+                "og:image:width": "1731",
+                "og:image:height": "909",
+            })
         for prop, expected in expected_properties.items():
             if parsed.meta_properties.get(prop) != [expected]:
                 errors.append(f"communication/{slug}/index.html: meta property {prop!r} differs from visible source record")
-        if source.count('class="sbar-step"') != 4:
-            errors.append(f"communication/{slug}/index.html: expected four visible SBAR steps")
+        if source.count('class="framework-step"') != len(page["steps"]):
+            errors.append(f"communication/{slug}/index.html: visible framework steps differ from manifest")
+        if source.count('class="language-contrast"') != len(page["steps"]):
+            errors.append(f"communication/{slug}/index.html: wording comparisons differ from manifest steps")
+        expected_visuals = 1 if page["framework"]["name"] == "SBAR" else 0
+        if source.count('class="cta-visual"') != expected_visuals:
+            errors.append(f"communication/{slug}/index.html: CTA visual does not match the framework-specific image rule")
+        if page["framework"]["name"] != "SBAR":
+            for image_key in ("twitter:image", "twitter:image:alt"):
+                if image_key in parsed.meta_names:
+                    errors.append(f"communication/{slug}/index.html: non-SBAR detail page must not inherit {image_key}")
+            for image_key in ("og:image", "og:image:alt", "og:image:width", "og:image:height"):
+                if image_key in parsed.meta_properties:
+                    errors.append(f"communication/{slug}/index.html: non-SBAR detail page must not inherit {image_key}")
         must_count = sum(fact["priority"] == "must" for fact in page["facts"])
         if source.count('class="priority-dot"') != must_count:
             errors.append(f"communication/{slug}/index.html: must-say chart markers do not match manifest")

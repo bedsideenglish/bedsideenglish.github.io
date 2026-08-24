@@ -11,6 +11,11 @@ on:
       - team-communication-pages.json
       - communication/**
       - docs/team-communication-content-system.md
+      - everyday-english-pages.json
+      - everyday-listening-drills.json
+      - everyday-english/**
+      - docs/everyday-english-content-system.md
+      - assets/social/everyday-listening-og.png
       - robots.txt
       - sitemap.xml
       - tools/generate-learning-pages.py
@@ -21,6 +26,10 @@ on:
       - tools/check-team-communication-pages.py
       - tools/team_communication_templates/**
       - tools/test_generate_team_communication_pages.py
+      - tools/generate-everyday-english-pages.py
+      - tools/check-everyday-english-pages.py
+      - tools/everyday_english_templates/**
+      - tools/test_generate_everyday_english_pages.py
       - tools/site_map.py
       - tools/sync-landing-pages.py
       - .github/workflows/verify-landing-pages.yml
@@ -36,6 +45,11 @@ on:
       - team-communication-pages.json
       - communication/**
       - docs/team-communication-content-system.md
+      - everyday-english-pages.json
+      - everyday-listening-drills.json
+      - everyday-english/**
+      - docs/everyday-english-content-system.md
+      - assets/social/everyday-listening-og.png
       - robots.txt
       - sitemap.xml
       - tools/generate-learning-pages.py
@@ -46,6 +60,10 @@ on:
       - tools/check-team-communication-pages.py
       - tools/team_communication_templates/**
       - tools/test_generate_team_communication_pages.py
+      - tools/generate-everyday-english-pages.py
+      - tools/check-everyday-english-pages.py
+      - tools/everyday_english_templates/**
+      - tools/test_generate_everyday_english_pages.py
       - tools/site_map.py
       - tools/sync-landing-pages.py
       - .github/workflows/verify-landing-pages.yml
@@ -61,6 +79,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - run: python tools/sync-landing-pages.py
       - run: python tools/test_generate_learning_pages.py
       - run: python tools/generate-learning-pages.py --check
@@ -68,3 +89,6 @@ jobs:
       - run: python tools/test_generate_team_communication_pages.py
       - run: python tools/generate-team-communication-pages.py --check
       - run: python tools/check-team-communication-pages.py
+      - run: python tools/test_generate_everyday_english_pages.py
+      - run: python tools/generate-everyday-english-pages.py --check
+      - run: python tools/check-everyday-english-pages.py
