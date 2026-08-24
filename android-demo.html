@@ -9,9 +9,12 @@
 <meta property="og:title" content="You. Bed 23. Chest pain.">
 <meta property="og:description" content="Morning rounds. Take the history. Be ready when the attending comes back.">
 <meta property="og:image" content="https://bedsideenglish.github.io/assets/social/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#0d1626;--paper:#f4efdf;--paper2:#fffaf0;--navy:#0c1320;--navy2:#111c2c;--red:#d96c4d;--red2:#f08a67;--muted:#697384;--rule:rgba(255,255,255,.15);--positive:#2d7f62;--ease:cubic-bezier(.2,.8,.2,1)}
-*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--navy);color:#f7f1e4;-webkit-font-smoothing:antialiased}body{overflow:hidden}button,a{font:inherit;color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #f6c7a9;outline-offset:4px}[hidden]{display:none!important}
+*{box-sizing:border-box;font-synthesis-weight:none}html,body{margin:0;width:100%;min-height:100%;font-family:Inter,-apple-system,"Segoe UI",ui-sans-serif,system-ui,sans-serif;background:var(--navy);color:#f7f1e4;-webkit-font-smoothing:antialiased}body{overflow:hidden}button,a{font:inherit;color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #f6c7a9;outline-offset:4px}[hidden]{display:none!important}
 .preview{position:fixed;inset:0;overflow:hidden;background:var(--navy)}
 .noise{position:absolute;inset:0;pointer-events:none;opacity:.2;background-image:radial-gradient(rgba(255,255,255,.12) .7px,transparent .7px);background-size:6px 6px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
 .skip{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));z-index:40;border:0;background:transparent;color:rgba(247,241,228,.5);font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
@@ -22,7 +25,8 @@
 /* 0 · COVER — the room stays completely still until the learner opts in */
 .cover{position:absolute;inset:0;z-index:26;display:grid;place-items:center;padding:26px;background:radial-gradient(circle at 50% 36%,#182539 0,transparent 54%),linear-gradient(180deg,#0b121e,#0c1320 65%,#09111d);transition:opacity .55s var(--ease),visibility .55s}
 .cover.leave{opacity:0;visibility:hidden;pointer-events:none}
-.cover-inner{width:min(620px,92vw);text-align:center;animation:coverIn .6s var(--ease) both}
+.cover-inner{width:min(620px,92vw);text-align:center;opacity:0}
+.cover-inner.in{animation:coverIn .6s var(--ease) both}
 @keyframes coverIn{0%{opacity:0;transform:translateY(9px)}100%{opacity:1;transform:none}}
 .cover .stamp{display:inline-flex;align-items:center;gap:9px;margin:0 0 26px;padding:8px 14px;border:1px solid rgba(247,241,228,.14);border-radius:999px;background:rgba(247,241,228,.045);color:rgba(247,241,228,.6);font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
 .cover .stamp b{color:#f7f1e4}.cover .stamp i{color:#ffab87;font-style:normal}
@@ -51,7 +55,7 @@
 .label{margin:0 0 28px;color:rgba(247,241,228,.54);font-size:11px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;opacity:0;transform:translateY(4px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
 .label.show{opacity:1;transform:none}
 .label::after{content:"";display:block;width:34px;height:2px;margin:12px auto 0;background:var(--red)}
-.line{margin:0;min-height:1.25em;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:clamp(38px,7vw,78px);font-weight:850;line-height:1.02;letter-spacing:-.035em;text-wrap:balance;text-shadow:0 12px 45px rgba(0,0,0,.25)}
+.line{margin:0;min-height:1.25em;font-family:Inter,-apple-system,"Segoe UI",ui-sans-serif,system-ui,sans-serif;font-size:clamp(38px,7vw,78px);font-weight:850;line-height:1.02;letter-spacing:-.035em;text-wrap:balance;text-shadow:0 12px 45px rgba(0,0,0,.25)}
 .line .accent{color:#ffab87}.subline{min-height:1.5em;margin:18px 0 0;color:rgba(247,241,228,.63);font-size:clamp(13px,1.7vw,16px);font-weight:700;letter-spacing:.035em}
 .pressure{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);display:flex;align-items:center;gap:11px;color:rgba(247,241,228,.58);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .35s}.pressure.show{opacity:1}.pressure b{color:#f7f1e4;font-variant-numeric:tabular-nums;font-size:13px}.pulse-ring{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(217,108,77,.32);animation:pulse 1.25s infinite}@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(217,108,77,0)}100%{box-shadow:0 0 0 0 rgba(217,108,77,0)}}
 .impact{animation:impact .28s var(--ease)}@keyframes impact{0%{transform:translateY(4px);opacity:.25;filter:blur(2px)}100%{transform:none;opacity:1;filter:none}}
@@ -110,15 +114,15 @@
     <div class="cover-inner">
       <p class="stamp"><span>Ward 5B</span><i>·</i><span>07:42</span><i>·</i><b>Morning rounds</b></p>
       <h1 id="coverTitle">Before we<br>start<span>.</span></h1>
-      <p class="lede">This preview does not test what you know. It tests whether it comes out of your mouth in time.</p>
+      <p class="lede">Not a test of what you know. A test of whether it comes out in time.</p>
       <ol class="rules">
-        <li>The attending hands you the case. <b>It comes fast.</b></li>
-        <li>You take the history <b>out loud, in English</b>. No multiple choice.</li>
-        <li>In <b>60 seconds</b> they come back and ask you to present her.</li>
+        <li>The case comes at you fast.</li>
+        <li>History <b>out loud, in English</b>. No choices.</li>
+        <li><b>60 seconds</b>, then you present her.</li>
       </ol>
-      <p class="ko-note" id="koNote" hidden>영어가 입에서 안 나오는 그 순간을 일부러 재현합니다. 소리를 켜고 60초를 버텨보세요.</p>
+      <p class="ko-note" id="koNote" hidden>영어가 안 나오는 그 순간을 일부러 재현합니다. 소리를 켜세요.</p>
       <button class="enter" id="enter" type="button">Begin rounds <b>→</b></button>
-      <p class="fine">Sound on · headphones recommended</p>
+      <p class="fine">Sound on</p>
     </div>
   </section>
 
@@ -263,7 +267,7 @@ function enterRoom(){
 }
 
 /* 2 · the encounter */
-function role(r){const isPatient=r==='patient';speaker.textContent=isPatient?'Patient':'Your turn';patientLine.style.fontFamily=isPatient?'Georgia,Times New Roman,serif':'Inter,ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight=isPatient?'400':'750'}
+function role(r){const isPatient=r==='patient';speaker.textContent=isPatient?'Patient':'Your turn';patientLine.style.fontFamily=isPatient?'Georgia,Times New Roman,serif':'Inter,-apple-system,"Segoe UI",ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight=isPatient?'400':'750'}
 function type(text,d=1050,done){patientLine.innerHTML='';const box=document.createElement('span'),n=document.createTextNode(''),c=document.createElement('span');c.className='caret';box.append(n,c);patientLine.append(box);const t=performance.now();function tick(now){const q=Math.min(1,(now-t)/d);n.nodeValue=text.slice(0,Math.max(1,Math.floor(text.length*q)));if(q<1)requestAnimationFrame(tick);else{n.nodeValue=text;c.remove();done&&done()}}requestAnimationFrame(tick)}
 function patient(text,next,openingLine=false){
  role('patient');hold.hidden=true;sub.hidden=true;waiting.classList.remove('show');signal.classList.remove('show');clearNudge();live(true);
@@ -309,7 +313,7 @@ function render(){const text=turns[ti].doctor,q=Math.max(0,Math.min(1,p)),n=Math
 function startHold(){
  if(down||busy||hold.hidden||ended)return;
  clearNudge();patientLine.classList.remove('linger-out');
- patientLine.style.fontFamily='Inter,ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight='750';
+ patientLine.style.fontFamily='Inter,-apple-system,"Segoe UI",ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight='750';
  down=true;hold.classList.add('down');holdText.textContent='SPEAKING…';waiting.classList.remove('show');live(true);
  start=performance.now();base=p;
  const words=turns[ti].doctor.split(/\s+/),wi=Math.min(words.length-1,Math.floor(words.length*p));
@@ -373,6 +377,8 @@ async function fullLanding(){
 
 /* controls */
 if(/^ko/i.test(navigator.language||''))koNote.hidden=false;
+const faceReady=(document.fonts&&document.fonts.ready)||Promise.resolve();
+Promise.race([faceReady,new Promise(r=>setTimeout(r,900))]).then(()=>document.querySelector('.cover-inner').classList.add('in'));
 enterBtn.addEventListener('click',()=>{
  unlockAudio();
  cover.classList.add('leave');soundToggle.classList.add('show');
