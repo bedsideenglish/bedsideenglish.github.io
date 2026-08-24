@@ -1,3 +1,5 @@
+@import url("../tokens.css");
+
 :root {
   --ink: #10223f;
   --muted: #5a6980;
@@ -356,4 +358,102 @@ details p { margin: 0; padding: 0 20px 20px; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* Bedside English shared visual language: warm paper, inky navy, and quiet clinical-red accents. */
+:root {
+  --ink: #102b35;
+  --muted: #52666a;
+  --paper: #f3f0e7;
+  --surface: #faf8f1;
+  --surface-blue: #e2eadf;
+  --line: #c8c9bd;
+  --cobalt: #a3422c;
+  --cobalt-dark: #8f3926;
+  --signal: #f3a88f;
+  --coral: #a3422c;
+  --shadow: 0 1.2rem 3rem rgba(16,43,53,.10);
+  --radius-lg: .5rem;
+  --radius-md: .4rem;
+  --shell: min(76rem, calc(100% - 3rem));
+}
+
+body { font-family: var(--font-body); color: var(--ink); background: var(--paper); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -.025em; }
+a { color: inherit; }
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline-color: rgba(163,66,44,.45); }
+.site-header { border-bottom-color: var(--line); background: rgba(243,240,231,.94); }
+.nav { min-height: 4.75rem; }
+.brand { gap: .65rem; font-weight: 700; }
+.brand-mark { width: 2rem; height: 2rem; padding: .25rem; border-radius: 50%; color: var(--paper); background: var(--ink); box-shadow: none; }
+.nav-links { gap: 1.35rem; font-size: var(--text-sm); font-weight: 600; }
+.store-badge img { width: auto; height: 2.5rem; }
+
+.hero { padding-block: clamp(4rem,9vw,7rem); background: var(--ink); color: #f7f4eb; }
+.hero::after { right: -8rem; bottom: -11rem; width: 28rem; height: 28rem; border: 3rem solid rgba(243,168,143,.10); }
+.hero-grid { grid-template-columns: minmax(0,1.05fr) minmax(18rem,.72fr); gap: clamp(2rem,7vw,5rem); }
+.eyebrow, .kicker { color: var(--coral); font-size: var(--text-xs); font-weight: 700; letter-spacing: .13em; }
+.hero .eyebrow { color: var(--signal); }
+h1 { max-width: 12ch; margin-bottom: 1.25rem; font-size: var(--text-display-s); line-height: .96; }
+.hero .lede { color: #cbd7d3; font-size: var(--text-xl); }
+.hero-card { padding: 1.7rem; border: 1px solid #49626a; border-radius: .45rem; color: var(--ink); background: #faf8f1; box-shadow: 0 1.4rem 3rem rgba(0,0,0,.18); transform: rotate(1.25deg); }
+.hero-card::before { display: none; }
+.field-note { margin: 0 0 1rem !important; color: var(--coral) !important; font-size: var(--text-xs); font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.wave span { background: var(--ink); }
+.wave span:nth-child(4) { background: var(--coral); }
+.hero-card p { color: var(--muted); }
+.hub-stats { gap: .65rem; }
+.hub-stat { border-color: #49626a; border-radius: var(--radius-pill); color: #dbe5e2; background: rgba(255,255,255,.04); font-weight: 600; }
+
+.section { padding-block: clamp(3.5rem,7vw,6rem); }
+.section.tint { background: #ece9de; }
+.section-head { max-width: 72rem; margin-bottom: 2rem; }
+.section-head h2 { font-size: clamp(2.05rem,4.3vw,3.65rem); line-height: 1.04; }
+.section-head p { color: var(--muted); }
+.guide-grid { gap: 1rem; }
+.guide-card { min-height: 22rem; padding: 2rem; border-color: #b9beb2; border-radius: .35rem; background: var(--surface); box-shadow: none; transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out); }
+.guide-card:hover { border-color: #b9beb2; transform: translateY(-2px); box-shadow: 0 .75rem 2rem rgba(16,43,53,.12); }
+.guide-card .card-meta { color: var(--coral); font-size: var(--text-xs); font-weight: 700; }
+.guide-card h2 { max-width: 16ch; margin: 2.5rem 0 1rem; font-size: var(--text-2xl); }
+.guide-card p, .method-card p { color: var(--muted); }
+.guide-card .card-action { color: var(--ink); font-weight: 700; }
+.coming-card { border-style: solid; background: transparent; opacity: .72; }
+.method-grid { gap: .75rem; }
+.method-card { padding: 1.5rem; border: 1px solid #b9beb2; border-radius: 0; background: var(--surface); }
+.method-card strong { color: var(--coral); font-family: var(--font-body); font-size: var(--text-sm); letter-spacing: .04em; text-transform: uppercase; }
+.editorial-note { border-left: 3px solid var(--coral); border-radius: 0; color: var(--muted); background: #f5dfd7; }
+
+.cta-panel { padding: clamp(1.5rem,5vw,3rem); border-radius: .45rem; background: var(--coral); }
+.cta-panel .cta-kicker { color: #ffe0d5; }
+.cta-panel h2 { font-size: clamp(2rem,4vw,3.35rem); }
+.cta-panel p { color: #ffe9e2; }
+.cta-panel .store-badge img { width: auto; height: 3.25rem; }
+.site-footer { margin-top: 0; border-top-color: var(--line); color: var(--muted); }
+.footer-links a { color: inherit; }
+
+/* The interactive guide retains its controls, but now lives in the same family. */
+.answer-capsule, .lab-card, .ladder-card, .transfer-card, details, .mistake { border-color: #b9beb2; border-radius: .35rem; background: var(--surface); box-shadow: none; }
+.answer-capsule { border-left-color: var(--coral); }
+.lab-top, .result-panel, .dialogue { background: var(--ink); }
+.lab-top p, .result-panel p { color: #cbd7d3; }
+.level-pill, .button.secondary { color: var(--ink); background: var(--signal); }
+.button.primary { border-color: var(--coral); background: var(--coral); }
+.button.primary:hover { background: var(--cobalt-dark); }
+.step-number { background: var(--ink); }
+.phrase { border-left-color: var(--coral); }
+.decision-list li::after { color: var(--coral); background: #f5dfd7; }
+.decision-list li:not(:last-child)::before { background: #c8c9bd; }
+.turn-speaker, .transcript-box span, .transfer-card .setting { color: var(--signal); }
+.transcript-box { background: var(--surface); }
+
+@media (max-width: 840px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-card { max-width: 32rem; }
+}
+
+@media (max-width: 600px) {
+  :root { --shell: min(100% - 2rem, 76rem); }
+  .store-badge img { height: 2.15rem; }
+  .hero { padding-block: 3rem; }
+  .cta-panel .store-badge img { height: 3rem; }
 }

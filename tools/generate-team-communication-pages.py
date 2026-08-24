@@ -416,9 +416,11 @@ def cta_visual(page: dict[str, Any]) -> str:
     if page["framework"]["name"] != "SBAR":
         return ""
     return (
-        '<div class="cta-visual"><img src="../../assets/social/team-communication-og.png" width="1731" height="909" '
+        '<a class="cta-visual" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" '
+        'target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play">'
+        '<img src="../../assets/social/team-communication-og.png" width="1731" height="909" '
         'alt="A fictional chart flowing through the SBAR framework into a spoken team handoff" '
-        'loading="lazy" decoding="async"></div>'
+        'loading="lazy" decoding="async"></a>'
     )
 
 
