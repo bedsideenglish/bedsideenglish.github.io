@@ -31,7 +31,26 @@ SITE_ORIGIN = "https://bedsideenglish.github.io"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ID_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 PLACEHOLDER_RE = re.compile(r"{{([A-Z0-9_]+)}}")
-SBAR_STEPS = (("S", "Situation"), ("B", "Background"), ("A", "Assessment"), ("R", "Recommendation"))
+FRAMEWORKS = {
+    "SBAR": {
+        "expanded": "Situation, Background, Assessment, Recommendation",
+        "steps": (("S", "Situation"), ("B", "Background"), ("A", "Assessment"), ("R", "Recommendation")),
+    },
+    "I-PASS": {
+        "expanded": "Illness Severity, Patient Summary, Action List, Situation Awareness and Contingency Planning, Synthesis by Receiver",
+        "steps": (
+            ("I", "Illness severity"),
+            ("P", "Patient summary"),
+            ("A", "Action list"),
+            ("S", "Situation awareness and contingency planning"),
+            ("S", "Synthesis by receiver"),
+        ),
+    },
+    "Check-Back": {
+        "expanded": "Sender message, receiver repeat-back, sender verification",
+        "steps": (("1", "Send the critical result"), ("2", "Repeat back"), ("3", "Verify and close")),
+    },
+}
 US_STYLE_RULES = (
     (re.compile(r"\bpractis(?:e|ed|ing)\b", re.IGNORECASE), "use US `practice/practiced/practicing`"),
     (re.compile(r"\b(?:organisation|recognise|prioritise)\w*\b", re.IGNORECASE), "use US spelling"),
@@ -119,12 +138,15 @@ def validate_page(page: Any, where: str) -> dict[str, Any]:
         raise GenerationError(f"{where} must be an object")
     required = {
         "slug", "title", "h1", "meta_description", "lede", "category", "published_on", "reviewed_on",
-        "search", "framework", "quick_answer", "scenario", "facts", "steps", "check_back", "checklist",
-        "mistakes", "faq", "sources", "review",
+        "search", "audience", "library_order", "framework", "quick_question", "quick_answer", "transcript_label", "transcript_duration",
+        "scenario", "facts", "steps", "check_back", "checklist", "mistakes", "faq", "sources", "review",
     }
     exact_keys(page, required, where)
 
-    for key in ("slug", "title", "h1", "meta_description", "lede", "category", "published_on", "reviewed_on", "quick_answer"):
+    for key in (
+        "slug", "title", "h1", "meta_description", "lede", "category", "published_on", "reviewed_on",
+        "quick_question", "quick_answer", "transcript_label", "transcript_duration",
+    ):
         require_text(page, key, where)
     if not SLUG_RE.fullmatch(page["slug"]):
         raise GenerationError(f"{where}.slug must use lowercase letters, numbers, and single hyphens")
@@ -142,6 +164,16 @@ def validate_page(page: Any, where: str) -> dict[str, Any]:
     if not 35 <= word_count(page["quick_answer"]) <= 90:
         raise GenerationError(f"{where}.quick_answer must be 35-90 words for a useful direct answer")
 
+    audience = page["audience"]
+    if not isinstance(audience, dict):
+        raise GenerationError(f"{where}.audience must be an object")
+    exact_keys(audience, {"role", "label"}, f"{where}.audience")
+    if audience.get("role") not in {"physician", "nurse"}:
+        raise GenerationError(f"{where}.audience.role must be `physician` or `nurse`")
+    require_text(audience, "label", f"{where}.audience")
+    if not isinstance(page.get("library_order"), int) or page["library_order"] < 1:
+        raise GenerationError(f"{where}.library_order must be a positive integer")
+
     search = page["search"]
     if not isinstance(search, dict):
         raise GenerationError(f"{where}.search must be an object")
@@ -158,8 +190,11 @@ def validate_page(page: Any, where: str) -> dict[str, Any]:
     exact_keys(framework, {"name", "expanded", "definition", "use_when"}, f"{where}.framework")
     for key in ("name", "expanded", "definition", "use_when"):
         require_text(framework, key, f"{where}.framework")
-    if framework["name"] != "SBAR" or framework["expanded"] != "Situation, Background, Assessment, Recommendation":
-        raise GenerationError(f"{where}.framework must use the standard SBAR name and expansion")
+    framework_contract = FRAMEWORKS.get(framework["name"])
+    if not framework_contract:
+        raise GenerationError(f"{where}.framework.name must be one of: {', '.join(FRAMEWORKS)}")
+    if framework["expanded"] != framework_contract["expanded"]:
+        raise GenerationError(f"{where}.framework.expanded does not match the supported {framework['name']} expansion")
 
     scenario = page["scenario"]
     if not isinstance(scenario, dict):
@@ -193,15 +228,17 @@ def validate_page(page: Any, where: str) -> dict[str, Any]:
             must_fact_ids.add(fact["id"])
 
     steps = page["steps"]
-    if not isinstance(steps, list) or len(steps) != 4:
-        raise GenerationError(f"{where}.steps must contain exactly the four SBAR steps")
+    expected_steps = framework_contract["steps"]
+    if not isinstance(steps, list) or len(steps) != len(expected_steps):
+        raise GenerationError(f"{where}.steps must contain exactly the {len(expected_steps)} {framework['name']} steps")
     referenced_facts: set[str] = set()
-    for index, (step, expected) in enumerate(zip(steps, SBAR_STEPS)):
+    spoken_by_fact: dict[str, list[str]] = {fact_id: [] for fact_id in fact_ids}
+    for index, (step, expected) in enumerate(zip(steps, expected_steps)):
         step_where = f"{where}.steps[{index}]"
         if not isinstance(step, dict):
             raise GenerationError(f"{step_where} must be an object")
-        exact_keys(step, {"letter", "name", "prompt", "statements", "why_it_works", "language_note"}, step_where)
-        if (step.get("letter"), step.get("name")) != expected:
+        exact_keys(step, {"code", "name", "prompt", "statements", "why_it_works", "language_note"}, step_where)
+        if (step.get("code"), step.get("name")) != expected:
             raise GenerationError(f"{step_where} must be {expected[0]} = {expected[1]}")
         for key in ("prompt", "why_it_works"):
             require_text(step, key, step_where)
@@ -219,6 +256,8 @@ def validate_page(page: Any, where: str) -> dict[str, Any]:
             if unknown_refs:
                 raise GenerationError(f"{statement_where} references unknown facts: {', '.join(sorted(unknown_refs))}")
             referenced_facts.update(refs)
+            for fact_id in refs:
+                spoken_by_fact[fact_id].append(statement["text"])
         note = step["language_note"]
         if not isinstance(note, dict):
             raise GenerationError(f"{step_where}.language_note must be an object")
@@ -227,7 +266,17 @@ def validate_page(page: Any, where: str) -> dict[str, Any]:
             require_text(note, key, f"{step_where}.language_note")
     missing_facts = must_fact_ids - referenced_facts
     if missing_facts:
-        raise GenerationError(f"{where}: must-priority facts are absent from the spoken SBAR: {', '.join(sorted(missing_facts))}")
+        raise GenerationError(f"{where}: must-priority facts are absent from the spoken framework: {', '.join(sorted(missing_facts))}")
+    for fact in facts:
+        if fact["priority"] != "must":
+            continue
+        spoken = " ".join(spoken_by_fact[fact["id"]])
+        missing_numbers = [token for token in re.findall(r"\d+(?:[.:]\d+)*", fact["value"]) if token not in spoken]
+        if missing_numbers:
+            raise GenerationError(
+                f"{where}: spoken statements for must fact {fact['id']!r} omit numeric token(s): "
+                + ", ".join(missing_numbers)
+            )
 
     check_back = page["check_back"]
     if not isinstance(check_back, dict):
@@ -316,18 +365,18 @@ def render_facts(facts: list[dict[str, str]]) -> str:
 
 def render_steps(steps: list[dict[str, Any]]) -> str:
     cards = []
-    for step in steps:
+    for index, step in enumerate(steps, start=1):
         statements = "".join(f'<p class="spoken">“{escaped(row["text"])}”</p>' for row in step["statements"])
         note = step["language_note"]
         cards.append(
-            f'<article class="sbar-step" id="step-{step["letter"].lower()}">'
-            f'<header><span aria-hidden="true">{step["letter"]}</span><div><p>{escaped(step["prompt"])}</p><h3>{escaped(step["name"])}</h3></div></header>'
+            f'<article class="framework-step" id="step-{index}">'
+            f'<header><span aria-hidden="true">{escaped(step["code"])}</span><div><p>{escaped(step["prompt"])}</p><h3>{escaped(step["name"])}</h3></div></header>'
             f'<div class="step-script">{statements}</div>'
             f'<p class="why"><strong>Why it works:</strong> {escaped(step["why_it_works"])}</p>'
-            '<div class="language-contrast">'
+            '<details class="language-contrast"><summary>Compare the wording</summary><div class="language-contrast-grid">'
             f'<div><small>Less clear</small><p>“{escaped(note["less_clear"])}”</p></div>'
             f'<div><small>Prefer</small><p>“{escaped(note["preferred"])}”</p></div>'
-            f'<p>{escaped(note["reason"])}</p></div></article>'
+            f'<p>{escaped(note["reason"])}</p></div></details></article>'
         )
     return "\n            ".join(cards)
 
@@ -337,9 +386,40 @@ def render_full_message(steps: list[dict[str, Any]]) -> str:
     for step in steps:
         speech = " ".join(statement["text"] for statement in step["statements"])
         rows.append(
-            f'<div class="transcript-row"><span>{step["letter"]} · {escaped(step["name"])}</span><p>{escaped(speech)}</p></div>'
+            f'<div class="transcript-row"><span>{escaped(step["code"])} · {escaped(step["name"])}</span><p>{escaped(speech)}</p></div>'
         )
     return "\n              ".join(rows)
+
+
+def render_framework_strip(steps: list[dict[str, Any]]) -> str:
+    return "".join(
+        f'<span><b>{escaped(step["code"])}</b> {escaped(step["name"])}</span>' for step in steps
+    )
+
+
+def social_image_meta(page: dict[str, Any]) -> str:
+    if page["framework"]["name"] != "SBAR":
+        return ""
+    image_url = f"{SITE_ORIGIN}/assets/social/team-communication-og.png"
+    alt = "A fictional chart flowing through the four SBAR steps into a spoken team handoff"
+    return (
+        f'<meta property="og:image" content="{escaped(image_url)}">\n'
+        f'  <meta property="og:image:alt" content="{escaped(alt)}">\n'
+        '  <meta property="og:image:width" content="1731">\n'
+        '  <meta property="og:image:height" content="909">\n'
+        f'  <meta name="twitter:image" content="{escaped(image_url)}">\n'
+        f'  <meta name="twitter:image:alt" content="{escaped(alt)}">'
+    )
+
+
+def cta_visual(page: dict[str, Any]) -> str:
+    if page["framework"]["name"] != "SBAR":
+        return ""
+    return (
+        '<div class="cta-visual"><img src="../../assets/social/team-communication-og.png" width="1731" height="909" '
+        'alt="A fictional chart flowing through the SBAR framework into a spoken team handoff" '
+        'loading="lazy" decoding="async"></div>'
+    )
 
 
 def structured_data(page: dict[str, Any], canonical_url: str) -> str:
@@ -362,7 +442,7 @@ def structured_data(page: dict[str, Any], canonical_url: str) -> str:
             "learningResourceType": "Healthcare team communication guide",
             "teaches": page["framework"]["expanded"],
             "about": {"@type": "Thing", "name": page["framework"]["name"]},
-            "audience": {"@type": "EducationalAudience", "educationalRole": "Healthcare professional or medical trainee"},
+            "audience": {"@type": "EducationalAudience", "educationalRole": page["audience"]["label"]},
             "author": {"@type": "Organization", "name": "Bedside English", "url": f"{SITE_ORIGIN}/"},
             "publisher": {"@type": "Organization", "name": "Bedside English", "url": f"{SITE_ORIGIN}/"},
             "citation": [source["url"] for source in page["sources"]],
@@ -405,13 +485,17 @@ def build_page(page: dict[str, Any]) -> str:
             "PAGE_TITLE": escaped(page["title"]),
             "META_DESCRIPTION": escaped(page["meta_description"]),
             "CANONICAL_URL": escaped(canonical_url),
-            "OG_IMAGE_URL": escaped(f"{SITE_ORIGIN}/assets/social/team-communication-og.png"),
+            "SOCIAL_IMAGE_META": social_image_meta(page),
             "STRUCTURED_DATA": structured_data(page, canonical_url),
             "SLUG": escaped(page["slug"]),
             "H1": escaped(page["h1"]),
             "LEDE": escaped(page["lede"]),
             "CATEGORY": escaped(page["category"]),
+            "AUDIENCE_LABEL": escaped(page["audience"]["label"]),
+            "QUICK_QUESTION": escaped(page["quick_question"]),
             "QUICK_ANSWER": escaped(page["quick_answer"]),
+            "FRAMEWORK_NAME": escaped(page["framework"]["name"]),
+            "FRAMEWORK_STRIP": render_framework_strip(page["steps"]),
             "FRAMEWORK_EXPANDED": escaped(page["framework"]["expanded"]),
             "FRAMEWORK_DEFINITION": escaped(page["framework"]["definition"]),
             "FRAMEWORK_USE_WHEN": escaped(page["framework"]["use_when"]),
@@ -421,8 +505,12 @@ def build_page(page: dict[str, Any]) -> str:
             "REASON": escaped(scenario["reason"]),
             "GOAL": escaped(scenario["goal"]),
             "FACT_GROUPS": render_facts(page["facts"]),
-            "SBAR_STEPS": render_steps(page["steps"]),
+            "FRAMEWORK_STEPS": render_steps(page["steps"]),
             "FULL_MESSAGE": render_full_message(page["steps"]),
+            "TRANSCRIPT_LABEL": escaped(page["transcript_label"]),
+            "TRANSCRIPT_DURATION": escaped(page["transcript_duration"]),
+            "CTA_PANEL_CLASS": " has-visual" if page["framework"]["name"] == "SBAR" else "",
+            "CTA_VISUAL": cta_visual(page),
             "CHECK_BACK_RECEIVER": escaped(page["check_back"]["receiver"]),
             "CHECK_BACK_SENDER": escaped(page["check_back"]["sender"]),
             "CHECK_BACK_WHY": escaped(page["check_back"]["why"]),
@@ -439,10 +527,11 @@ def build_page(page: dict[str, Any]) -> str:
 
 def build_hub(pages: list[dict[str, Any]]) -> str:
     cards = []
-    for index, page in enumerate(sorted(pages, key=lambda item: item["h1"].lower()), start=1):
+    ordered = sorted(pages, key=lambda item: item["library_order"])
+    for index, page in enumerate(ordered, start=1):
         cards.append(
             f'<a class="guide-card" href="{escaped(page["slug"])}/">'
-            f'<span class="card-meta">{escaped(page["category"])} · GUIDE {index:02d}</span>'
+            f'<span class="card-meta">{escaped(page["audience"]["label"])} · {escaped(page["category"])} · GUIDE {index:02d}</span>'
             f'<h2>{escaped(page["h1"])}</h2><p>{escaped(page["meta_description"])}</p>'
             '<span class="card-link">Read the worked example <span aria-hidden="true">→</span></span></a>'
         )
@@ -475,6 +564,9 @@ def generate(
     slugs = [page["slug"] for page in validated]
     if len(slugs) != len(set(slugs)):
         raise GenerationError("Manifest contains duplicate slugs")
+    orders = [page["library_order"] for page in validated]
+    if len(orders) != len(set(orders)):
+        raise GenerationError("Manifest contains duplicate library_order values")
     communication_root = output_root / "communication"
     actual = {path.parent.name for path in communication_root.glob("*/index.html")}
     unexpected = actual - set(slugs)

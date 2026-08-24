@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "description": "Reviewed public snapshots of the app Listening Lab drills used by published everyday-English guides.",
+  "drills": [
+    {
+      "id": "airport_gate_time",
+      "category": "Travel & Transit",
+      "difficulty": 1,
+      "context": "A fellow passenger repeats an airport announcement.",
+      "transcript": "They moved us to gate B twelve, and boarding starts at six forty.",
+      "details": [
+        {
+          "key": "gate",
+          "label": "gate",
+          "answers": ["b12", "b 12", "b twelve", "gate b12", "gate b twelve"]
+        },
+        {
+          "key": "time",
+          "label": "boarding time",
+          "answers": ["6:40", "six forty", "6 40"]
+        }
+      ],
+      "receptive_tags": ["letters_numbers", "times", "connected_speech"],
+      "productive_tags": ["readback", "clarification"],
+      "accent_candidates": ["us", "uk", "aus", "in", "sg"],
+      "source": {
+        "type": "generated_tts",
+        "license": "Generated on demand with the learner's Gemini API account"
+      }
+    }
+  ]
+}

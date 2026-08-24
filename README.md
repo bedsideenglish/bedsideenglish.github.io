@@ -74,7 +74,23 @@ python tools\generate-team-communication-pages.py --check
 python tools\check-team-communication-pages.py
 ```
 
-The initial sample is `communication/sbar-nursing-handoff-example/`. Do not edit generated HTML directly; edit the manifest or templates and regenerate.
+The library includes physician-first examples for an SBAR specialty consult, I-PASS night handoff, and critical-result check-back, plus the original nursing SBAR example. Do not edit generated HTML directly; edit the manifest or templates and regenerate.
+
+## Everyday English interactive listening guides
+
+Everyday-English search pages live under `everyday-english/`. They use a separate hear–commit–verify template rather than the patient-question or team-framework layouts. Each reviewed page maps one search task to one real Android Listening Lab drill, hides the transcript until the learner commits structured detail answers, scores each detail, records replay/slower assistance locally, and then teaches repair and transfer.
+
+The publication allowlist and 15 future-ready speaker profiles live in `everyday-english-pages.json`; published app-drill snapshots live in `everyday-listening-drills.json`. When the sibling Android repository is present, generation requires each snapshot to match the current app drill, so transcript, accepted-answer, difficulty, and profile changes cannot drift silently. Browser speech synthesis is the no-key fallback; reviewed audio added under `assets/audio/everyday/<drill_id>/<profile_id>.*` is picked up automatically.
+
+Run the complete publication gate:
+
+```powershell
+python tools\test_generate_everyday_english_pages.py
+python tools\generate-everyday-english-pages.py --check
+python tools\check-everyday-english-pages.py
+```
+
+The full editorial, audio, SEO/GEO, scoring, and QA standard is in `docs/everyday-english-content-system.md`.
 
 ### Search discovery on GitHub Pages
 
@@ -121,13 +137,28 @@ already in the repo. Re-cut them after replacing either source capture:
 python3 tools/build-crops.py    # needs Pillow
 ```
 
+### Bed 23 preview audio
+
+`android-demo.html` plays reviewed, pre-generated Gemini TTS clips from
+`assets/audio/bed-23/`; the public page does not call Gemini or use a
+browser-installed voice. To regenerate a clip locally, set `GEMINI_API_KEY` in
+the workspace-level `.env` and run:
+
+```powershell
+python tools\generate-bed-23-audio.py
+```
+
+Use `--force` when deliberately replacing existing files, and `--clip
+patient-opening` to remake one named line. The generator defaults to
+`gemini-3.1-flash-tts-preview` and writes 24 kHz mono WAV files.
+
 ## Two switches at the top of the page script
 
 Both live at the top of the `<script>` block in `android.html` (and its `index.html` copy):
 
 | Constant | What it does while empty | What to paste in |
 | --- | --- | --- |
-| `GOOGLE_PLAY_URL` | The two launch-status lines and the phone bar read "Under Google Play review". | The public listing URL. Every one of them becomes a "Get it on Google Play" link. |
+| `GOOGLE_PLAY_URL` | The public listing URL is already configured. | Keep the published Google Play listing URL here; the status surfaces become download buttons. |
 | `VOICE_CLIP_URL` | The hero button replays the silent clip and reads "Watch the 8-second clip". | A path to eight seconds of the encounter's **own** audio. The button becomes "Hear 8 seconds of it" and doubles as a mute toggle. |
 
 `VOICE_CLIP_URL` is deliberately empty rather than wired to speech synthesis. The page's whole claim

@@ -12,17 +12,12 @@
   <meta property="og:title" content="{{H1}}">
   <meta property="og:description" content="{{META_DESCRIPTION}}">
   <meta property="og:url" content="{{CANONICAL_URL}}">
-  <meta property="og:image" content="{{OG_IMAGE_URL}}">
-  <meta property="og:image:alt" content="A fictional chart flowing through the four SBAR steps into a spoken team handoff">
-  <meta property="og:image:width" content="1731">
-  <meta property="og:image:height" content="909">
   <meta property="article:published_time" content="{{PUBLISHED_ON}}">
   <meta property="article:modified_time" content="{{REVIEWED_ON}}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{H1}}">
   <meta name="twitter:description" content="{{META_DESCRIPTION}}">
-  <meta name="twitter:image" content="{{OG_IMAGE_URL}}">
-  <meta name="twitter:image:alt" content="A fictional chart flowing through the four SBAR steps into a spoken team handoff">
+  {{SOCIAL_IMAGE_META}}
   <link rel="canonical" href="{{CANONICAL_URL}}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,8 +38,8 @@
     <article class="communication-page" data-guide-slug="{{SLUG}}" data-page-title="{{H1}}" data-summary="{{META_DESCRIPTION}}" data-reviewed-on="{{REVIEWED_ON}}">
       <header class="hero">
         <div class="shell">
-          <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span>/</span><a href="../">Team communication</a><span>/</span><span>SBAR</span></nav>
-          <p class="eyebrow">{{CATEGORY}} · Worked communication guide</p>
+          <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span>/</span><a href="../">Team communication</a><span>/</span><span>{{FRAMEWORK_NAME}}</span></nav>
+          <p class="eyebrow">{{AUDIENCE_LABEL}} · {{CATEGORY}}</p>
           <h1>{{H1}}</h1>
           <p class="lede">{{LEDE}}</p>
           <div class="hero-actions"><a class="button button-primary" href="#example">Read the complete message <span aria-hidden="true">↓</span></a><a class="button" href="#chart">See the sample chart</a></div>
@@ -57,7 +52,7 @@
           <a href="#quick-answer">Quick answer</a>
           <a href="#scenario">Scenario</a>
           <a href="#chart">Sample chart</a>
-          <a href="#framework">SBAR script</a>
+          <a href="#framework">Framework script</a>
           <a href="#example">Full example</a>
           <a href="#checklist">Checklist</a>
           <a href="#faq">Questions</a>
@@ -67,9 +62,9 @@
         <div class="article-body">
           <section class="quick-answer" id="quick-answer" aria-labelledby="quick-answer-title">
             <p class="section-label">Quick answer</p>
-            <h2 id="quick-answer-title">What is an SBAR nursing handoff?</h2>
+            <h2 id="quick-answer-title">{{QUICK_QUESTION}}</h2>
             <p>{{QUICK_ANSWER}}</p>
-            <div class="framework-strip" aria-label="SBAR meaning"><span><b>S</b> Situation</span><span><b>B</b> Background</span><span><b>A</b> Assessment</span><span><b>R</b> Recommendation</span></div>
+            <div class="framework-strip" aria-label="{{FRAMEWORK_NAME}} framework">{{FRAMEWORK_STRIP}}</div>
           </section>
 
           <section id="scenario" aria-labelledby="scenario-title">
@@ -88,7 +83,7 @@
           <section id="chart" aria-labelledby="chart-title">
             <p class="section-label">Before you call</p>
             <h2 id="chart-title">Read the example chart, then decide what matters</h2>
-            <p>The chart contains more detail than a spoken handoff needs. Items marked <em>Must say</em> are carried into the generated SBAR below.</p>
+            <p>The chart contains more detail than a spoken message needs. Items marked <em>Must say</em> are carried into the generated {{FRAMEWORK_NAME}} example below.</p>
             <div class="chart" aria-label="Fictional example patient chart">
               <header><div><span class="chart-kicker">Training chart · Not a real patient</span><h3>Acute care communication snapshot</h3></div><span class="chart-status">Needs review</span></header>
               {{FACT_GROUPS}}
@@ -99,14 +94,14 @@
             <p class="section-label">Build the message</p>
             <h2 id="framework-title">{{FRAMEWORK_EXPANDED}}</h2>
             <p>{{FRAMEWORK_DEFINITION}} {{FRAMEWORK_USE_WHEN}}</p>
-            <div class="sbar-steps">{{SBAR_STEPS}}</div>
+            <div class="framework-steps">{{FRAMEWORK_STEPS}}</div>
           </section>
 
           <section id="example" aria-labelledby="example-title">
             <p class="section-label">Complete spoken example</p>
             <h2 id="example-title">Put the four parts together without sounding robotic</h2>
             <div class="transcript">
-              <header><span class="live-dot" aria-hidden="true"></span><span>Nurse-to-resident call · Approximately 1 minute</span></header>
+              <header><span class="live-dot" aria-hidden="true"></span><span>{{TRANSCRIPT_LABEL}} · {{TRANSCRIPT_DURATION}}</span></header>
               {{FULL_MESSAGE}}
             </div>
             <div class="check-back">
@@ -135,13 +130,14 @@
             <div class="faq-list">{{FAQ_ITEMS}}</div>
           </section>
 
-          <section class="cta-panel" aria-labelledby="cta-title">
-            <div>
+          <section class="cta-panel{{CTA_PANEL_CLASS}}" aria-labelledby="cta-title">
+            <div class="cta-copy">
               <p class="section-label">Speak, listen, improve</p>
               <h2 id="cta-title">Build clinical English you can say under pressure</h2>
               <p>Bedside English is designed for spoken clinical communication practice. Team scenarios are an expanding part of this learning library.</p>
               <div class="cta-actions"><a class="store-badge cta-store" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a><a href="../../learning/">Practice patient conversations</a></div>
             </div>
+            {{CTA_VISUAL}}
           </section>
 
           <section id="sources" aria-labelledby="sources-title">

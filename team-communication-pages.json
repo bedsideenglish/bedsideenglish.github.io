@@ -7,6 +7,11 @@
       "meta_description": "Learn an SBAR nursing handoff with a fictional patient chart, a complete spoken script, phrase-by-phrase coaching, check-back, and a pre-call checklist.",
       "lede": "Turn a busy chart into a brief, actionable message. This worked example shows what to select, what to say, and how to confirm the next step in natural clinical English.",
       "category": "Escalation and handoff",
+      "audience": {
+        "role": "nurse",
+        "label": "Nurses"
+      },
+      "library_order": 4,
       "published_on": "2026-08-24",
       "reviewed_on": "2026-08-24",
       "search": {
@@ -25,7 +30,10 @@
         "definition": "SBAR is a four-part framework for organizing a focused conversation about a patient's condition.",
         "use_when": "Use it when the receiver needs the current problem, only the relevant context, your assessment, and a clear request."
       },
+      "quick_question": "What is an SBAR nursing handoff?",
       "quick_answer": "An SBAR nursing handoff organizes a message into Situation, Background, Assessment, and Recommendation. First identify the patient and immediate concern. Add only the history that changes the decision, state what you think is happening, and finish with a specific request and time frame. The receiver should then confirm the plan so both people leave with the same next step.",
+      "transcript_label": "Nurse-to-resident call",
+      "transcript_duration": "Approximately 1 minute",
       "scenario": {
         "setting": "Evening shift on an adult medical unit",
         "caller": "Registered nurse caring for the patient",
@@ -114,7 +122,7 @@
       ],
       "steps": [
         {
-          "letter": "S",
+          "code": "S",
           "name": "Situation",
           "prompt": "What is happening now?",
           "statements": [
@@ -135,7 +143,7 @@
           }
         },
         {
-          "letter": "B",
+          "code": "B",
           "name": "Background",
           "prompt": "Which context changes the decision?",
           "statements": [
@@ -152,7 +160,7 @@
           }
         },
         {
-          "letter": "A",
+          "code": "A",
           "name": "Assessment",
           "prompt": "What did you find, and what do you think?",
           "statements": [
@@ -173,7 +181,7 @@
           }
         },
         {
-          "letter": "R",
+          "code": "R",
           "name": "Recommendation",
           "prompt": "What response do you need, and by when?",
           "statements": [
@@ -266,6 +274,790 @@
           "title": "Implement Teamwork and Communication: SBAR and Check-Back",
           "organization": "Agency for Healthcare Research and Quality",
           "url": "https://www.ahrq.gov/hai/cusp/modules/implement/alt-text.html",
+          "accessed_on": "2026-08-24"
+        }
+      ],
+      "review": {
+        "source_claims_checked": true,
+        "fictional_case_labeled": true,
+        "local_policy_boundary_checked": true,
+        "plain_language_checked": true,
+        "search_intent_checked": true
+      }
+    },
+    {
+      "slug": "doctor-to-doctor-sbar-consult-example",
+      "title": "Doctor-to-Doctor SBAR Example: Surgical Consult | Bedside English",
+      "h1": "Doctor-to-doctor SBAR example for a surgical consult",
+      "meta_description": "Practice a doctor-to-doctor SBAR consult using a fictional ED chart, a concise surgical referral script, phrase coaching, and a confirmed response plan.",
+      "lede": "A useful consult call does more than recite findings. It tells the specialist why you are calling, how stable the patient is, what the evidence shows, and what response you need.",
+      "category": "Specialty consultation",
+      "audience": {
+        "role": "physician",
+        "label": "Physicians"
+      },
+      "library_order": 1,
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "doctor-to-doctor SBAR example",
+        "supporting_queries": [
+          "physician SBAR consult example",
+          "how to call a surgical consult",
+          "doctor referral call script",
+          "SBAR example for medical residents"
+        ],
+        "reader_task": "Call a surgical specialist with a focused question, relevant evidence, and a clear request."
+      },
+      "framework": {
+        "name": "SBAR",
+        "expanded": "Situation, Background, Assessment, Recommendation",
+        "definition": "SBAR is a four-part structure for presenting a current problem, the relevant context, your assessment, and the response you are requesting.",
+        "use_when": "It is useful for a focused specialty consult when the consultant needs a clear clinical question rather than an unfiltered case presentation."
+      },
+      "quick_question": "How can a doctor use SBAR for a specialty consult?",
+      "quick_answer": "For a doctor-to-doctor SBAR consult, open with the patient, immediate problem, and reason for referral. Give only the background that affects the consultant's decision, summarize the most relevant examination and test findings, then state your working assessment and exact request. End by confirming when the specialist will review the patient and what should happen while you wait.",
+      "transcript_label": "ED physician-to-surgical resident call",
+      "transcript_duration": "Approximately 1 minute",
+      "scenario": {
+        "setting": "Emergency department during an evening shift",
+        "caller": "Emergency medicine resident who assessed the patient",
+        "receiver": "On-call general surgery resident",
+        "reason": "CT findings and examination are concerning for acute appendicitis",
+        "goal": "Request a timely surgical assessment and confirm the interim plan and ownership"
+      },
+      "facts": [
+        {
+          "id": "patient",
+          "label": "Patient",
+          "value": "Ms. Rivera · 34 years old · ED bed 7",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "presenting_problem",
+          "label": "Presenting problem",
+          "value": "18 hours of migrating right lower quadrant pain with vomiting",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "observations",
+          "label": "Latest observations",
+          "value": "HR 102 · BP 118/72 · Temp 38.1°C · SpO2 99% room air",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "examination",
+          "label": "Focused examination",
+          "value": "Right lower quadrant tenderness with localized guarding",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "history",
+          "label": "Relevant history",
+          "value": "No previous abdominal surgery; no regular medication",
+          "group": "Relevant background",
+          "priority": "supporting"
+        },
+        {
+          "id": "pregnancy_test",
+          "label": "Pregnancy test",
+          "value": "Negative",
+          "group": "Relevant background",
+          "priority": "must"
+        },
+        {
+          "id": "laboratory",
+          "label": "Laboratory result",
+          "value": "White blood cell count 15.2 × 10⁹/L",
+          "group": "Relevant background",
+          "priority": "supporting"
+        },
+        {
+          "id": "imaging",
+          "label": "CT report",
+          "value": "11 mm inflamed appendix; no abscess or free air",
+          "group": "Relevant background",
+          "priority": "must"
+        },
+        {
+          "id": "assessment",
+          "label": "Working assessment",
+          "value": "Acute appendicitis without a complication seen on CT",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "request",
+          "label": "Consult question",
+          "value": "Surgical assessment in the ED within 30 minutes",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "interim_plan",
+          "label": "Clarify before ending",
+          "value": "Interim orders, escalation trigger, and named owner",
+          "group": "Safety and next steps",
+          "priority": "must"
+        }
+      ],
+      "steps": [
+        {
+          "code": "S",
+          "name": "Situation",
+          "prompt": "Who is the patient, and why do you need this consultant?",
+          "statements": [
+            {
+              "text": "This is Dr. Kim in the emergency department. I'm calling about Ms. Rivera, a 34-year-old in bed 7, for a surgical assessment of suspected acute appendicitis.",
+              "fact_refs": ["patient", "assessment"]
+            }
+          ],
+          "why_it_works": "The opening identifies the caller, patient, location, service needed, and focused clinical question in one pass.",
+          "language_note": {
+            "less_clear": "I have a patient with abdominal pain to discuss.",
+            "preferred": "I'm calling for a surgical assessment of suspected acute appendicitis.",
+            "reason": "The consultant can immediately judge the purpose and priority of the call."
+          }
+        },
+        {
+          "code": "B",
+          "name": "Background",
+          "prompt": "Which history changes interpretation of this problem?",
+          "statements": [
+            {
+              "text": "She has had 18 hours of pain that migrated to the right lower quadrant with vomiting. She has no previous abdominal surgery, and her pregnancy test is negative.",
+              "fact_refs": ["presenting_problem", "history", "pregnancy_test"]
+            }
+          ],
+          "why_it_works": "The background establishes the symptom pattern and relevant exclusions without turning into a complete admission history.",
+          "language_note": {
+            "less_clear": "She has had several symptoms since yesterday, and her history is mostly unremarkable.",
+            "preferred": "The pain migrated to the right lower quadrant over 18 hours, and her pregnancy test is negative.",
+            "reason": "Specific chronology and decision-relevant context are more useful than a vague summary."
+          }
+        },
+        {
+          "code": "A",
+          "name": "Assessment",
+          "prompt": "What are the decisive findings and your interpretation?",
+          "statements": [
+            {
+              "text": "Her heart rate is 102, blood pressure 118 over 72, temperature 38.1 degrees Celsius, and oxygen saturation 99% on room air. She has right lower quadrant tenderness with localized guarding.",
+              "fact_refs": ["observations", "examination"]
+            },
+            {
+              "text": "Her white blood cell count is 15.2, and CT shows an 11 millimeter inflamed appendix with no abscess or free air. My working assessment is acute appendicitis without a complication seen on CT.",
+              "fact_refs": ["laboratory", "imaging", "assessment"]
+            }
+          ],
+          "why_it_works": "The caller reports stability, focused examination, imaging, and interpretation while distinguishing observed evidence from the working assessment.",
+          "language_note": {
+            "less_clear": "Everything points to appendicitis.",
+            "preferred": "CT shows an inflamed appendix with no abscess or free air; my working assessment is acute appendicitis.",
+            "reason": "Naming the evidence and the level of certainty helps the consultant respond to the actual case."
+          }
+        },
+        {
+          "code": "R",
+          "name": "Recommendation",
+          "prompt": "What do you need the consultant to do, and what must be agreed?",
+          "statements": [
+            {
+              "text": "Could you assess her in the emergency department within the next 30 minutes?",
+              "fact_refs": ["request"]
+            },
+            {
+              "text": "Before we finish, could we confirm the interim orders, what should trigger earlier escalation, and who owns each next step?",
+              "fact_refs": ["interim_plan"]
+            }
+          ],
+          "why_it_works": "The request includes a location and time frame, then closes gaps in contingency planning and ownership.",
+          "language_note": {
+            "less_clear": "Can you come and see her when you can?",
+            "preferred": "Could you assess her in the ED within the next 30 minutes?",
+            "reason": "A bounded request lets both physicians negotiate urgency rather than assume it."
+          }
+        }
+      ],
+      "check_back": {
+        "receiver": "I'll review her in the ED within 30 minutes. Keep her in the department and call me sooner if her observations or abdominal findings worsen.",
+        "sender": "To confirm, you'll review her here within 30 minutes. I'll call sooner for worsening observations or examination findings, and I'll document the interim plan now.",
+        "why": "The repeat-back confirms timing, location, escalation triggers, and interim ownership before the consultation call ends."
+      },
+      "checklist": [
+        "State your name, service, patient, and location.",
+        "Give the consult question in the first two sentences.",
+        "Report stability and the findings that drive the referral.",
+        "Separate test results from your working assessment.",
+        "Ask for a specific response and negotiate timing.",
+        "Confirm interim actions, escalation triggers, and ownership."
+      ],
+      "mistakes": [
+        {
+          "problem": "Starting a full case presentation before naming the consult question",
+          "repair": "Say which service you need and why, then provide evidence that supports that focused question."
+        },
+        {
+          "problem": "Using “stable” without reporting relevant observations",
+          "repair": "Give the measurements or examination findings the consultant needs to judge current stability."
+        },
+        {
+          "problem": "Ending after the consultant says “I'll see the patient”",
+          "repair": "Confirm when, where, what happens while waiting, and who owns each pending action."
+        }
+      ],
+      "faq": [
+        {
+          "question": "What should a doctor say first when calling a consult?",
+          "answer": "Identify yourself, the patient and location, the service you are calling, and the focused reason for referral. The consultant should understand the task before hearing the supporting history and results."
+        },
+        {
+          "question": "How much background belongs in a specialty consult call?",
+          "answer": "Include history that changes the specialist's interpretation, urgency, or plan. A complete medical history may be available in the chart, but the spoken consult should foreground the details that support the clinical question."
+        },
+        {
+          "question": "Can the Recommendation be a question rather than a proposed treatment?",
+          "answer": "Yes. A useful recommendation can request bedside review, advice, transfer, a procedure decision, or clarification. It should still specify what response is needed, how urgent it is, and how ownership will be handled."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Tool: SBAR",
+          "organization": "Agency for Healthcare Research and Quality",
+          "url": "https://www.ahrq.gov/teamstepps-program/curriculum/communication/tools/sbar.html",
+          "accessed_on": "2026-08-24"
+        },
+        {
+          "title": "SBAR Tool: Situation-Background-Assessment-Recommendation",
+          "organization": "Institute for Healthcare Improvement",
+          "url": "https://www.ihi.org/library/tools/sbar-tool-situation-background-assessment-recommendation",
+          "accessed_on": "2026-08-24"
+        }
+      ],
+      "review": {
+        "source_claims_checked": true,
+        "fictional_case_labeled": true,
+        "local_policy_boundary_checked": true,
+        "plain_language_checked": true,
+        "search_intent_checked": true
+      }
+    },
+    {
+      "slug": "i-pass-physician-handoff-example",
+      "title": "I-PASS Physician Handoff Example and Script | Bedside English",
+      "h1": "I-PASS physician handoff example for night coverage",
+      "meta_description": "Learn an I-PASS physician handoff with a fictional sign-out chart, a complete resident script, action list, contingency plan, and receiver synthesis.",
+      "lede": "A safe-looking summary can still leave the covering doctor unsure what to do overnight. This example turns a sign-out record into explicit tasks, contingencies, and a receiver synthesis.",
+      "category": "Shift handoff",
+      "audience": {
+        "role": "physician",
+        "label": "Physicians"
+      },
+      "library_order": 2,
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "I-PASS physician handoff example",
+        "supporting_queries": [
+          "I-PASS handoff script",
+          "resident sign-out example",
+          "doctor shift handover English",
+          "I-PASS contingency plan example"
+        ],
+        "reader_task": "Give a physician sign-out with illness severity, an action list, if-then contingencies, and receiver synthesis."
+      },
+      "framework": {
+        "name": "I-PASS",
+        "expanded": "Illness Severity, Patient Summary, Action List, Situation Awareness and Contingency Planning, Synthesis by Receiver",
+        "definition": "I-PASS organizes a transition of care around acuity, a concise patient summary, assigned actions, anticipated changes, and confirmation by the receiving clinician.",
+        "use_when": "It is designed for handoffs in which responsibility transfers and the covering clinician needs to know both what to do and what might happen next."
+      },
+      "quick_question": "What belongs in an I-PASS physician handoff?",
+      "quick_answer": "An I-PASS physician handoff begins with illness severity, followed by a concise patient summary. The outgoing clinician then gives an actionable overnight task list and if-then contingency plans. The receiving clinician finishes by synthesizing the handoff in their own words, including the patient's acuity, pending work, and triggers for reassessment or escalation.",
+      "transcript_label": "Day resident-to-night resident handoff",
+      "transcript_duration": "Approximately 75 seconds",
+      "scenario": {
+        "setting": "Evening sign-out on an adult internal medicine service",
+        "caller": "Day resident transferring overnight responsibility",
+        "receiver": "Night resident covering the ward",
+        "reason": "Transfer care of a patient receiving treatment for acute decompensated heart failure",
+        "goal": "Communicate acuity, pending work, overnight tasks, and clear if-then contingencies"
+      },
+      "facts": [
+        {
+          "id": "patient",
+          "label": "Patient",
+          "value": "Mr. Lewis · 76 years old · Room 528",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "severity",
+          "label": "Illness severity",
+          "value": "Watcher",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "admission",
+          "label": "Reason for admission",
+          "value": "Acute decompensated heart failure with volume overload",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "current_status",
+          "label": "Current status",
+          "value": "Comfortable at rest · SpO2 94% on 2 L · BP 108/68 · HR 88",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "course",
+          "label": "Today's course",
+          "value": "Breathing improved; net fluid balance −1.4 L since morning",
+          "group": "Relevant background",
+          "priority": "supporting"
+        },
+        {
+          "id": "renal_function",
+          "label": "Renal function",
+          "value": "Creatinine 1.3 mg/dL, increased from 1.0 mg/dL",
+          "group": "Relevant background",
+          "priority": "must"
+        },
+        {
+          "id": "pending_labs",
+          "label": "Pending result",
+          "value": "22:00 basic metabolic panel",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "action",
+          "label": "Overnight action",
+          "value": "Review electrolytes and renal function when results post",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "contingency_breathing",
+          "label": "Breathing contingency",
+          "value": "If dyspnea or oxygen need increases, assess at bedside and follow the unit escalation process",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "contingency_pressure",
+          "label": "Blood pressure contingency",
+          "value": "If systolic BP is below the team's documented threshold, reassess before further planned intervention",
+          "group": "Safety and next steps",
+          "priority": "supporting"
+        },
+        {
+          "id": "ownership",
+          "label": "Overnight owner",
+          "value": "Night resident owns result review and reassessment",
+          "group": "Safety and next steps",
+          "priority": "must"
+        }
+      ],
+      "steps": [
+        {
+          "code": "I",
+          "name": "Illness severity",
+          "prompt": "How closely should the receiver watch this patient?",
+          "statements": [
+            {
+              "text": "Mr. Lewis in room 528 is a watcher tonight.",
+              "fact_refs": ["patient", "severity"]
+            }
+          ],
+          "why_it_works": "The acuity label gives the receiver an immediate frame for listening to the rest of the handoff.",
+          "language_note": {
+            "less_clear": "He is doing okay for now.",
+            "preferred": "He is a watcher tonight.",
+            "reason": "A shared acuity label is easier to act on when the service defines and uses it consistently."
+          }
+        },
+        {
+          "code": "P",
+          "name": "Patient summary",
+          "prompt": "What story explains the current state?",
+          "statements": [
+            {
+              "text": "He is 76 and was admitted with acute decompensated heart failure and volume overload. His breathing improved today, and his net fluid balance is negative 1.4 liters.",
+              "fact_refs": ["patient", "admission", "course"]
+            },
+            {
+              "text": "He is comfortable at rest with oxygen saturation 94% on 2 liters, blood pressure 108 over 68, and heart rate 88. His creatinine increased from 1.0 to 1.3.",
+              "fact_refs": ["current_status", "renal_function"]
+            }
+          ],
+          "why_it_works": "The summary connects the diagnosis, response, current stability, and new renal trend without repeating the entire hospital course.",
+          "language_note": {
+            "less_clear": "He has heart failure and has been here for a while.",
+            "preferred": "His breathing improved, but his creatinine increased from 1.0 to 1.3.",
+            "reason": "The contrast between improvement and a new concern explains why he remains a watcher."
+          }
+        },
+        {
+          "code": "A",
+          "name": "Action list",
+          "prompt": "What must the covering physician do?",
+          "statements": [
+            {
+              "text": "A basic metabolic panel is due at 22:00. Please review the electrolytes and renal function when it posts; you own that result and any reassessment it triggers.",
+              "fact_refs": ["pending_labs", "action", "ownership"]
+            }
+          ],
+          "why_it_works": "The task includes the result, timing, required action, and named owner rather than leaving a vague note to check labs.",
+          "language_note": {
+            "less_clear": "There are some evening labs to follow up.",
+            "preferred": "Please review the 22:00 metabolic panel; you own the result and any reassessment it triggers.",
+            "reason": "A specific task with ownership is easier to retrieve and complete during a busy shift."
+          }
+        },
+        {
+          "code": "S",
+          "name": "Situation awareness and contingency planning",
+          "prompt": "What might change, and what should happen then?",
+          "statements": [
+            {
+              "text": "If he develops new dyspnea or needs more oxygen, assess him at the bedside and follow the unit escalation process. If his systolic pressure is below our documented threshold, reassess him before the next planned intervention.",
+              "fact_refs": ["contingency_breathing", "contingency_pressure"]
+            }
+          ],
+          "why_it_works": "The if-then structure converts possible overnight changes into concrete triggers and first responses while preserving local policy boundaries.",
+          "language_note": {
+            "less_clear": "Keep an eye on his breathing and blood pressure.",
+            "preferred": "If his oxygen need increases, assess him at the bedside and follow the escalation process.",
+            "reason": "A trigger and response are more actionable than a general warning."
+          }
+        },
+        {
+          "code": "S",
+          "name": "Synthesis by receiver",
+          "prompt": "Can the receiving physician state the plan back?",
+          "statements": [
+            {
+              "text": "My synthesis is that Mr. Lewis is a watcher with improving breathing but a rising creatinine. I own the 22:00 metabolic panel and will reassess him for increased oxygen need, dyspnea, or blood pressure below the documented threshold.",
+              "fact_refs": ["patient", "severity", "renal_function", "pending_labs", "ownership", "contingency_breathing", "contingency_pressure"]
+            }
+          ],
+          "why_it_works": "The receiver does more than say yes; they restate acuity, the owned task, and the main contingency triggers.",
+          "language_note": {
+            "less_clear": "Got it. I'll keep an eye on him.",
+            "preferred": "I own the 22:00 result and will reassess him if his oxygen need increases.",
+            "reason": "Synthesis makes missing or misunderstood details visible before responsibility transfers."
+          }
+        }
+      ],
+      "check_back": {
+        "receiver": "I have him as a watcher. I own the 22:00 metabolic panel and will assess him for increased oxygen need, dyspnea, or pressure below the documented threshold.",
+        "sender": "Correct. Those are the overnight task and main contingencies; the rest of the plan is documented in the sign-out.",
+        "why": "The exchange confirms the receiver's mental model and transfers ownership of the pending result and overnight reassessment."
+      },
+      "checklist": [
+        "Assign an illness-severity label used by your team.",
+        "Summarize the diagnosis, course, and current state.",
+        "Turn pending work into named, timed actions.",
+        "State who owns each result or task.",
+        "Use if-then language for likely overnight changes.",
+        "Ask the receiver to synthesize acuity, tasks, and contingencies."
+      ],
+      "mistakes": [
+        {
+          "problem": "Calling every patient stable",
+          "repair": "Use the service's shared acuity language and explain the finding that makes a patient a watcher or unstable."
+        },
+        {
+          "problem": "Writing “follow up labs” without timing or ownership",
+          "repair": "Name the result, expected time, required review, and clinician responsible for responding."
+        },
+        {
+          "problem": "Ending after asking whether the receiver has questions",
+          "repair": "Ask for a short synthesis of the patient's acuity, action list, and contingency triggers."
+        }
+      ],
+      "faq": [
+        {
+          "question": "What does I-PASS stand for in a physician handoff?",
+          "answer": "I-PASS stands for Illness Severity, Patient Summary, Action List, Situation Awareness and Contingency Planning, and Synthesis by Receiver. The last element makes the handoff explicitly interactive."
+        },
+        {
+          "question": "What is an example of an I-PASS contingency plan?",
+          "answer": "A contingency uses an if-then structure: if a defined change occurs, then the covering clinician takes a defined first action. The trigger and response should fit the actual patient and local escalation process."
+        },
+        {
+          "question": "Is I-PASS only a mnemonic for the spoken sign-out?",
+          "answer": "No. I-PASS is commonly implemented as a broader handoff approach that can include written tools, training, workflow, and observation. This page teaches the language structure of one spoken example, not a complete implementation program."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Two-Day Training Content: I-PASS",
+          "organization": "Agency for Healthcare Research and Quality",
+          "url": "https://www.ahrq.gov/teamstepps-program/curriculum/communication/teach/two-day.html",
+          "accessed_on": "2026-08-24"
+        },
+        {
+          "title": "Handoffs",
+          "organization": "AHRQ Patient Safety Network",
+          "url": "https://psnet.ahrq.gov/primer/handoffs",
+          "accessed_on": "2026-08-24"
+        },
+        {
+          "title": "Use of Structured Handoff Protocols for Intrahospital Transitions",
+          "organization": "AHRQ Effective Health Care Program",
+          "url": "https://effectivehealthcare.ahrq.gov/products/structured-handoff/protocol",
+          "accessed_on": "2026-08-24"
+        }
+      ],
+      "review": {
+        "source_claims_checked": true,
+        "fictional_case_labeled": true,
+        "local_policy_boundary_checked": true,
+        "plain_language_checked": true,
+        "search_intent_checked": true
+      }
+    },
+    {
+      "slug": "critical-result-read-back-example",
+      "title": "Critical Result Read-Back Example for Doctors | Bedside English",
+      "h1": "Critical result read-back example for doctors",
+      "meta_description": "Practice a critical result read-back between a radiologist and ED physician, including patient identification, exact findings, repeat-back, verification, and ownership.",
+      "lede": "A critical result is not closed just because it was spoken. This worked example shows how the sending and receiving physicians identify the patient, repeat the finding accurately, verify it, and name who owns the next action.",
+      "category": "Closed-loop communication",
+      "audience": {
+        "role": "physician",
+        "label": "Physicians"
+      },
+      "library_order": 3,
+      "published_on": "2026-08-24",
+      "reviewed_on": "2026-08-24",
+      "search": {
+        "primary_query": "critical result read-back example",
+        "supporting_queries": [
+          "physician check-back example",
+          "critical radiology result phone call",
+          "closed-loop communication for test results",
+          "repeat-back script for doctors"
+        ],
+        "reader_task": "Receive a critical result, repeat the patient and finding accurately, verify it, and accept or redirect ownership."
+      },
+      "framework": {
+        "name": "Check-Back",
+        "expanded": "Sender message, receiver repeat-back, sender verification",
+        "definition": "A check-back is a closed-loop exchange in which the sender gives critical information, the receiver repeats their understanding, and the sender verifies or corrects it.",
+        "use_when": "It is useful when a result, order, value, or action is important enough that passive acknowledgment would leave unacceptable ambiguity."
+      },
+      "quick_question": "How should doctors read back a critical result?",
+      "quick_answer": "For a critical result read-back, the sender identifies the correct patient, names the exact test and finding, and confirms the intended receiver. The receiving doctor repeats the patient and critical finding in their own voice. The sender then verifies or corrects the repeat-back, and both clinicians establish who owns the immediate follow-up under the organization's critical-result workflow.",
+      "transcript_label": "Radiologist-to-ED physician call",
+      "transcript_duration": "Approximately 35 seconds",
+      "scenario": {
+        "setting": "Evening in an emergency department and radiology reading room",
+        "caller": "Radiologist reporting a time-sensitive CT pulmonary angiogram finding",
+        "receiver": "Emergency physician currently responsible for the patient",
+        "reason": "CT shows pulmonary emboli with signs of right heart strain",
+        "goal": "Verify accurate receipt of the result and establish immediate ownership without teaching a universal treatment protocol"
+      },
+      "facts": [
+        {
+          "id": "patient",
+          "label": "Patient",
+          "value": "Ms. Patel · 55 years old · ED bed 3 · fictional MRN 240824",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "study",
+          "label": "Study",
+          "value": "CT pulmonary angiogram",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "critical_finding",
+          "label": "Critical finding",
+          "value": "Acute emboli in the right main and lobar pulmonary arteries",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "associated_finding",
+          "label": "Associated finding",
+          "value": "CT signs of right heart strain",
+          "group": "Current concern",
+          "priority": "must"
+        },
+        {
+          "id": "indication",
+          "label": "Study indication",
+          "value": "Sudden dyspnea and pleuritic chest pain",
+          "group": "Relevant background",
+          "priority": "supporting"
+        },
+        {
+          "id": "comparison",
+          "label": "Comparison",
+          "value": "No prior CT pulmonary angiogram available",
+          "group": "Relevant background",
+          "priority": "supporting"
+        },
+        {
+          "id": "result_time",
+          "label": "Result time",
+          "value": "Critical finding finalized at 21:14",
+          "group": "Relevant background",
+          "priority": "must"
+        },
+        {
+          "id": "receiver",
+          "label": "Intended receiver",
+          "value": "Dr. Adams, ED physician responsible for the patient",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "read_back",
+          "label": "Required confirmation",
+          "value": "Patient, study, critical finding, and associated right heart strain",
+          "group": "Safety and next steps",
+          "priority": "must"
+        },
+        {
+          "id": "ownership",
+          "label": "Ownership",
+          "value": "ED physician accepts the result and initiates the local critical-result and PE escalation workflow",
+          "group": "Safety and next steps",
+          "priority": "must"
+        }
+      ],
+      "steps": [
+        {
+          "code": "1",
+          "name": "Send the critical result",
+          "prompt": "Can the receiver identify the patient, test, finding, and urgency?",
+          "statements": [
+            {
+              "text": "This is Dr. Chen in radiology with a critical CT result for Ms. Patel, age 55, in ED bed 3, medical record number 240824. Am I speaking with Dr. Adams, the physician responsible for her care?",
+              "fact_refs": ["patient", "receiver"]
+            },
+            {
+              "text": "Her CT pulmonary angiogram, finalized at 21:14, shows acute emboli in the right main and lobar pulmonary arteries with CT signs of right heart strain.",
+              "fact_refs": ["study", "result_time", "critical_finding", "associated_finding"]
+            }
+          ],
+          "why_it_works": "The sender verifies the intended clinician and gives the patient, study, timestamp, and exact critical finding before asking for confirmation.",
+          "language_note": {
+            "less_clear": "The scan is positive, and it looks significant.",
+            "preferred": "The CT pulmonary angiogram shows acute pulmonary emboli with signs of right heart strain.",
+            "reason": "Exact test and finding language reduces ambiguity about what was seen and why the call matters."
+          }
+        },
+        {
+          "code": "2",
+          "name": "Repeat back",
+          "prompt": "Can the receiver reproduce the critical information accurately?",
+          "statements": [
+            {
+              "text": "This is Dr. Adams, and I am responsible for Ms. Patel in ED bed 3. To read that back: her CT pulmonary angiogram shows acute emboli in the right main and lobar pulmonary arteries with signs of right heart strain. Is that correct?",
+              "fact_refs": ["patient", "receiver", "study", "critical_finding", "associated_finding", "read_back"]
+            }
+          ],
+          "why_it_works": "The receiver states identity and ownership, then repeats the patient, study, primary finding, and associated finding rather than offering a generic acknowledgment.",
+          "language_note": {
+            "less_clear": "Okay, I got it.",
+            "preferred": "To read that back: the CT shows acute pulmonary emboli with signs of right heart strain.",
+            "reason": "A full repeat-back gives the sender something concrete to verify or correct."
+          }
+        },
+        {
+          "code": "3",
+          "name": "Verify and close",
+          "prompt": "Has the sender confirmed accuracy, and is follow-up ownership explicit?",
+          "statements": [
+            {
+              "text": "Correct. That read-back is accurate.",
+              "fact_refs": ["read_back"]
+            },
+            {
+              "text": "I have received the result and will reassess Ms. Patel now and initiate our local critical-result and pulmonary embolism escalation workflow.",
+              "fact_refs": ["patient", "ownership"]
+            }
+          ],
+          "why_it_works": "The sender explicitly validates accuracy, and the responsible physician accepts the result and states the next process without relying on silence or assumption.",
+          "language_note": {
+            "less_clear": "Great, thanks.",
+            "preferred": "Correct. That read-back is accurate.",
+            "reason": "The word “correct” closes the information loop; naming ownership closes the workflow loop."
+          }
+        }
+      ],
+      "check_back": {
+        "receiver": "To confirm: Ms. Patel's CT pulmonary angiogram shows acute right-sided pulmonary emboli with signs of right heart strain, and I am accepting responsibility for immediate follow-up.",
+        "sender": "Correct. The patient, study, finding, and ownership are all confirmed.",
+        "why": "The final exchange makes both accurate receipt and accountable follow-up audible; the institution's documentation and escalation process still applies."
+      },
+      "checklist": [
+        "Use at least two approved patient identifiers.",
+        "Confirm that you reached the clinician responsible for follow-up.",
+        "Name the exact study, result, and time reported.",
+        "Ask the receiver to repeat the critical finding.",
+        "Verify or correct the repeat-back explicitly.",
+        "State who owns the next action and complete local documentation."
+      ],
+      "mistakes": [
+        {
+          "problem": "Leaving a message without confirming the responsible recipient",
+          "repair": "Follow the organization's escalation and backup process until an accountable receiver is reached."
+        },
+        {
+          "problem": "Accepting “got it” as a read-back",
+          "repair": "Ask the receiver to repeat the patient, test, and critical finding so accuracy can be verified."
+        },
+        {
+          "problem": "Confirming the result but not the follow-up owner",
+          "repair": "Name who accepts responsibility and complete the required critical-result documentation workflow."
+        }
+      ],
+      "faq": [
+        {
+          "question": "What is the difference between acknowledgment and read-back?",
+          "answer": "Acknowledgment only shows that the receiver heard something. A read-back reproduces the critical information so the sender can verify its accuracy. The exact elements required should follow the organization's policy."
+        },
+        {
+          "question": "Who should receive a critical test result?",
+          "answer": "The result should reach a clinician or team member designated by the organization's critical-result workflow who can accept responsibility for follow-up. If that person cannot be reached, use the defined backup and escalation pathway."
+        },
+        {
+          "question": "Does a read-back complete the entire test-result process?",
+          "answer": "Not by itself. A read-back verifies the exchanged information. The wider closed-loop process also includes documented receipt, clear ownership, appropriate clinical follow-up, and communication through the organization's required channels."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Tool: Check-Back (or Repeat-Back)",
+          "organization": "Agency for Healthcare Research and Quality",
+          "url": "https://www.ahrq.gov/teamstepps-program/curriculum/communication/tools/checkback.html",
+          "accessed_on": "2026-08-24"
+        },
+        {
+          "title": "Quick Safety: Advancing Safety with Closed-Loop Communication of Test Results",
+          "organization": "The Joint Commission",
+          "url": "https://digitalassets.jointcommission.org/api/public/content/77c6421712dc463eae4b2398f9bf01a5?v=e9bc1e0f",
+          "accessed_on": "2026-08-24"
+        },
+        {
+          "title": "TeamSTEPPS Tools",
+          "organization": "Agency for Healthcare Research and Quality",
+          "url": "https://www.ahrq.gov/teamstepps-program/resources/modules/index.html",
           "accessed_on": "2026-08-24"
         }
       ],

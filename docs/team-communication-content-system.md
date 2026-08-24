@@ -92,6 +92,8 @@ Do not edit files under `communication/<slug>/` or `communication/index.html` di
 
 Create one strong page for a real task. Do not create near-duplicate pages for every keyword permutation, job title, or acronym expansion.
 
+`audience.role` identifies the primary professional audience, while `library_order` is the explicit hub order. Physician guides currently lead the library; nursing and other role-specific examples remain available without defining the product's primary position.
+
 ### Fictional chart facts
 
 Every fact has a stable `id`, visible label/value, chart group, and priority. `must` facts must be referenced by at least one spoken statement or generation fails. This catches the common failure where a chart highlights a critical change that disappears from the verbal handoff.
@@ -100,9 +102,11 @@ The chart values and spoken statements should be reviewed together for numerical
 
 ### Framework steps
 
-Each SBAR page must have exactly four steps in standard order. Every statement references the fact IDs it communicates. The complete example is assembled from these statements, so the step-by-step script and full transcript cannot drift apart.
+The generator supports source-checked contracts for SBAR, I-PASS, and Check-Back. Each framework must use its standard expansion and step order. Every statement references the fact IDs it communicates. The complete example is assembled from these statements, so the step-by-step script and full transcript cannot drift apart.
 
 Each step also requires a plain prompt, a reason the wording works, a `less_clear`/`preferred` contrast, and an explanation tied to clarity, ownership, urgency, or cognitive load.
+
+To keep long guides scannable, the direct answer, chart, preferred script, rationale, complete transcript, checklist, and sources remain visible. The optional wording comparison is placed in a native expandable section. This removes repeated visual weight without hiding the page's core answer or worked example.
 
 ### Sources and review attestations
 
@@ -118,7 +122,7 @@ All five `review` values are blocking attestations. Set them to `true` only afte
 
 ## Blocking automated QA
 
-Generation stops for unknown/missing fields; invalid slugs, dates, URLs, lengths, or SBAR order; duplicate fact IDs; a `must` fact absent from speech; insufficient queries, FAQs, repairs, or sources; unchecked attestations; selected non-US spelling; or an absolute safety claim.
+Generation stops for unknown/missing fields; invalid slugs, dates, URLs, lengths, framework order, or library order; duplicate fact IDs; a `must` fact absent from speech; insufficient queries, FAQs, repairs, or sources; unchecked attestations; selected non-US spelling; or an absolute safety claim.
 
 Output QA also blocks unresolved markers, broken links, malformed nesting, duplicate IDs, missing image alt text, incomplete metadata, mismatched structured data, missing safety boundaries, sitemap errors, and generated directories outside the allowlist.
 
@@ -153,6 +157,7 @@ The system uses the same foundation for conventional and generative search:
 - Avoid filler, keyword repetition, mass-produced variants, invented expertise, and unsupported outcome claims.
 - Keep internal links among the homepage, patient library, team hub, and related task pages.
 - Add every canonical URL once to the sitemap and allow crawling in `robots.txt`.
+- Use the SBAR social card on the hub and SBAR detail pages, where its visible text matches the content. Do not inherit that image on I-PASS or Check-Back detail pages.
 
 Official production references include [Google's AI feature guidance](https://developers.google.com/search/docs/appearance/ai-features), [Google's generative AI optimization guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), [structured-data guidelines](https://developers.google.com/search/docs/appearance/structured-data/sd-policies), and [Bing's AI Performance reporting](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview).
 
