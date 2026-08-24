@@ -83,12 +83,12 @@ Accent and race are not interchangeable. Content and code must describe regional
 A page is publishable only when all of these hold:
 
 1. The context is visible before playback, but the scored transcript and answers are not.
-2. Play, repeat, and slower actions are keyboard-accessible and announced to assistive technology.
+2. Play and repeat default to 1.5× speed; the normal-speed option is keyboard-accessible and announced to assistive technology.
 3. The learner commits at least one structured detail before reveal.
 4. Scoring happens once against the committed answer; later edits cannot change it.
 5. Every detail receives its own correct/incorrect result and accepted examples.
 6. Negated values, uncertain answers, and alternative lists do not receive credit merely because they contain the correct token.
-7. Replay and slower playback are recorded as assisted repair, not described as failure.
+7. Replay and normal-speed playback are recorded as assisted repair, not described as failure.
 8. The transcript appears only after scoring.
 9. A fresh retry resets the exercise without deleting previous device-local attempts.
 10. Progress storage is device-local and bounded to the 20 most recent attempts.

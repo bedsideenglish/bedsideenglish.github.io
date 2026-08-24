@@ -82,13 +82,13 @@
                   <p class="voice-status" id="voice-status">Loading the voices available in this browser…</p>
                 </div>
                 <div class="play-row" aria-label="Audio controls">
-                  <button class="button primary" id="play-clip" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> Play once</button>
-                  <button class="button" id="repeat-clip" type="button"><span aria-hidden="true">↻</span> Ask to repeat</button>
-                  <button class="button" id="slow-clip" type="button"><span aria-hidden="true">½</span> More slowly</button>
+                  <button class="button primary" id="play-clip" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> Play at 1.5×</button>
+                  <button class="button" id="repeat-clip" type="button"><span aria-hidden="true">↻</span> Repeat at 1.5×</button>
+                  <button class="button" id="slow-clip" type="button"><span aria-hidden="true">1×</span> Play at normal speed</button>
                 </div>
               </div>
               <p class="lab-status" id="lab-status" role="status" aria-live="polite">Ready. Play the message once, then commit what you heard.</p>
-              <p class="assist-note"><strong>Repeat and slower are skills, not penalties.</strong> The page records them as assisted repair so you can separate first-listen recall from successful recovery.</p>
+              <p class="assist-note"><strong>Repeating or switching to normal speed is practice, not a penalty.</strong> The page records it as assisted repair so you can separate first-listen recall from successful recovery.</p>
 
               <form class="commit-zone" id="listening-answer-form">
                 <h3>Commit what you heard</h3>
@@ -109,7 +109,6 @@
               <script id="listening-lab-config" type="application/json">{{LAB_CONFIG}}</script>
             </div>
           </div>
-          <p class="editorial-note"><strong>Audio transparency:</strong> this public sample uses the speech voices installed in your browser. A selected profile is a voice preference, not a guarantee of a regional accent. Reviewed, pre-generated audio can replace the fallback later without changing the exercise or scoring contract.</p>
         </div>
       </section>
 
@@ -157,7 +156,7 @@
 
       <section class="section">
         <div class="content-shell cta-panel">
-          <div><p class="kicker cta-kicker">Keep the conversation moving</p><h2>Practice with a voice that answers back</h2><p>Bedside English turns the same listen–repair–respond skill into live Survival English conversations, with feedback and spaced review.</p></div>
+          <div><p class="kicker cta-kicker">Keep the conversation moving</p><h2>Practice with a voice that answers back</h2><p>Move from one listening task to live Survival English conversations, with feedback and spaced review.</p><ul class="cta-benefits"><li>Free to use</li><li>No credit card</li><li>No Bedside English account</li></ul></div>
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a>
         </div>
         <div class="content-shell editorial-note">Reviewed {{REVIEWED_ON}} · American English · Interactive scoring is deterministic and checks each detail separately. This guide teaches everyday communication, not clinical advice.</div>

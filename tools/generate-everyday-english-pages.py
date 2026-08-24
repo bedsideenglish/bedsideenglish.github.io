@@ -290,14 +290,20 @@ def json_script(value: Any) -> str:
 
 
 def reviewed_audio_sources(drill_id: str, profiles: list[dict[str, Any]]) -> dict[str, str]:
-    """Return committed audio assets only; browser TTS remains the fallback."""
-    audio_root = ROOT / "assets" / "audio" / "everyday" / drill_id
+    """Return committed audio assets, including the original flat asset layout."""
+    audio_root = ROOT / "assets" / "audio" / "everyday"
     sources: dict[str, str] = {}
     for profile in profiles:
         for extension in ("mp3", "m4a", "wav", "ogg"):
-            candidate = audio_root / f"{profile['id']}.{extension}"
-            if candidate.is_file():
-                sources[profile["id"]] = f"../../assets/audio/everyday/{drill_id}/{candidate.name}"
+            candidates = (
+                (audio_root / drill_id / f"{profile['id']}.{extension}", f"../../assets/audio/everyday/{drill_id}/{profile['id']}.{extension}"),
+                (audio_root / f"{drill_id}-{profile['id']}.{extension}", f"../../assets/audio/everyday/{drill_id}-{profile['id']}.{extension}"),
+            )
+            for candidate, relative_path in candidates:
+                if candidate.is_file():
+                    sources[profile["id"]] = relative_path
+                    break
+            if profile["id"] in sources:
                 break
     return sources
 

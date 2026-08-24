@@ -103,11 +103,12 @@ def main() -> int:
         raise SystemExit("GEMINI_API_KEY is not set. Put it in the workspace .env or environment.")
     config = load_config(args.page)
     drill = config["drill"]
-    args.output_dir.mkdir(parents=True, exist_ok=True)
     for profile in config["profiles"]:
         profile_id = profile["id"]
         voice = VOICE_BY_PROFILE.get(profile_id, "Achird")
-        output = args.output_dir / f"{drill['id']}-{profile_id}.wav"
+        output_dir = args.output_dir / drill["id"]
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output = output_dir / f"{profile_id}.wav"
         if output.exists() and not args.force:
             print(f"kept {output.relative_to(SITE_ROOT)}")
             continue

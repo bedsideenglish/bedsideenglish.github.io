@@ -82,13 +82,13 @@
                   <p class="voice-status" id="voice-status">Loading the voices available in this browser…</p>
                 </div>
                 <div class="play-row" aria-label="Audio controls">
-                  <button class="button primary" id="play-clip" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> Play once</button>
-                  <button class="button" id="repeat-clip" type="button"><span aria-hidden="true">↻</span> Ask to repeat</button>
-                  <button class="button" id="slow-clip" type="button"><span aria-hidden="true">½</span> More slowly</button>
+                  <button class="button primary" id="play-clip" type="button" aria-pressed="false"><span aria-hidden="true">▶</span> Play at 1.5×</button>
+                  <button class="button" id="repeat-clip" type="button"><span aria-hidden="true">↻</span> Repeat at 1.5×</button>
+                  <button class="button" id="slow-clip" type="button"><span aria-hidden="true">1×</span> Play at normal speed</button>
                 </div>
               </div>
               <p class="lab-status" id="lab-status" role="status" aria-live="polite">Ready. Play the message once, then commit what you heard.</p>
-              <p class="assist-note"><strong>Repeat and slower are skills, not penalties.</strong> The page records them as assisted repair so you can separate first-listen recall from successful recovery.</p>
+              <p class="assist-note"><strong>Repeating or switching to normal speed is practice, not a penalty.</strong> The page records it as assisted repair so you can separate first-listen recall from successful recovery.</p>
 
               <form class="commit-zone" id="listening-answer-form">
                 <h3>Commit what you heard</h3>
@@ -106,10 +106,9 @@
                 <div class="transcript-box"><span>Transcript revealed after commit</span><p id="revealed-transcript"></p></div>
                 <button class="button secondary" id="try-again" type="button">Try the clip again</button>
               </section>
-              <script id="listening-lab-config" type="application/json">{"version":1,"drill":{"id":"airport_gate_time","category":"Travel & Transit","difficulty":1,"transcript":"They moved us to gate B twelve, and boarding starts at six forty.","details":[{"key":"gate","label":"gate","answers":["b12","b 12","b twelve","gate b12","gate b twelve"]},{"key":"time","label":"boarding time","answers":["6:40","six forty","6 40"]}],"receptive_tags":["letters_numbers","times","connected_speech"],"audio_sources":{}},"profiles":[{"id":"us","label":"US English","lang_candidates":["en-US"],"tts_prompt":"Speak in clear, natural US English at an ordinary conversational pace. Keep names, letters, numbers, and times natural rather than over-enunciated."},{"id":"uk","label":"British English","lang_candidates":["en-GB"],"tts_prompt":"Speak in clear, contemporary British English at an ordinary conversational pace."},{"id":"aus","label":"Australian English","lang_candidates":["en-AU","en-GB"],"tts_prompt":"Speak in clear, natural Australian English at an ordinary conversational pace."},{"id":"in","label":"Indian English","lang_candidates":["en-IN","en-GB"],"tts_prompt":"Speak fluent English with a natural Indian English accent at an ordinary conversational pace."},{"id":"sg","label":"Singapore English","lang_candidates":["en-SG","en-GB"],"tts_prompt":"Speak fluent English with a natural Singapore English accent at an ordinary conversational pace."}]}</script>
+              <script id="listening-lab-config" type="application/json">{"version":1,"drill":{"id":"airport_gate_time","category":"Travel & Transit","difficulty":1,"transcript":"They moved us to gate B twelve, and boarding starts at six forty.","details":[{"key":"gate","label":"gate","answers":["b12","b 12","b twelve","gate b12","gate b twelve"]},{"key":"time","label":"boarding time","answers":["6:40","six forty","6 40"]}],"receptive_tags":["letters_numbers","times","connected_speech"],"audio_sources":{"us":"../../assets/audio/everyday/airport_gate_time-us.wav","uk":"../../assets/audio/everyday/airport_gate_time-uk.wav","aus":"../../assets/audio/everyday/airport_gate_time-aus.wav","in":"../../assets/audio/everyday/airport_gate_time-in.wav","sg":"../../assets/audio/everyday/airport_gate_time-sg.wav"}},"profiles":[{"id":"us","label":"US English","lang_candidates":["en-US"],"tts_prompt":"Speak in clear, natural US English at an ordinary conversational pace. Keep names, letters, numbers, and times natural rather than over-enunciated."},{"id":"uk","label":"British English","lang_candidates":["en-GB"],"tts_prompt":"Speak in clear, contemporary British English at an ordinary conversational pace."},{"id":"aus","label":"Australian English","lang_candidates":["en-AU","en-GB"],"tts_prompt":"Speak in clear, natural Australian English at an ordinary conversational pace."},{"id":"in","label":"Indian English","lang_candidates":["en-IN","en-GB"],"tts_prompt":"Speak fluent English with a natural Indian English accent at an ordinary conversational pace."},{"id":"sg","label":"Singapore English","lang_candidates":["en-SG","en-GB"],"tts_prompt":"Speak fluent English with a natural Singapore English accent at an ordinary conversational pace."}]}</script>
             </div>
           </div>
-          <p class="editorial-note"><strong>Audio transparency:</strong> this public sample uses the speech voices installed in your browser. A selected profile is a voice preference, not a guarantee of a regional accent. Reviewed, pre-generated audio can replace the fallback later without changing the exercise or scoring contract.</p>
         </div>
       </section>
 
@@ -157,7 +156,7 @@
 
       <section class="section">
         <div class="content-shell cta-panel">
-          <div><p class="kicker cta-kicker">Keep the conversation moving</p><h2>Practice with a voice that answers back</h2><p>Bedside English turns the same listen–repair–respond skill into live Survival English conversations, with feedback and spaced review.</p></div>
+          <div><p class="kicker cta-kicker">Keep the conversation moving</p><h2>Practice with a voice that answers back</h2><p>Move from one listening task to live Survival English conversations, with feedback and spaced review.</p><ul class="cta-benefits"><li>Free to use</li><li>No credit card</li><li>No Bedside English account</li></ul></div>
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a>
         </div>
         <div class="content-shell editorial-note">Reviewed 2026-08-24 · American English · Interactive scoring is deterministic and checks each detail separately. This guide teaches everyday communication, not clinical advice.</div>

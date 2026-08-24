@@ -291,6 +291,8 @@ details p { margin: 0; padding: 0 20px 20px; color: var(--muted); }
 .cta-panel h2 { margin-bottom: 10px; font-size: clamp(1.8rem, 4vw, 2.7rem); }
 .cta-panel .cta-kicker { color: var(--signal); }
 .cta-panel p { max-width: 620px; margin: 0; color: #dfE7ff; }
+.cta-benefits { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+.cta-benefits li { padding: 7px 10px; border: 1px solid rgba(255,255,255,.36); border-radius: 999px; color: #fff; font-size: .8rem; font-weight: 750; }
 .cta-panel .store-badge img { width: 176px; }
 
 .hub-hero { padding-bottom: 96px; }
@@ -427,6 +429,7 @@ h1 { max-width: 12ch; margin-bottom: 1.25rem; font-size: var(--text-display-s); 
 .cta-panel .cta-kicker { color: #ffe0d5; }
 .cta-panel h2 { font-size: clamp(2rem,4vw,3.35rem); }
 .cta-panel p { color: #ffe9e2; }
+.cta-benefits li { border-color: rgba(255,255,255,.56); }
 .cta-panel .store-badge img { width: auto; height: 3.25rem; }
 .site-footer { margin-top: 0; border-top-color: var(--line); color: var(--muted); }
 .footer-links a { color: inherit; }

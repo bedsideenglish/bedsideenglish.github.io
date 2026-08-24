@@ -3,6 +3,8 @@
 
   var UNCERTAIN = /\b(?:maybe|perhaps|possibly|probably|either|unsure|uncertain|guess|guessing)\b/i;
   var NEGATED = /\b(?:not|no|never|wrong|incorrect)\b/i;
+  var DEFAULT_PLAYBACK_RATE = 1.5;
+  var ASSISTED_PLAYBACK_RATE = 1;
 
   function normalize(value) {
     return String(value || "")
@@ -166,9 +168,11 @@
       if (!reviewedSource && !synth) return;
       state.plays += 1;
       if (state.plays > 1) state.replays += 1;
-      if (rate < 1) state.slowReplays += 1;
+      if (rate < DEFAULT_PLAYBACK_RATE) state.slowReplays += 1;
       if (repair && state.repairs.indexOf(repair) === -1) state.repairs.push(repair);
-      liveStatus.textContent = rate < 1 ? "Playing the same message more slowly…" : "Playing the message…";
+      liveStatus.textContent = rate < DEFAULT_PLAYBACK_RATE
+        ? "Playing the message at normal speed…"
+        : "Playing the message at 1.5× speed…";
       playButton.setAttribute("aria-pressed", "true");
 
       if (reviewedSource) {
@@ -313,11 +317,11 @@
         liveStatus.textContent = "Audio stopped.";
         playButton.setAttribute("aria-pressed", "false");
       } else {
-        speak(1, null);
+        speak(DEFAULT_PLAYBACK_RATE, null);
       }
     });
-    if (repeatButton) repeatButton.addEventListener("click", function () { speak(1, "repeat"); });
-    if (slowButton) slowButton.addEventListener("click", function () { speak(0.78, "slow"); });
+    if (repeatButton) repeatButton.addEventListener("click", function () { speak(DEFAULT_PLAYBACK_RATE, "repeat"); });
+    if (slowButton) slowButton.addEventListener("click", function () { speak(ASSISTED_PLAYBACK_RATE, "normal_speed"); });
     if (form) form.addEventListener("submit", function (event) {
       event.preventDefault();
       if (state.submitted) return;
