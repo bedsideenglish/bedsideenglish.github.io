@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import re
+import time
 import urllib.error
 import urllib.request
 import wave
@@ -18,10 +19,20 @@ SITE_ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE_ROOT = SITE_ROOT.parent
 VOICE_BY_PROFILE = {
     "us": "Achird",
+    "ca": "Aoede",
     "uk": "Charon",
     "aus": "Algieba",
+    "nz": "Leda",
     "in": "Iapetus",
+    "ph": "Despina",
     "sg": "Kore",
+    "ng": "Fenrir",
+    "za": "Orus",
+    "es": "Callirrhoe",
+    "fr": "Autonoe",
+    "de": "Enceladus",
+    "ie": "Erinome",
+    "sco": "Laomedeia",
 }
 
 
@@ -45,16 +56,16 @@ def load_config(page: Path) -> dict:
     return json.loads(match.group(1))
 
 
-def prompt_for(profile: dict, transcript: str) -> str:
+def prompt_for(profile: dict, category: str, transcript: str) -> str:
     return (
-        "You are a fellow passenger repeating a short airport announcement to a traveller. "
+        f"Perform this short everyday-English listening message for the {category} setting. "
         f"{profile['tts_prompt']} "
         "Read only the exact transcript below. Do not introduce it, explain it, or add words. "
         f"Transcript: {transcript}"
     )
 
 
-def request_pcm(api_key: str, model: str, voice: str, prompt: str) -> bytes:
+def request_pcm(api_key: str, model: str, voice: str, prompt: str, retries: int) -> bytes:
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
@@ -69,12 +80,20 @@ def request_pcm(api_key: str, model: str, voice: str, prompt: str) -> bytes:
         headers={"Content-Type": "application/json", "x-goog-api-key": api_key},
         method="POST",
     )
-    try:
-        with urllib.request.urlopen(request, timeout=120) as response:
-            body = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as error:
-        detail = error.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"Gemini returned HTTP {error.code}: {detail}") from error
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=120) as response:
+                body = json.loads(response.read().decode("utf-8"))
+            break
+        except urllib.error.HTTPError as error:
+            detail = error.read().decode("utf-8", errors="replace")
+            if error.code != 429 or attempt == retries:
+                raise RuntimeError(f"Gemini returned HTTP {error.code}: {detail}") from error
+            retry_after = re.search(r"retry in ([0-9.]+)s", detail, flags=re.I)
+            seconds = float(retry_after.group(1)) if retry_after else 30.0
+            seconds = min(max(seconds + 2.0, 2.0), 60.0)
+            print(f"Gemini quota reached; retrying in {seconds:.0f} seconds ({attempt + 1}/{retries})")
+            time.sleep(seconds)
     try:
         return base64.b64decode(body["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
     except (KeyError, IndexError, TypeError) as error:
@@ -95,6 +114,7 @@ def main() -> int:
     parser.add_argument("--env-file", type=Path, default=WORKSPACE_ROOT / ".env")
     parser.add_argument("--output-dir", type=Path, default=SITE_ROOT / "assets" / "audio" / "everyday")
     parser.add_argument("--model", default="gemini-3.1-flash-tts-preview")
+    parser.add_argument("--retries", type=int, default=5, help="Retries for Gemini 429 quota responses")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
@@ -113,7 +133,16 @@ def main() -> int:
             print(f"kept {output.relative_to(SITE_ROOT)}")
             continue
         print(f"generating {drill['id']} / {profile_id} ({voice})")
-        write_wav(output, request_pcm(api_key, args.model, voice, prompt_for(profile, drill["transcript"])))
+        write_wav(
+            output,
+            request_pcm(
+                api_key,
+                args.model,
+                voice,
+                prompt_for(profile, drill["category"], drill["transcript"]),
+                args.retries,
+            ),
+        )
         print(f"wrote {output.relative_to(SITE_ROOT)}")
     return 0
 
