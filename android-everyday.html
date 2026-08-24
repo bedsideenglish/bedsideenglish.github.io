@@ -177,6 +177,8 @@
     .cost-figure{font-family:var(--font-display);font-size:clamp(3.5rem,7vw,6.5rem);line-height:0.86;color:var(--color-positive)}
     .cost-label{display:block;margin-block-start:var(--space-sm);font-weight:700}
     .cost-note{font-size:var(--text-sm)}
+    .tier-link{display:inline-block;margin-block-start:var(--space-sm);font-size:var(--text-xs);font-weight:700;color:var(--color-accent);text-decoration:none}
+    .tier-link:hover{text-decoration:underline}
 
     .faq{padding-block:var(--space-3xl);background:var(--color-ink);color:var(--color-paper)}
     .faq-grid{display:grid;grid-template-columns:minmax(0,0.7fr) minmax(0,1.3fr);gap:clamp(var(--space-lg),7vw,var(--space-3xl));align-items:start}
@@ -367,6 +369,7 @@
             <li data-i18n="chip_free">No credit card</li>
             <li data-i18n="chip_noacct">No Bedside English account</li>
           </ul>
+          <a class="tier-link" href="gemini-api-free-tier.html" data-i18n="hero_tier_link">Is Free Tier really free? →</a>
           <p class="store-status">
             <span class="store-dot" aria-hidden="true"></span>
             <span data-i18n="store_pending">Under Google Play review — the download link lands here on approval.</span>
@@ -537,6 +540,7 @@
           <div class="cost-figure" data-i18n="cost_figure">$0 charged</div>
           <span class="cost-label" data-i18n="cost_label">Across the real practice shown on this page</span>
           <p class="cost-note" data-i18n="cost_note">The app still shows estimated paid-tier equivalents per session, so potential costs are visible before you enable billing. Google sets Free Tier model availability and limits.</p>
+          <a class="tier-link" href="gemini-api-free-tier.html" data-i18n="cost_tier_link">Is Free Tier really free? →</a>
         </div>
       </div>
     </div>
@@ -556,6 +560,10 @@
         <details>
           <summary data-i18n="q2">Why do I have to bring my own Gemini key?</summary>
           <p data-i18n="a2">Because it keeps the app subscription-free. Create a Gemini Free Tier key with your Google account — no credit card or billing setup required. You only add payment details if you later choose the Paid Tier. Every practice session shown here stayed on the Free Tier, with $0 charged, and the key stays encrypted on your phone.</p>
+        </details>
+        <details>
+          <summary data-i18n="q_ft">Is the Free Tier actually free?</summary>
+          <p data-i18n="a_ft">Mostly, with one catch: no card is required, but Google may use your free-tier prompts and responses to improve its products, and real rate limits apply — reset on a fixed clock time, not a countdown. <a href="gemini-api-free-tier.html">See exactly how it works, sourced to Google's own docs →</a></p>
         </details>
         <details>
           <summary data-i18n="q3">Does this require medical knowledge?</summary>
@@ -647,6 +655,7 @@
     watch_clip:"8초 클립 보기",listen_clip:"8초 들어보기",pause_clip:"소리 끄기",
     see_how:"작동 방식 보기",see_flow:"실제 연습 흐름 보기",see_feedback:"피드백 보기",
     chip_zero:"테스트 청구액 0원",chip_cost:"· Gemini 무료 티어",chip_free:"신용카드 불필요",chip_noacct:"Bedside English 계정 없음",
+    hero_tier_link:"무료 티어, 정말 무료일까? →",
     store_pending:"현재 Google Play 심사 중 — 승인되면 이 자리에 다운로드 링크가 생깁니다.",
     store_pending_short:"Google Play 심사 중 — 링크는 이 자리에",
     callout:"내가 한 말에서 자동으로 — 양식을 채운 게 아닙니다.",
@@ -688,11 +697,14 @@
     cost_figure:"0원 청구",
     cost_label:"이 페이지에 나온 실제 연습 전체",
     cost_note:"앱은 유료 티어를 사용할 경우의 예상 비용도 세션별로 보여주므로 결제를 켜기 전에 잠재 비용을 확인할 수 있습니다. 무료 티어의 모델과 한도는 Google이 정합니다.",
+    cost_tier_link:"무료 티어, 정말 무료일까? →",
     faq_kicker:"다운로드 전에",faq_title:"물어보기 애매한 것들.",
     q1:"API 키 없이도 써볼 수 있나요?",
     a1:"네. Demo Mode에 대본 환자 3명이 들어 있고 바로 실행됩니다 — 키도, 계정도, 별도 설정도 필요 없습니다. 아무것도 결정하기 전에 흐름이 나에게 맞는지 보라고 넣어둔 모드입니다.",
     q2:"왜 Gemini 키를 직접 발급해야 하나요?",
     a2:"앱을 구독 없이 제공하기 위해서입니다. Google 계정으로 Gemini 무료 티어 키를 만들 수 있으며, 신용카드 등록이나 결제 설정은 필요하지 않습니다. 나중에 유료 티어를 직접 선택할 때만 결제 정보를 추가합니다. 이 페이지의 모든 연습은 무료 티어에서 진행되어 실제 청구액은 0원이었고, 키는 휴대폰에 암호화되어 저장됩니다.",
+    q_ft:"무료 티어, 정말 무료인가요?",
+    a_ft:"대체로는요, 다만 한 가지 함정이 있습니다: 카드는 필요 없지만, 무료 티어에서 보낸 프롬프트와 응답은 구글이 제품 개선에 사용할 수 있고, 진짜 사용량 한도도 있습니다 — 이 한도는 카운트다운이 아니라 정해진 시각에 초기화됩니다. <a href=\"gemini-api-free-tier.html\">구글 공식 문서 근거와 함께 정리한 설명 보기 →</a>",
     q3:"의학 지식이 필요한가요?",
     a3:"아닙니다. 서바이벌 영어는 공항, 전화, 심부름, 주거, 음식, 스몰토크 등 현실적인 상황을 위한 완전한 일상 영어 모드입니다. 의학 지식은 전혀 필요하지 않습니다.",
     q4:"녹음과 대화록은 어디로 가나요?",
