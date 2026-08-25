@@ -154,8 +154,12 @@
           <p data-i18n="callout_1"><strong>The one trade-off worth knowing:</strong> on the free tier, your prompts and responses may be used to improve Google's products. There are also three separate rate limits stacked on top of each other, they reset on a clock (not a countdown), and the quota belongs to a Google Cloud project — not to you personally. Details on each, below.</p>
         </div>
 
+        <div class="callout">
+          <p data-i18n="callout_realtest"><strong>One real test, for scale:</strong> on 2026-08-09 we ran a single free-tier key through one continuous session — 30+ minutes, 150+ conversation turns — without ever hitting a rate limit. That's not a guarantee (Google can change the numbers, and your usage pattern will differ), just a sense of how much headroom the free tier actually gives ordinary use.</p>
+        </div>
+
         <section id="getting-a-key">
-          <h2><span class="num">01</span><span data-i18n="s1_h">Getting a key really is free</span></h2>
+          <h2><span class="num">01</span><span data-i18n="s1_h">Getting a key — and using it — is free</span></h2>
           <p class="fact"><span data-i18n="s1_p1">A Gemini API key can be created with a Google account alone — no billing profile, no card, no trial-expiry clock.</span><sup>[<a href="#ref1">1</a>]</sup></p>
           <p class="fact"><span data-i18n="s1_p2">The key is issued from Google AI Studio's API key screen, not from the general Cloud Console billing flow.</span><sup>[<a href="#ref2">2</a>]</sup></p>
           <p class="fact"><span data-i18n="s1_p3">You can attach the key to a brand-new Google Cloud project or to one you already have — either way, no billing account is required to receive a working free-tier key.</span><sup>[<a href="#ref1">1</a>]</sup></p>
@@ -184,7 +188,7 @@
             <li>
               <figure class="step-shot">
                 <img src="assets/gemini-free-tier/step-04-key-details.jpg" width="863" height="844" loading="lazy" decoding="async" alt="The API key details dialog with the key value partly blurred and the Copy key button circled.">
-                <figcaption data-i18n="wt_4">This is the only time the full key is shown — copy it now. (Blurred here for this screenshot only; yours won't be.)</figcaption>
+                <figcaption data-i18n="wt_4">Copy the key now — but unlike some providers (OpenAI, DeepSeek) that only ever let you copy a key once, Google keeps a copy button next to it in the API Keys list, so you can grab it again later too. (Blurred here for this screenshot only; yours won't be.)</figcaption>
               </figure>
             </li>
             <li>
@@ -273,7 +277,8 @@
         callout_money_1:"<strong>결론부터: 이거 돈 안 나갑니다.</strong> Bedside English가 이 페이지로 안내했다고 해서 '어라, 이 앱 몰래 유료로 바뀐 건가?'라고 생각했다면 — 아니다. Gemini API 키는 구글이 직접, 무료로 발급하는 것이고, 신용카드도 체험판 만료 시계도 없다.",
         callout_money_2:"여기서 자동으로 돈이 빠져나가는 일은 없다. 직접 구글의 결제 설정에 들어가서 유료 등급을 켜지 않는 이상 절대 청구되지 않는다. 다만 일단 켜면 그 프로젝트의 무료 등급은 사라지며, 그 시점부터는 예전 무료 한도를 넘어선 사용량만이 아니라 모든 호출이 과금 대상이 된다.",
         callout_1:"<strong>알아둘 만한 트레이드오프 하나:</strong> 무료 등급에서 보낸 프롬프트와 응답은 구글 제품 개선에 쓰일 수 있다. 서로 다른 세 가지 한도가 동시에 걸려 있고, 이 한도는 '카운트다운'이 아니라 '정해진 시각'에 초기화되며, 쿼터는 개인이 아니라 Google Cloud 프로젝트에 귀속된다. 아래에서 하나씩 자세히 다룬다.",
-        s1_h:"키 발급 자체는 정말로 공짜다",
+        callout_realtest:"<strong>참고로 실제 테스트 결과:</strong> 2026년 8월 9일, 무료 등급 키 하나로 30분 넘게, 150턴이 넘는 대화를 한 세션에서 이어갔는데도 한도에 걸리지 않았다. 이게 보장은 아니다(구글이 수치를 바꿀 수 있고, 사용 패턴에 따라 다를 것이다) — 다만 무료 등급이 일반적인 사용에 실제로 얼마나 여유가 있는지 감을 잡는 데는 도움이 될 것이다.",
+        s1_h:"키 발급도, 그걸 쓰는 것도 무료다",
         s1_p1:"Gemini API 키는 구글 계정만 있으면 만들 수 있다 — 결제 프로필도, 카드 등록도, 체험판 만료 시계도 없다.",
         s1_p2:"키는 일반 Cloud Console의 결제 흐름이 아니라 Google AI Studio의 API 키 발급 화면에서 발급된다.",
         s1_p3:"새로 만든 Google Cloud 프로젝트든 기존에 있던 프로젝트든 키를 붙일 수 있고, 어느 쪽이든 무료 등급 키를 받는 데 결제 계정은 필요 없다.",
@@ -282,7 +287,7 @@
         wt_1:"동의 체크박스를 누른 뒤 <strong>Continue</strong>를 클릭한다.",
         wt_2:"<strong>API Keys</strong> 페이지에서 <strong>Create API key</strong>를 클릭한다.",
         wt_3:"키 이름을 정하고 프로젝트를 선택한 뒤 <strong>Create key</strong>를 클릭한다.",
-        wt_4:"전체 키 값이 보이는 건 이때뿐이다 — 지금 복사해둘 것. (이 스크린샷만 공개용으로 흐리게 처리했고, 실제 발급 화면은 그렇지 않다.)",
+        wt_4:"지금 키를 복사해두자 — 다만 오픈AI나 딥시크처럼 키를 딱 한 번만 보여주고 마는 곳들과 달리, 구글은 API Keys 목록에 복사 버튼을 계속 남겨두므로 나중에 다시 와서 복사할 수도 있다. (이 스크린샷만 공개용으로 흐리게 처리했고, 실제 발급 화면은 그렇지 않다.)",
         wt_5:"목록으로 돌아가 새 키가 <strong>Free tier</strong>로 표시되는지 확인한다 — 카드가 연결되지 않았다는 뜻이다.",
         s2_h:"'무료'가 실제로 요구하는 것: 당신의 데이터",
         s2_p1:"무료(비유료) 등급에서는 당신이 보낸 프롬프트와 받은 응답을 구글이 자사 제품과 머신러닝 모델 개선에 사용할 수 있다.",
