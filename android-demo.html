@@ -190,17 +190,22 @@ const AUDIO_CLIPS={
  "Time. So, how's the patient in bed twenty-three?":'attending-return-time.wav',
  "Doctor... I've got this pain in my chest. It started this morning.":'patient-opening.wav',
  'Yeah... into my left shoulder. Should I be worried?':'patient-radiation.wav',
- 'Yes, much sharper. I keep taking these shallow breaths.':'patient-provocation.wav',
+ 'Yes — much sharper. I keep taking these shallow breaths.':'patient-provocation.wav',
  'Doctor? Are you going to ask me something?':'patient-nudge-first.wav',
  'Doctor? Is that a bad sign?':'patient-nudge-second.wav',
  'Does the pain go anywhere else?':'learner-radiation.wav',
  'Is it worse when you take a deep breath?':'learner-provocation.wav'
 };
+const SPEECH_RATE=1.7;
 const audioByText=Object.fromEntries(Object.entries(AUDIO_CLIPS).map(([text,file])=>{
- const audio=new Audio(AUDIO_BASE+file);audio.preload='auto';return [text,audio];
+ const audio=new Audio(AUDIO_BASE+file);audio.preload='auto';audio.defaultPlaybackRate=SPEECH_RATE;audio.playbackRate=SPEECH_RATE;return [text,audio];
 }));
 let muted=false,audioReady=false,speaking=false,activeAudio=null,activeCleanup=null;
-const silentMs=t=>Math.min(2600,Math.max(700,t.length*42));
+const silentMs=t=>Math.min(2600,Math.max(700,t.length*42))/SPEECH_RATE;
+function speechMs(text){
+ const duration=audioByText[text]?.duration;
+ return Number.isFinite(duration)&&duration>0?duration*1000/SPEECH_RATE:silentMs(text);
+}
 function speak(text,role='patient',done,startFraction=0){
  const finish=()=>{speaking=false;done&&done()};
  if(muted||!audioReady){speaking=true;setTimeout(finish,silentMs(text));return}
@@ -218,6 +223,8 @@ function speak(text,role='patient',done,startFraction=0){
  const play=()=>{
   if(startFraction&&Number.isFinite(audio.duration))audio.currentTime=Math.min(audio.duration-.05,audio.duration*startFraction);
   else if(!startFraction)audio.currentTime=0;
+  audio.playbackRate=SPEECH_RATE;
+  audio.preservesPitch=true;
   const started=audio.play();if(started&&typeof started.catch==='function')started.catch(end);
  };
  if(startFraction&&!audio.readyState)audio.addEventListener('loadedmetadata',play,{once:true});else play();
@@ -260,12 +267,20 @@ function pauseTimer(){if(!running)return;remaining=Math.max(0,deadline-Date.now(
 function opening(){
  setBrief('');
  setTimeout(()=>attendingLabel.classList.add('show'),180);
- setTimeout(()=>{setBrief('<span class="accent">YOU.</span>');speak('You.','attending')},700);
- setTimeout(()=>{setBrief('BED 23.');speak('Bed twenty-three.','attending')},1600);
- setTimeout(()=>{setBrief('34-year-old woman.<br><span class="accent">Chest pain.</span>');briefSub.textContent='';speak('Thirty-four-year-old woman. Chest pain.','attending')},2650);
- setTimeout(()=>{setBrief('TAKE THE HISTORY.');briefSub.textContent='';speak('Take the history.','attending')},4100);
- setTimeout(()=>{setBrief('We’ll come back<br><span class="accent">to you.</span>');briefSub.textContent='Be ready to present her.';pressure.classList.add('show');startTimer();speak("We'll come back to you.",'attending')},5300);
- setTimeout(enterRoom,7250);
+ const beats=[
+  ['<span class="accent">YOU.</span>','You.',''],
+  ['BED 23.','Bed twenty-three.',''],
+  ['34-year-old woman.<br><span class="accent">Chest pain.</span>','Thirty-four-year-old woman. Chest pain.',''],
+  ['TAKE THE HISTORY.','Take the history.',''],
+  ['We’ll come back<br><span class="accent">to you.</span>',"We'll come back to you.",'Be ready to present her.']
+ ];
+ const playBeat=index=>{
+  if(index>=beats.length){setTimeout(enterRoom,260);return}
+  const [main,text,subtext]=beats[index];setBrief(main,subtext);
+  if(index===beats.length-1){pressure.classList.add('show');startTimer()}
+  speak(text,'attending',()=>setTimeout(()=>playBeat(index+1),180));
+ };
+ setTimeout(()=>playBeat(0),700);
 }
 function enterRoom(){
  brief.classList.add('leave');room.classList.add('show');
@@ -279,7 +294,7 @@ function patient(text,next,openingLine=false){
  role('patient');hold.hidden=true;sub.hidden=true;waiting.classList.remove('show');signal.classList.remove('show');clearNudge();live(true);
  let typed=false,spoken=false,advanced=false;
  const advance=()=>{if(advanced||!typed||!spoken)return;advanced=true;setTimeout(()=>next&&next(),openingLine?1300:500)};
- type(text,Math.min(1800,Math.max(950,text.length*24)),()=>{typed=true;advance()});
+ type(text,speechMs(text),()=>{typed=true;advance()});
  speak(text,'patient',()=>{spoken=true;live(false);advance()});
 }
 function clearNudge(){clearTimeout(nudgeId);nudgeId=0}
@@ -322,8 +337,9 @@ function startHold(){
  patientLine.style.fontFamily='Inter,-apple-system,"Segoe UI",ui-sans-serif,system-ui,sans-serif';patientLine.style.fontWeight='750';
  down=true;hold.classList.add('down');holdText.textContent='SPEAKING…';waiting.classList.remove('show');live(true);
  start=performance.now();base=p;
- speak(turns[ti].doctor,'learner',null,p);
- function tick(now){if(!down)return;p=Math.min(1,base+(now-start)/2300);render();if(p>=1){finish();return}raf=requestAnimationFrame(tick)}
+ const fullSpeechMs=speechMs(turns[ti].doctor);
+ speak(turns[ti].doctor,'learner',()=>{if(!down||busy)return;p=1;render();finish()},p);
+ function tick(now){if(!down)return;p=Math.min(.995,base+(now-start)/fullSpeechMs);render();raf=requestAnimationFrame(tick)}
  raf=requestAnimationFrame(tick);
 }
 function stopHold(){

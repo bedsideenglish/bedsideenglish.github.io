@@ -31,7 +31,7 @@ CLIPS = (
     ("attending-return-time", "Gacrux", "attending", "Time. So, how's the patient in bed twenty-three?"),
     ("patient-opening", "Sulafat", "patient", "Doctor... I've got this pain in my chest. It started this morning."),
     ("patient-radiation", "Sulafat", "patient", "Yeah... into my left shoulder. Should I be worried?"),
-    ("patient-provocation", "Sulafat", "patient", "Yes, much sharper. I keep taking these shallow breaths."),
+    ("patient-provocation", "Sulafat", "patient", "Yes — much sharper. I keep taking these shallow breaths."),
     ("patient-nudge-first", "Sulafat", "patient", "Doctor? Are you going to ask me something?"),
     ("patient-nudge-second", "Sulafat", "patient", "Doctor? Is that a bad sign?"),
     ("learner-radiation", "Achird", "learner", "Does the pain go anywhere else?"),
