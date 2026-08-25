@@ -687,6 +687,349 @@
           "purpose": "Ask if the patient has experienced burning with urination or increased urinary frequency"
         }
       ]
+    },
+    {
+      "case": "gi/gi_011.json",
+      "slug": "swallowing-difficulty-history-questions",
+      "related_slug": "abdominal-pain-history-questions",
+      "h1": "How to ask about difficulty swallowing in English",
+      "meta_description": "Learn patient-friendly English questions for difficulty swallowing, including food and liquids, regurgitation, chest discomfort, weight change, and heartburn.",
+      "language_standard": "en-US",
+      "patient_answer_assumptions_checked": true,
+      "lede": "Use clear, neutral questions to explore swallowing difficulty without assuming which foods are affected or why symptoms occur. Learn the wording, then say it aloud.",
+      "scenario": "A patient reports ongoing difficulty swallowing food or drinks.",
+      "quick_answer": "Ask whether food, liquids, or both are difficult to swallow; when the problem began; where things seem to stick; whether food comes back up; and about pain, heartburn, or unplanned weight loss.",
+      "reviewed_on": "2026-08-25",
+      "question_edits": [
+        {
+          "objective": "Solids versus liquids",
+          "phrases": [
+            "Is it difficult to swallow solid food, liquids, or both?",
+            "Was it like that when the problem first began?"
+          ],
+          "purpose": "Find out what is difficult to swallow and whether the pattern has changed",
+          "why_this_wording": "Offering food, liquids, or both makes the distinction clear without assuming the patient's pattern in the first question.",
+          "alternatives": [
+            {
+              "label": "Open first question",
+              "phrase": "Can you tell me what happens when you try to swallow?"
+            }
+          ]
+        },
+        {
+          "objective": "Regurgitation of undigested food",
+          "phrases": [
+            "Does food or liquid ever come back up after you swallow?",
+            "If so, what does it look or taste like?"
+          ],
+          "purpose": "Ask whether swallowed food or liquid returns to the mouth",
+          "why_this_wording": "Come back up is easier to understand than regurgitate, and the follow-up lets the patient describe the material in their own words."
+        },
+        {
+          "objective": "Chest tightness location",
+          "phrases": [
+            "Does food or liquid feel as though it gets stuck anywhere when you swallow?",
+            "If so, where do you feel it getting stuck?",
+            "Do you feel any tightness, pressure, or discomfort there?"
+          ],
+          "purpose": "Ask where food or liquid feels stuck and whether there is discomfort without suggesting a location"
+        },
+        {
+          "objective": "Weight loss and fear of eating",
+          "phrases": [
+            "Have you lost any weight without trying?",
+            "Has the swallowing problem made you avoid any foods or feel worried about eating?"
+          ],
+          "purpose": "Ask about unplanned weight loss and whether swallowing difficulty affects eating",
+          "why_this_wording": "Two separate questions avoid claiming that weight loss is caused by food avoidance and give the patient room to describe each issue."
+        },
+        {
+          "objective": "Sleeping position",
+          "phrases": [
+            "Do your swallowing symptoms or food coming back up bother you at night?",
+            "Have you changed your sleeping position because of them?"
+          ],
+          "purpose": "Find out whether symptoms occur at night or affect sleeping position"
+        },
+        {
+          "objective": "Heartburn or acid taste",
+          "phrases": [
+            "Do you also get a burning feeling in your chest or a sour or acidic taste in your mouth?"
+          ],
+          "purpose": "Ask about heartburn or an acidic taste alongside the swallowing problem",
+          "why_this_wording": "The question describes heartburn in everyday language while retaining the familiar symptom name in the explanation."
+        }
+      ]
+    },
+    {
+      "case": "ent/ent_006.json",
+      "slug": "dizziness-and-vertigo-history-questions",
+      "related_slug": "headache-history-questions",
+      "h1": "How to ask about dizziness and vertigo in English",
+      "meta_description": "Learn clear English questions for dizziness and vertigo, including the sensation, movement triggers, episode duration, hearing symptoms, falls, and patient concerns.",
+      "language_standard": "en-US",
+      "patient_answer_assumptions_checked": true,
+      "lede": "Clarify what dizziness means to the patient before asking about timing, head movement, hearing changes, and safety. Practice each question aloud.",
+      "scenario": "A patient reports brief episodes of dizziness or a spinning sensation.",
+      "quick_answer": "First ask the patient to describe the sensation. Then ask when it began, how long an episode lasts, whether head movements bring it on, whether there are hearing symptoms, and whether it has caused a fall or near fall.",
+      "reviewed_on": "2026-08-25",
+      "question_edits": [
+        {
+          "objective": "Trigger movements",
+          "phrases": [
+            "Can you describe what the dizziness feels like?",
+            "What are you doing when it starts?",
+            "Does moving your head, rolling over in bed, or looking up seem to bring it on?"
+          ],
+          "purpose": "Clarify what the patient means by dizziness and whether a position or head movement triggers it",
+          "why_this_wording": "An open description comes first, followed by an open trigger question and concrete movement examples that do not claim a trigger is already present.",
+          "alternatives": [
+            {
+              "label": "Shorter follow-up",
+              "phrase": "Is it brought on by changing the position of your head?"
+            }
+          ]
+        },
+        {
+          "objective": "Duration of episodes",
+          "phrases": [
+            "About how long does the dizziness last?"
+          ],
+          "purpose": "Find out whether the sensation lasts seconds, minutes, hours, or longer",
+          "why_this_wording": "The open time question avoids assuming that episodes last less than a minute or happen in a fixed pattern."
+        },
+        {
+          "objective": "Absence of hearing symptoms",
+          "phrases": [
+            "Have you noticed any change in your hearing, ringing in your ears, or a feeling of fullness in either ear?"
+          ],
+          "purpose": "Ask about hearing change, ringing, or ear fullness"
+        },
+        {
+          "objective": "Duration overall",
+          "phrases": [
+            "When did you first notice the dizziness?"
+          ],
+          "purpose": "Establish when the overall problem began",
+          "why_this_wording": "Asking when it began works whether the problem has lasted days, weeks, or months."
+        },
+        {
+          "objective": "Fall risk concern",
+          "phrases": [
+            "Have you fallen or nearly fallen because of the dizziness?",
+            "What concerns you most about these episodes?"
+          ],
+          "purpose": "Check immediate fall risk and invite the patient's main concern",
+          "why_this_wording": "Separating the safety question from the concern question checks risk without suggesting that fear of falling must be the patient's main worry."
+        }
+      ]
+    },
+    {
+      "case": "cardio/cardio_002.json",
+      "slug": "shortness-of-breath-and-ankle-swelling-questions",
+      "related_slug": "chest-pain-history-questions",
+      "h1": "How to ask about shortness of breath and ankle swelling in English",
+      "meta_description": "Learn patient-friendly English questions about breathlessness and leg swelling, including lying flat, nighttime symptoms, exercise tolerance, weight, medicines, and diet.",
+      "language_standard": "en-US",
+      "patient_answer_assumptions_checked": true,
+      "lede": "Explore breathlessness and swelling with short, concrete questions about sleep, walking, medicines, and daily intake. Learn why the wording works, then say it aloud.",
+      "scenario": "A patient presents with shortness of breath and swelling around the ankles or legs.",
+      "quick_answer": "Ask what activities bring on the breathing trouble, whether lying flat or sleep makes it worse, how far the swelling extends, and about recent weight change, medicines, salt, and fluid intake.",
+      "reviewed_on": "2026-08-25",
+      "question_edits": [
+        {
+          "objective": "Orthopnoea — breathlessness lying flat",
+          "phrases": [
+            "Does your breathing feel worse when you lie flat?",
+            "How many pillows do you usually sleep with?"
+          ],
+          "purpose": "Ask whether lying flat affects breathing and learn about the patient's usual sleeping position",
+          "why_this_wording": "The everyday phrase breathing feel worse is clearer than orthopnea, and asking about the usual number of pillows does not imply that it has changed.",
+          "alternatives": [
+            {
+              "label": "Single question",
+              "phrase": "Are you able to lie flat comfortably without getting short of breath?"
+            }
+          ]
+        },
+        {
+          "objective": "Paroxysmal nocturnal dyspnoea",
+          "phrases": [
+            "Do you ever wake up at night feeling short of breath or gasping for air?"
+          ],
+          "purpose": "Ask whether breathing difficulty wakes the patient from sleep",
+          "why_this_wording": "It describes the experience directly instead of using the technical term paroxysmal nocturnal dyspnea."
+        },
+        {
+          "objective": "Swelling — where and how far up",
+          "phrases": [
+            "Where have you noticed the swelling?",
+            "Does it stay around your ankles, or extend farther up your legs?"
+          ],
+          "purpose": "Locate the swelling and find out how far it extends"
+        },
+        {
+          "objective": "Weight gain and exercise tolerance",
+          "phrases": [
+            "Has your weight changed recently without you trying?",
+            "How far can you walk before you need to stop because of your breathing?"
+          ],
+          "purpose": "Ask about recent weight change and the effect of breathlessness on walking",
+          "why_this_wording": "Splitting weight and walking into two questions reduces cognitive load and avoids assuming that the patient has gained weight."
+        },
+        {
+          "objective": "Medication adherence",
+          "phrases": [
+            "What medicines are you taking at the moment?",
+            "In a usual week, do you ever miss or delay a dose?",
+            "If so, about how often?"
+          ],
+          "purpose": "Review current medicines and invite an honest description of missed or delayed doses",
+          "why_this_wording": "A normalizing, specific follow-up is less judgmental than asking whether medicines are taken exactly as prescribed."
+        },
+        {
+          "objective": "Salt and fluid intake",
+          "phrases": [
+            "What do you usually eat and drink in a day?",
+            "Do you add salt at the table or eat many packaged or salty foods?"
+          ],
+          "purpose": "Ask about typical fluid intake and common sources of dietary salt"
+        }
+      ]
+    },
+    {
+      "case": "rheum/rheum_001.json",
+      "slug": "joint-pain-and-morning-stiffness-questions",
+      "related_slug": "lower-back-pain-history-questions",
+      "h1": "How to ask about joint pain and morning stiffness in English",
+      "meta_description": "Learn natural English questions for hand and wrist joint pain, including joint pattern, morning stiffness, movement, fatigue, fever, duration, and patient concerns.",
+      "language_standard": "en-US",
+      "patient_answer_assumptions_checked": true,
+      "lede": "Use simple questions to map painful or swollen joints, clarify morning stiffness, and understand how movement and daily life affect symptoms.",
+      "scenario": "A patient reports pain, swelling, or stiffness in the hands and wrists.",
+      "quick_answer": "Ask which joints are affected, whether symptoms occur on one or both sides, how long morning stiffness lasts, whether movement helps or worsens it, and about swelling, fatigue, fever, duration, and the patient's concerns.",
+      "reviewed_on": "2026-08-25",
+      "question_edits": [
+        {
+          "objective": "Joint distribution and symmetry",
+          "phrases": [
+            "Which joints are painful or swollen?",
+            "Is one side affected, or do you have symptoms on both sides?"
+          ],
+          "purpose": "Map the affected joints and compare the two sides",
+          "why_this_wording": "Starting with which joints are affected lets the patient describe the pattern before the second question asks about symmetry.",
+          "alternatives": [
+            {
+              "label": "Hand-focused follow-up",
+              "phrase": "Are the same finger joints affected in both hands?"
+            }
+          ]
+        },
+        {
+          "objective": "Morning stiffness duration",
+          "phrases": [
+            "Do your joints feel stiff when you wake up?",
+            "If so, about how long does the stiffness last?"
+          ],
+          "purpose": "Check for morning stiffness and establish its duration",
+          "why_this_wording": "The first question confirms whether morning stiffness exists before the follow-up asks how long it lasts."
+        },
+        {
+          "objective": "Effect of movement",
+          "phrases": [
+            "What happens to the stiffness when you start moving around?"
+          ],
+          "purpose": "Find out whether movement improves, worsens, or does not change the stiffness",
+          "why_this_wording": "The open wording avoids suggesting that movement should make the symptom better or worse."
+        },
+        {
+          "objective": "Systemic symptoms",
+          "phrases": [
+            "Have you also felt unusually tired, feverish, or generally unwell?"
+          ],
+          "purpose": "Ask about fatigue, feverishness, and general health alongside the joint symptoms"
+        },
+        {
+          "objective": "Duration",
+          "phrases": [
+            "When did the joint symptoms begin?",
+            "Have they changed over time?"
+          ],
+          "purpose": "Establish onset and progression without assuming a duration"
+        },
+        {
+          "objective": "The patient's fear",
+          "phrases": [
+            "What concerns you most about the joint symptoms or how they may affect you in the future?"
+          ],
+          "purpose": "Invite the patient to share their main concern",
+          "why_this_wording": "The question includes present and future effects without assuming that the patient is specifically afraid of long-term hand damage."
+        }
+      ]
+    },
+    {
+      "case": "pulm/pulm_009.json",
+      "slug": "snoring-and-sleep-apnea-history-questions",
+      "related_slug": "wheezing-and-asthma-questions",
+      "h1": "How to ask about snoring and sleep apnea symptoms in English",
+      "meta_description": "Learn clear English questions about snoring and possible sleep apnea, including witnessed breathing pauses, daytime sleepiness, driving safety, health conditions, and alcohol.",
+      "language_standard": "en-US",
+      "patient_answer_assumptions_checked": true,
+      "lede": "Ask about nighttime breathing, daytime alertness, and safety in a neutral way. Use plain language before introducing the term sleep apnea.",
+      "scenario": "A patient reports loud snoring, unrefreshing sleep, or excessive daytime sleepiness.",
+      "quick_answer": "Ask what a bed partner has noticed, including snoring or breathing pauses; whether the patient wakes choking; how sleepy they feel during the day; whether driving is affected; and about blood pressure, medicines, alcohol, and sedatives.",
+      "reviewed_on": "2026-08-25",
+      "question_edits": [
+        {
+          "objective": "Witnessed apneas and snoring pattern",
+          "phrases": [
+            "Has anyone noticed that you snore loudly, stop breathing, gasp, or choke while you are asleep?",
+            "Do you ever wake up gasping or choking?"
+          ],
+          "purpose": "Ask about observed snoring or breathing pauses and nighttime gasping",
+          "why_this_wording": "Stop breathing is more patient-friendly than apnea, and asking what someone has noticed avoids claiming that a breathing pause occurred.",
+          "alternatives": [
+            {
+              "label": "If no bed partner",
+              "phrase": "Have you ever recorded your sleep or woken yourself with loud snoring?"
+            }
+          ]
+        },
+        {
+          "objective": "Daytime somnolence and driving safety risk",
+          "phrases": [
+            "How sleepy do you feel during the day?",
+            "Have you ever nodded off when you did not mean to, especially while driving or stopped in traffic?"
+          ],
+          "purpose": "Assess daytime sleepiness and whether it creates a driving risk",
+          "why_this_wording": "Nodded off is familiar everyday language, while the separate driving example makes the safety question explicit."
+        },
+        {
+          "objective": "Neck circumference, BMI, and airway anatomy",
+          "phrases": [
+            "Would it be all right if I measure your neck, height, and weight and look at the back of your throat?"
+          ],
+          "purpose": "Ask permission for relevant measurements and an airway examination",
+          "why_this_wording": "This is a clear consent request rather than a history question, because the source objective requires examination and measurements."
+        },
+        {
+          "objective": "Comorbid resistant hypertension and cardiometabolic risk",
+          "phrases": [
+            "Do you have high blood pressure, diabetes, or any heart conditions?",
+            "What medicines do you take for them?"
+          ],
+          "purpose": "Ask about relevant health conditions and current treatment without assuming poor blood pressure control",
+          "why_this_wording": "The neutral questions do not claim that the patient's blood pressure is resistant or that it changed after the sleep symptoms began."
+        },
+        {
+          "objective": "Alcohol use and sedative timing before bed",
+          "phrases": [
+            "Do you drink alcohol or take any medicine that makes you sleepy in the evening?",
+            "Have you noticed whether either one affects your snoring or sleep?"
+          ],
+          "purpose": "Ask about evening alcohol or sedating medicines and their relationship to sleep symptoms"
+        }
+      ]
     }
   ]
 }
