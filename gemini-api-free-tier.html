@@ -141,13 +141,13 @@
           <p class="eyebrow" data-i18n="eyebrow">Reference · How the Gemini API free tier works</p>
           <h1 data-i18n="h1">Is the Gemini API free tier actually free?</h1>
           <p class="lede" data-i18n="lede">Short answer: yes, it's really free — $0, no card. There are still real limits and a data trade-off worth knowing, so here's how it actually works, with every sentence linked to the specific Google page it comes from.</p>
-          <p class="meta-line" data-i18n="meta_line">Last checked <code>2026-08-24</code>. Google changes these numbers without much notice, so treat the linked pages as the source of truth, not this one.</p>
+          <p class="meta-line" data-i18n="meta_line">Last checked <code>2026-08-25</code>. Google changes these numbers without much notice, so treat the linked pages as the source of truth, not this one.</p>
         </header>
 
         <div class="callout callout-money">
           <span class="badge" data-i18n="callout_money_badge">$0 — no charge</span>
           <p data-i18n="callout_money_1"><strong>Straight answer: this doesn't cost money.</strong> If Bedside English pointed you to this page and you're wondering whether the app quietly went paid — it didn't. A Gemini API key is issued for free, directly by Google, with no credit card and no trial clock attached.</p>
-          <p data-i18n="callout_money_2">Nothing here charges you automatically. You'd only ever be billed if you deliberately went into Google's own billing settings and turned on a paid tier yourself — and even then, only for usage above the free limits.</p>
+          <p data-i18n="callout_money_2">Nothing here charges you automatically. You'd only ever be billed if you deliberately went into Google's own billing settings and turned on a paid tier yourself — and once you do, that project's free tier is gone: every call is billed from then on, not just the usage above what the free tier used to cover.</p>
         </div>
 
         <div class="callout">
@@ -236,7 +236,7 @@
           <h2><span class="num">07</span><span data-i18n="s7_h">Outgrowing the free tier</span></h2>
           <p class="fact"><span data-i18n="s7_p1">Attaching a Cloud Billing account to a project is what moves it off the Free tier onto usage-based paid tiers.</span><sup>[<a href="#ref6">6</a>]</sup></p>
           <p class="fact"><span data-i18n="s7_p2">Paid tiers raise the RPM/TPM/RPD ceilings substantially over the free tier, and a project can climb further (Tier 1 → 2 → 3) automatically as its billing history accumulates.</span><sup>[<a href="#ref4">4</a>]</sup></p>
-          <p class="fact"><span data-i18n="s7_p3">Billing is metered — enabling it does not by itself charge you; it charges only for the usage that exceeds what the free tier would have covered, priced per Google's published rates.</span><sup>[<a href="#ref5">5</a>]</sup></p>
+          <p class="fact"><span data-i18n="s7_p3">Billing itself doesn't cost anything to turn on — but once a project has a Cloud Billing account attached, its free tier is gone for good. From that point on, every call on that project is billed at Google's published per-token rates, not just the usage beyond the old free limits.</span><sup>[<a href="#ref6">6</a>]</sup></p>
         </section>
 
         <div class="refs">
@@ -268,10 +268,10 @@
         eyebrow:"레퍼런스 · Gemini API 무료 티어 작동 방식",
         h1:"Gemini API 무료 티어, 진짜 무료일까?",
         lede:"결론부터: 네, 진짜 무료입니다 — 0원, 카드도 필요 없음. 다만 실제로 걸리는 한도와 알아둘 만한 데이터 트레이드오프가 있으니, 그게 정확히 어떻게 작동하는지 아래에 정리했다. 모든 문장은 근거가 된 구글 페이지로 바로 연결된다.",
-        meta_line:"최종 확인일 <code>2026-08-24</code>. 구글은 이 수치들을 예고 없이 바꾸므로, 이 페이지가 아니라 링크된 원문을 기준으로 삼을 것.",
+        meta_line:"최종 확인일 <code>2026-08-25</code>. 구글은 이 수치들을 예고 없이 바꾸므로, 이 페이지가 아니라 링크된 원문을 기준으로 삼을 것.",
         callout_money_badge:"0원 — 결제 없음",
         callout_money_1:"<strong>결론부터: 이거 돈 안 나갑니다.</strong> Bedside English가 이 페이지로 안내했다고 해서 '어라, 이 앱 몰래 유료로 바뀐 건가?'라고 생각했다면 — 아니다. Gemini API 키는 구글이 직접, 무료로 발급하는 것이고, 신용카드도 체험판 만료 시계도 없다.",
-        callout_money_2:"여기서 자동으로 돈이 빠져나가는 일은 없다. 직접 구글의 결제 설정에 들어가서 유료 등급을 켜지 않는 이상 절대 청구되지 않으며, 그렇게 하더라도 무료 한도를 넘어선 사용량에 대해서만 과금된다.",
+        callout_money_2:"여기서 자동으로 돈이 빠져나가는 일은 없다. 직접 구글의 결제 설정에 들어가서 유료 등급을 켜지 않는 이상 절대 청구되지 않는다. 다만 일단 켜면 그 프로젝트의 무료 등급은 사라지며, 그 시점부터는 예전 무료 한도를 넘어선 사용량만이 아니라 모든 호출이 과금 대상이 된다.",
         callout_1:"<strong>알아둘 만한 트레이드오프 하나:</strong> 무료 등급에서 보낸 프롬프트와 응답은 구글 제품 개선에 쓰일 수 있다. 서로 다른 세 가지 한도가 동시에 걸려 있고, 이 한도는 '카운트다운'이 아니라 '정해진 시각'에 초기화되며, 쿼터는 개인이 아니라 Google Cloud 프로젝트에 귀속된다. 아래에서 하나씩 자세히 다룬다.",
         s1_h:"키 발급 자체는 정말로 공짜다",
         s1_p1:"Gemini API 키는 구글 계정만 있으면 만들 수 있다 — 결제 프로필도, 카드 등록도, 체험판 만료 시계도 없다.",
@@ -308,7 +308,7 @@
         s7_h:"무료 등급을 넘어서려면",
         s7_p1:"프로젝트에 Cloud Billing 계정을 연결하는 것이 무료 등급에서 사용량 기반 유료 등급으로 전환되는 계기다.",
         s7_p2:"유료 등급은 무료 등급보다 RPM/TPM/RPD 상한을 크게 끌어올리며, 결제 이력이 쌓이면 프로젝트는 자동으로 더 높은 등급(Tier 1 → 2 → 3)으로 올라갈 수 있다.",
-        s7_p3:"결제는 사용량 기반 과금이다 — 결제를 활성화한다고 그 자체로 비용이 청구되는 것은 아니며, 무료 등급 한도를 초과한 사용량에 대해서만 공개된 요율로 과금된다.",
+        s7_p3:"결제 기능을 켜는 것 자체는 비용이 들지 않는다 — 하지만 일단 프로젝트에 Cloud Billing 계정을 연결하면 그 프로젝트의 무료 등급은 완전히 사라진다. 그 시점부터는 예전 무료 한도를 넘어선 사용량만이 아니라 모든 호출이 구글이 공개한 토큰당 요율로 과금된다.",
         refs_h:"참고 자료",
         ref1_loc:"Gemini API 키 — 키 발급 방식, 발급 시 결제가 필요하지 않다는 설명",
         ref2_loc:"Google AI Studio의 'API 키 발급' 화면 그 자체",
