@@ -11,6 +11,16 @@ A single static `index.html` (no build step) presenting both platforms of the pr
 
 Served via GitHub Pages from the `main` branch root. Edit `index.html` and push to update the live site.
 
+## Google Analytics 4
+
+All public HTML pages use the GA4 measurement ID `G-FK1EXM7ZKH`. The three Python-generated
+libraries inherit the tag from their templates, so regenerating pages preserves analytics. Before
+publishing, verify both current and generated pages with:
+
+```powershell
+python tools\check-ga4.py
+```
+
 ## Clinical English learning pages
 
 Reviewed patient-case JSON files can be converted into static communication guides under

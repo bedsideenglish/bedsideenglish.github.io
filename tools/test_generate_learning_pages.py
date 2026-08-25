@@ -63,6 +63,7 @@ class GeneratorTests(unittest.TestCase):
         self.assertNotIn(b"Learning level", first)
         self.assertNotIn(b"educationalLevel", first)
         self.assertIn(b"source-sha256:", first)
+        self.assertIn(b"G-FK1EXM7ZKH", first)
         self.assertEqual(generator.generate([spec], self.root, False), 0)
         self.assertEqual(first, (self.root / "learning/chest-pain-questions/index.html").read_bytes())
         self.assertEqual(generator.generate([spec], self.root, True), 0)

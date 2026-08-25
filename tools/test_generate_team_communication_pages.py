@@ -53,6 +53,7 @@ class TeamGeneratorTests(unittest.TestCase):
             self.assertIn(b'Mina &amp; the &lt;nurse&gt; &quot;calling&quot;', first)
             self.assertNotIn(b"<nurse>", first)
             self.assertNotIn(b"{{", first)
+            self.assertIn(b"G-FK1EXM7ZKH", first)
             self.assertEqual(generator.generate([page], root, False), 0)
             self.assertEqual(first, output.read_bytes())
 

@@ -41,6 +41,7 @@ class EverydayEnglishGeneratorTests(unittest.TestCase):
         self.assertIn(page["quick_answer_steps"][0]["phrase"], rendered)
         self.assertIn(page["related_links"][0]["href"], rendered)
         self.assertIn(generator.source_hash(drill), rendered)
+        self.assertIn("G-FK1EXM7ZKH", rendered)
 
     def test_unchecked_editorial_attestation_blocks_publication(self) -> None:
         page = copy.deepcopy(self.pages[0])
