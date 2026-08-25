@@ -69,12 +69,12 @@
     <div class="shell">
       <span class="doc-kicker">Legal</span>
       <h1>Privacy Policy</h1>
-      <p class="doc-meta">Effective and last updated 2026-08-02 · Applies to both the Windows Desktop app and the Android app ("Bedside English: Talk &amp; Train", internal codename "MedVoiceTrainer") · Developer: Kyeongeon Lee (Google Play developer name: KYEONGEON LEE)</p>
+      <p class="doc-meta">Effective and last updated 2026-08-25 · Applies to both the Windows Desktop app and the Android app ("Bedside English: Talk &amp; Train", internal codename "MedVoiceTrainer") · Developer: boyskier · Privacy contact: bedsideenglish.support@gmail.com</p>
 
       <div class="callout">
         <p><strong>Short version:</strong> Bedside English has no user accounts or general-purpose developer cloud backend. Your practice history, transcripts, and settings are stored in a local database on your own device. When you use live AI voice, AI feedback, or pronunciation scoring, the speech, text, and exercise context needed for that feature are sent directly from your device to the AI provider you personally configured (e.g. Google Gemini, OpenAI, Anthropic Claude, or Microsoft Azure Speech).</p>
         <p>The Android app has one limited, voluntary exception: if you submit an AI-response report, the edited AI response and report details shown to you are sent through Google Apps Script and stored in a private Google Sheet for developer review, as described in §4.2.</p>
-        <p>We don't show ads, don't include advertising or analytics SDKs, and don't sell your data or use it for advertising.</p>
+        <p>The apps do not contain advertising or analytics SDKs, and we do not sell user data or use it for advertising. The Bedside English website uses Google Analytics 4 for basic, aggregate website usage measurement.</p>
       </div>
 
       <h2>1. Who this policy covers</h2>
@@ -91,7 +91,7 @@
         <li>Optional recorded audio clips of your own practice speech, saved only if a "save voice clips" feature is available and enabled — viewable and deletable by you at any time, and never uploaded by the app itself. Temporary audio files may also be created in the app cache while analysis is being performed.</li>
         <li>API token-usage and estimated cost records, calculated locally from your own provider usage.</li>
       </ul>
-      <p>On Android, the local database, encrypted credential preferences, and the learner-audio folder are explicitly excluded from Android's automatic cloud backup. Uninstalling the app, or clearing its data from your device's app settings, permanently deletes those local copies. An AI-response report you chose to submit is a separate remote copy governed by §4.2 and §7; clearing or uninstalling the app does not delete a previously submitted report.</p>
+      <p>On Android, the local database, encrypted credential preferences, and the learner-audio folder are explicitly excluded from Android's automatic cloud backup. Uninstalling the app, or clearing its data from your device's app settings, permanently deletes those local copies. An AI-response report you chose to submit is a separate remote copy governed by §4.2 and §8; clearing or uninstalling the app does not delete a previously submitted report.</p>
 
       <h2>3. Microphone and audio access</h2>
       <p>The app requests microphone access only when a feature needs spoken input — live voice conversation, dictation, pronunciation analysis, or another voice-based exercise. Depending on the feature and your settings, microphone audio may be streamed live to the AI/speech provider you configured, or a short clip may be sent for transcription or pronunciation scoring. You can deny or revoke microphone permission through your OS settings; the app will fall back to text-based practice where available, but voice features will not work without it. The app never activates the microphone for advertising or background monitoring unrelated to the exercise you started.</p>
@@ -108,7 +108,7 @@
         </tbody>
       </table>
       <p>If you don't configure a given provider, no data is ever sent to it. Demo/mock modes run entirely offline and contact no AI provider at all. Providers may process your data in countries other than your own, and their retention, logging, and model-improvement practices are governed by their own policies and your own account with them — review the provider's policy before enabling it or submitting sensitive information.</p>
-      <p>We recommend practicing with fictional or de-identified scenarios and never entering real patients' or third parties' identifiable information into a session (see §9).</p>
+      <p>We recommend practicing with fictional or de-identified scenarios and never entering real patients' or third parties' identifiable information into a session (see §10).</p>
 
       <h3>4.1 YouTube transcript lookup</h3>
       <p>If you paste a public YouTube video URL or ID to import a caption track (for example, for a "teach-back" exercise), the app connects to YouTube to retrieve that video's public page and available captions. YouTube/Google may see normal network request information associated with that request, such as your device's IP address. See <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">policies.google.com/privacy</a>.</p>
@@ -123,24 +123,27 @@
       <p>The report does not include microphone audio, API keys, an account or device identifier, or the rest of the transcript. However, an AI response can repeat names, patient details, medical information, or other content from the conversation. The report form therefore lets you inspect and edit the full copy that will be sent. Please remove any personal, patient-identifying, or confidential information before submitting.</p>
       <p>Submitted reports are stored in a private Google Sheet accessible only to the developer. Google provides the Apps Script and Sheets infrastructure and may process the submitted data and ordinary network metadata under its own <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>. Submission is optional and does not affect your ability to use the rest of the app. After a successful submission, the app displays the random report ID; keep it if you may want to request deletion.</p>
 
-      <h2>5. Anonymous usage telemetry (opt-in, currently inactive)</h2>
+      <h2>5. App usage telemetry (opt-in, currently inactive)</h2>
       <p>The app includes an optional telemetry mechanism for coarse usage statistics. It sends nothing unless you explicitly opt in <em>and</em> the developer has configured a telemetry endpoint and key in that build. As of this policy's effective date, no telemetry endpoint is configured in the shipped release of either app, so telemetry currently sends nothing regardless of your consent setting.</p>
       <p>If it is ever activated in a future release, telemetry is designed to include only: a random per-install identifier (no account, no device identifier); the event name; app version and OS family; interface/native-language codes; a coarse country code derived from your system locale (never GPS or IP-based geolocation); session mode, duration, counts, and rounded score information; and limited technical error information (exception type and an in-app file/line location, never the error message text). It is designed to never include microphone audio, transcripts, prompts, feedback text, names, API keys, or any other free-form content you typed or spoke. Any future activation will be reflected in an updated "Last updated" date on this page and, for the Android app, in the Google Play Data safety section.</p>
 
-      <h2>6. No accounts, no ads, no data sale</h2>
+      <h2>6. Website analytics</h2>
+      <p>The Bedside English website uses Google Analytics 4 (GA4) to understand aggregate website usage. GA4 may collect page views, session statistics, approximate geographic information, browser and device information, scrolling activity, and outbound link clicks. Google Analytics uses a first-party cookie containing a pseudonymous client identifier to distinguish users and sessions. We do not intentionally send names, email addresses, patient information, practice transcripts, or other directly identifying content to Google Analytics. Google states that IP addresses are not logged or stored by Google Analytics. Analytics data is processed by Google under its applicable <a href="https://marketingplatform.google.com/about/analytics/terms/us/" target="_blank" rel="noreferrer">terms</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">privacy policy</a>.</p>
+
+      <h2>7. No accounts, no ads, no data sale</h2>
       <p>There is no sign-up, login, or Bedside English cloud profile on either platform. The apps do not include advertising or third-party analytics SDKs, and we do not sell data or use it for advertising. Except for an AI-response report you voluntarily submit as described in §4.2, the developer does not receive your practice content; when you choose an AI or speech feature, the app sends the required data directly to the provider you selected, as described in Section 4. The Android app does not request access to contacts, precise location, call logs, SMS messages, photos, or the advertising identifier.</p>
 
-      <h2>7. Data retention and deletion</h2>
+      <h2>8. Data retention and deletion</h2>
       <ul>
         <li><strong>Sessions and learning records:</strong> stay on your device until you delete them, clear the app's storage, or uninstall the app. Deleting a session in the app moves it to an in-app Trash area first; from there you can delete it immediately, or use the app's trash-cleanup control to purge items older than 7 days, which also deletes any audio clips saved for that session.</li>
         <li><strong>API credentials and settings:</strong> remain on your device until you remove or replace them, clear the app's storage, or uninstall the app.</li>
         <li><strong>Temporary files:</strong> cache/export audio files are kept only as long as the relevant feature needs them, subject to your OS's normal storage and cleanup behavior.</li>
-        <li><strong>AI-response reports:</strong> are retained for no more than 90 days after receipt and then deleted, unless a longer period is reasonably necessary to investigate abuse or security incidents or to meet a legal obligation. You may request earlier deletion by emailing the contact in §14 with the report ID displayed after submission.</li>
+        <li><strong>AI-response reports:</strong> are retained for no more than 90 days after receipt and then deleted, unless a longer period is reasonably necessary to investigate abuse or security incidents or to meet a legal obligation. You may request earlier deletion by emailing the contact in §15 with the report ID displayed after submission.</li>
         <li><strong>Third-party provider data:</strong> anything sent to Google, OpenAI, Anthropic, Microsoft, or YouTube is retained and deleted according to that provider's own policies and your account/configuration with them. We generally cannot access or delete data already sent to your own third-party provider account on your behalf — use that provider's own privacy controls.</li>
       </ul>
       <p>Because the app never creates a Bedside English account, there is no separate online account for us to delete. You can remove all local app data at any time by deleting items in-app, clearing stored API credentials, using your OS's "clear app data" option, or uninstalling the app.</p>
 
-      <h2>8. Security</h2>
+      <h2>9. Security</h2>
       <ul>
         <li>API credentials are stored encrypted (Android Keystore-backed encrypted preferences on Android) or in a local, per-device configuration file (Desktop).</li>
         <li>Learning records live in the app's private local database; learner audio clips live in the app's private local file storage.</li>
@@ -150,36 +153,36 @@
       </ul>
       <p>No method of electronic storage or transmission is completely secure. Please also protect your own device and provider account credentials.</p>
 
-      <h2>9. Sensitive medical or personal information</h2>
+      <h2>10. Sensitive medical or personal information</h2>
       <p>Bedside English is intended for simulated education and language practice. Please do not enter, speak, paste, or otherwise submit real patient-identifying information, protected health information, confidential clinical records, or other information you're not authorized to disclose. The app is not a HIPAA-compliant or equivalent clinical information system, and anything you voluntarily include in a voice session, transcript, or pasted material may be transmitted to the third-party AI/speech provider you've selected (§4). If an AI response repeats such information, remove it from the editable report copy before submitting an AI-response report (§4.2).</p>
 
-      <h2>10. Children and intended audience</h2>
+      <h2>11. Children and intended audience</h2>
       <p>Bedside English and its AI integrations are designed for adult learners — medical students, graduates, and residency applicants generally aged 18 or older — and are not directed at children. We do not knowingly collect personal information from children. A parent or guardian who believes a minor submitted personal information in an AI-response report may contact us with the report ID, if available, to request deletion; for information sent directly to a third-party AI provider, contact that provider and/or us at the address below.</p>
 
-      <h2>11. Your choices</h2>
+      <h2>12. Your choices</h2>
       <ul>
         <li>Use offline or demo/mock features without an API key or microphone access, where available.</li>
         <li>Deny or revoke microphone and notification permissions in your OS settings.</li>
         <li>Choose which third-party AI/speech provider(s) to use, or use none at all.</li>
         <li>Remove or replace stored provider credentials at any time.</li>
         <li>Review, edit, or cancel an AI-response report before it is sent, and request deletion of a submitted report using its report ID.</li>
-        <li>Opt in or out of anonymous telemetry (currently inactive regardless of this setting — see §5).</li>
+        <li>Opt in or out of app usage telemetry (currently inactive regardless of this setting — see §5).</li>
         <li>Delete individual sessions/learning records, or clear all local app data / uninstall the app.</li>
       </ul>
       <p>Disabling a permission or removing a provider credential may prevent the related feature from working.</p>
 
-      <h2>12. Open source</h2>
+      <h2>13. Open source</h2>
       <p>Both apps are open source under the MIT license, so you can verify the claims in this policy yourself in the source code:</p>
       <ul>
         <li>Android: <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer">github.com/boyskier/BedsideEnglish-Android</a></li>
         <li>Desktop: <a href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer">github.com/boyskier/BedsideEnglish-Desktop</a></li>
       </ul>
 
-      <h2>13. Changes to this policy</h2>
+      <h2>14. Changes to this policy</h2>
       <p>We may update this policy when the app's features, providers, or data practices change. The "Last updated" date at the top of this page will change accordingly, and material changes will be reflected here, in the app, and/or in the Google Play listing as required. This page's history is also visible at <a href="https://github.com/bedsideenglish/bedsideenglish.github.io" target="_blank" rel="noreferrer">github.com/bedsideenglish/bedsideenglish.github.io</a>.</p>
 
-      <h2>14. Contact</h2>
-      <p>Questions, deletion requests, or privacy concerns: <strong>Kyeongeon Lee</strong>, <a href="mailto:boy.skier@gmail.com">boy.skier@gmail.com</a>, or open an issue on either GitHub repo above. For deletion of a submitted AI-response report, include the random report ID displayed by the app after submission; do not post sensitive report content in a public GitHub issue.</p>
+      <h2>15. Contact</h2>
+      <p>Questions, deletion requests, or privacy concerns: <a href="mailto:bedsideenglish.support@gmail.com">bedsideenglish.support@gmail.com</a>, or open an issue on either GitHub repo above. For deletion of a submitted AI-response report, include the random report ID displayed by the app after submission; do not post sensitive report content in a public GitHub issue.</p>
     </div>
   </main>
 
