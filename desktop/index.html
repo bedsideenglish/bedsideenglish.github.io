@@ -81,6 +81,8 @@
     .nav-github-icon { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; border: 1px solid var(--ink); color: var(--ink); background: transparent; transition: color .16s ease, background .16s ease; }
     .nav-github-icon svg { width: 16px; height: 16px; }
     .nav-github-icon:hover { color: white; background: var(--ink); }
+    .nav-play-badge { width: 142px; min-height: 42px; display: inline-flex; align-items: center; }
+    .nav-play-badge img { width: 100%; height: auto; display: block; }
 
     .hero { position: relative; border-bottom: 1px solid var(--ink); }
     .hero-grid { display: grid; grid-template-columns: 52px minmax(0, 1fr); }
@@ -102,10 +104,16 @@
     .button-primary { color: white; border-color: var(--cobalt); background: var(--cobalt); }
     .button-secondary { background: transparent; }
     .button-arrow { font-size: 1rem; }
-    .hero-platforms { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; color: #6b6f79; font: 500 .68rem var(--mono); letter-spacing: .03em; text-transform: uppercase; }
-    .hero-platforms span { display: inline-flex; align-items: center; gap: 8px; }
-    .hero-platforms i { width: 7px; height: 7px; flex: 0 0 auto; background: var(--green); }
-    .hero-platforms .soon i { background: var(--amber); }
+    .play-badge { width: 168px; min-height: 50px; display: inline-flex; align-items: center; transition: transform .18s ease, filter .18s ease; }
+    .play-badge:hover { transform: translateY(-3px); filter: drop-shadow(4px 4px 0 rgba(11,16,32,.22)); }
+    .play-badge img { width: 100%; height: auto; display: block; }
+    .hero-path-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; color: var(--cobalt); font: 600 .68rem var(--mono); letter-spacing: .02em; text-transform: uppercase; }
+    .hero-path-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .hero-platforms { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; color: var(--ink); font: 600 .72rem var(--mono); letter-spacing: .035em; text-transform: uppercase; }
+    .hero-platforms > span { display: inline-flex; align-items: center; gap: 9px; padding: 10px 13px; border: 1px solid var(--ink); background: white; box-shadow: 4px 4px 0 var(--cobalt); }
+    .hero-platforms > span + span { box-shadow: 4px 4px 0 var(--amber); }
+    .hero-platforms i { width: 9px; height: 9px; flex: 0 0 auto; background: var(--cobalt); }
+    .hero-platforms > span + span i { background: var(--amber); }
     .field-note { align-self: end; margin-bottom: 5px; padding: 19px 0 0; border-top: 1px solid var(--ink); }
     .field-note-label { display: block; margin-bottom: 22px; color: var(--cobalt); font: 600 .63rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .field-note blockquote { margin: 0; font-size: 1.02rem; font-weight: 650; line-height: 1.45; }
@@ -224,6 +232,8 @@
     .platform-points span::before { content: ""; width: 7px; height: 7px; background: var(--cobalt); flex: 0 0 auto; }
     .platform-card.is-soon .platform-points span::before { background: var(--amber); }
     .platform-card .button { margin-top: 26px; width: 100%; }
+    .platform-card .play-badge { margin-top: 26px; }
+    .platform-card .play-badge + .button { margin-top: 14px; }
 
     .trust-section { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--cobalt-pale); }
     .trust-grid { display: grid; grid-template-columns: .86fr 1.14fr; gap: 90px; align-items: start; padding: 110px 0; }
@@ -247,6 +257,8 @@
     .download-copy p { max-width: 660px; margin: 28px 0 0; font-size: 1rem; line-height: 1.7; }
     .download-panel { border: 1px solid var(--ink); background: var(--paper); box-shadow: 11px 11px 0 var(--ink); }
     .download-panel-head { padding: 17px 19px; border-bottom: 1px solid var(--ink); font: 600 .63rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .download-play { display: flex; align-items: center; justify-content: center; min-height: 94px; padding: 15px 18px; border-bottom: 1px solid var(--ink); background: white; }
+    .download-play .play-badge { width: 190px; }
     .platform-link { display: grid; grid-template-columns: 46px 1fr auto; gap: 15px; align-items: center; min-height: 72px; padding: 11px 18px; border-bottom: 1px solid var(--ink); transition: color .16s ease, background .16s ease; }
     .platform-link:hover { color: white; background: var(--cobalt); }
     .platform-link:last-of-type { border-bottom: 0; }
@@ -314,6 +326,7 @@
       h1 { font-size: clamp(3.45rem, 17vw, 5.8rem); }
       .hero-body { font-size: .98rem; }
       .hero-actions .button { flex: 1 1 100%; }
+      .hero-actions .play-badge { width: 168px; }
       .scenario-board { grid-template-columns: 1fr; }
       .scenario-cell, .scenario-cell:nth-child(3), .scenario-cell:nth-child(4) { border-left: 0; border-top: 1px solid var(--ink); }
       .scenario-cell:first-child { border-top: 0; }
@@ -377,7 +390,7 @@
         <div class="nav-repo-links">
           <a class="nav-github" href="#download">Desktop ↓</a>
           <a class="nav-github-icon" href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer" aria-label="Bedside English Desktop repository on GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
-          <a class="nav-github" href="#download">Android ↓</a>
+          <a class="nav-play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get it on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play"></a>
           <a class="nav-github-icon" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer" aria-label="Bedside English Android repository on GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
         </div>
       </div>
@@ -393,14 +406,15 @@
             <div>
               <p class="eyebrow" data-i18n="hero_eyebrow">Unscripted English practice for IMGs</p>
               <h1 data-i18n="hero_title">You won’t know <span>who speaks next.</span><em>That’s the point.</em></h1>
-              <p class="hero-body" data-i18n="hero_body">Random situations. Different voices. Changing details and accent profiles. Start with <strong>Survival English before the wards</strong>—then move into live patient encounters, OSCE/OET, handovers, and presentations.</p>
+              <p class="hero-body" data-i18n="hero_body">Speak out loud with live AI in situations you cannot memorize. Start with <strong>everyday English before the wards</strong>, then practice patient encounters, OSCE/OET, handovers, and presentations—with feedback after every attempt.</p>
               <div class="hero-actions">
-                <a class="button button-primary" href="#download"><span data-i18n="hero_cta">Get Bedside English</span><span class="button-arrow">↓</span></a>
-                <a class="button button-secondary" href="#journey"><span data-i18n="hero_secondary">See the training path</span><span class="button-arrow">↓</span></a>
+                <a class="button button-primary" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip"><span data-i18n="hero_cta">Download for Windows</span><span class="button-arrow">↓</span></a>
+                <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get Bedside English on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play"></a>
               </div>
+              <a class="hero-path-link" href="#journey"><span data-i18n="hero_secondary">See how the training works</span><span aria-hidden="true">↓</span></a>
               <div class="hero-platforms" aria-hidden="true">
-                <span><i></i><span data-i18n="hero_platform_desktop">Windows desktop — free, available now</span></span>
-                <span><i></i><span data-i18n="hero_platform_android">Android — free, now on Google Play</span></span>
+                <span><i></i><span data-i18n="hero_platform_desktop">No card required</span></span>
+                <span><i></i><span data-i18n="hero_platform_android">Free · $0 to start</span></span>
               </div>
             </div>
             <aside class="field-note">
@@ -526,12 +540,12 @@
         <div class="platform-head">
           <span class="section-code">05 / TWO PLATFORMS, ONE TRAINER</span>
           <h2 data-i18n="platform_title">Same training design. Windows and Android, both live.</h2>
-          <p data-i18n="platform_intro">The desktop app shipped first and is free to download right now. The Android app was ported from it, has already grown past it feature-wise, and is now free on Google Play.</p>
+          <p data-i18n="platform_intro">Choose the version that fits where you practice. Windows gives you the full desktop workflow; Android keeps shorter speaking and listening sessions close at hand.</p>
         </div>
         <div class="platform-grid">
           <article class="platform-card is-live">
             <div class="platform-card-head"><h3 data-i18n="platform_desktop_name">Windows Desktop</h3><span class="platform-status" data-i18n="platform_desktop_status">Available now</span></div>
-            <p class="platform-desc" data-i18n="platform_desktop_body">Free, open-source Python app. Download a ready-to-run Windows build from GitHub Releases, or build it yourself on macOS/Linux from source.</p>
+            <p class="platform-desc" data-i18n="platform_desktop_body">Download the ready-to-run Windows .zip, unzip it, and open the app—there is no installer or store account. macOS and Linux users can run the open-source version themselves.</p>
             <div class="platform-points">
               <span data-i18n="platform_desktop_point_1">Direct download, no store account</span>
               <span data-i18n="platform_desktop_point_2">Demo Mode works without an API key</span>
@@ -541,13 +555,13 @@
           </article>
           <article class="platform-card is-live">
             <div class="platform-card-head"><h3 data-i18n="platform_android_name">Android</h3><span class="platform-status" data-i18n="platform_android_status">Available now</span></div>
-            <p class="platform-desc" data-i18n="platform_android_body">A Kotlin/Jetpack Compose port of the same trainer, live on Google Play. The current build already adds features the desktop app doesn’t have yet.</p>
+            <p class="platform-desc" data-i18n="platform_android_body">Practice the same speaking loop on your phone, with an 8-language interface, pronunciation drills, and quick sessions designed for practice anywhere.</p>
             <div class="platform-points">
               <span data-i18n="platform_android_point_1">8-language interface, not just EN/KO</span>
               <span data-i18n="platform_android_point_2">Optional Azure pronunciation scoring</span>
-              <span data-i18n="platform_android_point_3">Buildable from source today via Android Studio</span>
+              <span data-i18n="platform_android_point_3">Mock voice mode works without an API key</span>
             </div>
-            <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer"><span data-i18n="platform_android_cta">Get it on Google Play</span><span class="button-arrow">↗</span></a>
+            <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get Bedside English on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a>
             <a class="button button-secondary" href="../android.html"><span data-i18n="platform_android_tour_cta">Take the Android app tour</span><span class="button-arrow">→</span></a>
           </article>
         </div>
@@ -571,7 +585,7 @@
 
     <section class="download-section" id="download">
       <div class="download-grid shell">
-        <div class="download-copy"><span class="section-code">07 / START</span><h2 data-i18n="download_title">Speak before you feel ready.</h2><p data-i18n="download_body">Open Demo Mode without an API key, or connect your own supported provider for live voice. Free and open source on both platforms.</p></div>
+        <div class="download-copy"><span class="section-code">07 / START</span><h2 data-i18n="download_title">Speak before you feel ready.</h2><p data-i18n="download_body">Choose Windows or Android and start with the no-key demo. When you want live AI voice and feedback, connect a supported provider with your own API key.</p></div>
         <div class="download-panel">
           <div class="download-panel-head" data-i18n="download_panel_desktop_title">Desktop / GitHub Releases</div>
           <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip"><span class="platform-icon">W</span><span><strong>Windows</strong><span data-i18n="download_zip">Download the .zip</span></span><b>↓</b></a>
@@ -582,7 +596,7 @@
         </div>
         <div class="download-panel">
           <div class="download-panel-head" data-i18n="download_panel_android_title">Android / Google Play</div>
-          <a class="platform-link" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer"><span class="platform-icon">▶</span><span><strong data-i18n="android_play_title">Google Play</strong><span data-i18n="android_play_soon">Get the app</span></span><b>↗</b></a>
+          <div class="download-play"><a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get Bedside English on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a></div>
           <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Android#-quick-start" target="_blank" rel="noreferrer"><span class="platform-icon">A</span><span><strong data-i18n="android_source_title">Android Studio</strong><span data-i18n="build_source">Build from source</span></span><b>↗</b></a>
           <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer"><span class="platform-icon">★</span><span><strong data-i18n="android_star_title">Watch the repo</strong><span data-i18n="android_star_body">Follow ongoing development</span></span><b>↗</b></a>
           <div class="download-note" data-i18n="download_note_android">Now live on Google Play. Prefer to build it yourself? Clone the repo and run it from Android Studio — see the README for setup.</div>
@@ -596,7 +610,6 @@
         <div class="faq-list">
           <details open><summary data-i18n="faq_1_q">Is this useful before clinical rotations?</summary><div class="faq-answer" data-i18n="faq_1_a">Yes. Survival Mode and Listening Lab are specifically useful for pre-med and early-year students who need faster, more flexible everyday English before clinical vocabulary becomes the main challenge.</div></details>
           <details><summary data-i18n="faq_2_q">What is actually random in Survival Mode?</summary><div class="faq-answer" data-i18n="faq_2_a">The role, goal, contextual detail, twist, delivery style, voice, and best-effort accent profile can change. The purpose is to train understanding and recovery when the next line is not predictable.</div></details>
-          <details><summary data-i18n="faq_android_q">Is the Android app on Google Play yet?</summary><div class="faq-answer" data-i18n="faq_android_a">Yes — it's live on Google Play now. You can also build and run it yourself from the Android repo using Android Studio.</div></details>
           <details><summary data-i18n="faq_3_q">Can I try it without an API key?</summary><div class="faq-answer" data-i18n="faq_3_a">Yes. Demo Mode (desktop) and Mock voice mode (Android) run a guided practice flow without a key or microphone. Live AI voice and provider-based analysis require a supported API key.</div></details>
           <details><summary data-i18n="faq_4_q">Is the app completely free?</summary><div class="faq-answer" data-i18n="faq_4_a">Both apps are free and open source. Provider-based live AI usage depends on the model, free tier, and plan attached to your own API key.</div></details>
           <details><summary data-i18n="faq_5_q">Why might my operating system show a warning?</summary><div class="faq-answer" data-i18n="faq_5_a">Early open-source desktop releases are unsigned, so Windows SmartScreen may say “Windows protected your PC.” Click <strong>More info</strong>, then <strong>Run anyway</strong> — the file comes straight from this project’s GitHub Releases, and you’re welcome to inspect the source first.</div></details>
@@ -622,10 +635,10 @@
         nav_journey: '훈련 여정', nav_platforms: '플랫폼', nav_privacy: '프라이버시', nav_download: '다운로드',
         hero_eyebrow: '모든 단계의 IMG를 위한 예측 불가능한 영어 훈련',
         hero_title: '다음에 <span>누가 말을 걸지</span> 알 수 없습니다.<em>바로 그게 핵심입니다.</em>',
-        hero_body: '랜덤한 상황. 다른 목소리. 계속 바뀌는 세부 조건과 억양 프로필. <strong>병동에 가기 전 Survival English</strong>부터 시작해, 실시간 환자 면담, OSCE/OET, 인계, 프레젠테이션까지 이어가세요.',
-        hero_cta: 'Bedside English 받기', hero_secondary: '훈련 경로 보기',
-        hero_platform_desktop: 'Windows 데스크톱 — 무료, 지금 바로 이용 가능',
-        hero_platform_android: 'Android — 무료, 지금 Google Play에서 이용 가능',
+        hero_body: '외울 수 없는 상황에서 실시간 AI와 소리 내어 말해 보세요. <strong>병동에 가기 전 일상 영어</strong>부터 시작해 환자 면담, OSCE/OET, 인계, 프레젠테이션까지 연습하고 매 시도 후 피드백을 받을 수 있습니다.',
+        hero_cta: 'Windows용 다운로드', hero_secondary: '훈련 방식 살펴보기',
+        hero_platform_desktop: '카드 없이 시작',
+        hero_platform_android: '무료 · $0로 시작',
         field_quote: '“영어를 모르는 게 문제가 아니었습니다. 압박 속에서 입 밖으로 꺼내는 게 문제였죠.”',
         field_body: '영어를 아는 것과, 순간이 지나가기 전에 실제로 사용하는 것 사이의 간극을 위해 만들었습니다.',
         label_situation: '상황', label_goal: '나의 목표', label_voice: '목소리 / 억양', label_delivery: '전달 방식',
@@ -657,20 +670,20 @@
         mode_3: 'Residency Interview', mode_3_body: '행동·임상 추론·IMG 특화 질문과 이어지는 꼬리 질문을 연습합니다.',
         mode_4: 'Mistake Genome', mode_4_body: '계속 반복되는 패턴과 다음 복습 대상을 확인합니다.',
         platform_title: '같은 훈련 설계, Windows와 Android 모두 이용 가능.',
-        platform_intro: '데스크톱 앱이 먼저 출시되어 지금 바로 무료로 받을 수 있습니다. Android 앱은 이를 이식한 뒤 기능적으로는 이미 앞서 나갔고, 이제 Google Play에서 무료로 받을 수 있습니다.',
+        platform_intro: '연습하는 환경에 맞는 버전을 고르세요. Windows는 전체 데스크톱 훈련 흐름을 제공하고, Android는 짧은 말하기·듣기 연습을 언제든 이어갈 수 있게 해 줍니다.',
         platform_desktop_name: 'Windows 데스크톱', platform_desktop_status: '지금 이용 가능',
-        platform_desktop_body: '무료 오픈소스 Python 앱입니다. GitHub Releases에서 바로 실행 가능한 Windows 빌드를 받거나, macOS/Linux에서는 소스로 직접 빌드하세요.',
+        platform_desktop_body: 'Windows용 .zip을 받아 압축을 풀고 바로 실행하세요. 설치 프로그램이나 스토어 계정은 필요 없습니다. macOS와 Linux에서는 오픈소스 버전을 직접 실행할 수 있습니다.',
         platform_desktop_point_1: '스토어 계정 없이 직접 다운로드', platform_desktop_point_2: 'API 키 없이 Demo Mode 사용 가능', platform_desktop_point_3: '이 페이지의 스크린샷은 실제 앱 화면',
         platform_desktop_cta: 'Windows용 다운로드',
         platform_android_name: 'Android', platform_android_status: '지금 이용 가능',
-        platform_android_body: '같은 트레이너를 Kotlin/Jetpack Compose로 이식한 버전으로, Google Play에서 바로 받을 수 있습니다. 현재 빌드는 데스크톱에 아직 없는 기능도 이미 포함하고 있습니다.',
-        platform_android_point_1: 'EN/KO뿐 아니라 8개 언어 인터페이스', platform_android_point_2: '선택적 Azure 발음 채점', platform_android_point_3: '지금 바로 소스에서 빌드 가능',
+        platform_android_body: '휴대폰에서도 같은 말하기 루프를 연습하세요. 8개 언어 인터페이스, 발음 드릴, 어디서든 시작하기 좋은 짧은 세션을 제공합니다.',
+        platform_android_point_1: 'EN/KO뿐 아니라 8개 언어 인터페이스', platform_android_point_2: '선택적 Azure 발음 채점', platform_android_point_3: 'API 키 없이 Mock 음성 모드 사용 가능',
         platform_android_tour_cta: 'Android 앱 투어 보기',
         platform_android_cta: 'Google Play에서 받기',
         trust_title: '틀려도 괜찮을 만큼 사적으로.', trust_body: '더 나은 표현이 나오려면 먼저 어색한 표현이 나와야 합니다. 학습 기록은 내 기기에 남고, 데스크톱이든 Android든 연습 내용을 보관하는 Bedside English 계정은 없습니다.',
         ledger_account: '앱 계정', ledger_account_body: '계정이나 Bedside English 클라우드 프로필 없음', ledger_history: '학습 기록', ledger_history_body: '세션, 실수, 성장 기록은 로컬에 보관', ledger_telemetry: 'Telemetry 수집기', ledger_telemetry_body: '현재 빌드에는 설정되지 않음', ledger_ai: 'AI 기반 세션', ledger_ai_body: '필요한 음성이나 텍스트만 선택한 제공자로 직접 전송', state_none: '없음', state_device: '기기 내부', state_inactive: '비활성', state_direct: '직접 연결',
         trust_note: '가상 또는 비식별화된 사례를 사용하세요. 데이터 처리는 설정한 제공자와 계정 정책을 따릅니다. 향후 익명 telemetry가 활성화되더라도 명시적 동의가 필요하며 음성, 대화 내용, API 키, 자유 입력 텍스트는 제외됩니다. 전체 <a href="/bedside-english/privacy.html">개인정보 처리방침</a>을 확인하세요.',
-        download_title: '준비되기 전에 말하세요.', download_body: 'API 키 없이 Demo Mode를 열거나, 지원되는 내 AI 제공자를 연결해 실시간 음성을 사용하세요. 두 플랫폼 모두 무료 오픈소스입니다.',
+        download_title: '준비되기 전에 말하세요.', download_body: 'Windows 또는 Android를 고르고 API 키 없는 데모부터 시작하세요. 실시간 AI 음성과 피드백이 필요할 때는 내 API 키로 지원되는 제공자를 연결하면 됩니다.',
         download_panel_desktop_title: '데스크톱 / GitHub Releases', download_zip: '.zip 다운로드', build_source: '소스에서 빌드',
         desktop_source_title: '소스 코드', desktop_source_body: 'GitHub에서 README 보기',
         download_note_desktop: '.zip 파일이 바로 다운로드됩니다 — 압축을 풀고 폴더 안의 MedVoiceTrainer.exe를 더블클릭하면 실행됩니다 (설치 프로그램 없음). macOS와 Linux는 아직 패키징되지 않았습니다 — README 안내에 따라 소스에서 직접 실행하세요.',
@@ -680,7 +693,6 @@
         faq_title: '첫 세션 전에.', faq_intro: 'Bedside English: Talk & Train은 개인 오픈소스 연습 프로젝트이며 임상 시스템이나 의료기기가 아닙니다.',
         faq_1_q: '임상 실습 전에도 도움이 되나요?', faq_1_a: '네. Survival Mode와 Listening Lab은 임상 어휘보다 빠르고 유연한 일상 영어가 먼저 필요한 예과·본과 저학년에게 특히 유용합니다.',
         faq_2_q: 'Survival Mode에서 실제로 무엇이 랜덤인가요?', faq_2_a: '역할, 목표, 맥락의 세부 조건, 돌발 요소, 전달 방식, 목소리, 최선 노력 기반 억양 프로필이 달라질 수 있습니다. 다음 문장을 예측할 수 없을 때 이해하고 회복하는 힘을 기르는 것이 목적입니다.',
-        faq_android_q: 'Android 앱은 이미 Google Play에 있나요?', faq_android_a: '네 — 이제 Google Play에서 바로 받을 수 있습니다. Android 저장소를 Android Studio로 직접 빌드해 실행할 수도 있습니다.',
         faq_3_q: 'API 키 없이 체험할 수 있나요?', faq_3_a: '네. 데스크톱의 Demo Mode와 Android의 Mock 음성 모드는 키나 마이크 없이 안내형 연습 흐름을 실행합니다. 실시간 AI 음성과 제공자 기반 분석에는 지원되는 API 키가 필요합니다.',
         faq_4_q: '앱은 완전히 무료인가요?', faq_4_a: '두 앱 모두 무료 오픈소스입니다. 제공자 기반 실시간 AI 사용 비용은 내 API 키에 연결된 모델, 무료 사용량, 요금제에 따라 달라집니다.',
         faq_5_q: '운영체제에서 경고가 뜰 수 있는 이유는 무엇인가요?', faq_5_a: '초기 오픈소스 데스크톱 릴리스는 서명되어 있지 않아, Windows SmartScreen이 "Windows의 PC 보호"라는 경고를 띄울 수 있습니다. <strong>추가 정보</strong>를 클릭한 뒤 <strong>실행</strong>을 누르세요 — 파일은 이 프로젝트의 GitHub Releases에서 직접 받은 것이며, 원하면 먼저 소스 코드를 살펴보셔도 됩니다.',
@@ -699,6 +711,11 @@
         const active = button.dataset.lang === lang;
         button.classList.toggle('active', active);
         button.setAttribute('aria-pressed', String(active));
+      });
+      document.querySelectorAll('.play-badge-img').forEach((image) => {
+        image.src = lang === 'ko' ? '../assets/store/google-play-badge-ko.png' : '../assets/store/google-play-badge-en.png';
+        image.alt = lang === 'ko' ? 'Google Play에서 다운로드' : 'Get it on Google Play';
+        image.closest('a').setAttribute('aria-label', image.alt);
       });
       document.title = lang === 'ko' ? 'Bedside English: Talk & Train — IMG를 위한 예측 불가능한 영어 훈련' : 'Bedside English: Talk & Train — Unscripted English practice for IMGs';
       try { localStorage.setItem('be-language', lang); } catch (_) {}
