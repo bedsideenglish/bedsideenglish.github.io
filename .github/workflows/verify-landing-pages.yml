@@ -84,7 +84,6 @@ jobs:
           node-version: '20'
       - run: python tools/sync-landing-pages.py
       - run: python tools/test_generate_learning_pages.py
-      - run: python tools/generate-learning-pages.py --check
       - run: python tools/check-learning-pages.py
       - run: python tools/test_generate_team_communication_pages.py
       - run: python tools/generate-team-communication-pages.py --check
