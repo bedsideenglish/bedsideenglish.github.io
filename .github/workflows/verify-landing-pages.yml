@@ -8,6 +8,10 @@ on:
       - android-everyday.html
       - learning-pages.json
       - learning/**
+      - model-interview-pages.json
+      - model-interviews/**
+      - assets/audio/model-interviews/**
+      - docs/model-history-taking-scenario-plan-ko.md
       - team-communication-pages.json
       - communication/**
       - docs/team-communication-content-system.md
@@ -22,6 +26,12 @@ on:
       - tools/check-learning-pages.py
       - tools/learning_templates/**
       - tools/test_generate_learning_pages.py
+      - tools/model_interview_content.py
+      - tools/model_interview_templates/**
+      - tools/generate-model-interview-pages.py
+      - tools/generate-model-interview-audio.py
+      - tools/check-model-interview-pages.py
+      - tools/test_generate_model_interview_pages.py
       - tools/generate-team-communication-pages.py
       - tools/check-team-communication-pages.py
       - tools/team_communication_templates/**
@@ -42,6 +52,10 @@ on:
       - android-everyday.html
       - learning-pages.json
       - learning/**
+      - model-interview-pages.json
+      - model-interviews/**
+      - assets/audio/model-interviews/**
+      - docs/model-history-taking-scenario-plan-ko.md
       - team-communication-pages.json
       - communication/**
       - docs/team-communication-content-system.md
@@ -56,6 +70,12 @@ on:
       - tools/check-learning-pages.py
       - tools/learning_templates/**
       - tools/test_generate_learning_pages.py
+      - tools/model_interview_content.py
+      - tools/model_interview_templates/**
+      - tools/generate-model-interview-pages.py
+      - tools/generate-model-interview-audio.py
+      - tools/check-model-interview-pages.py
+      - tools/test_generate_model_interview_pages.py
       - tools/generate-team-communication-pages.py
       - tools/check-team-communication-pages.py
       - tools/team_communication_templates/**
@@ -86,6 +106,9 @@ jobs:
       - run: python tools/test_generate_learning_pages.py
       - run: python tools/generate-learning-pages.py --check
       - run: python tools/check-learning-pages.py
+      - run: python tools/test_generate_model_interview_pages.py
+      - run: python tools/generate-model-interview-pages.py --check
+      - run: python tools/check-model-interview-pages.py
       - run: python tools/test_generate_team_communication_pages.py
       - run: python tools/generate-team-communication-pages.py --check
       - run: python tools/check-team-communication-pages.py

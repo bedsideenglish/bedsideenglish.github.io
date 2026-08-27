@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "peds/peds_036.json",
+  "source_sha256": "1c19c4438301012996db045da1bd69d74dd0c8356df82a93e05c55ac413e5d69",
+  "transcript_sha256": "0a7dcb99e73a4444d12231564425ba8d3a06e7035c6c472dd5d662483a5ed425",
+  "doctor_voice": "Charon",
+  "patient_voice": "Callirrhoe",
+  "patient_speaker": "Parent",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 7,
+      "transcript_sha256": "c5f4c8b46ee6cc80d7d3564e59ecd21e4aebb176ddc1049c32642d3e09933f95",
+      "wav_sha256": "b47ebe520df2d8ec6aeee6a9bfedf675e21b63ad4022546072c8805943ed3936",
+      "duration_seconds": 49.92
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 8,
+      "turn_end": 15,
+      "transcript_sha256": "5baee51805d142f81181e5890083860e4a3e5024c8e0a4d7d6ef17d789a6a86a",
+      "wav_sha256": "7be3fbc29863c6a019f0f1301948b21c24d291246567a4bdb11c4ed661e3e7c2",
+      "duration_seconds": 37.76
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 16,
+      "turn_end": 23,
+      "transcript_sha256": "f36080f9dd77a015fb195a4cdbb8de403abf14b63b98fe32c36fbc9a5b0f5f37",
+      "wav_sha256": "58737043a853b8a60ca6e19493d95d4d0f552aab63c18544c7de0a44d3f364d0",
+      "duration_seconds": 41.2
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 24,
+      "turn_end": 31,
+      "transcript_sha256": "03785b458134d3c2c1070e2042f7d8701e123777f6e0a514ed9558ab5765012e",
+      "wav_sha256": "6104885cc5efff35310bd34d8f55f83002d5b5f702c34175b7374728c43339bd",
+      "duration_seconds": 45.92
+    },
+    {
+      "file": "part-05.wav",
+      "turn_start": 32,
+      "turn_end": 35,
+      "transcript_sha256": "f7fcf2ccd514f21491a9e48ecd55e889bd1316a588b3595711f2987552ebecb7",
+      "wav_sha256": "0cba18ce5fa3262e8af2c0e0857d892ba85d08f315997b788e0b223b43d1f1e7",
+      "duration_seconds": 41.84
+    }
+  ]
+}

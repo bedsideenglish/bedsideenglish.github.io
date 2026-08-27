@@ -58,6 +58,34 @@ as `practise`, `felt sick`, or `open your bowels`, and on presupposition markers
 or `you mentioned`. These deterministic checks are a review aid, not a replacement for reading each
 question for subtler leading assumptions before publication.
 
+## Model history-taking conversations
+
+Audio-first worked histories live under `model-interviews/`, separate from the explanatory
+`learning/` guides. The manifest is `model-interview-pages.json`; each entry contains the exact
+doctor-patient transcript, audio segment boundaries, distinct Gemini voice pair, flow summary,
+and reviewed source links. Generated pages and pre-generated WAV files carry both the Android case
+SHA-256 and the canonical transcript SHA-256 so case, page, and audio drift is caught before publish.
+
+Generate or refresh static two-speaker WAV files using the workspace-level `.env` only at authoring
+time. Public pages never call Gemini and never contain an API key:
+
+```powershell
+python tools\generate-model-interview-audio.py
+python tools\generate-model-interview-pages.py
+```
+
+Run the complete publication gate:
+
+```powershell
+python tools\test_generate_model_interview_pages.py
+python tools\generate-model-interview-pages.py --check
+python tools\check-model-interview-pages.py
+```
+
+When every fingerprint still matches, the audio generator keeps the existing WAV files instead of
+calling Gemini again. Use `--page <slug>` to work on one interview and `--force` only when deliberately
+recasting audio with the same transcript and voices.
+
 ## Oral case-presentation guides
 
 Worked chart-to-speech examples live under `case-presentations/`. Each page is locked to one reviewed

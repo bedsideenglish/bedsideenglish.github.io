@@ -31,6 +31,7 @@ def build_sitemap(site_root: Path) -> str:
     routes.extend(_generated_routes(site_root, "communication"))
     routes.extend(_generated_routes(site_root, "case-presentations"))
     routes.extend(_generated_routes(site_root, "everyday-english"))
+    routes.extend(_generated_routes(site_root, "model-interviews"))
     rows = []
     for route, reviewed_on in routes:
         lastmod = f"<lastmod>{reviewed_on}</lastmod>" if reviewed_on else ""

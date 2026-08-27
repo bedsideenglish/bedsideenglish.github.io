@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "gi/gi_010.json",
+  "source_sha256": "c7c79b264a7b95997589ac6a059d0d164098c2c22a29b310168b04f3e190baf6",
+  "transcript_sha256": "bc20825221087f6203b39264cdcf2fc5d9fabbd8ce519902fa739161827b2455",
+  "doctor_voice": "Kore",
+  "patient_voice": "Achird",
+  "patient_speaker": "Patient",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 7,
+      "transcript_sha256": "292ba5378a89afcbec6297c27ef4de4b074ef3f7fdd19f9f04994ad9a5e60c5c",
+      "wav_sha256": "81efb1d1f800fd1b08c221bdd18c285a553ab679741df0161c06e2c4918b3253",
+      "duration_seconds": 42.4
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 8,
+      "turn_end": 15,
+      "transcript_sha256": "efad0c0e23a0d53dee9337ab01de958dfd10f1c1c22e6b05ad075aa77ef8f5a5",
+      "wav_sha256": "53a355f207945fec26e69ee37998633bb66e597d7f4c793bb597c8e208c25357",
+      "duration_seconds": 47.52
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 16,
+      "turn_end": 23,
+      "transcript_sha256": "325acfcdfc4d17df6f3d0727efc47600b8036c9aaff1a8d972dfe3367ac17944",
+      "wav_sha256": "83a28697a5148320abf23eb7325bd94c2db1c653d62508ce7a8b120d3f40c426",
+      "duration_seconds": 50.36
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 24,
+      "turn_end": 31,
+      "transcript_sha256": "7dcdf048d7169e117f662aff46aab82bdac097ffb8b5e1b8f66a4ba30b7e544e",
+      "wav_sha256": "fbe89d0d878c69cd7df0de04b0e725bf155f951d7f1f88ec1659ce9be54b0453",
+      "duration_seconds": 70.6
+    }
+  ]
+}

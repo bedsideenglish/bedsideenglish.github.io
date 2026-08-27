@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "obgyn/obgyn_024.json",
+  "source_sha256": "13bd0ae90bc3e2839224681c83217be518970b96ea0e2fc6fe0b1f43ded057cb",
+  "transcript_sha256": "301d461e716a6ed5a26d7c6bc531b7dfcfea4298819d4ae539d3391d8e1e986c",
+  "doctor_voice": "Sulafat",
+  "patient_voice": "Leda",
+  "patient_speaker": "Patient",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 7,
+      "transcript_sha256": "af1715379aa529e3b0c89453ef6d52c7518fb5145ab24391219513235de6a3ca",
+      "wav_sha256": "e360f941e2791f212b93ca1ce906c93ffe1cd6e3d64c6cb13ab883b596c445d8",
+      "duration_seconds": 46.28
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 8,
+      "turn_end": 15,
+      "transcript_sha256": "e59ba85b15fa31eb631913806cf72ff2569dc2bc9d69d1d59764a9346c42b109",
+      "wav_sha256": "be5aa0514fe05c43cf977f0af18c04756f81c6bea3664ae13063e047d2b9a36c",
+      "duration_seconds": 42.96
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 16,
+      "turn_end": 23,
+      "transcript_sha256": "07fa629a205ce3f06ecab42c735b11ed7e52943799780d1e52428fb83c118700",
+      "wav_sha256": "85186b96f99638280f56440c5ea636c7b4fdc72cdbd9c5e07b9dd81cecebcd0d",
+      "duration_seconds": 49.04
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 24,
+      "turn_end": 31,
+      "transcript_sha256": "e6697f1ea0a5a0d8db1311716866d994aeeea78e322ba0a6a518f8937eb37380",
+      "wav_sha256": "ce2f321ba5fe707abf3cae454f125ab04f16511baba499c010ced672688e44bd",
+      "duration_seconds": 43.36
+    },
+    {
+      "file": "part-05.wav",
+      "turn_start": 32,
+      "turn_end": 35,
+      "transcript_sha256": "bb22c61fd3f3ce3a19ad3c24203972071122aef5e1ccce9039a660fa2043c953",
+      "wav_sha256": "5f309a945c5bc62430506c0e7c6b63b14b15ad50901f6d5350d5f59bb2750426",
+      "duration_seconds": 41.64
+    }
+  ]
+}

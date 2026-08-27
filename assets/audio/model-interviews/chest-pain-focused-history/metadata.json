@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "cardio/cardio_001.json",
+  "source_sha256": "4216729706664eabc45653b522395ce1b03501b65a9d5c0da4ead132f21dcc09",
+  "transcript_sha256": "f1a8f0d4b135726bae26dfd23f814a1fd967bb2ac805fd9df2433b6698ddd484",
+  "doctor_voice": "Gacrux",
+  "patient_voice": "Algenib",
+  "patient_speaker": "Patient",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 5,
+      "transcript_sha256": "83389dd41df05f41290d3a569f3c264b330d6c701c24679c1472b4ae93b8a020",
+      "wav_sha256": "c66b5afab6ceeb351df23ab7c4332c781cff9df493e760b118c89cbbbc69dd5e",
+      "duration_seconds": 33.32
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 6,
+      "turn_end": 11,
+      "transcript_sha256": "2935d75b42a614d3b071eb2b1df800f7fd03940a86621f217e3cd4f0c0b9eaa0",
+      "wav_sha256": "889f39296880200e3a1a24c4196f36fc9f2fd7505e2e3d4beab92c50eaed3600",
+      "duration_seconds": 33.48
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 12,
+      "turn_end": 19,
+      "transcript_sha256": "8581a118d141f72df10cd97b3951c406d28d37a916ea54617849aac6aa69fbcb",
+      "wav_sha256": "ee58acd553a394d3990c582d049d518b814c441b4faf67c2ac77bac786fdfdee",
+      "duration_seconds": 43.72
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 20,
+      "turn_end": 27,
+      "transcript_sha256": "bb22edb442cddedc2d78fb95072a8374fb3bfaecbdfd262eaefa3623826c2b0c",
+      "wav_sha256": "a4f7bb2c234c0cda61649d6b70ed8b31647dda1e5115ddffa5239364e326b87e",
+      "duration_seconds": 48.32
+    }
+  ]
+}

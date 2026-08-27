@@ -1,0 +1,116 @@
+(function () {
+  "use strict";
+
+  document.querySelectorAll("[data-conversation-player]").forEach(function (player) {
+    var configNode = player.querySelector("[data-audio-config]");
+    if (!configNode) return;
+    var config;
+    try { config = JSON.parse(configNode.textContent); } catch (_) { return; }
+    if (!Array.isArray(config.segments) || !config.segments.length) return;
+
+    var playButton = player.querySelector("[data-play]");
+    var playLabel = player.querySelector("[data-play-label]");
+    var restartButton = player.querySelector("[data-restart]");
+    var speedSelect = player.querySelector("[data-speed]");
+    var progress = player.querySelector("[data-progress]");
+    var status = player.querySelector("[data-status]");
+    var turns = Array.prototype.slice.call(document.querySelectorAll("[data-transcript] .turn"));
+    var audio = new Audio();
+    audio.preload = "metadata";
+    var segmentIndex = 0;
+    var completedSeconds = 0;
+    var shouldContinue = false;
+    var finished = false;
+
+    function totalDuration() {
+      return config.segments.reduce(function (sum, segment) { return sum + Number(segment.duration_seconds || 0); }, 0);
+    }
+
+    function clearActive() {
+      turns.forEach(function (turn) { turn.classList.remove("is-active"); });
+    }
+
+    function activateSegment(index) {
+      clearActive();
+      var segment = config.segments[index];
+      if (!segment) return;
+      for (var i = segment.turn_start; i <= segment.turn_end; i += 1) {
+        if (turns[i]) turns[i].classList.add("is-active");
+      }
+    }
+
+    function setPlaying(playing) {
+      player.classList.toggle("is-playing", playing);
+      playButton.setAttribute("aria-pressed", String(playing));
+      playLabel.textContent = playing ? "Pause" : "Play conversation";
+      playButton.querySelector("[aria-hidden]").textContent = playing ? "Ⅱ" : "▶";
+    }
+
+    function loadSegment(index) {
+      segmentIndex = index;
+      var segment = config.segments[index];
+      audio.src = segment.file;
+      audio.playbackRate = Number(speedSelect.value);
+      activateSegment(index);
+      status.textContent = "Part " + (index + 1) + " of " + config.segments.length + ": following highlighted lines.";
+    }
+
+    function playCurrent() {
+      shouldContinue = true;
+      if (finished) {
+        finished = false;
+        completedSeconds = 0;
+        loadSegment(0);
+        audio.currentTime = 0;
+      }
+      if (!audio.src) loadSegment(segmentIndex);
+      audio.playbackRate = Number(speedSelect.value);
+      var started = audio.play();
+      if (started && typeof started.catch === "function") {
+        started.catch(function () { status.textContent = "Playback could not start. Try pressing play again."; setPlaying(false); });
+      }
+    }
+
+    playButton.addEventListener("click", function () {
+      if (!audio.paused) {
+        shouldContinue = false;
+        audio.pause();
+      } else {
+        playCurrent();
+      }
+    });
+
+    restartButton.addEventListener("click", function () {
+      audio.pause();
+      finished = false;
+      completedSeconds = 0;
+      loadSegment(0);
+      audio.currentTime = 0;
+      progress.style.width = "0%";
+      playCurrent();
+    });
+
+    speedSelect.addEventListener("change", function () { audio.playbackRate = Number(speedSelect.value); });
+    audio.addEventListener("play", function () { setPlaying(true); });
+    audio.addEventListener("pause", function () { setPlaying(false); });
+    audio.addEventListener("timeupdate", function () {
+      var total = totalDuration();
+      if (total > 0) progress.style.width = Math.min(100, ((completedSeconds + audio.currentTime) / total) * 100) + "%";
+    });
+    audio.addEventListener("ended", function () {
+      completedSeconds += Number(config.segments[segmentIndex].duration_seconds || audio.duration || 0);
+      if (shouldContinue && segmentIndex + 1 < config.segments.length) {
+        loadSegment(segmentIndex + 1);
+        playCurrent();
+      } else {
+        shouldContinue = false;
+        finished = true;
+        setPlaying(false);
+        progress.style.width = "100%";
+        clearActive();
+        status.textContent = "Conversation complete.";
+      }
+    });
+    audio.addEventListener("error", function () { shouldContinue = false; setPlaying(false); status.textContent = "This audio part could not be loaded."; });
+  });
+}());

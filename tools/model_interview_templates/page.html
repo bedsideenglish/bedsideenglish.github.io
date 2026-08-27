@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- Generated from {{SOURCE_CASE}} · case SHA-256 {{SOURCE_SHA256}} · transcript SHA-256 {{TRANSCRIPT_SHA256}}. Edit the manifest or template, not this file. -->
+<html lang="en-US">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK1EXM7ZKH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FK1EXM7ZKH');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5efdc">
+  <title>{{PAGE_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="{{CANONICAL_URL}}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bedside English">
+  <meta property="og:title" content="{{H1}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL_URL}}">
+  <meta property="og:image" content="https://bedsideenglish.github.io/assets/social/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{H1}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">{{STRUCTURED_DATA}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#conversation">Skip to the conversation</a>
+  <header class="site-header">
+    <nav class="shell nav" aria-label="Primary navigation">
+      <a class="brand" href="../../" aria-label="Bedside English home"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span>Bedside English</span></a>
+      <div class="nav-links"><a href="../">Model interviews</a><a href="../../learning/">Learning guides</a><a class="store-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" decoding="async"></a></div>
+    </nav>
+  </header>
+  <main>
+    <article class="model-page" data-case-id="{{CASE_ID}}" data-source-sha256="{{SOURCE_SHA256}}" data-transcript-sha256="{{TRANSCRIPT_SHA256}}" data-audio-transcript-sha256="{{AUDIO_TRANSCRIPT_SHA256}}" data-reviewed-on="{{REVIEWED_ON}}">
+      <header class="case-hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow">{{SPECIALTY}} · Model history</p>
+          <h1>{{H1}}</h1>
+          <dl class="case-facts"><div><dt>Setting</dt><dd>{{SETTING}}</dd></div><div><dt>Patient</dt><dd>{{PATIENT_CARD}}</dd></div><div><dt>Listen</dt><dd>{{ESTIMATED_MINUTES}}</dd></div></dl>
+        </div>
+        <aside class="audio-player" data-conversation-player>
+          <p class="audio-kicker">Doctor + {{AUDIO_ROLE_LABEL}} audio</p>
+          <div class="audio-title-row"><strong>Hear the complete history</strong><span data-duration>{{AUDIO_DURATION}}</span></div>
+          <div class="wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="audio-controls">
+            <button class="play-button" type="button" data-play aria-pressed="false"><span aria-hidden="true">▶</span><span data-play-label>Play conversation</span></button>
+            <button class="quiet-button" type="button" data-restart>Restart</button>
+            <label><span>Speed</span><select data-speed aria-label="Playback speed"><option value="0.85">0.85×</option><option value="1" selected>1×</option><option value="1.15">1.15×</option></select></label>
+          </div>
+          <div class="progress-track" aria-hidden="true"><span data-progress></span></div>
+          <p class="audio-status" data-status role="status" aria-live="polite">Ready. The transcript follows below.</p>
+          <noscript><p>Enable JavaScript to use the continuous player. Individual WAV parts remain available in the page source.</p></noscript>
+          <script type="application/json" data-audio-config>{{AUDIO_CONFIG}}</script>
+        </aside>
+      </header>
+
+      <section class="conversation-section" id="conversation" aria-labelledby="conversation-title">
+        <div class="conversation-shell shell">
+          <div class="section-intro"><p class="section-label">Model interview</p><h2 id="conversation-title">Follow the clinical thread</h2><p>No commentary between lines. Listen first, or read straight through.</p></div>
+          <ol class="transcript" data-transcript>{{TRANSCRIPT}}</ol>
+        </div>
+      </section>
+
+      <section class="closing-grid shell" aria-label="Interview structure">
+        <div><p class="section-label">Flow at a glance</p><h2>The route through the history</h2><ol class="flow-list">{{FLOW}}</ol></div>
+        <aside class="do-not-miss"><p class="section-label">Do not miss</p><h2>Questions that change the next step</h2><ul>{{DO_NOT_MISS}}</ul></aside>
+      </section>
+
+      <section class="source-section shell" aria-labelledby="source-title">
+        <div><p class="section-label">Editorial record</p><h2 id="source-title">Tied to one reviewed case</h2></div>
+        <div><p>This model uses a fictional Bedside English case as its source. The page and pre-generated WAV audio are checked against the same transcript and source-case fingerprints.</p><ul class="source-list">{{SOURCES}}</ul><p class="review-date">Editorial update: <time datetime="{{REVIEWED_ON}}">{{REVIEWED_ON_DISPLAY}}</time></p></div>
+      </section>
+
+      <aside class="educational-note shell"><strong>Educational use only.</strong> This is a focused communication example, not medical advice or a complete diagnostic protocol. Follow your local guidance and clinical supervision.</aside>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="shell footer-row"><span>Bedside English · Clinical communication, spoken aloud</span><div><a href="../">Model interviews</a><a href="../../privacy.html">Privacy</a><a href="../../">Home</a></div></div></footer>
+  <script src="../player.js" defer></script>
+</body>
+</html>

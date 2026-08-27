@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "psych/psych_003.json",
+  "source_sha256": "9ccd8b11907b977275f4c271fed2d489e74f8cc90ed500dc24d7b1fa9d04f179",
+  "transcript_sha256": "ef47b8ad810360f31102295def4bc0542145030b2c3d39a184ce0499d1c4425f",
+  "doctor_voice": "Vindemiatrix",
+  "patient_voice": "Achernar",
+  "patient_speaker": "Patient",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 7,
+      "transcript_sha256": "ee6f5d09e72f2847b7ddbc1a1301883bb737372215dcdbbc91f35ff3aa061265",
+      "wav_sha256": "6245533f8b7bf0c24b614f43ecf3b0227e591ca7780aa1ed80e003152dcd9eac",
+      "duration_seconds": 56.92
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 8,
+      "turn_end": 15,
+      "transcript_sha256": "ef49afb8b718052de93209825aa0f4e55d2aba14807c45ee3a736784aa662a31",
+      "wav_sha256": "0632877fff8c7ded0b1618ca27390c4905f6a510a3dcbfbb118ae45488be0e0d",
+      "duration_seconds": 51.56
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 16,
+      "turn_end": 23,
+      "transcript_sha256": "d761a8ec6eee09c5ceafc0bbb2b0c40035699751549c90e95c08ea2671e4bacd",
+      "wav_sha256": "85f9162db16d0300fbc4dd6abfd83853198f4c6e47285dccaa70bb837d6e26a1",
+      "duration_seconds": 55.76
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 24,
+      "turn_end": 31,
+      "transcript_sha256": "e328062594171856fd8c9708df9f42396fc9792e0a38a4710e52832ce2253820",
+      "wav_sha256": "4aa1df1fadb63f61a6fd88cd3685a364bff3ada2f433e4db8d457ed480c6e727",
+      "duration_seconds": 55.76
+    },
+    {
+      "file": "part-05.wav",
+      "turn_start": 32,
+      "turn_end": 39,
+      "transcript_sha256": "8e121ead066b9c608dc0882d89b05b95198a7796b1b5dfc90901e8ef0ce1e1fd",
+      "wav_sha256": "a11989a52fc2ae1ccd768ff05a2af823e991e83b9aedc15c3f093b9465e6e887",
+      "duration_seconds": 77.68
+    }
+  ]
+}
