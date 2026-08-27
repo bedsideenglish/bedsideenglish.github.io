@@ -31,6 +31,7 @@ SITE_ORIGIN = "https://bedsideenglish.github.io"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ID_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 PLACEHOLDER_RE = re.compile(r"{{([A-Z0-9_]+)}}")
+WORD_COUNT_RE = re.compile(r"\b[\w'-]+\b")
 FRAMEWORKS = {
     "SBAR": {
         "expanded": "Situation, Background, Assessment, Recommendation",
@@ -72,7 +73,7 @@ def escaped(value: Any) -> str:
 
 
 def word_count(value: str) -> int:
-    return len(re.findall(r"\b[\w'-]+\b", value))
+    return len(WORD_COUNT_RE.findall(value))
 
 
 def require_text(data: dict[str, Any], key: str, where: str) -> str:
