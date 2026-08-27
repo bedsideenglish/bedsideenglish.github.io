@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
 REQUIRED_META_NAMES = {"description", "robots", "twitter:card", "twitter:title", "twitter:description"}
 REQUIRED_META_PROPERTIES = {"og:type", "og:site_name", "og:title", "og:description", "og:url"}
+TEMPLATE_MARKER_RE = re.compile(r"{{[A-Z0-9_]+}}")
+TITLE_RE = re.compile(r"<title>(.*?)</title>", re.DOTALL)
 
 
 class DocumentParser(HTMLParser):
@@ -133,7 +135,7 @@ def target_file(page_path: Path, href: str) -> tuple[Path, str] | None:
 def check_document(path: Path, expected_canonical: str, cache: dict[Path, DocumentParser]) -> list[str]:
     errors: list[str] = []
     source = path.read_text(encoding="utf-8")
-    if re.search(r"{{[A-Z0-9_]+}}", source):
+    if TEMPLATE_MARKER_RE.search(source):
         errors.append("contains an unresolved template marker")
     if "Lorem ipsum" in source or "TODO" in source:
         errors.append("contains placeholder copy")
@@ -226,7 +228,7 @@ def main() -> int:
             errors.append(f"communication/{slug}/index.html: {error}")
         source = path.read_text(encoding="utf-8")
         parsed = cache[path.resolve()]
-        title_match = re.search(r"<title>(.*?)</title>", source, re.DOTALL)
+        title_match = TITLE_RE.search(source)
         if not title_match or html.unescape(title_match.group(1).strip()) != page["title"]:
             errors.append(f"communication/{slug}/index.html: title differs from manifest")
         expected_image = "https://bedsideenglish.github.io/assets/social/team-communication-og.png"
