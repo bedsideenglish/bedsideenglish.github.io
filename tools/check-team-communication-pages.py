@@ -18,6 +18,8 @@ VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "li
 REQUIRED_META_NAMES = {"description", "robots", "twitter:card", "twitter:title", "twitter:description"}
 REQUIRED_META_PROPERTIES = {"og:type", "og:site_name", "og:title", "og:description", "og:url"}
 
+TEMPLATE_MARKER_RE = re.compile(r"{{[A-Z0-9_]+}}")
+
 
 class DocumentParser(HTMLParser):
     def __init__(self) -> None:
@@ -133,7 +135,7 @@ def target_file(page_path: Path, href: str) -> tuple[Path, str] | None:
 def check_document(path: Path, expected_canonical: str, cache: dict[Path, DocumentParser]) -> list[str]:
     errors: list[str] = []
     source = path.read_text(encoding="utf-8")
-    if re.search(r"{{[A-Z0-9_]+}}", source):
+    if TEMPLATE_MARKER_RE.search(source):
         errors.append("contains an unresolved template marker")
     if "Lorem ipsum" in source or "TODO" in source:
         errors.append("contains placeholder copy")
