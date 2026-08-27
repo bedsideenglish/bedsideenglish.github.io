@@ -76,6 +76,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Checkout Android repo for cases
+        uses: actions/checkout@v4
+        with:
+          repository: bedsideenglish/Medvoicetrainer-android-app-version
+          path: Medvoicetrainer-android-app-version
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
