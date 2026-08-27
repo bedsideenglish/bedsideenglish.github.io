@@ -81,7 +81,7 @@ jobs:
           python-version: '3.x'
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
       - run: python tools/sync-landing-pages.py
       - run: python tools/test_generate_learning_pages.py
       - run: python tools/generate-learning-pages.py --check
