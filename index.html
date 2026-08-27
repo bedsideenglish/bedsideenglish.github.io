@@ -188,6 +188,17 @@
     .tier-link{display:inline-block;margin-block-start:var(--space-sm);font-size:var(--text-xs);font-weight:700;color:var(--color-accent);text-decoration:none}
     .tier-link:hover{text-decoration:underline}
 
+    .resources{padding-block:var(--space-3xl);background:var(--color-paper-2)}
+    .resources-head{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:var(--space-xl);align-items:end}
+    .resources-head p:last-child{max-width:48ch;margin:0;color:var(--color-ink-2);font-size:var(--text-lg)}
+    .resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-sm);margin-block-start:var(--space-xl)}
+    .resource-card{min-height:17rem;display:flex;flex-direction:column;padding:var(--space-lg);border:var(--rule-hairline) solid var(--color-rule-strong);background:var(--color-paper-3);text-decoration:none}
+    .resource-card .resource-label{color:var(--color-accent);font-size:var(--text-xs);font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    .resource-card h3{margin:var(--space-lg) 0 var(--space-xs);font-family:var(--font-display);font-size:var(--text-2xl);font-weight:400;line-height:1.05}
+    .resource-card p{margin:0;color:var(--color-ink-2);font-size:var(--text-sm)}
+    .resource-card .resource-link{margin-block-start:auto;padding-block-start:var(--space-md);color:var(--color-ink);font-weight:800}
+    .resource-card:hover{border-color:var(--color-accent)}
+
     .faq{padding-block:var(--space-3xl);background:var(--color-ink);color:var(--color-paper)}
     .faq-grid{display:grid;grid-template-columns:minmax(0,0.7fr) minmax(0,1.3fr);gap:clamp(var(--space-lg),7vw,var(--space-3xl));align-items:start}
     .faq .kicker{color:var(--color-accent-2)}
@@ -215,7 +226,7 @@
       .hero-grid{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
       .hero-copy-col{display:contents}.hero-lead{order:1}.stage{order:2}.hero-tail{order:3}
       .stage{justify-self:center}.callout{display:none}
-      .problem-grid,.fix-grid,.terms,.faq-grid{grid-template-columns:minmax(0,1fr)}
+      .problem-grid,.fix-grid,.terms,.faq-grid,.resources-head{grid-template-columns:minmax(0,1fr)}
       .loop-stage{grid-template-columns:minmax(0,1fr)}
       .loop-device{grid-row:1;position:static;justify-self:center}
       .steps{grid-row:2}.loop-device .device{--dw:16rem}
@@ -234,6 +245,7 @@
       .step{grid-template-columns:1.75rem minmax(0,1fr)}
       .step b{font-size:clamp(1.4rem,7vw,2rem)}
       .fix-lines{font-size:var(--text-lg)}
+      .resource-grid{grid-template-columns:minmax(0,1fr)}
       footer{padding-block-end:var(--space-3xl)}
       .mobile-bar{position:fixed;z-index:60;inset-inline:var(--space-xs);inset-block-end:var(--space-xs);min-height:3.25rem;display:flex;align-items:center;justify-content:center;gap:var(--space-xs);padding-inline:var(--space-sm);border:var(--rule-hairline) solid var(--color-rule-strong);background:var(--color-paper-glass);box-shadow:0 1rem 2rem var(--color-shadow-deep);color:var(--color-ink);font-size:var(--text-xs);font-weight:700;transform:translateY(150%);transition:transform var(--dur-medium) var(--ease-out)}
       .mobile-bar.is-visible{transform:none}
@@ -489,6 +501,35 @@
     </div>
   </section>
 
+  <section class="resources" aria-labelledby="resources-title">
+    <div class="shell">
+      <div class="resources-head">
+        <div><p class="kicker">Free learning library</p><h2 id="resources-title">Study the words before you need them.</h2></div>
+        <p>Use worked examples to prepare, then return to the app and say the case in your own words.</p>
+      </div>
+      <div class="resource-grid">
+        <a class="resource-card" href="case-presentations/">
+          <span class="resource-label">Present the case</span>
+          <h3>From patient chart to oral presentation</h3>
+          <p>Full scripts, clinical compression, uncertainty language, and attending questions built from simulated patient cases.</p>
+          <span class="resource-link">Study case presentations →</span>
+        </a>
+        <a class="resource-card" href="learning/">
+          <span class="resource-label">Ask the patient</span>
+          <h3>Clinical history questions in natural English</h3>
+          <p>Patient-friendly questions grouped by purpose, with wording explanations and speaking patterns.</p>
+          <span class="resource-link">Open patient guides →</span>
+        </a>
+        <a class="resource-card" href="communication/">
+          <span class="resource-label">Talk to the team</span>
+          <h3>Consults, handoffs, and check-backs</h3>
+          <p>Chart-based SBAR, I-PASS, and critical-result examples that make the next action explicit.</p>
+          <span class="resource-link">Open team guides →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="faq" id="faq">
     <div class="shell faq-grid">
       <div>
@@ -546,6 +587,7 @@
       <a href="privacy.html" data-i18n="privacy">Privacy policy</a>
       <a href="everyday-english/">Interactive listening guides</a>
       <a href="learning/">Clinical English guides</a>
+      <a href="case-presentations/">Case presentation guides</a>
       <a href="communication/">Team communication guides</a>
       <a href="desktop/index.html" data-i18n="desktop">Desktop app</a>
       <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer">GitHub ↗</a>

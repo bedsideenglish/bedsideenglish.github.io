@@ -1,0 +1,80 @@
+{
+  "slug": "condition-oral-case-presentation",
+  "title": "Condition Oral Case Presentation Example",
+  "h1": "Condition oral case presentation",
+  "meta_description": "Write a specific 110-170 character summary of the worked script and original learning value.",
+  "lede": "State the chart-to-speech learning task and the important clinical boundary.",
+  "published_on": "YYYY-MM-DD",
+  "reviewed_on": "YYYY-MM-DD",
+  "library_order": 99,
+  "search": {
+    "primary_query": "condition oral case presentation",
+    "supporting_queries": ["supporting query one", "supporting query two", "supporting query three"],
+    "reader_task": "Describe what the reader should be able to present after using the guide."
+  },
+  "source": {
+    "case_id": "system_000",
+    "relative_path": "system/system_000.json",
+    "facts": [
+      {"id": "age", "label": "Age", "path": "age"},
+      {"id": "chief_complaint", "label": "Chief complaint", "path": "chief_complaint"}
+    ]
+  },
+  "scenario": {
+    "setting": "Name the exact presentation moment.",
+    "audience": "Name the listener and decision.",
+    "available_data": "List supplied and missing data.",
+    "target_duration": "About 90 seconds"
+  },
+  "quick_question": "How should I present this case?",
+  "quick_answer": "Write a 35-95 word direct answer describing the sequence, priority, leading assessment, uncertainty, and close.",
+  "sections": [
+    {"id": "opening", "name": "Opening one-liner", "job": "One sentence job", "spoken": "Source-grounded speech.", "fact_refs": ["age", "chief_complaint"], "why": "Why it belongs.", "language_note": {"less_clear": "Less clear wording.", "preferred": "Preferred wording.", "why": "Reason."}},
+    {"id": "hpi", "name": "History of present illness", "job": "One section job", "spoken": "Source-grounded speech.", "fact_refs": ["chief_complaint"], "why": "Why it belongs.", "language_note": {"less_clear": "Less clear wording.", "preferred": "Preferred wording.", "why": "Reason."}},
+    {"id": "history", "name": "Relevant background", "job": "One section job", "spoken": "Source-grounded speech.", "fact_refs": ["age"], "why": "Why it belongs.", "language_note": {"less_clear": "Less clear wording.", "preferred": "Preferred wording.", "why": "Reason."}},
+    {"id": "data", "name": "Objective data", "job": "One section job", "spoken": "Source-grounded speech or an explicit absence statement.", "fact_refs": ["age"], "why": "Why it belongs.", "language_note": {"less_clear": "Less clear wording.", "preferred": "Preferred wording.", "why": "Reason."}},
+    {"id": "assessment", "name": "Assessment", "job": "One section job", "spoken": "Ranked assessment with evidence.", "fact_refs": ["chief_complaint"], "why": "Why it belongs.", "language_note": {"less_clear": "Less clear wording.", "preferred": "Preferred wording.", "why": "Reason."}},
+    {"id": "plan", "name": "Plan", "job": "One section job", "spoken": "Bounded plan.", "fact_refs": ["chief_complaint"], "why": "Why it belongs.", "language_note": {"less_clear": "Less clear wording.", "preferred": "Preferred wording.", "why": "Reason."}}
+  ],
+  "known_gaps": [
+    {"label": "Missing information", "missing_paths": ["vitals"], "say": "State what is unknown.", "why": "Explain why it matters."},
+    {"label": "Another missing domain", "missing_paths": ["allergies"], "say": "State what is unknown.", "why": "Explain why it matters."}
+  ],
+  "compression": [
+    {"source_detail": "Detail", "decision": "Lead", "why": "Reason"},
+    {"source_detail": "Detail", "decision": "Include", "why": "Reason"},
+    {"source_detail": "Detail", "decision": "Compress", "why": "Reason"},
+    {"source_detail": "Detail", "decision": "Omit", "why": "Reason"}
+  ],
+  "follow_ups": [
+    {"question": "Likely question?", "answer": "Direct answer with evidence.", "fact_refs": ["chief_complaint"]},
+    {"question": "Likely question?", "answer": "Direct answer with evidence.", "fact_refs": ["chief_complaint"]},
+    {"question": "Likely question?", "answer": "Direct answer with evidence.", "fact_refs": ["chief_complaint"]}
+  ],
+  "checklist": ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"],
+  "mistakes": [
+    {"problem": "Problem", "repair": "Repair"},
+    {"problem": "Problem", "repair": "Repair"},
+    {"problem": "Problem", "repair": "Repair"}
+  ],
+  "faq": [
+    {"question": "Question?", "answer": "Answer."},
+    {"question": "Question?", "answer": "Answer."},
+    {"question": "Question?", "answer": "Answer."}
+  ],
+  "sources": [
+    {"title": "Source title", "publisher": "Publisher", "url": "https://example.org/source", "accessed_on": "YYYY-MM-DD"},
+    {"title": "Source title", "publisher": "Publisher", "url": "https://example.org/source-2", "accessed_on": "YYYY-MM-DD"},
+    {"title": "Source title", "publisher": "Publisher", "url": "https://example.org/source-3", "accessed_on": "YYYY-MM-DD"}
+  ],
+  "review": {
+    "source_case_checked": false,
+    "no_facts_invented": false,
+    "clinical_reasoning_checked": false,
+    "presentation_flow_read_aloud": false,
+    "us_english_checked": false,
+    "search_intent_checked": false,
+    "human_value_checked": false,
+    "safety_boundary_checked": false
+  }
+}

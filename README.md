@@ -58,6 +58,29 @@ as `practise`, `felt sick`, or `open your bowels`, and on presupposition markers
 or `you mentioned`. These deterministic checks are a review aid, not a replacement for reading each
 question for subtler leading assumptions before publication.
 
+## Oral case-presentation guides
+
+Worked chart-to-speech examples live under `case-presentations/`. Each page is locked to one reviewed
+patient-case JSON, identifies the exact data available at the presentation moment, and explicitly
+preserves missing vital signs, examination findings, allergies, or tests as unknown. The public value
+is not just a model script: each guide explains clinical compression, sentence purpose, wording,
+uncertainty, likely attending questions, and common repairs.
+
+The reviewed allowlist is `case-presentation-pages.json`. Templates, the starter manifest, generator,
+QA checker, and regression tests live under `tools/`; the complete human and AI authoring standard is
+in `docs/case-presentation-content-system.md`.
+
+Run the publication gate:
+
+```powershell
+python tools/test_generate_case_presentation_pages.py
+python tools/generate-case-presentation-pages.py
+python tools/generate-case-presentation-pages.py --check
+python tools/check-case-presentation-pages.py
+```
+
+Generate one manifest entry during editing with `--page <slug>`. Do not edit generated HTML directly.
+
 ## Healthcare team communication guides
 
 Team-to-team content is managed separately under `communication/`. It uses a chart-to-message model rather than the patient-history question template: every guide includes a fictional source chart, framework steps, a generated complete script, wording contrasts, a receiver check-back, and source-backed editorial notes.

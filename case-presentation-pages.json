@@ -1,0 +1,421 @@
+{
+  "pages": [
+    {
+      "slug": "acute-coronary-syndrome-oral-case-presentation",
+      "title": "Acute Coronary Syndrome Oral Case Presentation Example",
+      "h1": "Acute coronary syndrome oral case presentation",
+      "meta_description": "Study a 90-second acute coronary syndrome oral case presentation with a full script, chart-to-speech reasoning, wording notes, and attending questions.",
+      "lede": "A source-locked example showing how to move from a high-risk chest-pain history and serial results to a concise assessment and plan—without inventing the missing examination.",
+      "published_on": "2026-08-27",
+      "reviewed_on": "2026-08-27",
+      "library_order": 1,
+      "search": {
+        "primary_query": "acute coronary syndrome oral case presentation",
+        "supporting_queries": [
+          "chest pain case presentation example",
+          "NSTEMI oral presentation medical student",
+          "how to present a patient on rounds"
+        ],
+        "reader_task": "Turn a simulated high-risk chest-pain chart into a concise oral presentation and prepare for immediate follow-up questions."
+      },
+      "source": {
+        "case_id": "cardio_001",
+        "relative_path": "cardio/cardio_001.json",
+        "facts": [
+          {"id": "patient_name", "label": "Patient name", "path": "patient_name"},
+          {"id": "age", "label": "Age", "path": "age"},
+          {"id": "gender", "label": "Gender", "path": "gender"},
+          {"id": "chief_complaint", "label": "Chief complaint", "path": "chief_complaint"},
+          {"id": "hpi", "label": "HPI", "path": "hpi_details"},
+          {"id": "ideas", "label": "Patient idea", "path": "ideas"},
+          {"id": "concerns", "label": "Patient concern", "path": "concerns"},
+          {"id": "pmh", "label": "Past medical history", "path": "pmh"},
+          {"id": "medications", "label": "Medications", "path": "medications"},
+          {"id": "social", "label": "Social history", "path": "social_hx"},
+          {"id": "ecg", "label": "Initial ECG", "path": "investigation_events.0.results.0.value"},
+          {"id": "troponin_initial", "label": "Initial high-sensitivity troponin T", "path": "investigation_events.1.results.0.value"},
+          {"id": "troponin_unit", "label": "Troponin unit", "path": "investigation_events.1.results.0.unit"},
+          {"id": "troponin_initial_range", "label": "Troponin reference range", "path": "investigation_events.1.results.0.reference_range"},
+          {"id": "troponin_repeat", "label": "Two-hour high-sensitivity troponin T", "path": "investigation_events.1.results.1.value"},
+          {"id": "troponin_trend", "label": "Troponin trend", "path": "investigation_events.1.results.1.note"},
+          {"id": "core_diagnosis", "label": "Core diagnostic concept", "path": "clinical_knowledge.core_concepts.0"},
+          {"id": "management", "label": "Management principle", "path": "clinical_knowledge.management_principles.0"},
+          {"id": "management_context", "label": "Context-dependent management", "path": "clinical_knowledge.management_principles.2"},
+          {"id": "dangerous_differential", "label": "Dangerous differential boundary", "path": "clinical_knowledge.boundaries_and_exceptions.1"}
+        ]
+      },
+      "scenario": {
+        "setting": "An emergency-department presentation after the initial ECG and the two-hour troponin result are available.",
+        "audience": "A supervising resident or attending who needs a prioritized new-patient presentation.",
+        "available_data": "History, medication and social history, initial ECG, and serial high-sensitivity troponin T. Vital signs, allergies, and examination findings are not supplied.",
+        "target_duration": "About 90 seconds"
+      },
+      "quick_question": "How should I present this chest-pain case on rounds?",
+      "quick_answer": "Lead with the patient’s age, major cardiovascular risks, and two hours of ongoing pain at rest. Give the discriminating pain features, then only the relevant background. State the lateral ST depression and dynamic troponin rise before committing to a leading diagnosis of non-ST-elevation acute coronary syndrome, likely NSTEMI. End with immediate priorities, dangerous alternatives, and the important data that remain unknown.",
+      "sections": [
+        {
+          "id": "opening",
+          "name": "Opening one-liner",
+          "job": "Identify the patient and make the risk audible immediately",
+          "spoken": "Mr. Johnson is a 58-year-old man with hypertension, type 2 diabetes, and active tobacco use who presents with two hours of chest pain at rest.",
+          "fact_refs": ["patient_name", "age", "gender", "chief_complaint", "pmh", "social"],
+          "why": "Age, vascular risk, acute time course, and pain at rest change urgency and frame every detail that follows.",
+          "language_note": {
+            "less_clear": "This is a 58-year-old male, known case of hypertension and diabetes, complaining of chest pain.",
+            "preferred": "Mr. Johnson is a 58-year-old man with hypertension and type 2 diabetes who presents with two hours of chest pain at rest.",
+            "why": "A person-first noun and an active presenting phrase sound more natural; the time course and rest onset carry more clinical signal than ‘known case of.’"
+          }
+        },
+        {
+          "id": "hpi",
+          "name": "History of present illness",
+          "job": "Present the features that support or challenge myocardial ischemia",
+          "spoken": "The pain began at rest, is substernal, rates 7 out of 10, and radiates to his left arm. It has not improved with antacids. He initially wondered whether it was heartburn, but he is worried about a heart attack because his father died of an MI at age 62.",
+          "fact_refs": ["hpi", "ideas", "concerns"],
+          "why": "Location, radiation, rest onset, persistence despite antacids, and the patient’s concern are meaningful; unrelated review-of-systems detail would dilute this signal.",
+          "language_note": {
+            "less_clear": "The pain is radiating in character and antacids did not relieve him.",
+            "preferred": "The substernal pain radiates to his left arm and has not improved with antacids.",
+            "why": "Pain radiates; a person is relieved. The preferred version keeps the symptom as the grammatical subject and is easier to follow aloud."
+          }
+        },
+        {
+          "id": "history",
+          "name": "Relevant background",
+          "job": "Compress risk factors, medications, and social context",
+          "spoken": "His history includes hypertension for five years and type 2 diabetes for three years. He takes metformin 1,000 milligrams twice daily and lisinopril 10 milligrams daily. He has a 20-pack-year smoking history and currently smokes; he drinks about two beers nightly.",
+          "fact_refs": ["pmh", "medications", "social"],
+          "why": "These comorbidities and tobacco exposure change pretest probability and management context. Retirement does not change the immediate assessment, so it can wait.",
+          "language_note": {
+            "less_clear": "He is on his usual diabetes and blood-pressure medicines.",
+            "preferred": "He takes metformin 1,000 milligrams twice daily and lisinopril 10 milligrams daily.",
+            "why": "Expanding dosing abbreviations is clearer for an international clinical audience and safer when spoken."
+          }
+        },
+        {
+          "id": "data",
+          "name": "Objective data",
+          "job": "State the decisive results and their trend",
+          "spoken": "The initial ECG shows sinus rhythm with 1 millimeter of horizontal ST depression in V4 through V6 and no ST elevation. High-sensitivity troponin T was 84 nanograms per liter on arrival, above the 0-to-14 reference range, and rose to 176 at two hours.",
+          "fact_refs": ["ecg", "troponin_initial", "troponin_unit", "troponin_initial_range", "troponin_repeat", "troponin_trend"],
+          "why": "The lateral ST depression and rising troponin convert a concerning symptom story into a much more specific working diagnosis. The direction of change matters as much as the individual values.",
+          "language_note": {
+            "less_clear": "Troponin was positive and the ECG had changes.",
+            "preferred": "Troponin rose from 84 to 176 nanograms per liter over two hours, and the ECG shows horizontal ST depression in V4 through V6.",
+            "why": "Exact values, timing, and leads let the listener judge the evidence instead of accepting a vague interpretation."
+          }
+        },
+        {
+          "id": "assessment",
+          "name": "Assessment",
+          "job": "Commit to a leading diagnosis and show why",
+          "spoken": "My leading diagnosis is non-ST-elevation acute coronary syndrome, most likely NSTEMI, based on ischemic pain at rest, lateral ST depression, and a dynamic troponin rise. Aortic dissection and pulmonary embolism remain dangerous alternatives to reassess if the history or examination suggests them.",
+          "fact_refs": ["hpi", "ecg", "troponin_initial", "troponin_unit", "troponin_repeat", "troponin_trend", "core_diagnosis", "dangerous_differential"],
+          "why": "The assessment commits, names the evidence, and keeps only time-critical alternatives active. It does not present a long unranked differential.",
+          "language_note": {
+            "less_clear": "This is ACS until proven otherwise; differentials include STEMI, NSTEMI, unstable angina, dissection, PE, and reflux.",
+            "preferred": "My leading diagnosis is non-ST-elevation acute coronary syndrome, most likely NSTEMI, because of the ischemic pain, ST depression, and dynamic troponin rise.",
+            "why": "The preferred version ranks the diagnosis and connects it to evidence; the less-clear version mixes subtypes and alternatives without showing reasoning."
+          }
+        },
+        {
+          "id": "plan",
+          "name": "Plan",
+          "job": "Name immediate priorities while preserving clinical boundaries",
+          "spoken": "I would keep him on a monitored acute chest-pain pathway, assess hemodynamic stability, allergies, bleeding risk, and contraindications, and obtain urgent emergency and cardiology input. Aspirin should be given when appropriate and not contraindicated; further antithrombotic and invasive management should follow the complete assessment and local protocol.",
+          "fact_refs": ["management", "management_context", "dangerous_differential"],
+          "why": "The plan is urgent and directional without inventing contraindications, doses, examination findings, or an institution-specific pathway.",
+          "language_note": {
+            "less_clear": "I will start the ACS protocol and send him to the cath lab.",
+            "preferred": "I would keep him on a monitored acute chest-pain pathway and obtain urgent cardiology and emergency input while checking contraindications and bleeding risk.",
+            "why": "The preferred wording states the immediate actions supported by the case and leaves invasive timing to findings, risk, and local protocol."
+          }
+        }
+      ],
+      "known_gaps": [
+        {
+          "label": "Vital signs and focused examination",
+          "missing_paths": ["vitals", "physical_exam"],
+          "say": "Vital signs and examination findings are not provided in this simulation, so I would assess his hemodynamic and respiratory status immediately.",
+          "why": "Do not say that the patient is stable, comfortable, or euvolemic unless you have measured or examined it."
+        },
+        {
+          "label": "Allergies and contraindications",
+          "missing_paths": ["allergies"],
+          "say": "Allergies, bleeding history, and treatment contraindications still need to be verified.",
+          "why": "Medication decisions cannot be presented as unconditional when these safety facts are absent."
+        }
+      ],
+      "compression": [
+        {"source_detail": "Two hours of pain at rest with left-arm radiation", "decision": "Lead", "why": "Time course and ischemic features define the acute problem."},
+        {"source_detail": "Hypertension, diabetes, smoking, and family history", "decision": "Include", "why": "These details raise cardiovascular risk and strengthen the problem representation."},
+        {"source_detail": "Initial belief that the pain was heartburn", "decision": "Compress", "why": "The idea matters for patient perspective, but it should not distract from urgency."},
+        {"source_detail": "Retired employment status", "decision": "Omit", "why": "It does not change the immediate emergency assessment in this presentation."},
+        {"source_detail": "Lateral ST depression and serial troponin rise", "decision": "Lead", "why": "These are the decisive objective findings and should immediately precede the assessment."}
+      ],
+      "follow_ups": [
+        {
+          "question": "Why are you calling this NSTEMI rather than unstable angina?",
+          "answer": "The case has a significant rise in high-sensitivity troponin T from 84 to 176 nanograms per liter together with an ischemic symptom pattern and ST depression. That myocardial-injury evidence favors NSTEMI over unstable angina, while the complete clinical assessment must still exclude other causes of troponin elevation.",
+          "fact_refs": ["hpi", "ecg", "troponin_initial", "troponin_unit", "troponin_repeat", "troponin_trend"]
+        },
+        {
+          "question": "What information do you need before finalizing treatment?",
+          "answer": "I still need current vital signs, cardiopulmonary examination, oxygenation, allergies, bleeding history, renal function, treatment contraindications, and the broader emergency assessment. Those items are not present in the source case and should not be assumed.",
+          "fact_refs": ["management_context"]
+        },
+        {
+          "question": "Which dangerous alternatives are still important?",
+          "answer": "Aortic dissection and pulmonary embolism remain important if their characteristic history or examination findings emerge. The current pattern strongly supports acute coronary syndrome, but the source case does not provide a complete examination to close those branches.",
+          "fact_refs": ["core_diagnosis", "dangerous_differential"]
+        }
+      ],
+      "checklist": [
+        "Open with age, relevant risks, acute problem, and time course.",
+        "Organize the HPI around discriminating positives and negatives.",
+        "Keep background details only when they change risk or management.",
+        "Give exact ECG leads, troponin values, and timing.",
+        "State a ranked leading diagnosis and connect it to evidence.",
+        "Name dangerous alternatives selectively, not as a memorized list.",
+        "State missing vital signs, examination, allergies, and contraindications.",
+        "End with immediate priorities and defer specifics to the full assessment and local protocol."
+      ],
+      "mistakes": [
+        {"problem": "Starting with every past diagnosis before saying why the patient is here", "repair": "Put the acute chest pain, its duration, and major cardiovascular risks in the first sentence."},
+        {"problem": "Calling the ECG abnormal and troponin positive", "repair": "Give the affected leads, ST pattern, exact serial values, and interval so the listener can evaluate the evidence."},
+        {"problem": "Listing ACS subtypes as separate unranked differentials", "repair": "Commit to NSTE-ACS, likely NSTEMI, then state the evidence and only the dangerous alternatives still under consideration."},
+        {"problem": "Inventing stability because vital signs are absent", "repair": "Say that hemodynamic and respiratory status must be assessed immediately."}
+      ],
+      "faq": [
+        {"question": "Should I say every medication in an emergency presentation?", "answer": "Give medications that affect the assessment or immediate plan, then be ready with the complete list. Here, diabetes and blood-pressure therapy provide context, while allergy and contraindication status must still be verified."},
+        {"question": "Can I diagnose NSTEMI in the opening sentence?", "answer": "Usually let the opening sentence frame the problem, then present the supporting data before your assessment. If your setting expects a diagnosis-first update, adapt the order to the listener and local convention."},
+        {"question": "How long should this presentation be?", "answer": "This worked example targets about 90 seconds. Actual length varies by setting, acuity, learner level, and supervisor expectations; concise does not mean omitting information needed for immediate safety."}
+      ],
+      "sources": [
+        {"title": "2025 Guideline for the Management of Patients With Acute Coronary Syndromes", "publisher": "American Heart Association", "url": "https://professional.heart.org/en/science-news/2025-guideline-for-the-management-of-patients-with-acute-coronary-syndromes", "accessed_on": "2026-08-27"},
+        {"title": "Feedback on Oral Presentations during Rounds", "publisher": "Stanford Medicine", "url": "https://med.stanford.edu/content/dam/sm/pediatricsclerkship/documents/Structured_Clinical_Observation_Oral_Presentations_on_Rounds.pdf", "accessed_on": "2026-08-27"},
+        {"title": "Clinical Teaching Tools: OMP and SNAPPS", "publisher": "UCSF Medical Education", "url": "https://meded.ucsf.edu/resource/clinical-teaching-tools-omp-and-snapps", "accessed_on": "2026-08-27"}
+      ],
+      "review": {
+        "source_case_checked": true,
+        "no_facts_invented": true,
+        "clinical_reasoning_checked": true,
+        "presentation_flow_read_aloud": true,
+        "us_english_checked": true,
+        "search_intent_checked": true,
+        "human_value_checked": true,
+        "safety_boundary_checked": true
+      }
+    },
+    {
+      "slug": "copd-exacerbation-oral-case-presentation",
+      "title": "COPD Exacerbation Oral Case Presentation Example",
+      "h1": "COPD exacerbation oral case presentation",
+      "meta_description": "Study a COPD exacerbation oral case presentation with a full spoken script, chart compression, uncertainty language, and likely attending questions.",
+      "lede": "A worked respiratory case showing how to distinguish the acute change from baseline COPD, include severity clues and social context, and avoid claiming that missing oxygenation or examination data are normal.",
+      "published_on": "2026-08-27",
+      "reviewed_on": "2026-08-27",
+      "library_order": 2,
+      "search": {
+        "primary_query": "COPD exacerbation oral case presentation",
+        "supporting_queries": [
+          "COPD case presentation example",
+          "respiratory case presentation medical student",
+          "how to present COPD exacerbation on rounds"
+        ],
+        "reader_task": "Turn a simulated COPD history into a focused oral presentation while keeping severity, mimics, and missing objective data explicit."
+      },
+      "source": {
+        "case_id": "pulm_001",
+        "relative_path": "pulm/pulm_001.json",
+        "facts": [
+          {"id": "patient_name", "label": "Patient name", "path": "patient_name"},
+          {"id": "age", "label": "Age", "path": "age"},
+          {"id": "gender", "label": "Gender", "path": "gender"},
+          {"id": "chief_complaint", "label": "Chief complaint", "path": "chief_complaint"},
+          {"id": "hpi", "label": "HPI", "path": "hpi_details"},
+          {"id": "ideas", "label": "Patient idea", "path": "ideas"},
+          {"id": "concerns", "label": "Patient concern", "path": "concerns"},
+          {"id": "expectations", "label": "Patient expectation", "path": "expectations"},
+          {"id": "pmh", "label": "Past medical history", "path": "pmh"},
+          {"id": "medications", "label": "Medications", "path": "medications"},
+          {"id": "social", "label": "Social history", "path": "social_hx"},
+          {"id": "core_definition", "label": "COPD exacerbation definition", "path": "clinical_knowledge.core_concepts.0"},
+          {"id": "oxygen_principle", "label": "Oxygen principle", "path": "clinical_knowledge.core_concepts.1"},
+          {"id": "treatment_principle", "label": "Treatment principle", "path": "clinical_knowledge.core_concepts.2"},
+          {"id": "support_principle", "label": "Ventilatory support principle", "path": "clinical_knowledge.core_concepts.3"},
+          {"id": "severity_assessment", "label": "Severity assessment", "path": "clinical_knowledge.management_principles.0"},
+          {"id": "dangerous_mimic", "label": "Dangerous mimic warning", "path": "clinical_knowledge.dangerous_errors.2"},
+          {"id": "management_boundary", "label": "Management boundary", "path": "clinical_knowledge.boundaries_and_exceptions.0"}
+        ]
+      },
+      "scenario": {
+        "setting": "A same-day acute assessment before vital signs, blood gases, imaging, and examination findings have been added to the simulated chart.",
+        "audience": "A supervising resident or attending deciding how urgently the patient needs further assessment and monitoring.",
+        "available_data": "Symptom history, baseline COPD, current inhalers, tobacco exposure, and living situation. No objective tests or examination are supplied.",
+        "target_duration": "About 100 seconds"
+      },
+      "quick_question": "How should I present this COPD exacerbation case?",
+      "quick_answer": "Start with the acute change from the patient’s COPD baseline: five days of worsening breathlessness, greater sputum volume and purulence, low-grade fever, and rescue-inhaler use every two hours. Add prior exacerbation history, maintenance inhalers, smoking exposure, and the fact that he lives alone. Then give a leading diagnosis, name important mimics, state the missing severity data, and propose an assessment-first plan.",
+      "sections": [
+        {
+          "id": "opening",
+          "name": "Opening one-liner",
+          "job": "Frame the acute deterioration against known COPD",
+          "spoken": "Mr. Roberts is a 65-year-old man with moderate COPD and a 40-pack-year smoking history who presents with five days of worsening breathlessness and productive cough.",
+          "fact_refs": ["patient_name", "age", "gender", "chief_complaint", "hpi", "social"],
+          "why": "The listener immediately hears the chronic substrate, tobacco exposure, acute change, symptom pair, and time course.",
+          "language_note": {
+            "less_clear": "This is a known COPD patient with shortness of breath and cough.",
+            "preferred": "Mr. Roberts is a 65-year-old man with moderate COPD who presents with five days of worsening breathlessness and productive cough.",
+            "why": "The preferred wording avoids defining the person by the disease and makes the change from baseline explicit."
+          }
+        },
+        {
+          "id": "hpi",
+          "name": "History of present illness",
+          "job": "Show symptom change, possible trigger, and early severity signals",
+          "spoken": "His breathlessness has worsened from baseline over five days. His sputum is greater in volume and yellow-green, and his temperature was 37.8 degrees Celsius. He has no hemoptysis and is now using his rescue inhaler every two hours. He thinks this may be another winter chest infection and is worried about hospitalization because he lives alone.",
+          "fact_refs": ["hpi", "ideas", "concerns"],
+          "why": "Change from baseline, sputum volume and color, fever, rescue use, and the patient’s living situation influence severity assessment and disposition planning.",
+          "language_note": {
+            "less_clear": "He has increased shortness of breath with greenish expectoration and feverishness.",
+            "preferred": "His breathlessness has worsened from baseline, with more yellow-green sputum and a measured temperature of 37.8 degrees Celsius.",
+            "why": "Concrete comparison and measured data are easier to interpret than ‘increased,’ ‘expectoration,’ or ‘feverishness.’"
+          }
+        },
+        {
+          "id": "history",
+          "name": "Relevant background",
+          "job": "Summarize baseline disease, treatment, exposure, and support",
+          "spoken": "COPD was diagnosed five years ago, and he has not been hospitalized for it in the past two years. He takes tiotropium 18 micrograms daily, salmeterol-fluticasone 50/500 micrograms twice daily, and salbutamol 100 micrograms as needed. He stopped smoking five years ago after 40 pack-years and lives alone.",
+          "fact_refs": ["pmh", "medications", "social"],
+          "why": "Baseline disease, maintenance therapy, recent hospitalization history, tobacco exposure, and home support all affect risk and planning.",
+          "language_note": {
+            "less_clear": "He is on triple inhalers and is an ex-smoker.",
+            "preferred": "He takes tiotropium daily, salmeterol-fluticasone twice daily, and salbutamol as needed; he stopped smoking five years ago after 40 pack-years.",
+            "why": "Naming the actual regimen and exposure prevents ambiguity; ‘triple inhalers’ could be misheard as three devices or triple therapy."
+          }
+        },
+        {
+          "id": "data",
+          "name": "Objective data",
+          "job": "Make the absence of severity data explicit",
+          "spoken": "The simulated case does not provide current respiratory rate, oxygen saturation, work of breathing, mental status, chest examination, blood gas, or chest imaging, so severity and the need for ventilatory support cannot yet be determined.",
+          "fact_refs": ["severity_assessment", "support_principle"],
+          "why": "This is more clinically honest than calling the patient stable or assigning severity from symptoms alone.",
+          "language_note": {
+            "less_clear": "Objectively, he appears to have a moderate exacerbation.",
+            "preferred": "Objective severity data are not yet available, so I cannot grade the exacerbation from this chart alone.",
+            "why": "The source contains no examination, vital signs, blood gas, or imaging. The preferred wording separates known history from unknown severity."
+          }
+        },
+        {
+          "id": "assessment",
+          "name": "Assessment",
+          "job": "Name the leading problem without closing the differential too early",
+          "spoken": "My leading diagnosis is an acute COPD exacerbation, likely with an infective trigger, based on the acute worsening of breathlessness, increased purulent sputum, low-grade fever, and frequent rescue-inhaler use. Pneumonia, pulmonary embolism, pneumothorax, and acute heart failure remain important mimics or contributors until the objective assessment is complete.",
+          "fact_refs": ["hpi", "core_definition", "dangerous_mimic"],
+          "why": "The assessment commits to the most likely syndrome, states its supporting features, and preserves dangerous alternatives that could change management.",
+          "language_note": {
+            "less_clear": "This is infective COPD exacerbation, rule out everything else.",
+            "preferred": "My leading diagnosis is an acute COPD exacerbation, likely with an infective trigger; pneumonia and other dangerous mimics still require assessment.",
+            "why": "‘Likely’ matches the evidence available, while a short prioritized differential is more useful than an unbounded rule-out list."
+          }
+        },
+        {
+          "id": "plan",
+          "name": "Plan",
+          "job": "Assess severity first, then tie treatment to findings",
+          "spoken": "I would urgently assess oxygenation, respiratory rate, work of breathing, mental status, hemodynamics, and gas exchange, and obtain chest imaging when indicated to assess for pneumonia or another mimic. If he is hypoxemic, oxygen should be controlled and reassessed according to local protocol. Bronchodilators, systemic corticosteroids, antibiotics, and ventilatory support should be selected according to severity, clinical indications, contraindications, and local guidance.",
+          "fact_refs": ["oxygen_principle", "treatment_principle", "support_principle", "severity_assessment", "dangerous_mimic", "management_boundary"],
+          "why": "The plan begins with the data needed to judge risk and avoids treating every COPD exacerbation with identical oxygen, antibiotic, or ventilation decisions.",
+          "language_note": {
+            "less_clear": "I would give oxygen, nebulizers, steroids, and antibiotics.",
+            "preferred": "I would assess oxygenation and gas exchange first, use controlled oxygen if hypoxemic, and select bronchodilators, corticosteroids, and antibiotics according to severity and clinical indications.",
+            "why": "The preferred version makes treatment conditional on measured need and preserves local protocol and contraindication checks."
+          }
+        }
+      ],
+      "known_gaps": [
+        {
+          "label": "Respiratory severity",
+          "missing_paths": ["vitals", "physical_exam", "investigation_events"],
+          "say": "Oxygen saturation, respiratory rate, work of breathing, mental status, examination, and gas exchange have not yet been documented.",
+          "why": "Without them, do not label the exacerbation mild, moderate, stable, hypoxemic, or hypercapnic."
+        },
+        {
+          "label": "Allergies and contraindications",
+          "missing_paths": ["allergies"],
+          "say": "Medication allergies, organ function, and treatment contraindications still need to be verified.",
+          "why": "Antibiotic, corticosteroid, and other treatment choices depend on more than the symptom pattern."
+        }
+      ],
+      "compression": [
+        {"source_detail": "Five-day change from baseline breathlessness", "decision": "Lead", "why": "An exacerbation is defined by acute worsening from the patient’s usual state."},
+        {"source_detail": "More yellow-green sputum and frequent rescue-inhaler use", "decision": "Include", "why": "These features support the working diagnosis and help communicate current burden."},
+        {"source_detail": "No COPD hospitalization in two years", "decision": "Include", "why": "Recent severe-exacerbation history helps frame risk, while not replacing current severity assessment."},
+        {"source_detail": "Retired plumber with no pets", "decision": "Omit", "why": "Those details do not change this acute presentation unless an exposure question later makes them relevant."},
+        {"source_detail": "Lives alone and fears hospital admission", "decision": "Compress", "why": "One short sentence preserves the patient perspective and a disposition-relevant social factor."}
+      ],
+      "follow_ups": [
+        {
+          "question": "How severe is this exacerbation?",
+          "answer": "I cannot grade current severity from the source chart. I need oxygen saturation, respiratory rate, work of breathing, mental status, hemodynamics, examination, and gas exchange; frequent rescue use raises concern but does not replace those measurements.",
+          "fact_refs": ["hpi", "severity_assessment", "support_principle"]
+        },
+        {
+          "question": "Why might antibiotics be appropriate, and what is still missing?",
+          "answer": "Increased sputum purulence and volume suggest an infective trigger, but antibiotic selection is not automatic. I still need severity, examination, imaging when indicated, allergies, recent antibiotic exposure, local resistance guidance, and other patient-specific factors.",
+          "fact_refs": ["hpi", "treatment_principle", "management_boundary"]
+        },
+        {
+          "question": "What diagnoses could be mistaken for a COPD exacerbation?",
+          "answer": "Pneumonia, pulmonary embolism, pneumothorax, and acute heart failure can mimic or worsen an exacerbation. The history supports COPD exacerbation, but absent examination, oxygenation, and imaging mean those alternatives remain open.",
+          "fact_refs": ["core_definition", "dangerous_mimic"]
+        },
+        {
+          "question": "Why does living alone belong in the presentation?",
+          "answer": "It may affect safe monitoring, access to help, and disposition planning, and it explains the patient’s concern about hospitalization. It should stay brief so it does not displace respiratory severity data.",
+          "fact_refs": ["concerns", "social"]
+        }
+      ],
+      "checklist": [
+        "Define the acute change from the patient’s usual COPD baseline.",
+        "State symptom duration, sputum change, fever, and rescue-inhaler use.",
+        "Include recent severe-exacerbation or hospitalization history.",
+        "Give the maintenance inhalers and quantified tobacco exposure.",
+        "Include social context only when it affects safety or disposition.",
+        "Do not grade severity without vital signs, examination, oxygenation, and gas exchange.",
+        "Commit to a leading diagnosis but keep dangerous mimics visible.",
+        "Make oxygen and medication decisions conditional on findings and local guidance."
+      ],
+      "mistakes": [
+        {"problem": "Saying only that a patient with COPD is more short of breath", "repair": "Compare with baseline and give duration, sputum change, fever, and rescue-inhaler frequency."},
+        {"problem": "Calling the patient stable when no vital signs or examination are available", "repair": "State exactly which severity data are missing and that they are your immediate assessment priority."},
+        {"problem": "Treating green sputum as proof that antibiotics are always required", "repair": "Describe it as evidence for a possible infective trigger and tie treatment to severity, indications, contraindications, and local guidance."},
+        {"problem": "Giving uncontrolled oxygen simply because COPD is present", "repair": "Say that oxygen is used when hypoxemic, with a documented target and reassessment under local protocol."}
+      ],
+      "faq": [
+        {"question": "Should I include every inhaler dose?", "answer": "Include the regimen when adherence, treatment intensity, or response matters, but do not let a long medication recital interrupt the acute story. Be ready to clarify devices, technique, and recent use if asked."},
+        {"question": "Can I call this an infective exacerbation without a chest radiograph?", "answer": "You can say an infective trigger is likely from the symptom pattern, but you should not imply that pneumonia or other contributors have been excluded. State what examination and testing are still needed."},
+        {"question": "How long should a respiratory case presentation be?", "answer": "This model targets about 100 seconds. A new unstable patient may require an even faster initial escalation, while a teaching-round presentation may be longer. Match the detail to acuity, audience, and local expectations."}
+      ],
+      "sources": [
+        {"title": "2026 GOLD Report and Pocket Guide", "publisher": "Global Initiative for Chronic Obstructive Lung Disease", "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/", "accessed_on": "2026-08-27"},
+        {"title": "Feedback on Oral Presentations during Rounds", "publisher": "Stanford Medicine", "url": "https://med.stanford.edu/content/dam/sm/pediatricsclerkship/documents/Structured_Clinical_Observation_Oral_Presentations_on_Rounds.pdf", "accessed_on": "2026-08-27"},
+        {"title": "Clinical Teaching Tools: OMP and SNAPPS", "publisher": "UCSF Medical Education", "url": "https://meded.ucsf.edu/resource/clinical-teaching-tools-omp-and-snapps", "accessed_on": "2026-08-27"}
+      ],
+      "review": {
+        "source_case_checked": true,
+        "no_facts_invented": true,
+        "clinical_reasoning_checked": true,
+        "presentation_flow_read_aloud": true,
+        "us_english_checked": true,
+        "search_intent_checked": true,
+        "human_value_checked": true,
+        "safety_boundary_checked": true
+      }
+    }
+  ]
+}

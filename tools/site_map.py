@@ -29,6 +29,7 @@ def build_sitemap(site_root: Path) -> str:
     routes: list[tuple[str, str | None]] = [(route, None) for route in FIXED_ROUTES]
     routes.extend(_generated_routes(site_root, "learning"))
     routes.extend(_generated_routes(site_root, "communication"))
+    routes.extend(_generated_routes(site_root, "case-presentations"))
     routes.extend(_generated_routes(site_root, "everyday-english"))
     rows = []
     for route, reviewed_on in routes:

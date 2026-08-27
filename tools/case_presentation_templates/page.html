@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK1EXM7ZKH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FK1EXM7ZKH');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191f36">
+  <title>{{PAGE_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bedside English">
+  <meta property="og:title" content="{{H1}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL_URL}}">
+  <meta property="og:image" content="{{OG_IMAGE_URL}}">
+  <meta property="og:image:alt" content="Bedside English clinical speaking practice on mobile and desktop">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="{{PUBLISHED_ON}}">
+  <meta property="article:modified_time" content="{{REVIEWED_ON}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{H1}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="{{OG_IMAGE_URL}}">
+  <link rel="canonical" href="{{CANONICAL_URL}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">{{STRUCTURED_DATA}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the case presentation</a>
+  <header class="site-header">
+    <nav class="shell nav" aria-label="Primary navigation">
+      <a class="brand" href="../../" aria-label="Bedside English home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span>Bedside English</span></a>
+      <div class="nav-links"><a href="../">Case presentations</a><a href="../../learning/">Patient questions</a><a href="../../communication/">Team guides</a></div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- source-case: {{CASE_ID}}; source-sha256: {{SOURCE_SHA256}} -->
+    <article class="presentation-page" data-case-id="{{CASE_ID}}" data-reviewed-on="{{REVIEWED_ON}}">
+      <header class="hero">
+        <div class="shell">
+          <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span>/</span><a href="../">Case presentations</a><span>/</span><span>{{CASE_ID}}</span></nav>
+          <p class="eyebrow">Present the case · Worked oral example</p>
+          <h1>{{H1}}</h1>
+          <p class="lede">{{LEDE}}</p>
+          <div class="hero-actions"><a class="button button-primary" href="#full-example">Hear the whole structure</a><a class="button" href="#build">Build it section by section</a></div>
+        </div>
+      </header>
+
+      <div class="content shell">
+        <aside class="contents" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#quick-answer">Quick answer</a>
+          <a href="#scenario">Presentation brief</a>
+          <a href="#full-example">Full example</a>
+          <a href="#build">Build the presentation</a>
+          <a href="#gaps">Unknowns</a>
+          <a href="#compression">What to include</a>
+          <a href="#follow-ups">Attending questions</a>
+          <a href="#checklist">Checklist</a>
+          <a href="#sources">Sources</a>
+        </aside>
+
+        <div class="article-body">
+          <section class="quick-answer" id="quick-answer" aria-labelledby="quick-answer-title">
+            <p class="section-label">Quick answer</p>
+            <h2 id="quick-answer-title">{{QUICK_QUESTION}}</h2>
+            <p>{{QUICK_ANSWER}}</p>
+            <div class="structure-strip" aria-label="Oral case presentation structure"><span>One-liner</span><span>HPI</span><span>Background</span><span>Data</span><span>Assessment</span><span>Plan</span></div>
+          </section>
+
+          <section id="scenario" aria-labelledby="scenario-title">
+            <p class="section-label">Before you speak</p>
+            <h2 id="scenario-title">Define the moment and the information you actually have</h2>
+            <div class="scenario-grid">
+              <div><span>Setting</span><p>{{SETTING}}</p></div>
+              <div><span>Audience</span><p>{{AUDIENCE}}</p></div>
+              <div><span>Available data</span><p>{{AVAILABLE_DATA}}</p></div>
+              <div><span>Target length</span><p>{{TARGET_DURATION}}</p></div>
+            </div>
+            <p class="boundary-note"><strong>Fictional training case:</strong> The presentation is locked to the simulated patient JSON. It names important unknowns instead of inventing an examination, vital signs, allergies, or tests.</p>
+          </section>
+
+          <section id="full-example" aria-labelledby="full-example-title">
+            <p class="section-label">Complete spoken example</p>
+            <h2 id="full-example-title">First, read it once without stopping</h2>
+            <p>The paragraph breaks show the clinical shape. In a real presentation, pause briefly between ideas rather than announcing the headings.</p>
+            <div class="transcript" aria-label="Complete oral case presentation">
+              <header><span class="live-dot" aria-hidden="true"></span><span>{{TARGET_DURATION}} practice script</span></header>
+              {{FULL_SCRIPT}}
+            </div>
+            <div class="practice-cue"><strong>Speak, then compare.</strong><span>Hide this page, give your own version from the brief, and return to check sequence, prioritization, and wording—not memorization.</span></div>
+          </section>
+
+          <section id="build" aria-labelledby="build-title">
+            <p class="section-label">Build the presentation</p>
+            <h2 id="build-title">Give every sentence one job</h2>
+            <p>A presentation is a compressed clinical argument, not a chart read aloud. These six moves keep the facts connected to your reasoning.</p>
+            <div class="presentation-steps">{{SECTION_CARDS}}</div>
+          </section>
+
+          <section id="gaps" aria-labelledby="gaps-title">
+            <p class="section-label">Do not fill the blanks</p>
+            <h2 id="gaps-title">Say what has not yet been established</h2>
+            <p>Real presentations often happen before the chart is complete. A brief, explicit limitation is safer and more credible than a polished invention.</p>
+            <div class="gap-grid">{{KNOWN_GAPS}}</div>
+          </section>
+
+          <section id="compression" aria-labelledby="compression-title">
+            <p class="section-label">Clinical compression</p>
+            <h2 id="compression-title">What leads, what stays, and what can wait?</h2>
+            <div class="table-wrap"><table><thead><tr><th>Source detail</th><th>Decision</th><th>Reason</th></tr></thead><tbody>{{COMPRESSION_ROWS}}</tbody></table></div>
+          </section>
+
+          <section id="follow-ups" aria-labelledby="follow-ups-title">
+            <p class="section-label">After the presentation</p>
+            <h2 id="follow-ups-title">Likely attending questions</h2>
+            <p>Answer the question first, then give the evidence. If the source case does not contain the answer, say what you would verify.</p>
+            <div class="follow-ups">{{FOLLOW_UPS}}</div>
+          </section>
+
+          <section id="checklist" aria-labelledby="checklist-title">
+            <p class="section-label">Self-check</p>
+            <h2 id="checklist-title">A 30-second check before you present</h2>
+            <ol class="checklist">{{CHECKLIST_ITEMS}}</ol>
+          </section>
+
+          <section id="repairs" aria-labelledby="repairs-title">
+            <p class="section-label">Common presentation problems</p>
+            <h2 id="repairs-title">Repair the habits that make a case hard to follow</h2>
+            <div class="repairs">{{MISTAKES}}</div>
+          </section>
+
+          <section id="faq" aria-labelledby="faq-title">
+            <p class="section-label">Frequently asked questions</p>
+            <h2 id="faq-title">Oral case presentation questions</h2>
+            <div class="faq-list">{{FAQ_ITEMS}}</div>
+          </section>
+
+          <section class="cta-panel" aria-labelledby="cta-title">
+            <div>
+              <p class="section-label">Practice out loud</p>
+              <h2 id="cta-title">Turn the patient encounter into your own presentation</h2>
+              <p>Bedside English lets you interview an AI patient, then practice presenting the collected case to an AI attending and respond to follow-up questions.</p>
+              <div class="cta-actions"><a class="store-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get Bedside English on Google Play"><img src="../../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a><a href="../../">Explore the app</a></div>
+            </div>
+          </section>
+
+          <section id="sources" aria-labelledby="sources-title">
+            <p class="section-label">Editorial record</p>
+            <h2 id="sources-title">Sources, provenance, and review boundary</h2>
+            <p>The patient facts come from simulated case <strong>{{CASE_ID}}</strong>. Clinical framing and presentation design were checked against the sources below. This page teaches clinical communication and reasoning; it is not medical advice or a local protocol.</p>
+            <ul class="sources">{{SOURCE_ITEMS}}</ul>
+            <p class="review-date"><strong>Published:</strong> <time datetime="{{PUBLISHED_ON}}">{{PUBLISHED_ON}}</time> · <strong>Last source, safety, and language review:</strong> <time datetime="{{REVIEWED_ON}}">{{REVIEWED_ON}}</time></p>
+          </section>
+
+          <aside class="disclaimer"><strong>Educational use only.</strong> This is a fictional, incomplete case. In real care, verify the patient, chart, vital signs, examination, allergies, medications, results, and local protocol; escalate urgent concerns through the appropriate clinical team.</aside>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><span>Bedside English · Clinical communication, spoken aloud</span><div><a href="../">Case presentations</a><a href="../../learning/">Patient questions</a><a href="../../communication/">Team guides</a><a href="../../privacy.html">Privacy</a><a href="../../">Home</a></div></div></footer>
+</body>
+</html>
