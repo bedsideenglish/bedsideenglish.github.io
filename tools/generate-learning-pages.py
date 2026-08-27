@@ -575,6 +575,9 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
         source_root = args.source_root.resolve()
+        if args.check and not args.case and not source_root.is_dir():
+            print(f"Skipping learning-page check: source root {source_root} not found")
+            return 0
         if args.case and args.manifest:
             raise GenerationError("Use either --manifest or --case, not both")
         if args.slug and len(args.case) != 1:

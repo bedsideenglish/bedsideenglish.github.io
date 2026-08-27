@@ -215,38 +215,41 @@ def main() -> int:
             errors.append(f"{document.relative_to(ROOT)}: {error}")
 
     source_root = args.source_root.resolve()
-    for entry in entries:
-        case_path = (source_root / entry["case"]).resolve()
-        case = json.loads(case_path.read_text(encoding="utf-8"))
-        forbidden: list[str] = []
-        for field in EXCLUDED_FIELDS:
-            forbidden.extend(strings(case.get(field)))
-        teaching = case.get("teaching", {})
-        for field in EXCLUDED_TEACHING_FIELDS:
-            forbidden.extend(strings(teaching.get(field)))
-        output_path = ROOT / "learning" / entry["slug"] / "index.html"
-        output = html.unescape(output_path.read_text(encoding="utf-8"))
-        leaked = sorted({value for value in forbidden if value and value in output})
-        if leaked:
-            preview = "; ".join(repr(value[:80]) for value in leaked[:3])
-            errors.append(f"learning/{entry['slug']}/index.html: excluded source content found: {preview}")
-        expected_hash = hashlib.sha256(case_path.read_bytes()).hexdigest()
-        if f"source-sha256: {expected_hash}" not in output:
-            errors.append(f"learning/{entry['slug']}/index.html: source hash is missing or stale")
-        coaching_count = output.count('class="wording-coach"')
-        if coaching_count < 2:
-            errors.append(f"learning/{entry['slug']}/index.html: expected at least two wording-coaching blocks, found {coaching_count}")
-        if "Learning level" in output or "educationalLevel" in output:
-            errors.append(f"learning/{entry['slug']}/index.html: ambiguous case difficulty is exposed as a learning level")
-        if "Review status:" in output:
-            errors.append(f"learning/{entry['slug']}/index.html: removed review-status copy is still present")
-        lowered_output = output.lower()
-        for british, preferred in US_STYLE_BANNED.items():
-            if british in lowered_output:
-                errors.append(f"learning/{entry['slug']}/index.html: US style violation {british!r}; use {preferred!r}")
-        for marker, reason in ASSUMPTION_MARKERS.items():
-            if marker in lowered_output:
-                errors.append(f"learning/{entry['slug']}/index.html: assumption marker {marker!r} {reason}")
+    if not source_root.is_dir():
+        print(f"Skipping case source validation: source root {source_root} not found")
+    else:
+        for entry in entries:
+            case_path = (source_root / entry["case"]).resolve()
+            case = json.loads(case_path.read_text(encoding="utf-8"))
+            forbidden: list[str] = []
+            for field in EXCLUDED_FIELDS:
+                forbidden.extend(strings(case.get(field)))
+            teaching = case.get("teaching", {})
+            for field in EXCLUDED_TEACHING_FIELDS:
+                forbidden.extend(strings(teaching.get(field)))
+            output_path = ROOT / "learning" / entry["slug"] / "index.html"
+            output = html.unescape(output_path.read_text(encoding="utf-8"))
+            leaked = sorted({value for value in forbidden if value and value in output})
+            if leaked:
+                preview = "; ".join(repr(value[:80]) for value in leaked[:3])
+                errors.append(f"learning/{entry['slug']}/index.html: excluded source content found: {preview}")
+            expected_hash = hashlib.sha256(case_path.read_bytes()).hexdigest()
+            if f"source-sha256: {expected_hash}" not in output:
+                errors.append(f"learning/{entry['slug']}/index.html: source hash is missing or stale")
+            coaching_count = output.count('class="wording-coach"')
+            if coaching_count < 2:
+                errors.append(f"learning/{entry['slug']}/index.html: expected at least two wording-coaching blocks, found {coaching_count}")
+            if "Learning level" in output or "educationalLevel" in output:
+                errors.append(f"learning/{entry['slug']}/index.html: ambiguous case difficulty is exposed as a learning level")
+            if "Review status:" in output:
+                errors.append(f"learning/{entry['slug']}/index.html: removed review-status copy is still present")
+            lowered_output = output.lower()
+            for british, preferred in US_STYLE_BANNED.items():
+                if british in lowered_output:
+                    errors.append(f"learning/{entry['slug']}/index.html: US style violation {british!r}; use {preferred!r}")
+            for marker, reason in ASSUMPTION_MARKERS.items():
+                if marker in lowered_output:
+                    errors.append(f"learning/{entry['slug']}/index.html: assumption marker {marker!r} {reason}")
 
     if errors:
         print("Learning-page validation failed:")
