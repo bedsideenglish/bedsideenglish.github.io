@@ -21,6 +21,8 @@ REQUIRED_IDS = {
     "listening-result", "result-headline", "result-meta", "revealed-transcript", "try-again",
     "listening-lab-config", "response-ladder", "decision-guide", "common-mistakes", "transfer-practice", "faq", "related-guides",
 }
+TEMPLATE_MARKER_RE = re.compile(r"{{[A-Z0-9_]+}}")
+PLACEHOLDER_COPY_RE = re.compile(r"\b(?:TODO|Lorem ipsum)\b")
 
 
 class DocumentParser(HTMLParser):
@@ -136,9 +138,9 @@ def check_common(path: Path, canonical: str) -> tuple[DocumentParser, list[str]]
     source = path.read_text(encoding="utf-8")
     parser = parse(path)
     errors.extend(parser.errors)
-    if re.search(r"{{[A-Z0-9_]+}}", source):
+    if TEMPLATE_MARKER_RE.search(source):
         errors.append("unresolved template marker")
-    if re.search(r"\b(?:TODO|Lorem ipsum)\b", source):
+    if PLACEHOLDER_COPY_RE.search(source):
         errors.append("placeholder copy")
     if "In review" in source or "Coming soon" in source:
         errors.append("unpublished review placeholder")
