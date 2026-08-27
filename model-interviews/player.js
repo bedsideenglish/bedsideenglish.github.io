@@ -14,6 +14,10 @@
     var speedSelect = player.querySelector("[data-speed]");
     var progress = player.querySelector("[data-progress]");
     var status = player.querySelector("[data-status]");
+    var predictionToggle = player.querySelector("[data-prediction-toggle]");
+    var predictionCue = player.querySelector("[data-prediction-cue]");
+    var predictionPrompt = player.querySelector("[data-prediction-prompt]");
+    var continueButton = player.querySelector("[data-continue]");
     var turns = Array.prototype.slice.call(document.querySelectorAll("[data-transcript] .turn"));
     var audio = new Audio();
     audio.preload = "metadata";
@@ -21,6 +25,27 @@
     var completedSeconds = 0;
     var shouldContinue = false;
     var finished = false;
+    var awaitingPrediction = false;
+
+    function predictionAfter(index) {
+      if (!predictionToggle || !predictionToggle.checked || !Array.isArray(config.prediction_pauses)) return null;
+      return config.prediction_pauses.find(function (pause) { return Number(pause.after_segment) === index + 1; }) || null;
+    }
+
+    function hidePrediction() {
+      awaitingPrediction = false;
+      if (predictionCue) predictionCue.hidden = true;
+    }
+
+    function showPrediction(pause) {
+      awaitingPrediction = true;
+      shouldContinue = false;
+      setPlaying(false);
+      if (predictionPrompt) predictionPrompt.textContent = pause.prompt;
+      if (predictionCue) predictionCue.hidden = false;
+      status.textContent = "Paused for your prediction.";
+      if (continueButton) continueButton.focus();
+    }
 
     function totalDuration() {
       return config.segments.reduce(function (sum, segment) { return sum + Number(segment.duration_seconds || 0); }, 0);
@@ -57,6 +82,10 @@
 
     function playCurrent() {
       shouldContinue = true;
+      if (awaitingPrediction) {
+        hidePrediction();
+        loadSegment(segmentIndex + 1);
+      }
       if (finished) {
         finished = false;
         completedSeconds = 0;
@@ -82,6 +111,7 @@
 
     restartButton.addEventListener("click", function () {
       audio.pause();
+      hidePrediction();
       finished = false;
       completedSeconds = 0;
       loadSegment(0);
@@ -91,6 +121,10 @@
     });
 
     speedSelect.addEventListener("change", function () { audio.playbackRate = Number(speedSelect.value); });
+    if (continueButton) continueButton.addEventListener("click", playCurrent);
+    if (predictionToggle) predictionToggle.addEventListener("change", function () {
+      if (!predictionToggle.checked && awaitingPrediction) playCurrent();
+    });
     audio.addEventListener("play", function () { setPlaying(true); });
     audio.addEventListener("pause", function () { setPlaying(false); });
     audio.addEventListener("timeupdate", function () {
@@ -100,8 +134,12 @@
     audio.addEventListener("ended", function () {
       completedSeconds += Number(config.segments[segmentIndex].duration_seconds || audio.duration || 0);
       if (shouldContinue && segmentIndex + 1 < config.segments.length) {
-        loadSegment(segmentIndex + 1);
-        playCurrent();
+        var pause = predictionAfter(segmentIndex);
+        if (pause) showPrediction(pause);
+        else {
+          loadSegment(segmentIndex + 1);
+          playCurrent();
+        }
       } else {
         shouldContinue = false;
         finished = true;
@@ -112,5 +150,17 @@
       }
     });
     audio.addEventListener("error", function () { shouldContinue = false; setPlaying(false); status.textContent = "This audio part could not be loaded."; });
+  });
+
+  document.querySelectorAll("[data-recall-practice]").forEach(function (practice) {
+    var revealButton = practice.querySelector("[data-recall-reveal]");
+    var answer = practice.querySelector("[data-recall-answer]");
+    if (!revealButton || !answer) return;
+    revealButton.addEventListener("click", function () {
+      var willReveal = answer.hidden;
+      answer.hidden = !willReveal;
+      revealButton.setAttribute("aria-expanded", String(willReveal));
+      revealButton.textContent = willReveal ? "Hide the model follow-up" : "Reveal the model follow-up";
+    });
   });
 }());

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "neuro/neuro_025.json",
+  "source_sha256": "f5582dcf023eab3e12b98e9b62365e1ee7fb2e514a0d6f4c7b7ca1726031208b",
+  "transcript_sha256": "b3240d4cfa86c1dd81ac216f4e3a6aae83bc79661b6e36171037480e5dbb5c92",
+  "doctor_voice": "Orus",
+  "patient_voice": "Aoede",
+  "patient_speaker": "Patient",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 7,
+      "transcript_sha256": "845a8cff89d32349b7ff2b0d8b519f52d89e23f4e2da8b57fa7904a0ae210748",
+      "wav_sha256": "8df050803714615afc8b6794471d5ca0d9db95893791f4deb07cca0b7dd713fe",
+      "duration_seconds": 53.64
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 8,
+      "turn_end": 15,
+      "transcript_sha256": "8fb842dc39f42eb03f082a4273d440bfaa45a9ea87dbade3d690fd9ddd103bad",
+      "wav_sha256": "7b6f8946974663c56386a8cd31969130aa90e3c40d3ea576f314a7fe182b5182",
+      "duration_seconds": 41.28
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 16,
+      "turn_end": 23,
+      "transcript_sha256": "2c868d0bee6ecc501b874b1152a9142902162bc38c9a4908214148142d7e0471",
+      "wav_sha256": "7a30249e5dfe62892db4e6588bef6deb44658fa0a8f31f4ce3831b6fa0d438b6",
+      "duration_seconds": 49.6
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 24,
+      "turn_end": 29,
+      "transcript_sha256": "ce067b9b695a4327d26a7c119bf1d3387d636a3a2cce1a426ad29a06ffa19609",
+      "wav_sha256": "a59d9a0240561ea825da0721a06c625d5f1fb80a967d85d152814fe3591a3195",
+      "duration_seconds": 24.04
+    },
+    {
+      "file": "part-05.wav",
+      "turn_start": 30,
+      "turn_end": 33,
+      "transcript_sha256": "58c76e185caa3ee26c39d21c8b18e47d6ae1adc86ae1796a949bc5249d055f62",
+      "wav_sha256": "61ba684817b68f779ff3d009725c6fd65fb93e18cafd74d8bf63f8abdf7d57f9",
+      "duration_seconds": 58.88
+    }
+  ]
+}

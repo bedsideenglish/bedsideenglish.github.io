@@ -99,8 +99,8 @@ def load_records(manifest_path: Path = DEFAULT_MANIFEST, source_root: Path = DEF
     if not isinstance(manifest, dict) or manifest.get("schema_version") != 1 or not isinstance(manifest.get("pages"), list):
         raise ContentError(f"{manifest_path}: expected schema_version 1 and a pages list")
     pages = manifest["pages"]
-    if len(pages) != 5:
-        raise ContentError(f"{manifest_path}: this first release must contain exactly 5 pages")
+    if len(pages) != 10:
+        raise ContentError(f"{manifest_path}: the published library must contain exactly 10 pages")
     records: list[PageRecord] = []
     seen_slugs: set[str] = set()
     seen_cases: set[str] = set()
@@ -149,6 +149,33 @@ def load_records(manifest_path: Path = DEFAULT_MANIFEST, source_root: Path = DEF
                 raise ContentError(f"{where}.turns[{turn_index}] must be spoken by {expected_speaker}")
         validate_segments(item.get("audio_segments"), len(turns), where)
 
+        prediction_pauses = item.get("prediction_pauses")
+        if not isinstance(prediction_pauses, list) or not 2 <= len(prediction_pauses) <= 3:
+            raise ContentError(f"{where}.prediction_pauses must contain two or three pauses")
+        pause_segments: list[int] = []
+        segment_count = len(item["audio_segments"])
+        for pause_index, pause in enumerate(prediction_pauses):
+            pause_where = f"{where}.prediction_pauses[{pause_index}]"
+            if not isinstance(pause, dict) or set(pause) != {"after_segment", "prompt"}:
+                raise ContentError(f"{pause_where} must contain only after_segment and prompt")
+            after_segment = pause.get("after_segment")
+            if not isinstance(after_segment, int) or not 1 <= after_segment < segment_count:
+                raise ContentError(f"{pause_where}.after_segment must identify a non-final audio segment")
+            require_string(pause, "prompt", pause_where)
+            pause_segments.append(after_segment)
+        if pause_segments != sorted(set(pause_segments)):
+            raise ContentError(f"{where}.prediction_pauses must be unique and ordered by segment")
+
+        recall = item.get("recall")
+        if not isinstance(recall, dict) or set(recall) != {"patient_turn", "cue"}:
+            raise ContentError(f"{where}.recall must contain only patient_turn and cue")
+        patient_turn = recall.get("patient_turn")
+        if not isinstance(patient_turn, int) or not 0 <= patient_turn < len(turns) - 1:
+            raise ContentError(f"{where}.recall.patient_turn must identify a non-final turn")
+        if turns[patient_turn]["speaker"] == "Doctor" or turns[patient_turn + 1]["speaker"] != "Doctor":
+            raise ContentError(f"{where}.recall.patient_turn must be a patient/parent answer followed by a doctor question")
+        require_string(recall, "cue", f"{where}.recall")
+
         for list_key in ("flow", "do_not_miss", "sources"):
             if not isinstance(item.get(list_key), list) or not item[list_key]:
                 raise ContentError(f"{where}.{list_key} must be a non-empty list")
@@ -170,7 +197,7 @@ def load_records(manifest_path: Path = DEFAULT_MANIFEST, source_root: Path = DEF
         )
     voice_names = [voice for record in records for voice in (record.item["voice"]["doctor"], record.item["voice"]["patient"])]
     if len(voice_names) != len(set(voice_names)):
-        raise ContentError("Every first-release doctor and patient voice must be distinct across all five cases")
+        raise ContentError("Every published doctor and patient voice must be distinct across all ten cases")
     return records
 
 

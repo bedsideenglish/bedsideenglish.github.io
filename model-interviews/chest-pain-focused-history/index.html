@@ -51,18 +51,41 @@
         <aside class="audio-player" data-conversation-player>
           <p class="audio-kicker">Doctor + patient audio</p>
           <div class="audio-title-row"><strong>Hear the complete history</strong><span data-duration>2:39</span></div>
+          <div class="listen-challenge">
+            <span>Before you listen</span>
+            <strong>Find three red flags or decision-changing clues.</strong>
+            <p>Keep them in mind. You can compare your three with the “Do not miss” list after the conversation.</p>
+          </div>
           <div class="wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
           <div class="audio-controls">
             <button class="play-button" type="button" data-play aria-pressed="false"><span aria-hidden="true">▶</span><span data-play-label>Play conversation</span></button>
             <button class="quiet-button" type="button" data-restart>Restart</button>
             <label><span>Speed</span><select data-speed aria-label="Playback speed"><option value="0.85">0.85×</option><option value="1" selected>1×</option><option value="1.15">1.15×</option></select></label>
           </div>
+          <label class="prediction-toggle"><input type="checkbox" data-prediction-toggle checked> Pause to predict the next question (2)</label>
           <div class="progress-track" aria-hidden="true"><span data-progress></span></div>
           <p class="audio-status" data-status role="status" aria-live="polite">Ready. The transcript follows below.</p>
+          <div class="prediction-cue" data-prediction-cue hidden>
+            <span>Pause · Predict</span>
+            <p data-prediction-prompt></p>
+            <small>Say one question aloud before you continue.</small>
+            <button class="continue-button" type="button" data-continue>Continue conversation</button>
+          </div>
           <noscript><p>Enable JavaScript to use the continuous player. Individual WAV parts remain available in the page source.</p></noscript>
-          <script type="application/json" data-audio-config>{"transcript_sha256":"f1a8f0d4b135726bae26dfd23f814a1fd967bb2ac805fd9df2433b6698ddd484","segments":[{"file":"../../assets/audio/model-interviews/chest-pain-focused-history/part-01.wav","turn_start":0,"turn_end":5,"duration_seconds":33.32},{"file":"../../assets/audio/model-interviews/chest-pain-focused-history/part-02.wav","turn_start":6,"turn_end":11,"duration_seconds":33.48},{"file":"../../assets/audio/model-interviews/chest-pain-focused-history/part-03.wav","turn_start":12,"turn_end":19,"duration_seconds":43.72},{"file":"../../assets/audio/model-interviews/chest-pain-focused-history/part-04.wav","turn_start":20,"turn_end":27,"duration_seconds":48.32}]}</script>
+          <script type="application/json" data-audio-config>{"transcript_sha256":"f1a8f0d4b135726bae26dfd23f814a1fd967bb2ac805fd9df2433b6698ddd484","segments":[{"file":"../../assets/audio/model-interviews/chest-pain-focused-history/part-01.wav","turn_start":0,"turn_end":5,"duration_seconds":33.32},{"file":"../../assets/audio/model-interviews/chest-pain-focused-history/part-02.wav","turn_start":6,"turn_end":11,"duration_seconds":33.48},{"file":"../../assets/audio/model-interviews/chest-pain-focused-history/part-03.wav","turn_start":12,"turn_end":19,"duration_seconds":43.72},{"file":"../../assets/audio/model-interviews/chest-pain-focused-history/part-04.wav","turn_start":20,"turn_end":27,"duration_seconds":48.32}],"prediction_pauses":[{"after_segment":1,"prompt":"The pain is central and radiates to the left arm. What should you ask next to characterize it?"},{"after_segment":2,"prompt":"The patient is clammy and short of breath. Which immediately relevant discriminator or danger feature should you ask about next?"}]}</script>
         </aside>
       </header>
+
+      <section class="recall-practice shell" aria-labelledby="recall-title" data-recall-practice>
+        <div><p class="section-label">After listening · Retrieval practice</p><h2 id="recall-title">Make the next question yours</h2><p>Read the patient’s answer, then say your next question as one sentence. Reveal the model only after you commit.</p></div>
+        <div class="recall-card">
+          <span class="recall-speaker">Patient</span>
+          <blockquote>“Actually, twice in the past two weeks I felt a milder pressure walking uphill. It stopped when I rested, so I ignored it.”</blockquote>
+          <p class="recall-cue">Ask one focused question that would refine this patient’s cardiovascular risk.</p>
+          <button class="recall-button" type="button" data-recall-reveal aria-expanded="false">Reveal the model follow-up</button>
+          <div class="recall-answer" data-recall-answer hidden><span>Model follow-up</span><p>Do you have high blood pressure, diabetes, or high cholesterol?</p></div>
+        </div>
+      </section>
 
       <section class="conversation-section" id="conversation" aria-labelledby="conversation-title">
         <div class="conversation-shell shell">

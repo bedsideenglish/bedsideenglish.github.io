@@ -6,6 +6,13 @@
 - 구현 범위: 없음. 이 문서는 정적 HTML 콘텐츠를 만들기 전의 시나리오·구조 설계 문서다.
 - 기준 콘텐츠: Android Encounter 탭의 25개 진료과와 현재 case JSON
 
+## 0. 제작 상태
+
+- **공개 및 TTS 완료 (5개):** 1) 소화기, 2) 심장혈관, 17) 산부인과, 18) 소아청소년과, 19) 정신건강의학과
+- **대본 초안 완료, 임상·언어 검토 및 TTS 전 (5개):** 3) 신경과, 4) 호흡기, 5) 내분비, 12) 정형외과, 23) 응급의학과
+- **미작성 (15개):** 위 두 목록에 포함되지 않은 시나리오
+- 새 5개 대본은 `model-interview-drafts.json`, 기존 5개 검토와 적용 기준은 `docs/model-history-taking-existing-five-review-ko.md`에서 관리한다.
+
 ## 1. 결론
 
 이 콘텐츠는 만드는 편이 좋다.
@@ -447,4 +454,3 @@ Android case가 바뀌면 `source_sha256` 불일치를 CI에서 잡도록 한다
 - [ACEP — Clinical Policies](https://www.acep.org/patient-care/clinical-policies/): 응급 증례의 최신 임상 검토 시 해당 주제별 정책 확인
 
 이 자료들은 문진 대본의 구조와 안전 원칙을 위한 출발점이다. 실제 공개 전에는 각 증례별 최신 전문학회·공공기관 지침과 임상 검토를 별도로 적용한다.
-

@@ -97,8 +97,18 @@ def main() -> int:
                     config = json.loads(parser_audit.audio_configs[0])
                     require(config.get("transcript_sha256") == record.transcript_sha256, f"{slug}: player transcript hash is stale", errors)
                     require(len(config.get("segments", [])) == len(metadata["segments"]), f"{slug}: player segment count is stale", errors)
+                    require(config.get("prediction_pauses") == item["prediction_pauses"], f"{slug}: prediction pauses are stale", errors)
                 except json.JSONDecodeError as error:
                     errors.append(f"{slug}: invalid player JSON: {error}")
+            require(source.count("data-prediction-cue") == 1, f"{slug}: prediction cue is missing or duplicated", errors)
+            require(source.count("data-recall-practice") == 1, f"{slug}: recall practice is missing or duplicated", errors)
+            require(source.count("data-recall-answer") == 1, f"{slug}: recall answer is missing or duplicated", errors)
+            learning_sequence = (
+                source.find('class="listen-challenge"'),
+                source.find('class="recall-practice'),
+                source.find('<ol class="transcript"'),
+            )
+            require(-1 not in learning_sequence and list(learning_sequence) == sorted(learning_sequence), f"{slug}: learning sequence must be pre-listen, recall, then transcript", errors)
             require("generativelanguage.googleapis.com" not in source, f"{slug}: public page must not call Gemini", errors)
             require("GEMINI_API_KEY" not in source, f"{slug}: public page exposes an API key name", errors)
             require(re.search(r'<link rel="canonical" href="https://bedsideenglish\.github\.io/model-interviews/[^/]+/">', source) is not None, f"{slug}: canonical URL missing", errors)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the five audio-first model history-taking pages."""
+"""Generate the ten audio-first model history-taking pages."""
 
 from __future__ import annotations
 
@@ -83,11 +83,18 @@ def public_audio_config(record: PageRecord, metadata: dict[str, object]) -> dict
                 "duration_seconds": segment["duration_seconds"],
             }
         )
-    return {"transcript_sha256": record.transcript_sha256, "segments": segments}
+    return {
+        "transcript_sha256": record.transcript_sha256,
+        "segments": segments,
+        "prediction_pauses": record.item["prediction_pauses"],
+    }
 
 
 def render_page(record: PageRecord, audio_root: Path) -> str:
     item = record.item
+    recall_turn = int(item["recall"]["patient_turn"])
+    recall_answer = item["turns"][recall_turn]
+    recall_follow_up = item["turns"][recall_turn + 1]
     metadata = load_audio_metadata(record, audio_root)
     duration = sum(float(segment["duration_seconds"]) for segment in metadata["segments"])
     minutes = int(duration // 60)
@@ -129,7 +136,12 @@ def render_page(record: PageRecord, audio_root: Path) -> str:
         "ESTIMATED_MINUTES": escaped(item["estimated_minutes"]),
         "AUDIO_ROLE_LABEL": escaped(item["voice"]["patient_speaker"].lower()),
         "AUDIO_DURATION": duration_label,
+        "PREDICTION_PAUSE_COUNT": str(len(item["prediction_pauses"])),
         "AUDIO_CONFIG": json.dumps(public_audio_config(record, metadata), ensure_ascii=False, separators=(",", ":")).replace("</", "<\/"),
+        "RECALL_SPEAKER": escaped(recall_answer["speaker"]),
+        "RECALL_ANSWER": escaped(recall_answer["text"]),
+        "RECALL_CUE": escaped(item["recall"]["cue"]),
+        "RECALL_FOLLOW_UP": escaped(recall_follow_up["text"]),
         "TRANSCRIPT": render_transcript(record),
         "FLOW": render_list(item["flow"]),
         "DO_NOT_MISS": render_list(item["do_not_miss"]),

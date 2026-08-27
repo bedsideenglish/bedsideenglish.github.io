@@ -18,6 +18,11 @@
         "direction": "A focused emergency consultation in clear American English. The doctor is mature, calm, concise, and reassuring without sounding casual. The patient is a 58-year-old man in significant discomfort: worried, slightly breathless, and natural, but always intelligible. Keep pauses brief because the history is urgent."
       },
       "audio_segments": [[0, 5], [6, 11], [12, 19], [20, 27]],
+      "prediction_pauses": [
+        {"after_segment": 1, "prompt": "The pain is central and radiates to the left arm. What should you ask next to characterize it?"},
+        {"after_segment": 2, "prompt": "The patient is clammy and short of breath. Which immediately relevant discriminator or danger feature should you ask about next?"}
+      ],
+      "recall": {"patient_turn": 17, "cue": "Ask one focused question that would refine this patient’s cardiovascular risk."},
       "turns": [
         {"speaker": "Doctor", "text": "Mr. Johnson, I'm Dr. Lee. I can see you're in pain. We're going to assess you right away. While the nurse connects the monitor and gets an ECG, tell me what happened."},
         {"speaker": "Patient", "text": "I've had this pain in the middle of my chest for about two hours. I thought it was heartburn, but it isn't going away."},
@@ -72,6 +77,11 @@
         "direction": "A relaxed outpatient consultation in natural American English. The doctor has a clear, attentive voice and uses short reflective pauses. The patient is a friendly 31-year-old man who is mildly embarrassed about bowel symptoms and becomes more open as the conversation continues."
       },
       "audio_segments": [[0, 7], [8, 15], [16, 23], [24, 31]],
+      "prediction_pauses": [
+        {"after_segment": 1, "prompt": "The bowel pattern and pain-relief link are established. What associated symptom or alarm feature should you ask about next?"},
+        {"after_segment": 2, "prompt": "Important alarm features are negative. Which exposure, medicine, food, or stress trigger should you explore next?"}
+      ],
+      "recall": {"patient_turn": 25, "cue": "Acknowledge the concern, then ask one question about function or the patient’s goal."},
       "turns": [
         {"speaker": "Doctor", "text": "Mr. Davies, I'm Dr. Patel. What would you like us to focus on today?"},
         {"speaker": "Patient", "text": "For more than a year I've had stomach cramps and loose bowel movements. It's getting difficult to manage at work."},
@@ -129,6 +139,12 @@
         "direction": "A private mental health consultation in gentle, unhurried American English. The doctor sounds warm, grounded, and direct when discussing safety. The patient is a 45-year-old woman with low energy and long response latencies; she sounds sad and tired but remains clear. Do not make the performance melodramatic."
       },
       "audio_segments": [[0, 7], [8, 15], [16, 23], [24, 31], [32, 39]],
+      "prediction_pauses": [
+        {"after_segment": 1, "prompt": "Low mood, loss of interest, and early waking are present. Which symptom domain should you assess next?"},
+        {"after_segment": 2, "prompt": "Psychosis and mania screens are negative. What coping behavior and then safety question must follow?"},
+        {"after_segment": 3, "prompt": "The patient reports a passive death wish but no current intent or plan. Which part of risk and protective assessment comes next?"}
+      ],
+      "recall": {"patient_turn": 19, "cue": "Use calm, direct language to ask the most important immediate safety follow-up."},
       "turns": [
         {"speaker": "Doctor", "text": "Mrs. Clark, I'm Dr. Rivera. We have privacy here, and we can take this at your pace. What has been happening?"},
         {"speaker": "Patient", "text": "For about three months I've felt very low. Everything feels heavy, and I don't feel like myself anymore."},
@@ -195,6 +211,12 @@
         "direction": "A respectful gynecology consultation in warm, clear American English. The doctor is calm and matter-of-fact about sensitive questions. The patient is a 32-year-old woman who sounds thoughtful and increasingly worried when discussing fertility. Avoid euphemistic or melodramatic delivery."
       },
       "audio_segments": [[0, 7], [8, 15], [16, 23], [24, 31], [32, 35]],
+      "prediction_pauses": [
+        {"after_segment": 1, "prompt": "The pain pattern, cycle, and last menstrual period are clear. What bleeding feature should you ask about next?"},
+        {"after_segment": 2, "prompt": "Deep pain during sex is present. Which infection risk or cyclical pelvic symptom should you explore next?"},
+        {"after_segment": 3, "prompt": "A year of regular unprotected intercourse and no prior testing are established. What pregnancy or sexual-history clarification belongs next?"}
+      ],
+      "recall": {"patient_turn": 19, "cue": "Ask one background question that connects cyclical pelvic pain with the fertility history."},
       "turns": [
         {"speaker": "Doctor", "text": "Ms. Yoon, I'm Dr. Morgan. What would you like help with today?"},
         {"speaker": "Patient", "text": "My periods have become very painful, and my husband and I have been trying to get pregnant for a year without success."},
@@ -257,6 +279,12 @@
         "direction": "A calm pediatric visit in conversational American English. The doctor is friendly and clear, speaking first to the child and then to her mother without sounding patronizing. The parent is an attentive adult woman who is concerned and sometimes self-conscious about toilet training. The child does not have a separate speaking voice in this recording."
       },
       "audio_segments": [[0, 7], [8, 15], [16, 23], [24, 31], [32, 35]],
+      "prediction_pauses": [
+        {"after_segment": 1, "prompt": "Painful hard stools and a small blood streak are present. Which complication or associated bowel pattern should you ask about next?"},
+        {"after_segment": 2, "prompt": "Growth and early meconium passage are reassuring. What onset or neurologic red flag still needs clarification?"},
+        {"after_segment": 3, "prompt": "Diet and attempted remedies are clear. Which behavior or environmental trigger should you explore next?"}
+      ],
+      "recall": {"patient_turn": 15, "cue": "Ask one question that distinguishes a recent functional pattern from constipation beginning in infancy."},
       "turns": [
         {"speaker": "Doctor", "text": "Hi, Sophia. I'm Dr. Chen. I'm going to talk with your mom about your tummy, and you can tell me anything you want. Mom, what has been happening?"},
         {"speaker": "Parent", "text": "She only has a bowel movement about once every five days, and it is very hard and painful."},
@@ -300,6 +328,1075 @@
       "sources": [
         {"title": "ESPGHAN/NASPGHAN — Evaluation and Treatment of Functional Constipation", "url": "https://www.naspghan.org/files/documents/pdfs/cme/jpgn/Evaluation_and_Treatment_of_Functional.24.pdf"},
         {"title": "NASPGHAN — Clinical Guidelines", "url": "https://naspghan.org/professional-resources/clinical-guidelines/"}
+      ]
+    },
+    {
+      "case": "neuro/neuro_025.json",
+      "slug": "severe-one-sided-headache-history",
+      "specialty": "Neurology",
+      "h1": "A severe one-sided headache: a model history",
+      "meta_description": "Read a structured English headache history covering onset, visual aura, associated symptoms, secondary-headache warning signs, medication use, and functional impact.",
+      "setting": "Neurology urgent clinic",
+      "patient_card": "Ms. Yoon, 28, has had a severe right-sided throbbing headache for 24 hours after seeing flashing lights.",
+      "estimated_minutes": "4 min",
+      "reviewed_on": "2026-08-27",
+      "voice": {
+        "doctor": "Orus",
+        "patient": "Aoede",
+        "patient_speaker": "Patient",
+        "direction": "A quiet urgent neurology consultation in clear American English. The doctor is calm, precise, and considerate of light sensitivity. The patient is a 28-year-old woman speaking through significant headache and nausea but remaining natural and intelligible. Keep the pace measured without sounding sedated."
+      },
+      "audio_segments": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          15
+        ],
+        [
+          16,
+          23
+        ],
+        [
+          24,
+          29
+        ],
+        [
+          30,
+          33
+        ]
+      ],
+      "prediction_pauses": [
+        {
+          "after_segment": 1,
+          "prompt": "The visual symptoms spread gradually and then cleared. What comparison with earlier headaches should you make next?"
+        },
+        {
+          "after_segment": 2,
+          "prompt": "The familiar aura and associated symptoms are established, with no focal deficit, fever, or stiff neck. Which secondary-headache context should you screen next?"
+        },
+        {
+          "after_segment": 3,
+          "prompt": "Frequency, pattern change, acute-medicine use, and general health are clear. Which treatment-relevant background question belongs next?"
+        }
+      ],
+      "recall": {
+        "patient_turn": 19,
+        "cue": "Ask one question that checks acute-medicine use and possible medication overuse."
+      },
+      "turns": [
+        {
+          "speaker": "Doctor",
+          "text": "Ms. Yoon, I'm Dr. Rivera. I can see the light is bothering you, so we'll keep the room dim. Tell me what happened with this headache."
+        },
+        {
+          "speaker": "Patient",
+          "text": "It started yesterday. I saw flashing lights, and about half an hour later I got a strong throbbing pain on the right side of my head."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How did the pain build up?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "It became strong over maybe twenty minutes. It wasn't like a sudden explosion."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How severe is it now, and has it let up during the past twenty-four hours?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "It's about eight out of ten. It eased a little while I slept, but it never fully went away."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Describe exactly what you saw before the pain began."
+        },
+        {
+          "speaker": "Patient",
+          "text": "There were flickering, flashing spots across my vision. They gradually spread and then cleared after about twenty minutes."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Was that visual experience the same as with your earlier headaches?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "Yes. I've had the same warning before several of my headaches since I was a teenager."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "What other symptoms came with this attack?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I feel nauseated, and I vomited twice. Light and ordinary sounds feel unbearable."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you had any new weakness, numbness, trouble speaking, confusion, or loss of vision?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. The flashing stopped before the pain settled in, and I haven't had any of those other problems."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Any fever or a stiff neck?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Did this follow a head injury, heavy exertion, or a new medicine? Do you have cancer or a condition that weakens your immune system?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. Nothing unusual happened before it started, and I don't have cancer or an immune condition."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How often are these headaches occurring now, and has their usual pattern changed?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "Usually once or twice a month. This one feels like my usual attack, but it has lasted longer and has kept me from working."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "What have you taken for it, and how often do you use pain medicine in a typical month?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I took ibuprofen yesterday, but it didn't help. I only use it on headache days, usually once or twice a month."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you have any other medical conditions or take any regular medicines?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I'm generally healthy and don't take anything regularly."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you have any medication allergies?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "None that I know of."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Because pregnancy can affect which causes and treatments we consider, is there any chance you could be pregnant?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No, there isn't."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "What are you most concerned about, and what help were you hoping for today?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I'm worried these attacks will keep disrupting my design work. I'd like something that can stop them when they start."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Let me summarize. You developed your usual gradually spreading visual warning, followed thirty minutes later by a right-sided throbbing headache with vomiting and sensitivity to light and sound. The attack was not instantly severe, and you report no fever, stiff neck, injury, or new neurologic symptom. It resembles attacks you have had since adolescence, although it has lasted longer and ibuprofen did not help. Have I understood that correctly, and is there anything else I should know?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "That's correct. I don't think I've left anything out."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "I'll check your vital signs and perform a focused neurologic examination before we decide what evaluation and symptom relief are appropriate. If the pattern changes suddenly or you develop weakness, trouble speaking, confusion, fever, or a stiff neck, that needs urgent reassessment."
+        },
+        {
+          "speaker": "Patient",
+          "text": "Okay. That makes sense."
+        }
+      ],
+      "flow": [
+        "Reduce sensory discomfort and invite the story",
+        "Establish onset and time to peak",
+        "Characterize the visual symptoms and headache",
+        "Compare with prior attacks",
+        "Screen for secondary-headache warning signs",
+        "Review acute medication and relevant background",
+        "Explore work impact and treatment goal",
+        "Summarize and give a pattern-change safety net"
+      ],
+      "do_not_miss": [
+        "Sudden maximal onset or a new, worsening, or substantially changed pattern",
+        "Persistent visual loss, weakness, numbness, speech change, confusion, or reduced consciousness",
+        "Fever, stiff neck, recent head injury, pregnancy, cancer, or immune suppression",
+        "Frequency of attacks and acute-medication use",
+        "Functional impact and the patient's goal for rescue treatment"
+      ],
+      "sources": [
+        {
+          "title": "American Headache Society ??Overview of Migraine Diagnosis",
+          "url": "https://americanheadachesociety.org/research/library/overview-of-migraine-diagnosis"
+        },
+        {
+          "title": "ACR Appropriateness Criteria ??Headache",
+          "url": "https://acsearch.acr.org/docs/69482/Narrative/"
+        }
+      ]
+    },
+    {
+      "case": "pulm/pulm_003.json",
+      "slug": "wheezing-during-exercise-history",
+      "specialty": "Pulmonology",
+      "h1": "Wheezing during exercise: a model respiratory history",
+      "meta_description": "Read a patient-friendly English asthma history covering exercise and cold-air triggers, symptom control, severe-attack history, inhaler use, exposures, and patient goals.",
+      "setting": "Pulmonology clinic",
+      "patient_card": "Ms. Chloe Bennett, 32, develops wheezing, cough, and shortness of breath when she runs outdoors.",
+      "estimated_minutes": "4 min",
+      "reviewed_on": "2026-08-27",
+      "voice": {
+        "doctor": "Iapetus",
+        "patient": "Despina",
+        "patient_speaker": "Patient",
+        "direction": "A routine respiratory clinic visit in conversational American English. The doctor is attentive and practical, with clear phrasing for inhaler technique and safety questions. The patient is a physically active 32-year-old woman who sounds well at rest but concerned about exercising alone."
+      },
+      "audio_segments": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          15
+        ],
+        [
+          16,
+          23
+        ],
+        [
+          24,
+          29
+        ],
+        [
+          30,
+          33
+        ]
+      ],
+      "prediction_pauses": [
+        {
+          "after_segment": 1,
+          "prompt": "The exercise trigger, timing, reliever response, and weekly frequency are clear. Which control domain should you assess next?"
+        },
+        {
+          "after_segment": 2,
+          "prompt": "There are no nighttime or resting symptoms and no episode with speech difficulty or reliever failure. Which severe-attack history should you ask about next?"
+        },
+        {
+          "after_segment": 3,
+          "prompt": "Past severity, inhaler technique, controller use, and exposures are established. Which atopic background or functional goal should come next?"
+        }
+      ],
+      "recall": {
+        "patient_turn": 19,
+        "cue": "After hearing how the reliever is used, ask one question about ongoing anti-inflammatory or controller treatment."
+      },
+      "turns": [
+        {
+          "speaker": "Doctor",
+          "text": "Ms. Bennett, I'm Dr. Lewis. What would you like us to focus on today?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I wheeze and get short of breath when I run, especially outside in cold weather. I'm worried it could turn into a serious asthma attack."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Tell me what you notice first during a run."
+        },
+        {
+          "speaker": "Patient",
+          "text": "Usually a dry cough starts, then my chest feels tight and I hear a whistling sound when I breathe out."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How soon does that begin, and what do you do when it happens?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "It starts after about ten minutes in cold air. I stop, take my rescue inhaler, and the symptoms settle within ten or fifteen minutes."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How many days a week are you needing the inhaler for these symptoms?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "Usually two or three days a week, mostly on running days."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do coughing or breathing symptoms ever wake you at night?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I sleep through the night."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "What is your breathing like at rest or during ordinary daily activities?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "It's normal. Walking and work don't bother me."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you had a recent cold or noticed another trigger besides running and cold air?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No recent cold. I haven't found a clear trigger indoors."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you ever had an attack where you could not speak in full sentences or the inhaler did not help?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I've always been able to speak, and the inhaler has worked."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you ever needed an emergency visit, hospital stay, or breathing tube because of asthma?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. Nothing that severe."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Which inhaler do you use now? Please walk me through how you use it."
+        },
+        {
+          "speaker": "Patient",
+          "text": "It's an albuterol inhaler. I shake it, breathe out, press once while I breathe in, and then hold my breath. I don't use a spacer."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you use any controller inhaler or take any other regular medicine?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No controller and no other regular medicine."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you smoke or vape, or breathe smoke or fumes at home or work?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I don't smoke or vape, my roommate doesn't smoke, and my office doesn't have fumes."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you have eczema, nasal allergies, or a family history of asthma?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I had eczema as a child. I don't have nasal allergies, and no one else in my family has asthma."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you have any medication allergies?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No known medication allergies."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How is this changing your exercise, and what would you like from today's visit?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I've stopped running alone because I'm scared I won't get help. I want to know how well controlled this is, whether I need a controller, and whether my technique is right."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "You have cough, chest tightness, wheezing, and shortness of breath after about ten minutes of outdoor running, especially in cold air, on two or three days a week. Albuterol settles it within fifteen minutes. You have no nighttime or resting symptoms and no history of a severe attack, but fear of an attack is limiting your running. Is that accurate, and is there anything else you want me to understand?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "That's accurate. Being able to run safely is the main thing."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Next I'll listen to your lungs, assess your breathing objectively, and watch you use the inhaler. Then we'll agree on an anti-inflammatory treatment and written action plan, including what to do if symptoms worsen or the reliever stops working."
+        },
+        {
+          "speaker": "Patient",
+          "text": "Good. I'd feel better having a clear plan."
+        }
+      ],
+      "flow": [
+        "Invite the patient's description",
+        "Define the exercise pattern and triggers",
+        "Measure daytime, nighttime, and activity symptoms",
+        "Check severe-attack history",
+        "Review reliever response and inhaler technique",
+        "Assess smoking, vaping, exposures, and atopy",
+        "Explore safety concerns and goals",
+        "Summarize and move to objective assessment and an action plan"
+      ],
+      "do_not_miss": [
+        "Night waking, resting symptoms, and activity limitation",
+        "Inability to speak, rapidly worsening breathlessness, or poor reliever response",
+        "Previous emergency visits, hospitalization, intensive care, or intubation",
+        "Reliever frequency, controller treatment, adherence, and inhaler technique",
+        "Smoking, vaping, occupational exposure, and the patient's exercise-safety concern"
+      ],
+      "sources": [
+        {
+          "title": "Global Initiative for Asthma ??2026 Strategy Report",
+          "url": "https://ginasthma.org/2026-gina-strategy-report/"
+        }
+      ]
+    },
+    {
+      "case": "endo/endo_021.json",
+      "slug": "thirst-frequent-urination-weight-loss-history",
+      "specialty": "Endocrinology",
+      "h1": "Thirst, frequent urination, and weight loss: a model history",
+      "meta_description": "Read a focused English history for new severe thirst, frequent urination, and weight loss, including urgent screening for a hyperglycemic crisis and the patient's treatment concerns.",
+      "setting": "Same-day endocrinology assessment",
+      "patient_card": "Mr. Choi, 19, has developed severe thirst, hourly urination, fatigue, and an 8-kilogram unplanned weight loss over three weeks.",
+      "estimated_minutes": "4 min",
+      "reviewed_on": "2026-08-27",
+      "voice": {
+        "doctor": "Rasalgethi",
+        "patient": "Fenrir",
+        "patient_speaker": "Patient",
+        "direction": "A same-day endocrine assessment in clear, efficient American English. The doctor is reassuring but appropriately urgent and checks crisis symptoms early. The patient is a tired 19-year-old man who is worried about diabetes and injections, speaking naturally and clearly."
+      },
+      "audio_segments": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          15
+        ],
+        [
+          16,
+          23
+        ],
+        [
+          24,
+          29
+        ],
+        [
+          30,
+          33
+        ]
+      ],
+      "prediction_pauses": [
+        {
+          "after_segment": 1,
+          "prompt": "The rapid progression, extreme thirst, and hourly urination are quantified. Which catabolic symptom should you quantify next?"
+        },
+        {
+          "after_segment": 2,
+          "prompt": "Weight loss and increased appetite are present, without vomiting, abdominal pain, or abnormal breathing. Which remaining crisis sign should you assess next?"
+        },
+        {
+          "after_segment": 3,
+          "prompt": "Mental status, infection symptoms, prior glucose history, and family history are clear. Which medicine exposure could change the differential?"
+        }
+      ],
+      "recall": {
+        "patient_turn": 11,
+        "cue": "The patient is hungry despite rapid weight loss. Ask one direct question that screens for an acute hyperglycemic crisis."
+      },
+      "turns": [
+        {
+          "speaker": "Doctor",
+          "text": "Mr. Choi, I'm Dr. Kim. You look tired, so while we check your vital signs, tell me what has changed."
+        },
+        {
+          "speaker": "Patient",
+          "text": "For about three weeks I've been incredibly thirsty, going to the bathroom all the time, and losing weight even though I'm always hungry."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How quickly have those symptoms been progressing?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "They've become much worse over the last week. I feel drained and weak now."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "About how much are you drinking in a day?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "Five or six liters of water. My mouth still feels dry."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How often are you urinating during the day and overnight?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "About every hour, and I wake up four or five times a night."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How much weight have you lost?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "Eight kilograms in three weeks. I wasn't trying to lose any."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "What has happened to your appetite?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "It's huge. I eat full meals and feel hungry again soon afterward."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you had nausea, vomiting, or abdominal pain?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Has your breathing become unusually deep or fast?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No, my breathing feels normal."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you felt confused, unusually drowsy, or close to fainting?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I'm exhausted, but I'm thinking clearly and haven't fainted."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Any recent fever, infection, or blurred vision?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No fever or infection. My vision gets a little blurry when I'm very tired."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you ever had a high blood sugar reading or another major health problem?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I've always been healthy."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Does diabetes run in your family?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "My grandfather developed type 2 diabetes when he was older. No one else that I know of."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you take any prescription medicine, over-the-counter product, supplement, or steroid?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No, nothing."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you have any medication allergies?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "None that I know of."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How is this affecting college, and what worries you most about what might be happening?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I can't stay awake in class, and I keep leaving lectures to urinate. I'm worried it's diabetes, and I'm scared that would mean injections every day."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Let me check that I have this right. Over three weeks you have developed severe thirst, hourly urination including four or five times overnight, increased hunger, fatigue, and an unplanned 8-kilogram weight loss. The symptoms are worsening, but you currently report no vomiting, abdominal pain, unusual breathing, confusion, or fainting. Is that correct, and is there anything else you want to add?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "That's correct. I mainly want the tests done and to know what happens next."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "These symptoms need prompt assessment today. We'll check your blood sugar and ketones now and do further blood and urine tests as indicated. If you become confused, start vomiting, develop abdominal pain, or breathe deeply and rapidly, we will escalate care immediately. Once we have the results, we'll explain them and discuss any treatment with you rather than assuming what you will need."
+        },
+        {
+          "speaker": "Patient",
+          "text": "Thank you. That helps with the fear."
+        }
+      ],
+      "flow": [
+        "Assess current appearance while inviting the story",
+        "Establish the rapid time course",
+        "Quantify fluid intake, urination, and weight loss",
+        "Screen immediately for ketoacidosis and dehydration",
+        "Check related symptoms and relevant background",
+        "Review medicines and steroid exposure",
+        "Explore functional impact and fear of injections",
+        "Summarize and move to same-day testing"
+      ],
+      "do_not_miss": [
+        "Vomiting, abdominal pain, deep rapid breathing, confusion, drowsiness, or fainting",
+        "Degree and speed of weight loss and dehydration symptoms",
+        "Recent infection and medications such as glucocorticoids",
+        "Family history and prior high glucose readings",
+        "The patient's fear of injections without presuming a diagnosis or treatment"
+      ],
+      "sources": [
+        {
+          "title": "ADA-led International Consensus ??Hyperglycemic Crises in Adults With Diabetes",
+          "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A"
+        },
+        {
+          "title": "NIDDK ??Symptoms & Causes of Diabetes",
+          "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/symptoms-causes"
+        }
+      ]
+    },
+    {
+      "case": "ortho/ortho_023.json",
+      "slug": "twisted-ankle-history",
+      "specialty": "Orthopedics",
+      "h1": "A twisted ankle: a model orthopedic history",
+      "meta_description": "Read a focused English sports-injury history covering ankle injury mechanism, weight-bearing ability, pain location, neurovascular warning signs, prior injury, and return-to-sport goals.",
+      "setting": "Orthopedic same-day clinic",
+      "patient_card": "Mr. Jin, 28, has right lateral ankle pain, swelling, and bruising after landing awkwardly during basketball four hours ago.",
+      "estimated_minutes": "3 min",
+      "reviewed_on": "2026-08-27",
+      "voice": {
+        "doctor": "Algieba",
+        "patient": "Puck",
+        "patient_speaker": "Patient",
+        "direction": "A focused acute musculoskeletal visit in natural American English. The doctor is concise and systematic about mechanism, weight bearing, and neurovascular safety. The patient is a 28-year-old man in moderate ankle pain who is mainly concerned about fracture and returning to basketball."
+      },
+      "audio_segments": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          15
+        ],
+        [
+          16,
+          23
+        ],
+        [
+          24,
+          29
+        ],
+        [
+          30,
+          33
+        ]
+      ],
+      "prediction_pauses": [
+        {
+          "after_segment": 1,
+          "prompt": "The inversion mechanism, rapid swelling, and exact pain location are clear. Which weight-bearing question should come next?"
+        },
+        {
+          "after_segment": 2,
+          "prompt": "He cannot take four steps, but sensation, color, and temperature are normal. Which injury-severity feature should you assess next?"
+        },
+        {
+          "after_segment": 3,
+          "prompt": "Open injury, deformity, prior sprain, self-care, and pain behavior are established. Which background or recovery goal belongs next?"
+        }
+      ],
+      "recall": {
+        "patient_turn": 9,
+        "cue": "He could not take four steps immediately after injury. Ask the separate present-time weight-bearing question."
+      },
+      "turns": [
+        {
+          "speaker": "Doctor",
+          "text": "Mr. Jin, I'm Dr. Parker. Keep the ankle supported while we talk. Walk me through exactly how you injured it."
+        },
+        {
+          "speaker": "Patient",
+          "text": "About four hours ago I came down from a rebound in basketball. My right foot rolled inward, and I fell."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Did you feel or hear a pop or crack when it happened?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No crack. I felt a sharp pull on the outside of the ankle."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How quickly did the swelling and bruising appear?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "It swelled within minutes. The bruising became obvious over the next couple of hours."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Please point with one finger to where it hurts most."
+        },
+        {
+          "speaker": "Patient",
+          "text": "Right over this outer ankle bone and just below it."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Were you able to take four steps immediately afterward?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I managed two steps, then my teammates helped me off the court."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Can you take four steps now, even with a limp?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. Putting my full weight on it is too painful."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you noticed any numbness or tingling in the foot?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Has the foot felt cold or looked unusually pale or blue?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. The color and temperature seem normal."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Was there any open wound or an obvious change in the shape of the ankle?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No open cut and no obvious deformity, just swelling."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you injured this ankle before?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I had a mild sprain about three years ago, but it healed completely."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "What have you done for it since the injury?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I stopped playing, put ice on it, and kept it raised. I haven't taken pain medicine."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How painful is it while supported, and what makes the pain worse?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "It's about four out of ten while I keep it still, but it becomes sharp and much worse if I move the ankle or try to stand."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you have any major medical condition or take any regular medicine?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No medical problems and no regular medicine."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you have any medication allergies?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No known medication allergies."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "What activities are most important for you to get back to?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I sit at a computer for work, but basketball is what I'm worried about. I want to know whether it's broken and when I can play again."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "You rolled the right foot inward four hours ago and developed rapid swelling, bruising, and pain over the outer ankle. You could not take four steps then and still cannot now, but you report no wound, deformity, numbness, or change in foot color or temperature. Is that accurate, and is there anything else I missed?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "That's all correct."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "I'll examine the bones, ligaments, movement, circulation, and sensation. Because you cannot take four steps and have pain near the ankle bone, an X-ray may be appropriate after the examination. We'll protect the ankle now and base return to basketball on the findings and your recovery, not on a fixed date."
+        },
+        {
+          "speaker": "Patient",
+          "text": "Okay. I appreciate the clear answer."
+        }
+      ],
+      "flow": [
+        "Reconstruct the landing and direction of force",
+        "Establish immediate swelling and pain location",
+        "Ask separately about four-step weight bearing",
+        "Screen for open injury, deformity, and neurovascular change",
+        "Review prior injury and self-care",
+        "Identify work and sport goals",
+        "Summarize before examination and imaging decision"
+      ],
+      "do_not_miss": [
+        "Exact mechanism and direction of the twist",
+        "Ability to take four steps immediately and during assessment",
+        "Point pain over the malleoli and other Ottawa-rule locations during examination",
+        "Open wound, deformity, severe pain out of proportion, numbness, or a cold or discolored foot",
+        "Prior injury and the patient's functional and return-to-sport goals"
+      ],
+      "sources": [
+        {
+          "title": "ACR Appropriateness Criteria ??Acute Trauma to the Ankle",
+          "url": "https://acsearch.acr.org/docs/69436/Narrative/"
+        }
+      ]
+    },
+    {
+      "case": "em/em_024.json",
+      "slug": "basketball-head-injury-history",
+      "specialty": "Emergency Medicine",
+      "h1": "A head injury during basketball: a focused emergency history",
+      "meta_description": "Read a concise English emergency history after a sports-related head injury, prioritizing mechanism, consciousness, memory, neurologic danger signs, bleeding risk, observation, and safe return to play.",
+      "setting": "Emergency department",
+      "patient_card": "Mr. Yoon, 20, has headache, dizziness, and mild nausea four hours after a collision during basketball.",
+      "estimated_minutes": "3 min",
+      "reviewed_on": "2026-08-27",
+      "voice": {
+        "doctor": "Schedar",
+        "patient": "Enceladus",
+        "patient_speaker": "Patient",
+        "direction": "A concise emergency department history in clear American English. The doctor is calm, safety-focused, and keeps checking the patient's alertness without sounding alarmist. The patient is a 20-year-old man with mild headache and dizziness who is anxious about brain bleeding and return to sport."
+      },
+      "audio_segments": [
+        [
+          0,
+          7
+        ],
+        [
+          8,
+          15
+        ],
+        [
+          16,
+          21
+        ],
+        [
+          22,
+          25
+        ]
+      ],
+      "prediction_pauses": [
+        {
+          "after_segment": 1,
+          "prompt": "Mechanism, consciousness, memory, and symptom trajectory are established. Which neurologic danger sign should you ask about next?"
+        },
+        {
+          "after_segment": 2,
+          "prompt": "There is no vomiting, seizure, focal neurologic change, increasing drowsiness, or neck pain. Which bleeding-risk modifier should come next?"
+        }
+      ],
+      "recall": {
+        "patient_turn": 5,
+        "cue": "After brief confusion without loss of memory, ask one question about how the current symptoms have changed over time."
+      },
+      "turns": [
+        {
+          "speaker": "Doctor",
+          "text": "Mr. Yoon, I'm Dr. Adams. We'll keep checking your alertness while we talk. Tell me exactly what happened four hours ago."
+        },
+        {
+          "speaker": "Patient",
+          "text": "Another player and I collided during basketball, and his shoulder hit the side of my head. I fell down and felt dazed."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Did you lose consciousness at any point?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I never blacked out."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "What do you remember from just before and just after the hit?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "I remember the play and sitting on the court afterward. My teammate said I seemed confused for about a minute, but I don't have a gap in my memory."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "How have the headache, dizziness, and nausea changed since then?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "The headache is still mild, about four out of ten, and hasn't been getting worse. I'm a little dizzy and nauseated."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you vomited or had a seizure?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Since the hit, have you noticed any new problem with vision, speech, strength, feeling, or walking?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. Bright light bothers me a little, but I can see, speak, move, and walk normally."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you become more confused or unusually drowsy, or been difficult to wake?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No. I've stayed awake and feel clearer than I did right after the collision."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Do you have pain or tenderness in your neck?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No neck pain."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "I ask because these can change the bleeding risk: do you take a blood thinner, have a bleeding disorder, or use alcohol or drugs before the injury?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No to all of those. I don't take any regular medicine."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "Have you ever had a concussion or another significant head injury?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "No, this is the first time."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "If you go home, who could stay with you and watch for a change?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "My roommate can stay with me tonight. I'm worried about a brain bleed and wonder if I need a scan. I also want to know when I can practice again."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "You were struck on the side of the head four hours ago and were briefly confused but did not lose consciousness or lose memory. Your mild headache, dizziness, and nausea are not worsening, and you report no repeated vomiting, seizure, new neurologic problem, increasing drowsiness, neck pain, or bleeding risk. Is that correct, and is there anything else I should know?"
+        },
+        {
+          "speaker": "Patient",
+          "text": "That's correct. Nothing else."
+        },
+        {
+          "speaker": "Doctor",
+          "text": "We'll complete a neurologic and neck examination and use the full findings to decide whether imaging is needed. You must not return to play today. If you go home, your roommate will receive clear written danger signs such as a worsening headache, repeated vomiting, confusion, weakness, seizure, or trouble waking you. We'll also give you instructions for classes, driving, follow-up, and a gradual return to sport only after medical clearance."
+        },
+        {
+          "speaker": "Patient",
+          "text": "Understood. I won't go back to practice until I'm cleared."
+        }
+      ],
+      "flow": [
+        "Confirm current alertness while taking the history",
+        "Reconstruct mechanism and timing",
+        "Check loss of consciousness and memory",
+        "Track symptom severity and direction of change",
+        "Screen for neurologic and cervical-spine danger signs",
+        "Assess bleeding risk, substances, and prior concussion",
+        "Confirm safe observation and patient concerns",
+        "Summarize, prohibit same-day return, and give a concrete safety net"
+      ],
+      "do_not_miss": [
+        "Loss of consciousness, amnesia, confusion, and change in alertness",
+        "Worsening headache, repeated vomiting, seizure, focal neurologic change, or unequal pupils",
+        "Neck pain or tenderness",
+        "Anticoagulant or antiplatelet use, bleeding disorder, and alcohol or drug use",
+        "A responsible observer, written return precautions, and no same-day return to play"
+      ],
+      "sources": [
+        {
+          "title": "CDC ??Symptoms of Mild TBI and Concussion",
+          "url": "https://www.cdc.gov/traumatic-brain-injury/signs-symptoms/index.html"
+        },
+        {
+          "title": "CDC HEADS UP ??Responding to a Sports-related Concussion",
+          "url": "https://www.cdc.gov/heads-up/response/index.html"
+        },
+        {
+          "title": "CDC HEADS UP ??Returning to Sports",
+          "url": "https://www.cdc.gov/heads-up/guidelines/returning-to-sports.html"
+        },
+        {
+          "title": "ACEP ??Mild Traumatic Brain Injury Clinical Policy Resources",
+          "url": "https://www.acep.org/by-medical-focus/nervous-system/free-mild-traumatic-brain-injury-resources-for-clinicians-and-patients/"
+        }
       ]
     }
   ]
