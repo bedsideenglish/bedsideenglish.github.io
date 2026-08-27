@@ -50,11 +50,8 @@ def escaped(value: Any) -> str:
     return html.escape(str(value), quote=True)
 
 
-WORD_COUNT_RE = re.compile(r"\b[\w'-]+\b")
-
-
 def word_count(value: str) -> int:
-    return len(WORD_COUNT_RE.findall(value))
+    return len(re.findall(r"\b[\w'-]+\b", value))
 
 
 def exact_keys(value: dict[str, Any], allowed: set[str], where: str) -> None:
