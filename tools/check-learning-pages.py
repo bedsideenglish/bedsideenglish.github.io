@@ -49,6 +49,8 @@ ASSUMPTION_MARKERS = {
     "you said": "assumes an earlier patient answer",
 }
 
+TEMPLATE_MARKER_RE = re.compile(r"{{[A-Z0-9_]+}}")
+
 
 class DocumentParser(HTMLParser):
     def __init__(self) -> None:
@@ -159,7 +161,7 @@ def parse_document(path: Path, cache: dict[Path, DocumentParser]) -> DocumentPar
 def check_page(path: Path, site_root: Path, cache: dict[Path, DocumentParser]) -> list[str]:
     errors: list[str] = []
     source = path.read_text(encoding="utf-8")
-    if re.search(r"{{[A-Z0-9_]+}}", source):
+    if TEMPLATE_MARKER_RE.search(source):
         errors.append("contains an unresolved template marker")
     parser = parse_document(path, cache)
     errors.extend(parser.errors)
