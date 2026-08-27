@@ -31,6 +31,7 @@ SITE_ORIGIN = "https://bedsideenglish.github.io"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ID_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 PLACEHOLDER_RE = re.compile(r"{{([A-Z0-9_]+)}}")
+NUMERIC_TOKEN_RE = re.compile(r"\d+(?:[.:]\d+)*")
 FRAMEWORKS = {
     "SBAR": {
         "expanded": "Situation, Background, Assessment, Recommendation",
@@ -271,7 +272,7 @@ def validate_page(page: Any, where: str) -> dict[str, Any]:
         if fact["priority"] != "must":
             continue
         spoken = " ".join(spoken_by_fact[fact["id"]])
-        missing_numbers = [token for token in re.findall(r"\d+(?:[.:]\d+)*", fact["value"]) if token not in spoken]
+        missing_numbers = [token for token in NUMERIC_TOKEN_RE.findall(fact["value"]) if token not in spoken]
         if missing_numbers:
             raise GenerationError(
                 f"{where}: spoken statements for must fact {fact['id']!r} omit numeric token(s): "
