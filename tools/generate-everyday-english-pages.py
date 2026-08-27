@@ -40,6 +40,7 @@ US_STYLE_RULES = (
     (re.compile(r"\b(?:organisation|recognise|prioritise)\w*\b", re.IGNORECASE), "use US spelling"),
     (re.compile(r"\bwhilst\b", re.IGNORECASE), "use US while"),
 )
+RACE_RE = re.compile(r"\b(?:race|racial|ethnicity|ethnic)\b", re.IGNORECASE)
 
 
 class GenerationError(RuntimeError):
@@ -222,7 +223,7 @@ def validate_page(raw: Any, where: str) -> dict[str, Any]:
     for pattern, message in US_STYLE_RULES:
         if pattern.search(combined):
             raise GenerationError(f"{where}: {message}")
-    if re.search(r"\b(?:race|racial|ethnicity|ethnic)\b", combined, re.IGNORECASE):
+    if RACE_RE.search(combined):
         raise GenerationError(f"{where}: describe speech by accent/region or first-language influence, not race")
     return raw
 
