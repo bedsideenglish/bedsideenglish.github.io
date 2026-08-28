@@ -161,15 +161,17 @@ This repository is deployed at the GitHub Pages hostname root. Its crawler polic
 Submit `https://bedsideenglish.github.io/sitemap.xml` directly in Google Search Console and Bing
 Webmaster Tools.
 
-`android.html` is the structural source for `index.html`. The sync tool preserves the root route's
-canonical URLs, brand link, and broader two-track problem statement. After editing `android.html`,
-update the root page with:
+`index.html` is the single clinical-track landing page. It used to be generated from a near-identical
+`android.html`; the two shared a title, a description, and all but one paragraph, so they competed for
+the same queries and each declared itself canonical. `android.html` is now a `noindex` stub that
+canonicalises to `/` and meta-refreshes there, because GitHub Pages cannot serve a 301. Delete it once
+nothing off-site points at `/android.html`.
 
-```sh
-python tools/sync-landing-pages.py --write
-```
+`android-everyday.html` is a genuinely different page — its own title, description, and hero — and stays
+indexable in its own right.
 
-GitHub Actions verifies the two files on every pull request and push to `main`, so an out-of-sync change cannot go unnoticed.
+Only canonical URLs belong in the sitemap. `tools/site_map.py` holds the fixed routes; `android.html`
+and `android-demo.html` are deliberately absent and both carry `noindex` on the page itself.
 
 ## Assets
 
@@ -215,7 +217,7 @@ patient-opening` to remake one named line. The generator defaults to
 
 ## Two switches at the top of the page script
 
-Both live at the top of the `<script>` block in `android.html` (and its `index.html` copy):
+Both live at the top of the `<script>` block in `index.html` (and in `android-everyday.html`):
 
 | Constant | What it does while empty | What to paste in |
 | --- | --- | --- |

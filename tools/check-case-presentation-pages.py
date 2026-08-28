@@ -187,7 +187,7 @@ def main() -> int:
         if sitemap.count(f"<loc>{route}</loc>") != 1:
             errors.append(f"sitemap must contain exactly one {route}")
 
-    for landing in (ROOT / "android.html", ROOT / "index.html"):
+    for landing in (ROOT / "index.html",):
         source = landing.read_text(encoding="utf-8")
         if source.count('href="case-presentations/"') != 2:
             errors.append(f"{landing.name}: expected resource-card and footer links to the case-presentation hub")

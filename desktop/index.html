@@ -29,13 +29,15 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": "https://bedsideenglish.github.io/#app",
     "name": "Bedside English: Talk & Train",
     "alternateName": "MedVoiceTrainer",
     "operatingSystem": "Windows, macOS, Linux, Android",
     "applicationCategory": "EducationalApplication",
     "description": "A free, open-source app for unscripted everyday and clinical English speaking practice, built for international medical graduates. Available now on Windows desktop and on Google Play for Android.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "url": "https://bedsideenglish.github.io/"
+    "url": "https://bedsideenglish.github.io/",
+    "sameAs": "https://bedsideenglish.github.io/desktop/"
   }
   </script>
   <style>
@@ -570,7 +572,7 @@
               <span data-i18n="platform_android_point_3">Mock voice mode works without an API key</span>
             </div>
             <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get Bedside English on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a>
-            <a class="button button-secondary" href="../android.html"><span data-i18n="platform_android_tour_cta">Take the Android app tour</span><span class="button-arrow">→</span></a>
+            <a class="button button-secondary" href="../"><span data-i18n="platform_android_tour_cta">Take the Android app tour</span><span class="button-arrow">→</span></a>
           </article>
         </div>
       </div>
@@ -586,7 +588,7 @@
             <div class="ledger-row"><span data-i18n="ledger_telemetry">Telemetry collector</span><strong data-i18n="ledger_telemetry_body">Not configured in the current build</strong><span class="ledger-state inactive" data-i18n="state_inactive">Inactive</span></div>
             <div class="ledger-row"><span data-i18n="ledger_ai">AI-powered sessions</span><strong data-i18n="ledger_ai_body">Necessary audio or text goes to the provider you choose</strong><span class="ledger-state" data-i18n="state_direct">Direct</span></div>
           </div>
-          <p class="trust-note" data-i18n="trust_note">Use fictional or de-identified cases. Provider data handling follows the provider and account you configure. Any future anonymous telemetry activation is opt-in and excludes audio, transcripts, API keys, and free text. Read the full <a href="/bedside-english/privacy.html">privacy policy</a>.</p>
+          <p class="trust-note" data-i18n="trust_note">Use fictional or de-identified cases. Provider data handling follows the provider and account you configure. Any future anonymous telemetry activation is opt-in and excludes audio, transcripts, API keys, and free text. Read the full <a href="../privacy.html">privacy policy</a>.</p>
         </div>
       </div>
     </section>
@@ -630,7 +632,8 @@
     <div class="footer-inner shell">
       <span data-i18n="footer_note">Bedside English: Talk &amp; Train / Free &amp; open source / Not a medical device</span>
       <span class="footer-links">
-        <a href="/bedside-english/privacy.html" data-i18n="footer_privacy">Privacy policy</a>
+        <a href="../about.html">About &amp; editorial policy</a>
+        <a href="../privacy.html" data-i18n="footer_privacy">Privacy policy</a>
         <a href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer" data-i18n="footer_source_desktop">Desktop source ↗</a>
         <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer" data-i18n="footer_source_android">Android source ↗</a>
       </span>
@@ -690,7 +693,7 @@
         platform_android_cta: 'Google Play에서 받기',
         trust_title: '틀려도 괜찮을 만큼 사적으로.', trust_body: '더 나은 표현이 나오려면 먼저 어색한 표현이 나와야 합니다. 학습 기록은 내 기기에 남고, 데스크톱이든 Android든 연습 내용을 보관하는 Bedside English 계정은 없습니다.',
         ledger_account: '앱 계정', ledger_account_body: '계정이나 Bedside English 클라우드 프로필 없음', ledger_history: '학습 기록', ledger_history_body: '세션, 실수, 성장 기록은 로컬에 보관', ledger_telemetry: 'Telemetry 수집기', ledger_telemetry_body: '현재 빌드에는 설정되지 않음', ledger_ai: 'AI 기반 세션', ledger_ai_body: '필요한 음성이나 텍스트만 선택한 제공자로 직접 전송', state_none: '없음', state_device: '기기 내부', state_inactive: '비활성', state_direct: '직접 연결',
-        trust_note: '가상 또는 비식별화된 사례를 사용하세요. 데이터 처리는 설정한 제공자와 계정 정책을 따릅니다. 향후 익명 telemetry가 활성화되더라도 명시적 동의가 필요하며 음성, 대화 내용, API 키, 자유 입력 텍스트는 제외됩니다. 전체 <a href="/bedside-english/privacy.html">개인정보 처리방침</a>을 확인하세요.',
+        trust_note: '가상 또는 비식별화된 사례를 사용하세요. 데이터 처리는 설정한 제공자와 계정 정책을 따릅니다. 향후 익명 telemetry가 활성화되더라도 명시적 동의가 필요하며 음성, 대화 내용, API 키, 자유 입력 텍스트는 제외됩니다. 전체 <a href="../privacy.html">개인정보 처리방침</a>을 확인하세요.',
         download_title: '준비되기 전에 말하세요.', download_body: 'Windows 또는 Android를 고르고 API 키 없는 데모부터 시작하세요. 실시간 AI 음성과 피드백이 필요할 때는 내 API 키로 지원되는 제공자를 연결하면 됩니다.',
         download_panel_desktop_title: '데스크톱 / GitHub Releases', download_zip: '.zip 다운로드', build_source: '소스에서 빌드',
         desktop_source_title: '소스 코드', desktop_source_body: 'GitHub에서 README 보기',

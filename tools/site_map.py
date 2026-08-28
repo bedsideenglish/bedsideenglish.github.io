@@ -9,7 +9,18 @@ from pathlib import Path
 
 
 SITE_ORIGIN = "https://bedsideenglish.github.io"
-FIXED_ROUTES = ("/", "/android.html", "/android-everyday.html", "/desktop/", "/privacy.html")
+# Canonical, indexable routes only. /android.html is deliberately absent: it is
+# now a noindex redirect stub that canonicalises to "/", and Google asks for one
+# preferred URL per piece of content in a sitemap. /android-demo.html is absent
+# for the same reason — it is a noindex preview, not a search destination.
+FIXED_ROUTES = (
+    "/",
+    "/android-everyday.html",
+    "/desktop/",
+    "/gemini-api-free-tier.html",
+    "/about.html",
+    "/privacy.html",
+)
 REVIEWED_RE = re.compile(r'data-reviewed-on="(\d{4}-\d{2}-\d{2})"')
 
 

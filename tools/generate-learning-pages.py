@@ -476,6 +476,69 @@ def build_page(spec: PageSpec, data: dict[str, Any], related: PageMeta | None) -
     return rendered, PageMeta(case_id, spec.slug, spec.h1, spec.meta_description)
 
 
+def build_hub_jsonld(pages: list[PageMeta]) -> str:
+    """CollectionPage + ItemList for the hub, matching the everyday-english hub.
+
+    The list mirrors the visible cards exactly - same order, same titles - so the
+    markup never describes something a reader cannot see on the page.
+    """
+    ordered = sorted(pages, key=lambda item: item.title.lower())
+    graph = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "@id": f"{SITE_ORIGIN}/learning/#collection",
+                "url": f"{SITE_ORIGIN}/learning/",
+                "name": "Clinical History-Taking Questions in English",
+                "description": (
+                    "Scenario-based guides to the English questions used in a clinical "
+                    "history, with wording explanations and speaking patterns."
+                ),
+                "inLanguage": "en-US",
+                "isPartOf": {"@type": "WebSite", "name": "Bedside English", "url": f"{SITE_ORIGIN}/"},
+                "publisher": {"@id": f"{SITE_ORIGIN}/#organization"},
+                "about": {"@type": "Thing", "name": "Clinical history taking in English"},
+                "audience": {
+                    "@type": "EducationalAudience",
+                    "educationalRole": (
+                        "Medical students, international medical graduates, "
+                        "and healthcare professionals"
+                    ),
+                },
+            },
+            {
+                "@type": "ItemList",
+                "@id": f"{SITE_ORIGIN}/learning/#guides",
+                "numberOfItems": len(ordered),
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": index,
+                        "name": page.title,
+                        "url": f"{SITE_ORIGIN}/learning/{page.slug}/",
+                    }
+                    for index, page in enumerate(ordered, start=1)
+                ],
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": f"{SITE_ORIGIN}/learning/#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE_ORIGIN}/"},
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Clinical English guides",
+                        "item": f"{SITE_ORIGIN}/learning/",
+                    },
+                ],
+            },
+        ],
+    }
+    return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
+
+
 def build_hub(pages: list[PageMeta]) -> str:
     cards = []
     for index, page in enumerate(sorted(pages, key=lambda item: item.title.lower()), start=1):
@@ -491,6 +554,7 @@ def build_hub(pages: list[PageMeta]) -> str:
             "HUB_URL": escaped(f"{SITE_ORIGIN}/learning/"),
             "OG_IMAGE_URL": escaped(f"{SITE_ORIGIN}/assets/social/og-cover.png"),
             "GUIDE_CARDS": "\n        ".join(cards),
+            "HUB_JSONLD": build_hub_jsonld(pages),
         },
     )
 

@@ -160,7 +160,72 @@ def render_index(records: list[PageRecord]) -> str:
             f'<h3>{escaped(item["h1"])}</h3><p>{escaped(item["patient_card"])}</p>'
             f'<span class="card-link">Play model {index:02d} <span aria-hidden="true">→</span></span></a>'
         )
-    return render_template(TEMPLATE_ROOT / "index.html", {"CARDS": "\n        ".join(cards)})
+    return render_template(
+        TEMPLATE_ROOT / "index.html",
+        {"CARDS": "\n        ".join(cards), "HUB_JSONLD": build_hub_jsonld(records)},
+    )
+
+
+def build_hub_jsonld(records: list[PageRecord]) -> str:
+    """CollectionPage + ItemList for the hub, matching the everyday-english hub.
+
+    Order and titles come from the same records that render the cards, so the
+    markup cannot drift away from what is visible on the page.
+    """
+    graph = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "@id": f"{SITE_ORIGIN}/model-interviews/#collection",
+                "url": f"{SITE_ORIGIN}/model-interviews/",
+                "name": "Model Doctor-Patient Conversations in English",
+                "description": (
+                    "Complete doctor-patient history-taking conversations in clear "
+                    "American English, with two-voice audio and clinical flow notes."
+                ),
+                "inLanguage": "en-US",
+                "isPartOf": {"@type": "WebSite", "name": "Bedside English", "url": f"{SITE_ORIGIN}/"},
+                "publisher": {"@id": f"{SITE_ORIGIN}/#organization"},
+                "about": {"@type": "Thing", "name": "Doctor-patient conversation in English"},
+                "audience": {
+                    "@type": "EducationalAudience",
+                    "educationalRole": (
+                        "Medical students, international medical graduates, "
+                        "and healthcare professionals"
+                    ),
+                },
+            },
+            {
+                "@type": "ItemList",
+                "@id": f"{SITE_ORIGIN}/model-interviews/#interviews",
+                "numberOfItems": len(records),
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": index,
+                        "name": record.item["h1"],
+                        "url": f"{SITE_ORIGIN}/model-interviews/{record.item['slug']}/",
+                    }
+                    for index, record in enumerate(records, start=1)
+                ],
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": f"{SITE_ORIGIN}/model-interviews/#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE_ORIGIN}/"},
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Model interviews",
+                        "item": f"{SITE_ORIGIN}/model-interviews/",
+                    },
+                ],
+            },
+        ],
+    }
+    return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
 
 
 def write_or_check(path: Path, content: str, check: bool) -> bool:

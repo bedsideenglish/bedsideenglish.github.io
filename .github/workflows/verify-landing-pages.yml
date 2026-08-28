@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - index.html
-      - android.html
+      - about.html
       - android-everyday.html
       - learning-pages.json
       - learning/**
@@ -41,14 +41,13 @@ on:
       - tools/everyday_english_templates/**
       - tools/test_generate_everyday_english_pages.py
       - tools/site_map.py
-      - tools/sync-landing-pages.py
       - .github/workflows/verify-landing-pages.yml
   push:
     branches:
       - main
     paths:
       - index.html
-      - android.html
+      - about.html
       - android-everyday.html
       - learning-pages.json
       - learning/**
@@ -85,14 +84,13 @@ on:
       - tools/everyday_english_templates/**
       - tools/test_generate_everyday_english_pages.py
       - tools/site_map.py
-      - tools/sync-landing-pages.py
       - .github/workflows/verify-landing-pages.yml
 
 permissions:
   contents: read
 
 jobs:
-  verify-sync:
+  verify-pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -102,7 +100,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: python tools/sync-landing-pages.py
       - run: python tools/test_generate_learning_pages.py
       - run: python tools/generate-learning-pages.py --check
       - run: python tools/check-learning-pages.py

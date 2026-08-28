@@ -12,8 +12,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5efdc">
-  <title>Bedside English — Clinical English with AI Patients</title>
-  <meta name="description" content="Practice clinical English aloud with AI patients. Get real-time checklist guidance, precise feedback, pronunciation drills, and corrections that return as speaking practice. A full Everyday English mode is included.">
+  <title>Clinical English Speaking Practice with AI Patients | Bedside English</title>
+  <meta name="description" content="Clinical English speaking practice for international medical graduates (IMGs), medical students, and healthcare professionals. Talk to AI patients out loud, take a history in your own words, and get precise feedback plus pronunciation drills. Free on Android; a full Everyday English mode is included.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bedside English: Talk &amp; Train">
   <meta property="og:title" content="Clinical English that talks back">
@@ -24,6 +24,11 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://bedsideenglish.github.io/">
+  <!-- Explicit snippet/preview permissions. The default is a short snippet;
+       these let search and answer surfaces quote enough of the page to be
+       useful and show the cover image at full size. -->
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://bedsideenglish.github.io/#organization","name":"Bedside English","alternateName":"Bedside English: Talk & Train","url":"https://bedsideenglish.github.io/","logo":"https://bedsideenglish.github.io/assets/social/og-cover.png","description":"A free, open-source project publishing clinical and everyday English speaking practice: an AI-patient practice app and a library of sourced, reviewed spoken-English guides.","sameAs":["https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish","https://github.com/boyskier/BedsideEnglish-Android","https://github.com/boyskier/BedsideEnglish-Desktop","https://github.com/bedsideenglish/bedsideenglish.github.io"],"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"bedsideenglish.support@gmail.com","availableLanguage":["en","ko"]}},{"@type":"WebSite","@id":"https://bedsideenglish.github.io/#website","url":"https://bedsideenglish.github.io/","name":"Bedside English","inLanguage":["en-US","ko"],"publisher":{"@id":"https://bedsideenglish.github.io/#organization"}},{"@type":"SoftwareApplication","@id":"https://bedsideenglish.github.io/#app","name":"Bedside English: Talk & Train","alternateName":"MedVoiceTrainer","url":"https://bedsideenglish.github.io/","operatingSystem":"Android, Windows, macOS, Linux","applicationCategory":"EducationalApplication","applicationSubCategory":"Clinical English speaking practice","description":"Clinical English speaking practice with AI patients. Take a history out loud in your own words, watch the clinical checklist tick from what you actually said, and get your exact mistakes back as the next day's speaking drill. A full Everyday English mode is included.","featureList":["Live spoken conversations with AI patients","Clinical checklist that updates from what you said","Pronunciation drills and per-attempt feedback","Spaced review of your own corrections","Everyday English mode for life outside the clinic"],"inLanguage":["en-US","ko"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","url":"https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish"},"downloadUrl":"https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish","installUrl":"https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish","license":"https://bedsideenglish.github.io/privacy.html","publisher":{"@id":"https://bedsideenglish.github.io/#organization"}},{"@type":"FAQPage","@id":"https://bedsideenglish.github.io/#faq","mainEntity":[{"@type":"Question","name":"Can I try it without an API key?","acceptedAnswer":{"@type":"Answer","text":"Yes. Demo Mode ships with three scripted patients and runs immediately - no key, no account, no network setup. It is there so you can see whether the flow suits you before deciding anything."}},{"@type":"Question","name":"Why do I have to bring my own Gemini key?","acceptedAnswer":{"@type":"Answer","text":"Because it keeps the app subscription-free. Create a Gemini Free Tier key with your Google account - no credit card or billing setup required. You only add payment details if you later choose the Paid Tier. Every practice session shown on the homepage stayed on the Free Tier, with $0 charged, and the key stays encrypted on your phone."}},{"@type":"Question","name":"Is the Gemini Free Tier actually free?","acceptedAnswer":{"@type":"Answer","text":"Yes - $0, no credit card required. There is a trade-off worth knowing: Google may use your free-tier prompts and responses to improve its products, and real rate limits apply, resetting on a fixed clock time rather than a countdown."}},{"@type":"Question","name":"Can I practice everyday English too?","acceptedAnswer":{"@type":"Answer","text":"Yes. Survival English is a full everyday mode where scenes can move, time can jump, and new people can enter. You may even run an errand, remember what you were told, and report it back - with the same live voice, feedback, pronunciation work, and spaced review."}},{"@type":"Question","name":"Where do my recordings and transcripts go?","acceptedAnswer":{"@type":"Answer","text":"Your session history is stored on your device. When an AI feature needs it, the required audio, text, and exercise context go directly to Google under your own key - not through a Bedside English account or practice server. There are no ads, and telemetry is inactive in the current release."}},{"@type":"Question","name":"Is Bedside English a medical device?","acceptedAnswer":{"@type":"Answer","text":"No. It is an English-speaking practice tool. The clinical checklists exist to give the conversation a shape, not to teach medicine or support any real clinical decision."}}]}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Two Latin families only: a display serif that is never used below 26px,
@@ -269,7 +274,7 @@
 
 <header>
   <nav class="shell" aria-label="Primary navigation">
-    <a class="brand" href="./" aria-label="Bedside English Android home">
+    <a class="brand" href="./" aria-label="Bedside English home">
       <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
       Bedside English
     </a>
@@ -293,7 +298,7 @@
     <div class="shell hero-grid">
       <div class="hero-copy-col">
         <div class="hero-lead">
-          <p class="kicker" data-i18n="hero_kicker">Clinical English practice for IMGs, medical students, and healthcare professionals</p>
+          <p class="kicker" data-i18n="hero_kicker">Clinical English speaking practice for IMGs, medical students, and healthcare professionals</p>
           <h1 data-i18n="hero_title">Speak in the clinic.<em>Keep going in real life.</em></h1>
           <p class="hero-copy" data-i18n="hero_copy">Talk to AI patients in your own words. The patient answers out loud, the clinical checklist updates from what you actually covered, and your exact mistakes return as tomorrow’s speaking practice. A full Everyday English mode is included for life outside the clinic.</p>
           <p class="audience-link"><a href="android-everyday.html" data-i18n="everyday_link">Here for everyday English? Explore the everyday version →</a></p>
@@ -504,7 +509,7 @@
   <section class="resources" aria-labelledby="resources-title">
     <div class="shell">
       <div class="resources-head">
-        <div><p class="kicker">Free learning library</p><h2 id="resources-title">Study the words before you need them.</h2></div>
+        <div><p class="kicker">Free clinical English learning library</p><h2 id="resources-title">Study the words before you need them.</h2></div>
         <p>Use worked examples to prepare, then return to the app and say the case in your own words.</p>
       </div>
       <div class="resource-grid">
@@ -590,6 +595,7 @@
   <div class="footer-inner shell">
     <span data-i18n="footer_note">Bedside English · Free &amp; open source · Not a medical device</span>
     <span class="footer-links">
+      <a href="about.html">About &amp; editorial policy</a>
       <a href="privacy.html" data-i18n="privacy">Privacy policy</a>
       <a href="everyday-english/">Interactive listening guides</a>
       <a href="learning/">Clinical English guides</a>

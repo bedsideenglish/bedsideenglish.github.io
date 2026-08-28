@@ -94,11 +94,21 @@ process.stdout.write(JSON.stringify(payload));
         self.assertFalse(result["alternatives"]["correct"])
 
     def test_public_landings_do_not_claim_play_review(self) -> None:
-        for filename in ("index.html", "android.html", "android-everyday.html"):
+        # android.html is no longer a landing page: it is a noindex stub that
+        # redirects to "/". The two real landings still have to link the listing.
+        for filename in ("index.html", "android-everyday.html"):
             source = (ROOT / filename).read_text(encoding="utf-8")
             self.assertNotIn("Under Google Play review", source)
             self.assertNotIn("Google Play 심사 중", source)
             self.assertIn("https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish", source)
+
+    def test_android_html_is_a_noindex_redirect_to_the_root_route(self) -> None:
+        source = (ROOT / "android.html").read_text(encoding="utf-8")
+        self.assertIn('<meta name="robots" content="noindex,follow">', source)
+        self.assertIn('<link rel="canonical" href="https://bedsideenglish.github.io/">', source)
+        self.assertIn('http-equiv="refresh"', source)
+        sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+        self.assertNotIn("/android.html", sitemap)
 
 
 if __name__ == "__main__":
