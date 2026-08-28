@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "slug": "sbar-nursing-handoff",
+  "source_manifest": "team-communication-pages.json",
+  "source_page": "sbar-nursing-handoff-example",
+  "source_page_sha256": "6e524c7557d005eebd82628bf4f18a3d72747dcd66ba510edf9f84d104b7563d",
+  "reviewed_on": "2026-08-28",
+  "caption_sha256": "c37d498b79a96339584835a0d823faf43a6e6922bde826952a2f1295e3461146",
+  "slides": [
+    {
+      "index": 1,
+      "kind": "hook",
+      "html": "01.html",
+      "png": "01.png",
+      "html_sha256": "2151835ae332b3727787aaa369dbff2e2e57ec7fe8a4ba850ecfb8536cf8b29f"
+    },
+    {
+      "index": 2,
+      "kind": "contrast",
+      "html": "02.html",
+      "png": "02.png",
+      "html_sha256": "02c3267ac86160da3b22ce191e3c65272633239b31fe305aa0968752b09612b7"
+    },
+    {
+      "index": 3,
+      "kind": "contrast",
+      "html": "03.html",
+      "png": "03.png",
+      "html_sha256": "81cf239fadb319ec7b3898b5b6f56bc9514be1473860fa2cc26809aedc9b5fd8"
+    },
+    {
+      "index": 4,
+      "kind": "contrast",
+      "html": "04.html",
+      "png": "04.png",
+      "html_sha256": "b68304eab127a78cbd127bb6a9bf023026de0eb86fcd862cc1adecb55a224a15"
+    },
+    {
+      "index": 5,
+      "kind": "contrast",
+      "html": "05.html",
+      "png": "05.png",
+      "html_sha256": "bc0a98193b2ab21c6c14c9fbdd340cbd645bf37161156d152f12c6bb6223b480"
+    },
+    {
+      "index": 6,
+      "kind": "script",
+      "html": "06.html",
+      "png": "06.png",
+      "html_sha256": "cc3d61d56dd64320141e7c30d959fcace726d8f9718acd17f387bab9cb00df82"
+    },
+    {
+      "index": 7,
+      "kind": "cta",
+      "html": "07.html",
+      "png": "07.png",
+      "html_sha256": "5a2417fb66d984ecc80323aa4747f3a9ea70668f4b3ae46e301b1d78f71dc49b"
+    }
+  ]
+}

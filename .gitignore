@@ -2,3 +2,5 @@
 skills-lock.json
 .hallmark/
 __pycache__/
+.fontcache/
+out/

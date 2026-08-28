@@ -38,6 +38,14 @@ on:
       - tools/test_generate_team_communication_pages.py
       - tools/generate-everyday-english-pages.py
       - tools/check-everyday-english-pages.py
+      - instagram-cards.json
+      - assets/instagram/**
+      - assets/fonts/**
+      - tools/generate-instagram-cards.py
+      - tools/render-instagram-cards.py
+      - tools/check-instagram-cards.py
+      - tools/instagram_card_templates/**
+      - tools/test_generate_instagram_cards.py
       - tools/everyday_english_templates/**
       - tools/test_generate_everyday_english_pages.py
       - tools/site_map.py
@@ -81,6 +89,14 @@ on:
       - tools/test_generate_team_communication_pages.py
       - tools/generate-everyday-english-pages.py
       - tools/check-everyday-english-pages.py
+      - instagram-cards.json
+      - assets/instagram/**
+      - assets/fonts/**
+      - tools/generate-instagram-cards.py
+      - tools/render-instagram-cards.py
+      - tools/check-instagram-cards.py
+      - tools/instagram_card_templates/**
+      - tools/test_generate_instagram_cards.py
       - tools/everyday_english_templates/**
       - tools/test_generate_everyday_english_pages.py
       - tools/site_map.py
@@ -112,3 +128,9 @@ jobs:
       - run: python tools/test_generate_everyday_english_pages.py
       - run: python tools/generate-everyday-english-pages.py --check
       - run: python tools/check-everyday-english-pages.py
+      # Rendering needs a headless browser and stays an authoring-time step, so
+      # CI verifies the card manifest, the source fingerprints, and the PNGs
+      # that were committed — not the pixels themselves.
+      - run: python tools/test_generate_instagram_cards.py
+      - run: python tools/generate-instagram-cards.py --check
+      - run: python tools/check-instagram-cards.py

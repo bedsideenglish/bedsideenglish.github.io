@@ -1,0 +1,262 @@
+/* Instagram card system — 1080x1350 (4:5).
+ *
+ * Palette and type are lifted from communication/styles.css and tokens.css so a
+ * card reads as the same publication as the guide it links to. Nothing here is
+ * responsive: every card is rendered at exactly one size by a headless browser,
+ * so absolute px is the honest unit.
+ *
+ * Two rules drive the layout. Type is set large enough to fill the frame,
+ * because a card that leaves a third of itself empty reads as unfinished at
+ * thumb speed. And the contrast slides split the canvas into a paper half and
+ * an ink half, so the before/after is legible before a single word is read.
+ *
+ * Instagram crops the profile grid thumbnail to the centre square of a 4:5
+ * post, so the load-bearing line of each slide sits in the middle band rather
+ * than against an edge.
+ */
+
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../../assets/fonts/instrument-serif-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+  src: url("../../assets/fonts/inter-latin.woff2") format("woff2");
+}
+
+:root {
+  --ink: #102b35;
+  --ink-body: #15292f;
+  --paper: #f3f0e7;
+  --paper-light: #f7f4eb;
+  --salmon: #f3a88f;
+  --rust: #a3422c;
+  --muted-dark: #52666a;
+  --muted-light: #9fb3b2;
+  --rule: #d8d5c8;
+  --rule-dark: #274550;
+  --negative: #a3312b;
+
+  --pad: 82px;
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: "Inter", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { width: 1080px; height: 1350px; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad);
+  background: var(--paper);
+  color: var(--ink-body);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+body.on-ink { background: var(--ink); color: var(--paper-light); }
+
+/* ---- shared furniture ---------------------------------------------- */
+
+.eyebrow {
+  flex: 0 0 auto;
+  color: var(--rust);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.on-ink .eyebrow { color: var(--salmon); }
+
+.body { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; }
+
+.foot {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  color: var(--muted-dark);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.on-ink .foot { border-top-color: var(--rule-dark); color: var(--muted-light); }
+
+.foot .swipe { flex: 0 0 auto; color: var(--rust); font-weight: 700; white-space: nowrap; }
+.on-ink .foot .swipe { color: var(--salmon); }
+
+.pager { flex: 0 0 auto; font-size: 26px; font-weight: 600; letter-spacing: 0.04em; }
+
+/* ---- hook ----------------------------------------------------------- */
+
+/* The headline is the whole slide. It starts just under the eyebrow and runs
+ * as far as it needs to; the space that is left lands at the bottom, where it
+ * reads as a margin rather than as a hole in the middle. */
+.hook .body { justify-content: flex-start; padding-top: 96px; }
+
+.hook h1 {
+  font-family: var(--serif);
+  font-size: 150px;
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.hook h1 .accent { color: var(--salmon); }
+
+/* ---- contrast ------------------------------------------------------- */
+
+body.contrast { padding: 0; }
+
+.half {
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad);
+  min-height: 0;
+}
+
+.half.said {
+  flex: 0 0 46%;
+  background: var(--paper);
+  color: var(--negative);
+}
+
+.half.instead {
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 38px;
+  background: var(--ink);
+  color: var(--paper-light);
+}
+
+/* The corrected line and the reason for it are one block, centred together, so
+ * the leftover space lands at the edges instead of opening a gap between them.
+ * On the paper half there is only the quote, which centres under the step row. */
+.quote-wrap { display: flex; align-items: center; min-height: 0; }
+.said .quote-wrap { flex: 1 1 auto; }
+.instead .quote-wrap { flex: 0 1 auto; }
+
+.step { display: flex; align-items: center; gap: 22px; }
+
+.step .code {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--serif);
+  font-size: 40px;
+  line-height: 1;
+  padding-top: 4px;
+}
+
+.step .name {
+  margin-right: auto;
+  color: var(--ink);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.line { display: flex; gap: 28px; }
+
+.line .mark {
+  flex: 0 0 auto;
+  width: 48px;
+  font-family: var(--sans);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.line q {
+  font-family: var(--serif);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.018em;
+  quotes: "\201C" "\201D";
+}
+
+.instead .mark { color: var(--salmon); }
+
+/* The corrected line is the one to remember, so it is set a step larger. */
+.instead q { font-size: 70px; }
+
+.reason {
+  flex: 0 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid var(--rule-dark);
+  color: var(--muted-light);
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.half.said .pager { color: var(--muted-dark); }
+
+/* ---- script --------------------------------------------------------- */
+
+/* The screenshot slide. Set as a numbered list of sentences with room to
+ * breathe between them, because this is the one people zoom into. */
+.script .body { justify-content: center; gap: 44px; padding-block: 40px; }
+
+.script .say { display: flex; gap: 32px; align-items: baseline; }
+
+.script .say .code {
+  flex: 0 0 auto;
+  width: 44px;
+  color: var(--salmon);
+  font-family: var(--serif);
+  font-size: 40px;
+  line-height: 1;
+}
+
+.script .say p {
+  font-family: var(--serif);
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.016em;
+}
+
+/* ---- cta ------------------------------------------------------------ */
+
+/* Anchored like the hook, so the first and last card of a carousel bookend
+ * each other instead of drifting to different heights. */
+.cta .body { justify-content: flex-start; padding-top: 96px; gap: 44px; }
+
+.cta h2 {
+  font-family: var(--serif);
+  font-size: 122px;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.028em;
+}
+
+.cta h2 .accent { color: var(--salmon); }
+
+.cta .url {
+  color: var(--salmon);
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}

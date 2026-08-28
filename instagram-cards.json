@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "source_manifest": "team-communication-pages.json",
+  "cards": [
+    {
+      "slug": "sbar-nursing-handoff",
+      "source_page": "sbar-nursing-handoff-example",
+      "reviewed_on": "2026-08-28",
+      "hook": {
+        "eyebrow": "Clinical English",
+        "headline": [
+          { "text": "Your English", "tone": "base" },
+          { "text": "is fine.", "tone": "base" },
+          { "text": "Your handoff", "tone": "accent" },
+          { "text": "isn't.", "tone": "accent" }
+        ],
+        "footer": "Four sentences decide whether anyone comes.",
+        "swipe": "SWIPE"
+      },
+      "contrast_steps": [0, 1, 2, 3],
+      "script": {
+        "eyebrow": "Say this instead",
+        "footer": "Four sentences, in this order."
+      },
+      "cta": {
+        "eyebrow": "Bedside English",
+        "headline": [
+          { "text": "Talk to an", "tone": "base" },
+          { "text": "AI patient.", "tone": "base" },
+          { "text": "Out loud.", "tone": "accent" }
+        ],
+        "url": "bedsideenglish.github.io",
+        "footer": "The full worked example is free.",
+        "swipe": "LINK IN BIO"
+      },
+      "caption": [
+        "“I just wanted to let you know.”",
+        "If that is how your escalation calls end, the problem is not your English. It is the shape of the message.",
+        "SBAR gives you four sentences: the change, the history that matters, your assessment, and a bounded request. Swipe for the before and after on each one.",
+        "The full worked example — fictional chart, complete script, and the receiver check-back — is on the site. Link in bio."
+      ],
+      "hashtags": [
+        "clinicalenglish",
+        "medicalenglish",
+        "englishfornurses",
+        "nursingstudent",
+        "internationalnurse",
+        "img",
+        "oetexam",
+        "nclex",
+        "sbar",
+        "nursinghandoff",
+        "patienthandover",
+        "medicalstudent",
+        "residency",
+        "esl",
+        "englishatwork"
+      ],
+      "review": {
+        "clinical_text_is_source_verbatim": true,
+        "authored_copy_makes_no_clinical_claim": true,
+        "source_page_published": true,
+        "language_standard_en_us": true
+      }
+    }
+  ]
+}
