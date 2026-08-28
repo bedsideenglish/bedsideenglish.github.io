@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "pulm/pulm_003.json",
+  "source_sha256": "409d321807584994fc17306a0633fb8aa7a8b24ad1021b5bea09c9a0707ad8cb",
+  "transcript_sha256": "00412cf91ed7433413ed95774933bdb050ae5ef9399ca9bcc9087f84ca3c86a9",
+  "doctor_voice": "Iapetus",
+  "patient_voice": "Despina",
+  "patient_speaker": "Patient",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 7,
+      "transcript_sha256": "9e1e3a080a9d9d236e07a0d532d1465636200232d617caf81a263d0ab1d8e52f",
+      "wav_sha256": "141d4a3f099579befd2e434db93f31390b098ff8a772cbb2c2d457b5f405b903",
+      "duration_seconds": 44.84
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 8,
+      "turn_end": 15,
+      "transcript_sha256": "86f0bfc4b0247070bab046c8969fb5214ca026feaa57f253fd0b66e491235a9b",
+      "wav_sha256": "799f7fc300981a281565729cb5ba2d3ecb70576d97468b61a6a11ec569605537",
+      "duration_seconds": 37.48
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 16,
+      "turn_end": 23,
+      "transcript_sha256": "dc280595eb57a13594aa7c0906da66c46b72c412d23c4ad0bea29946a2dd6509",
+      "wav_sha256": "cc2a5389ff44bd2244e23457895d35ac3731330b1fd642972880f5d865fb0c88",
+      "duration_seconds": 42.8
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 24,
+      "turn_end": 29,
+      "transcript_sha256": "2e19c459ea33a89e6940fcf9b39aee3b9fda50dcce703dba139a03eb573a12a9",
+      "wav_sha256": "26a1b80b4fbdf9712c6da2bd95b80c3846162d0c102672ce7f699a963fcf3de2",
+      "duration_seconds": 33.04
+    },
+    {
+      "file": "part-05.wav",
+      "turn_start": 30,
+      "turn_end": 33,
+      "transcript_sha256": "91f093491cda3112835b5274bf176c16480524982e7554fe01e15eae29ce7ff9",
+      "wav_sha256": "b5c020e695581bceb731d06c99782d14bef0ddcbe25ac02adf74b767fb1d18a9",
+      "duration_seconds": 49.68
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "purpose": "Non-public model history-taking drafts awaiting clinical and en-US language review. This file is intentionally separate from the published audio manifest.",
+  "purpose": "Review provenance for five model histories promoted to the published audio manifest on 2026-08-28. model-interview-pages.json is now the source of truth.",
   "authored_on": "2026-08-27",
-  "tts_status": "not_generated",
+  "tts_status": "generated_and_published",
   "pages": [
     {
       "case": "neuro/neuro_025.json",
@@ -14,7 +14,7 @@
       "setting": "Neurology urgent clinic",
       "patient_card": "Ms. Yoon, 28, has had a severe right-sided throbbing headache for 24 hours after seeing flashing lights.",
       "estimated_minutes": "4 min",
-      "reviewed_on": "2026-08-27",
+      "reviewed_on": "2026-08-28",
       "voice": {
         "doctor": "Orus",
         "patient": "Aoede",
@@ -100,12 +100,12 @@
       "setting": "Pulmonology clinic",
       "patient_card": "Ms. Chloe Bennett, 32, develops wheezing, cough, and shortness of breath when she runs outdoors.",
       "estimated_minutes": "4 min",
-      "reviewed_on": "2026-08-27",
+      "reviewed_on": "2026-08-28",
       "voice": {
         "doctor": "Iapetus",
         "patient": "Despina",
         "patient_speaker": "Patient",
-        "direction": "A routine respiratory clinic visit in conversational American English. The doctor is attentive and practical, with clear phrasing for inhaler technique and safety questions. The patient is a physically active 32-year-old woman who sounds well at rest but concerned about exercising alone."
+        "direction": "A calm respiratory clinic conversation in clear American English. The doctor is attentive and practical. The patient sounds comfortable at rest and concerned but composed. Keep both voices natural and intelligible."
       },
       "audio_segments": [[0, 7], [8, 15], [16, 23], [24, 29], [30, 33]],
       "prediction_pauses": [
@@ -185,7 +185,7 @@
       "setting": "Same-day endocrinology assessment",
       "patient_card": "Mr. Choi, 19, has developed severe thirst, hourly urination, fatigue, and an 8-kilogram unplanned weight loss over three weeks.",
       "estimated_minutes": "4 min",
-      "reviewed_on": "2026-08-27",
+      "reviewed_on": "2026-08-28",
       "voice": {
         "doctor": "Rasalgethi",
         "patient": "Fenrir",
@@ -271,7 +271,7 @@
       "setting": "Orthopedic same-day clinic",
       "patient_card": "Mr. Jin, 28, has right lateral ankle pain, swelling, and bruising after landing awkwardly during basketball four hours ago.",
       "estimated_minutes": "3 min",
-      "reviewed_on": "2026-08-27",
+      "reviewed_on": "2026-08-28",
       "voice": {
         "doctor": "Algieba",
         "patient": "Puck",
@@ -355,7 +355,7 @@
       "setting": "Emergency department",
       "patient_card": "Mr. Yoon, 20, has headache, dizziness, and mild nausea four hours after a collision during basketball.",
       "estimated_minutes": "3 min",
-      "reviewed_on": "2026-08-27",
+      "reviewed_on": "2026-08-28",
       "voice": {
         "doctor": "Schedar",
         "patient": "Enceladus",

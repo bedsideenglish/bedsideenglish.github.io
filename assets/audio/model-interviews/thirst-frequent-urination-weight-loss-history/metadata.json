@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "endo/endo_021.json",
+  "source_sha256": "477ebc795734b8dbdf85e9caa0e41f9cfadafa940940eaae6c67fe20e2141a1e",
+  "transcript_sha256": "da082822783b857feadbc4a61542cdd24125b74b3e59e6264b096481adab5ced",
+  "doctor_voice": "Rasalgethi",
+  "patient_voice": "Fenrir",
+  "patient_speaker": "Patient",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 7,
+      "transcript_sha256": "5ca35acd305e44b949efa6ab274e2696f405c279ea989b77d3da5c7c37483850",
+      "wav_sha256": "be335f4e1323aa6f663c2a99be27ec2b042a563df3819a409f46959530f0695c",
+      "duration_seconds": 47.16
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 8,
+      "turn_end": 15,
+      "transcript_sha256": "e4f405102826353e401eab24674ad6bab72d02e089b18484a1df807c51c15798",
+      "wav_sha256": "59d249417a0d90e311b935db305dab99fe98e3c627f9f977b1023c68f22d6ae3",
+      "duration_seconds": 24.44
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 16,
+      "turn_end": 23,
+      "transcript_sha256": "fecea26cc6924ec79db5a3ed720c519f7a453b15cd171df67932676ba6d4030a",
+      "wav_sha256": "70807185bb9a9b829dd8cbda1c0bc1af98c59adc82abec6efbbc5ba0bd43e70a",
+      "duration_seconds": 36.92
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 24,
+      "turn_end": 29,
+      "transcript_sha256": "6202a03bf65cba65c2df3c7935910e95593abf88c0c98255a9d5fb3901af80b2",
+      "wav_sha256": "9d3b8e48fc859965ebdf685e1e468f7721cbdaa7b4a29103e8051aff25f9776d",
+      "duration_seconds": 25.6
+    },
+    {
+      "file": "part-05.wav",
+      "turn_start": 30,
+      "turn_end": 33,
+      "transcript_sha256": "b3c60f3a673b8985a66bfd72b6868cbaacf39527f91a9e55c528a491d396d798",
+      "wav_sha256": "c514dfc619160d18dccf1b932f0685703a196ac1ce7f04a95b5dad64cd013ec6",
+      "duration_seconds": 61.48
+    }
+  ]
+}

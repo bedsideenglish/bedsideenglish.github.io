@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "model": "gemini-3.1-flash-tts-preview",
+  "source_case": "ortho/ortho_023.json",
+  "source_sha256": "8b3c94e683be10873492553bd61fe98fb2125d6a9a14e2067fee839bca8141ae",
+  "transcript_sha256": "1eeb39a804ab6042de77fc8e469e6a1348fdf465a7ba7a5ddf19a541a603d65d",
+  "doctor_voice": "Algieba",
+  "patient_voice": "Puck",
+  "patient_speaker": "Patient",
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "segments": [
+    {
+      "file": "part-01.wav",
+      "turn_start": 0,
+      "turn_end": 7,
+      "transcript_sha256": "8fc16f9a700cfd63375de117efbf31ffc856f61e612912946392023ddc363adc",
+      "wav_sha256": "5ba46a9c743f484da4735adad9babd56462c7dfe5d1aa20892c88e460de2dc15",
+      "duration_seconds": 41.36
+    },
+    {
+      "file": "part-02.wav",
+      "turn_start": 8,
+      "turn_end": 15,
+      "transcript_sha256": "5eb24f1372c5dca75f618abef707ad995d13aaaca606c07d3ecbb4ba2de40b75",
+      "wav_sha256": "cb093845b7f255a744a84347c07a69f39568e525391ff3dc79b8bd47cd453b68",
+      "duration_seconds": 27.76
+    },
+    {
+      "file": "part-03.wav",
+      "turn_start": 16,
+      "turn_end": 23,
+      "transcript_sha256": "a7d10e28f846e03b518e53679b311a30f7e58a8c6f53631050101a84fedcb241",
+      "wav_sha256": "ef8c06d44d572e466e271160c0071027d0142bb98f6e07db4dd534d01ea7028f",
+      "duration_seconds": 37.64
+    },
+    {
+      "file": "part-04.wav",
+      "turn_start": 24,
+      "turn_end": 29,
+      "transcript_sha256": "d5d54190779d130e73efa99715590aab67cae6be8a4cd7f6c91cb47e782f4b09",
+      "wav_sha256": "30cf1b6f4fa56ecb386db792054bc97dab996074f4e2502acfd3c7a27a5d2721",
+      "duration_seconds": 22.4
+    },
+    {
+      "file": "part-05.wav",
+      "turn_start": 30,
+      "turn_end": 33,
+      "transcript_sha256": "cf4ade34086277b4f2e76da7f28ed5271961a108367da538e79045c1a665c916",
+      "wav_sha256": "764a1a878c97126f84a2a353974911e07f6e29a9c14e585d4e390c0183d39e86",
+      "duration_seconds": 40.72
+    }
+  ]
+}

@@ -4,6 +4,8 @@
 - 검토 대상: `model-interview-pages.json`의 공개 대본 5개와 `assets/audio/model-interviews/`의 WAV·metadata
 - 새 초안: `model-interview-drafts.json`
 - 범위: 콘텐츠 검토와 대본 작성만 수행. TTS와 공개 HTML 생성은 수행하지 않음.
+- 후속 공개 완료: 2026-08-28. 새 5개를 임상·언어 검토 후 `model-interview-pages.json`에 승격하고 WAV·HTML·index·sitemap을 생성함.
+- 현재 상태: 총 10개 공개. `model-interview-drafts.json`은 승격 전 검토 근거 보존용이며 공개 source of truth는 `model-interview-pages.json`임.
 
 ## 1. 기존 5개의 장점
 
@@ -66,4 +68,3 @@
 - 확정 대본의 turn 경계에 맞춰 voice와 segment를 정한 뒤 TTS 실행
 - WAV metadata와 transcript hash 생성
 - 공개 manifest 승격, HTML·index·sitemap 생성, 키보드·모바일·오디오 회귀 검증
-
