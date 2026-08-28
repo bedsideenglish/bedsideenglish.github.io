@@ -217,17 +217,32 @@ patient-opening` to remake one named line. The generator defaults to
 
 ## Instagram carousel cards
 
-Published guides are re-cut into 1080x1350 carousel slides under `assets/instagram/<slug>/`.
-The pipeline exists so social posts inherit the site's editorial gate instead of working around it:
-**the card manifest cannot contain clinical wording at all.** `instagram-cards.json` carries only
-slide selection, hook copy, and caption copy; every clinical English sentence on a card is pulled by
-field reference out of `team-communication-pages.json`, so a card can never say something the site
-has not already reviewed and sourced.
+Published guides are re-cut into 1080x1350 carousel slides under
+`assets/instagram/<slug>/`. The pipeline exists so social posts inherit the
+site's editorial gate instead of working around it: **the card manifest cannot
+contain clinical wording at all.** `instagram-cards.json` carries only slide
+selection, hook framing, and caption copy; every clinical English sentence on a
+card — the first slide included — is pulled by field reference out of a
+published guide, so a card can never say something the site has not already
+reviewed and sourced.
 
-A carousel is hook, one before/after slide per SBAR step, the connected script, then the call to
-action — at most 10 slides, which is Instagram's carousel limit. Templates and the card stylesheet
-live in `tools/instagram_card_templates/`; the two Latin-subset webfonts are vendored in
-`assets/fonts/` so rendering needs no network.
+Three libraries feed cards, and each has an adapter because each hurts in a
+different place:
+
+| `library` | Source | Slides | Hook |
+| --- | --- | --- | --- |
+| `team-communication` | `team-communication-pages.json` | ✗/✓ contrast per framework step | the phrasing the guide marks unclear |
+| `learning` | `learning-pages.json` | the guide's own labelled alternatives, no cross | the clinical-term option |
+| `model-interview` | `model-interview-pages.json` | a doctor question with the answer it got | the patient card, plus a question to the reader |
+
+A card may compile across several guides — the strongest `learning` card is one
+pattern collected from five pages rather than one page cut five ways — and the
+fingerprint check covers every guide referenced.
+
+The authoring standard, including why the hook is built from a source quote
+rather than a headline, is in `docs/instagram-card-system.md`. Templates and the
+card stylesheet live in `tools/instagram_card_templates/`; the two Latin-subset
+webfonts are vendored in `assets/fonts/` so rendering needs no network.
 
 Generate the slide HTML, then rasterise it:
 
@@ -236,14 +251,16 @@ python3 tools/generate-instagram-cards.py
 python3 tools/render-instagram-cards.py
 ```
 
-Rendering is authoring-time only, like the model-interview audio: it needs Playwright and a
-Chromium binary, and the published site never runs it. It refuses to write a PNG for any slide whose
-text escapes the card's safe area, so a sentence that is too long fails loudly instead of being
-posted clipped. Use `--card <slug>` to work on one carousel and `--write-overflowing` to inspect a
+Rendering is authoring-time only, like the model-interview audio: it needs
+Playwright and a Chromium binary, and the published site never runs it. It
+refuses to write a PNG for any slide whose text escapes the card's safe area, so
+a sentence that is too long fails loudly instead of being posted clipped. Use
+`--card <slug>` to work on one carousel and `--write-overflowing` to inspect a
 failing slide.
 
-`assets/instagram/<slug>/metadata.json` records the source guide's fingerprint and the SHA-256 of
-each slide, so editing a guide invalidates the cards cut from it. Run the publication gate:
+`assets/instagram/<slug>/metadata.json` records every source guide's fingerprint
+and the SHA-256 of each slide, so editing a guide invalidates the cards cut from
+it. Run the publication gate:
 
 ```sh
 python3 tools/test_generate_instagram_cards.py
@@ -252,7 +269,8 @@ python3 tools/check-instagram-cards.py
 ```
 
 Posting is deliberately manual. Upload the PNGs in filename order and paste
-`assets/instagram/<slug>/caption.txt`. Slide HTML in `out/` is a render input and is not committed.
+`assets/instagram/<slug>/caption.txt`. Slide HTML in `out/` is a render input
+and is not committed.
 
 ## Two switches at the top of the page script
 

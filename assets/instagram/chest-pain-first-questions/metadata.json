@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "slug": "chest-pain-first-questions",
+  "library": "model-interview",
+  "source_manifest": "model-interview-pages.json",
+  "source_pages": {
+    "chest-pain-focused-history": "2b1928ed62cf826d6fda8664cc4846729337b80fce12a341cd1e35354e32ae03"
+  },
+  "reviewed_on": "2026-08-28",
+  "caption_sha256": "1e2a5de89e1245347f11cd81cad86015f12af4d073a42fd9a3fe6fe87f060eb2",
+  "slides": [
+    {
+      "index": 1,
+      "kind": "hook",
+      "html": "01.html",
+      "png": "01.png",
+      "html_sha256": "c0da7bbe19bb9ea41061ee2d01c3416adfa57c0f2458420d8c691ef8f863d163"
+    },
+    {
+      "index": 2,
+      "kind": "ask",
+      "html": "02.html",
+      "png": "02.png",
+      "html_sha256": "3df45502b11d93c1b2c0765a207dcfe2a922e20436c3899cfd54927218362c2b"
+    },
+    {
+      "index": 3,
+      "kind": "ask",
+      "html": "03.html",
+      "png": "03.png",
+      "html_sha256": "17b581c8d40a94cb8f06c9ffc9f9612be005036c2069a42abd5d32f83559f361"
+    },
+    {
+      "index": 4,
+      "kind": "ask",
+      "html": "04.html",
+      "png": "04.png",
+      "html_sha256": "e4f1feb23970f053097d94e0aea491f867ba322fbea55228e9adcbdd483dc32c"
+    },
+    {
+      "index": 5,
+      "kind": "ask",
+      "html": "05.html",
+      "png": "05.png",
+      "html_sha256": "fe0498ae3d6737d03c0fe4778694181d792800004625ab2f4dfeccf291891a01"
+    },
+    {
+      "index": 6,
+      "kind": "script",
+      "html": "06.html",
+      "png": "06.png",
+      "html_sha256": "b80d72666fb8a6231ab33f41a5242577314f51342d961b891e77e4757378df91"
+    },
+    {
+      "index": 7,
+      "kind": "cta",
+      "html": "07.html",
+      "png": "07.png",
+      "html_sha256": "90e00f47287a3f7417059bdad779d6e7317e191672717f9ea646463908ce6c7b"
+    }
+  ]
+}

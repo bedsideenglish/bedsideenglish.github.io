@@ -1,6 +1,4 @@
-“I just wanted to let you know.”
-
-If that is how your escalation calls end, the problem is not your English. It is the shape of the message.
+If your escalation calls end with “I just wanted to let you know”, the problem is not your English. It is the shape of the message.
 
 SBAR gives you four sentences: the change, the history that matters, your assessment, and a bounded request. Swipe for the before and after on each one.
 

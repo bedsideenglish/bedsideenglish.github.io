@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "slug": "words-your-patient-does-not-have",
+  "library": "learning",
+  "source_manifest": "learning-pages.json",
+  "source_pages": {
+    "chest-pain-history-questions": "4ef8894160263abb62ef2d71d360d5a8fb777081b81d59ca5cc7b4650a7fd499",
+    "thyroid-and-palpitations-questions": "ab753d1703e4c9f4555a311b4cf8d785339c41f32db37a2f7a0cfac1f54d0396",
+    "wheezing-and-asthma-questions": "f45edc10a73d44aba46ec1e5d50c1977b5c01b765bf67ca6fa8c6434117a8ffb"
+  },
+  "reviewed_on": "2026-08-28",
+  "caption_sha256": "bdca1e6b5b604b3b26ab28d31f6c6d32f7d735db9d73fdfaf86da47b1784b588",
+  "slides": [
+    {
+      "index": 1,
+      "kind": "hook",
+      "html": "01.html",
+      "png": "01.png",
+      "html_sha256": "0a125743a340378bdc0b3a9005e4d0f7422e274ae3b528bad6455994e68bf091"
+    },
+    {
+      "index": 2,
+      "kind": "contrast",
+      "html": "02.html",
+      "png": "02.png",
+      "html_sha256": "65e8786b7347b7514757621d43bbdad53bd5f4a0266240ce1b5b3cc04fb1f9c2"
+    },
+    {
+      "index": 3,
+      "kind": "contrast",
+      "html": "03.html",
+      "png": "03.png",
+      "html_sha256": "45458bc4b22d25fc9f9c1557bff8275b72934d9ae59c72f2e8a4e23a243dd3e3"
+    },
+    {
+      "index": 4,
+      "kind": "contrast",
+      "html": "04.html",
+      "png": "04.png",
+      "html_sha256": "536ab87ae936c54695d8d99a8e2cd36f9b6d0f304aab150a067c54081180f051"
+    },
+    {
+      "index": 5,
+      "kind": "script",
+      "html": "05.html",
+      "png": "05.png",
+      "html_sha256": "200ec563db76c0536b261df98d4ff7abbba8e55189cc3795b915e761e1fdfd2b"
+    },
+    {
+      "index": 6,
+      "kind": "cta",
+      "html": "06.html",
+      "png": "06.png",
+      "html_sha256": "55b942149572a31fbf34495e5fb3e6d9d3bced66b339c93d623d949181a15f5d"
+    }
+  ]
+}

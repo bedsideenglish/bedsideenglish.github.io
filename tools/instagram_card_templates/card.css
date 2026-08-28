@@ -104,20 +104,40 @@ body.on-ink { background: var(--ink); color: var(--paper-light); }
 
 /* ---- hook ----------------------------------------------------------- */
 
-/* The headline is the whole slide. It starts just under the eyebrow and runs
- * as far as it needs to; the space that is left lands at the bottom, where it
- * reads as a margin rather than as a hole in the middle. */
-.hook .body { justify-content: flex-start; padding-top: 96px; }
+/* The hero is a sentence lifted verbatim from a guide — something the viewer
+ * has said out loud — and the consequence line under it names what happens
+ * next. See docs/instagram-card-system.md for why it is built this way rather
+ * than as a headline stating the carousel's thesis. */
+.hook .body { justify-content: center; gap: 56px; padding-bottom: 40px; }
 
-.hook h1 {
+.hook .hero {
   font-family: var(--serif);
-  font-size: 150px;
+  font-size: 104px;
   font-weight: 400;
-  line-height: 0.92;
-  letter-spacing: -0.03em;
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  quotes: "\201C" "\201D";
 }
 
-.hook h1 .accent { color: var(--salmon); }
+/* A scene-setting hero is not something anyone said, so it takes no quote
+ * marks and steps back to let the question below it lead. */
+.hook-scene .hero {
+  font-size: 82px;
+  line-height: 1.1;
+  color: var(--muted-light);
+  quotes: none;
+}
+
+.hook .consequence {
+  color: var(--salmon);
+  font-family: var(--serif);
+  font-size: 104px;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+}
+
+.hook-scene .consequence { color: var(--paper-light); }
 
 /* ---- contrast ------------------------------------------------------- */
 
@@ -198,6 +218,33 @@ body.contrast { padding: 0; }
 
 .instead .mark { color: var(--salmon); }
 
+/* `tone-option` is for guides that present two labelled phrasings rather than a
+ * mistake and its repair. Marking one with a cross would misstate the source,
+ * so those slides carry the guide's own labels and drop the alarm colour. */
+.tone-option .half.said { color: var(--ink-body); }
+
+/* The label sits above its phrasing rather than beside it. Source labels vary
+ * in length between guides, and as a side column they pushed each slide's quote
+ * to a different left edge; stacked, every quote in the carousel starts on the
+ * same axis and gets the full measure. */
+.tone-option .line { flex-direction: column; gap: 20px; }
+
+.tone-option .mark {
+  width: auto;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.tone-option .step .name { font-size: 24px; letter-spacing: 0.12em; }
+.tone-option .said .mark { color: var(--muted-dark); }
+.tone-option .instead .mark { color: var(--salmon); }
+.tone-option .line q { font-size: 62px; }
+.tone-option .instead q { font-size: 66px; }
+
 /* The corrected line is the one to remember, so it is set a step larger. */
 .instead q { font-size: 70px; }
 
@@ -259,4 +306,49 @@ body.contrast { padding: 0; }
   font-size: 34px;
   font-weight: 600;
   letter-spacing: 0.01em;
+}
+
+/* ---- ask ------------------------------------------------------------ */
+
+/* One doctor question from a model interview, labelled with the stage of the
+ * history it opens, and under it the answer that question actually got. There
+ * is no wrong version to contrast against here, so the pair the encounter
+ * produced is the lesson: this wording, that answer. */
+/* Top-anchored so the question lands at the same height on every ask slide,
+ * and the leftover space reads as a bottom margin rather than a hole. */
+.ask .body { justify-content: flex-start; gap: 46px; padding-top: 104px; }
+
+.ask .step .code { background: var(--salmon); color: var(--ink); }
+.ask .step .name { color: var(--paper-light); }
+.ask .step .pager { color: var(--muted-light); }
+
+.ask .line-single {
+  flex: 0 0 auto;
+  font-family: var(--serif);
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  quotes: "\201C" "\201D";
+}
+
+.ask .reply { flex: 0 0 auto; padding-top: 40px; border-top: 1px solid var(--rule-dark); }
+
+.ask .reply .mark {
+  margin-bottom: 18px;
+  color: var(--salmon);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ask .reply q {
+  color: var(--muted-light);
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.24;
+  letter-spacing: -0.014em;
+  quotes: "\201C" "\201D";
 }

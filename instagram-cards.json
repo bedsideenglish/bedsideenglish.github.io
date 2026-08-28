@@ -1,23 +1,23 @@
 {
-  "schema_version": 1,
-  "source_manifest": "team-communication-pages.json",
+  "schema_version": 2,
   "cards": [
     {
       "slug": "sbar-nursing-handoff",
-      "source_page": "sbar-nursing-handoff-example",
+      "library": "team-communication",
       "reviewed_on": "2026-08-28",
       "hook": {
-        "eyebrow": "Clinical English",
-        "headline": [
-          { "text": "Your English", "tone": "base" },
-          { "text": "is fine.", "tone": "base" },
-          { "text": "Your handoff", "tone": "accent" },
-          { "text": "isn't.", "tone": "accent" }
-        ],
-        "footer": "Four sentences decide whether anyone comes.",
+        "eyebrow": "What you said",
+        "source": { "page": "sbar-nursing-handoff-example", "index": 3 },
+        "consequence": "Nobody comes.",
+        "footer": "Four sentences that get a response.",
         "swipe": "SWIPE"
       },
-      "contrast_steps": [0, 1, 2, 3],
+      "items": [
+        { "page": "sbar-nursing-handoff-example", "index": 0 },
+        { "page": "sbar-nursing-handoff-example", "index": 1 },
+        { "page": "sbar-nursing-handoff-example", "index": 2 },
+        { "page": "sbar-nursing-handoff-example", "index": 3 }
+      ],
       "script": {
         "eyebrow": "Say this instead",
         "footer": "Four sentences, in this order."
@@ -34,8 +34,7 @@
         "swipe": "LINK IN BIO"
       },
       "caption": [
-        "“I just wanted to let you know.”",
-        "If that is how your escalation calls end, the problem is not your English. It is the shape of the message.",
+        "If your escalation calls end with “I just wanted to let you know”, the problem is not your English. It is the shape of the message.",
         "SBAR gives you four sentences: the change, the history that matters, your assessment, and a bounded request. Swipe for the before and after on each one.",
         "The full worked example — fictional chart, complete script, and the receiver check-back — is on the site. Link in bio."
       ],
@@ -59,7 +58,128 @@
       "review": {
         "clinical_text_is_source_verbatim": true,
         "authored_copy_makes_no_clinical_claim": true,
-        "source_page_published": true,
+        "source_pages_published": true,
+        "language_standard_en_us": true
+      }
+    },
+    {
+      "slug": "words-your-patient-does-not-have",
+      "library": "learning",
+      "reviewed_on": "2026-08-28",
+      "hook": {
+        "eyebrow": "What you asked",
+        "source": { "page": "chest-pain-history-questions", "index": 0 },
+        "consequence": "They answer either way.",
+        "footer": "Three questions, two ways to ask them.",
+        "swipe": "SWIPE"
+      },
+      "items": [
+        { "page": "chest-pain-history-questions", "index": 0 },
+        { "page": "wheezing-and-asthma-questions", "index": 0 },
+        { "page": "thyroid-and-palpitations-questions", "index": 0 }
+      ],
+      "script": {
+        "eyebrow": "Ask it this way",
+        "footer": "Same question, in words they have."
+      },
+      "cta": {
+        "eyebrow": "Bedside English",
+        "headline": [
+          { "text": "Practise the", "tone": "base" },
+          { "text": "whole history.", "tone": "base" },
+          { "text": "Out loud.", "tone": "accent" }
+        ],
+        "url": "bedsideenglish.github.io",
+        "footer": "Reviewed history guides, free.",
+        "swipe": "LINK IN BIO"
+      },
+      "caption": [
+        "“Does the pain radiate anywhere?” is correct English and a correct clinical question. It is also a word many patients do not use about their own body.",
+        "They will answer you. That is the problem — you cannot tell whether they understood the question or just wanted to be helpful.",
+        "Three questions here, each in the clinical wording and in wording the patient already has. Neither version is wrong. One of them gets you an answer you can rely on.",
+        "The full history guides, with the reasoning behind every phrasing, are on the site. Link in bio."
+      ],
+      "hashtags": [
+        "clinicalenglish",
+        "medicalenglish",
+        "historytaking",
+        "medicalstudent",
+        "img",
+        "usmle",
+        "oetexam",
+        "plabexam",
+        "patientcommunication",
+        "healthliteracy",
+        "medstudent",
+        "futuredoctor",
+        "englishformedicine",
+        "esl"
+      ],
+      "review": {
+        "clinical_text_is_source_verbatim": true,
+        "authored_copy_makes_no_clinical_claim": true,
+        "source_pages_published": true,
+        "language_standard_en_us": true
+      }
+    },
+    {
+      "slug": "chest-pain-first-questions",
+      "library": "model-interview",
+      "reviewed_on": "2026-08-28",
+      "hook": {
+        "eyebrow": "Emergency department",
+        "source": { "page": "chest-pain-focused-history", "index": null },
+        "consequence": "What do you say first?",
+        "footer": "The doctor's actual words, in order.",
+        "swipe": "SWIPE"
+      },
+      "items": [
+        { "page": "chest-pain-focused-history", "index": { "turn": 2, "flow": 1 } },
+        { "page": "chest-pain-focused-history", "index": { "turn": 4, "flow": 2 } },
+        { "page": "chest-pain-focused-history", "index": { "turn": 12, "flow": 3 } },
+        { "page": "chest-pain-focused-history", "index": { "turn": 16, "flow": 4 } }
+      ],
+      "script": {
+        "eyebrow": "Ask in this order",
+        "footer": "From one focused ED history."
+      },
+      "cta": {
+        "eyebrow": "Bedside English",
+        "headline": [
+          { "text": "Hear the", "tone": "base" },
+          { "text": "whole encounter.", "tone": "base" },
+          { "text": "Then take it.", "tone": "accent" }
+        ],
+        "url": "bedsideenglish.github.io",
+        "footer": "Audio and transcript, free.",
+        "swipe": "LINK IN BIO"
+      },
+      "caption": [
+        "Two hours of central chest pain, and the monitor is still going on. You know what you are looking for. The question is what comes out of your mouth.",
+        "These are the doctor's real questions from a worked emergency history, in the order they were asked — onset, then site and spread, then what changes the pain, then whether it has happened before.",
+        "Short questions. No jargon. Each one opens the next stage of the history.",
+        "The full encounter, with audio of both speakers and the complete transcript, is on the site. Link in bio."
+      ],
+      "hashtags": [
+        "clinicalenglish",
+        "medicalenglish",
+        "historytaking",
+        "emergencymedicine",
+        "chestpain",
+        "medicalstudent",
+        "img",
+        "usmle",
+        "oetexam",
+        "osce",
+        "residency",
+        "medstudent",
+        "englishformedicine",
+        "esl"
+      ],
+      "review": {
+        "clinical_text_is_source_verbatim": true,
+        "authored_copy_makes_no_clinical_claim": true,
+        "source_pages_published": true,
         "language_standard_en_us": true
       }
     }
