@@ -71,16 +71,24 @@ A hook that opens a vague loop ("here's what most people get wrong") is a
 promise the carousel cannot pay off in one slide. A hook built on one specific
 sentence implies exactly one missing sentence, and slide two hands it over.
 
-## Three hook moves
+## Four hook moves
 
 The libraries differ in what makes their content hurt, so the artifact differs.
-All three are artifact-first.
+All four are artifact-first.
 
 | Library | The move | Hero | Consequence |
 | --- | --- | --- | --- |
 | `team-communication` | **The incriminating quote.** Colleague-to-colleague, there is a wrong version and the reader has said it. | The guide's `less_clear` phrasing | What the receiver does not do |
 | `learning` | **The jargon trap.** Doctor-to-patient, neither phrasing is wrong — but one uses a word the patient does not have. | The guide's clinical-term alternative | Why the answer cannot be trusted |
 | `model-interview` | **The decision point.** A live encounter has no single wrong line, so the hook is a question the reader answers in their head. | The patient card, verbatim | The question, asked of the reader |
+| `case-presentation` | **The fact nobody needs.** The skill is compression, so the hook is a true chart fact that still does not belong in the presentation. | A `compression` entry's `source_detail` | That it should not be said |
+
+`case-presentation` differs from the others in what a slide even contains.
+Elsewhere a slide holds speech; here it holds a chart fact and the guide's
+verdict on it — Lead, Include, Compress, or Omit — so neither half takes quote
+marks, and the verdict is set as a stamp because it is the lesson. The
+vocabulary is mirrored from the guide generator, so a typo in a verdict fails
+rather than being printed onto a card.
 
 The `learning` move needs care. Its alternatives are labelled options, not errors
 — the guides say so — and marking one with a cross would be a lie about the

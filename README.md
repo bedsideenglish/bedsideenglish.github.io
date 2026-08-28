@@ -226,7 +226,7 @@ card — the first slide included — is pulled by field reference out of a
 published guide, so a card can never say something the site has not already
 reviewed and sourced.
 
-Three libraries feed cards, and each has an adapter because each hurts in a
+Four libraries feed cards, and each has an adapter because each hurts in a
 different place:
 
 | `library` | Source | Slides | Hook |
@@ -234,6 +234,7 @@ different place:
 | `team-communication` | `team-communication-pages.json` | ✗/✓ contrast per framework step | the phrasing the guide marks unclear |
 | `learning` | `learning-pages.json` | the guide's own labelled alternatives, no cross | the clinical-term option |
 | `model-interview` | `model-interview-pages.json` | a doctor question with the answer it got | the patient card, plus a question to the reader |
+| `case-presentation` | `case-presentation-pages.json` | a chart fact stamped with the guide's Lead/Include/Compress/Omit verdict | the fact that does not belong in the presentation |
 
 A card may compile across several guides — the strongest `learning` card is one
 pattern collected from five pages rather than one page cut five ways — and the

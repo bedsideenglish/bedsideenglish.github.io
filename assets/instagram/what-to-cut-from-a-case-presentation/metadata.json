@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "slug": "what-to-cut-from-a-case-presentation",
+  "library": "case-presentation",
+  "source_manifest": "case-presentation-pages.json",
+  "source_pages": {
+    "copd-exacerbation-oral-case-presentation": "07324ff51f8f643aba81b253530904dd9a12cfc1caf0d77f105a360e87047d4c"
+  },
+  "reviewed_on": "2026-08-28",
+  "caption_sha256": "68d63d65f6d1a3a791ef3063cc0b8bfc8abe83810d65c3573a29180eb1c986d4",
+  "slides": [
+    {
+      "index": 1,
+      "kind": "hook",
+      "html": "01.html",
+      "png": "01.png",
+      "html_sha256": "19e5f5d89e14ad81f3de42ed45191d5dcdc2308861208d86fb75d74059b42845"
+    },
+    {
+      "index": 2,
+      "kind": "contrast",
+      "html": "02.html",
+      "png": "02.png",
+      "html_sha256": "fda3c3111c86d31696951ea6eb32a6a2bf64338a2a9c5ac74cbaa40cb05fcd9b"
+    },
+    {
+      "index": 3,
+      "kind": "contrast",
+      "html": "03.html",
+      "png": "03.png",
+      "html_sha256": "73e4a10096386250007d0aa8a1983b008d8ab2c36165bda6a25986b477a359b7"
+    },
+    {
+      "index": 4,
+      "kind": "contrast",
+      "html": "04.html",
+      "png": "04.png",
+      "html_sha256": "eea3fe0679e5915e229ea539f85d7e9d26461ab2ca702765a843e75dc8b46fe6"
+    },
+    {
+      "index": 5,
+      "kind": "contrast",
+      "html": "05.html",
+      "png": "05.png",
+      "html_sha256": "78acf5f236570c5217451debff4abf3064f3355d1bde35c47e6551e3516b4a39"
+    },
+    {
+      "index": 6,
+      "kind": "contrast",
+      "html": "06.html",
+      "png": "06.png",
+      "html_sha256": "edec58ff86e55235934fa84c8956931abf88bacd6677b1e2625e3d2b0c9f8423"
+    },
+    {
+      "index": 7,
+      "kind": "script",
+      "html": "07.html",
+      "png": "07.png",
+      "html_sha256": "7d57bc4a9b572ebca5b1c02e4dd73e2d5456d2b7611d24e88a349daa7f3e8e89"
+    },
+    {
+      "index": 8,
+      "kind": "cta",
+      "html": "08.html",
+      "png": "08.png",
+      "html_sha256": "19c856030eb66b4da78c066d0990e1d913f4406f4d5de829c7a987d6468e9623"
+    }
+  ]
+}

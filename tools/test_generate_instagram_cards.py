@@ -59,7 +59,7 @@ class InstagramCardTests(unittest.TestCase):
                 self.assertEqual(generator.validate_card(copy.deepcopy(card), index, self.pages_by_library)["slug"],
                                  card["slug"])
 
-    def test_all_three_libraries_are_exercised(self) -> None:
+    def test_every_library_is_exercised(self) -> None:
         self.assertEqual(
             {card["library"] for card in self.manifest["cards"]},
             set(generator.LIBRARIES),
@@ -181,6 +181,36 @@ class InstagramCardTests(unittest.TestCase):
         with self.assertRaisesRegex(generator.ManifestError, "no patient reply"):
             generator.validate_card(card, 0, {**self.pages_by_library, "model-interview": pages})
 
+    def test_case_presentation_slides_are_verdict_stamps(self) -> None:
+        """A chart fact and a verdict are not speech, so they carry no quote marks."""
+        card = self.card("what-to-cut-from-a-case-presentation")
+        pages = self.pages(card)
+        items = generator.card_items(card, pages)
+        entries = pages["copd-exacerbation-oral-case-presentation"]["compression"]
+        for item, ref in zip(items, card["items"]):
+            self.assertEqual(item["tone"], "verdict")
+            self.assertEqual(item["top_text"], entries[ref["index"]]["source_detail"])
+            self.assertEqual(item["bottom_text"], entries[ref["index"]]["decision"])
+            self.assertIn(item["bottom_text"], generator.DECISIONS)
+            self.assertEqual(item["top_label"], "")
+            self.assertEqual(item["bottom_label"], "")
+
+    def test_case_presentation_rejects_an_unknown_verdict(self) -> None:
+        card = self.card("what-to-cut-from-a-case-presentation")
+        pages = copy.deepcopy(self.pages(card))
+        pages["copd-exacerbation-oral-case-presentation"]["compression"][0]["decision"] = "Mention"
+        with self.assertRaisesRegex(generator.ManifestError, "is not one of"):
+            generator.validate_card(card, 0, {**self.pages_by_library, "case-presentation": pages})
+
+    def test_verdict_script_slide_uses_the_decision_as_its_code(self) -> None:
+        card = self.card("what-to-cut-from-a-case-presentation")
+        slides = generator.build_slides(card, self.pages(card))
+        script = next(slide for slide in slides if slide["kind"] == "script")
+        self.assertIn("wide-codes", script["body_class"])
+        for item in generator.card_items(card, self.pages(card)):
+            self.assertIn(f'<span class="code">{item["bottom_text"]}</span>', script["html"])
+            self.assertIn(generator.esc(item["top_text"]), script["html"])
+
     def test_model_interview_hook_takes_no_index(self) -> None:
         card = self.card("chest-pain-first-questions")
         card["hook"]["source"]["index"] = 0
@@ -191,7 +221,7 @@ class InstagramCardTests(unittest.TestCase):
 
     def test_unknown_library_is_rejected(self) -> None:
         card = self.card("sbar-nursing-handoff")
-        card["library"] = "case-presentation"
+        card["library"] = "everyday-english"
         with self.assertRaisesRegex(generator.ManifestError, "library"):
             self.validate(card)
 

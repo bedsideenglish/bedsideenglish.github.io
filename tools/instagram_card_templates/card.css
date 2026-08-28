@@ -121,7 +121,7 @@ body.on-ink { background: var(--ink); color: var(--paper-light); }
 
 /* A scene-setting hero is not something anyone said, so it takes no quote
  * marks and steps back to let the question below it lead. */
-.hook-scene .hero {
+.hero-scene .hero {
   font-size: 82px;
   line-height: 1.1;
   color: var(--muted-light);
@@ -137,7 +137,11 @@ body.on-ink { background: var(--ink); color: var(--paper-light); }
   letter-spacing: -0.028em;
 }
 
-.hook-scene .consequence { color: var(--paper-light); }
+.hero-scene .consequence { color: var(--paper-light); }
+
+/* A chart fact is the artifact itself, so it keeps the hero's full weight and
+ * only loses the quote marks — nobody said it, it was written down. */
+.hero-fact .hero { quotes: none; }
 
 /* ---- contrast ------------------------------------------------------- */
 
@@ -352,3 +356,42 @@ body.contrast { padding: 0; }
   letter-spacing: -0.014em;
   quotes: "\201C" "\201D";
 }
+
+/* ---- verdict -------------------------------------------------------- */
+
+/* Case presentation is a compression problem: a chart fact on paper, and the
+ * guide's verdict stamped on ink beneath it. Neither is speech, so both drop
+ * their quote marks and the mark column collapses. */
+.tone-verdict .mark { display: none; }
+.tone-verdict .line { gap: 0; }
+.tone-verdict .line q { quotes: none; }
+
+/* The verdict is top-anchored so it lands directly under the fact it judges,
+ * with the leftover space falling to the bottom edge as a margin. */
+.tone-verdict .half.instead { justify-content: flex-start; padding-top: 76px; gap: 34px; }
+
+.tone-verdict .half.said { color: var(--ink-body); }
+.tone-verdict .said q { font-size: 68px; line-height: 1.16; }
+
+.tone-verdict .instead q {
+  color: var(--salmon);
+  font-size: 132px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* ---- script with word-length codes ----------------------------------- */
+
+.script.wide-codes .say { gap: 34px; align-items: baseline; }
+
+.script.wide-codes .say .code {
+  width: 210px;
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.script.wide-codes .say p { font-size: 44px; }

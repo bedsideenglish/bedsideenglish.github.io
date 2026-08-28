@@ -38,6 +38,7 @@ on:
       - tools/test_generate_team_communication_pages.py
       - tools/generate-everyday-english-pages.py
       - tools/check-everyday-english-pages.py
+      - case-presentation-pages.json
       - instagram-cards.json
       - assets/instagram/**
       - assets/fonts/**
@@ -89,6 +90,7 @@ on:
       - tools/test_generate_team_communication_pages.py
       - tools/generate-everyday-english-pages.py
       - tools/check-everyday-english-pages.py
+      - case-presentation-pages.json
       - instagram-cards.json
       - assets/instagram/**
       - assets/fonts/**

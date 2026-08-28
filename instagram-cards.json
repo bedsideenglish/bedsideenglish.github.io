@@ -7,16 +7,31 @@
       "reviewed_on": "2026-08-28",
       "hook": {
         "eyebrow": "What you said",
-        "source": { "page": "sbar-nursing-handoff-example", "index": 3 },
+        "source": {
+          "page": "sbar-nursing-handoff-example",
+          "index": 3
+        },
         "consequence": "Nobody comes.",
         "footer": "Four sentences that get a response.",
         "swipe": "SWIPE"
       },
       "items": [
-        { "page": "sbar-nursing-handoff-example", "index": 0 },
-        { "page": "sbar-nursing-handoff-example", "index": 1 },
-        { "page": "sbar-nursing-handoff-example", "index": 2 },
-        { "page": "sbar-nursing-handoff-example", "index": 3 }
+        {
+          "page": "sbar-nursing-handoff-example",
+          "index": 0
+        },
+        {
+          "page": "sbar-nursing-handoff-example",
+          "index": 1
+        },
+        {
+          "page": "sbar-nursing-handoff-example",
+          "index": 2
+        },
+        {
+          "page": "sbar-nursing-handoff-example",
+          "index": 3
+        }
       ],
       "script": {
         "eyebrow": "Say this instead",
@@ -25,9 +40,18 @@
       "cta": {
         "eyebrow": "Bedside English",
         "headline": [
-          { "text": "Talk to an", "tone": "base" },
-          { "text": "AI patient.", "tone": "base" },
-          { "text": "Out loud.", "tone": "accent" }
+          {
+            "text": "Talk to an",
+            "tone": "base"
+          },
+          {
+            "text": "AI patient.",
+            "tone": "base"
+          },
+          {
+            "text": "Out loud.",
+            "tone": "accent"
+          }
         ],
         "url": "bedsideenglish.github.io",
         "footer": "The full worked example is free.",
@@ -68,15 +92,27 @@
       "reviewed_on": "2026-08-28",
       "hook": {
         "eyebrow": "What you asked",
-        "source": { "page": "chest-pain-history-questions", "index": 0 },
+        "source": {
+          "page": "chest-pain-history-questions",
+          "index": 0
+        },
         "consequence": "They answer either way.",
         "footer": "Three questions, two ways to ask them.",
         "swipe": "SWIPE"
       },
       "items": [
-        { "page": "chest-pain-history-questions", "index": 0 },
-        { "page": "wheezing-and-asthma-questions", "index": 0 },
-        { "page": "thyroid-and-palpitations-questions", "index": 0 }
+        {
+          "page": "chest-pain-history-questions",
+          "index": 0
+        },
+        {
+          "page": "wheezing-and-asthma-questions",
+          "index": 0
+        },
+        {
+          "page": "thyroid-and-palpitations-questions",
+          "index": 0
+        }
       ],
       "script": {
         "eyebrow": "Ask it this way",
@@ -85,9 +121,18 @@
       "cta": {
         "eyebrow": "Bedside English",
         "headline": [
-          { "text": "Practise the", "tone": "base" },
-          { "text": "whole history.", "tone": "base" },
-          { "text": "Out loud.", "tone": "accent" }
+          {
+            "text": "Practise the",
+            "tone": "base"
+          },
+          {
+            "text": "whole history.",
+            "tone": "base"
+          },
+          {
+            "text": "Out loud.",
+            "tone": "accent"
+          }
         ],
         "url": "bedsideenglish.github.io",
         "footer": "Reviewed history guides, free.",
@@ -128,16 +173,43 @@
       "reviewed_on": "2026-08-28",
       "hook": {
         "eyebrow": "Emergency department",
-        "source": { "page": "chest-pain-focused-history", "index": null },
+        "source": {
+          "page": "chest-pain-focused-history",
+          "index": null
+        },
         "consequence": "What do you say first?",
         "footer": "The doctor's actual words, in order.",
         "swipe": "SWIPE"
       },
       "items": [
-        { "page": "chest-pain-focused-history", "index": { "turn": 2, "flow": 1 } },
-        { "page": "chest-pain-focused-history", "index": { "turn": 4, "flow": 2 } },
-        { "page": "chest-pain-focused-history", "index": { "turn": 12, "flow": 3 } },
-        { "page": "chest-pain-focused-history", "index": { "turn": 16, "flow": 4 } }
+        {
+          "page": "chest-pain-focused-history",
+          "index": {
+            "turn": 2,
+            "flow": 1
+          }
+        },
+        {
+          "page": "chest-pain-focused-history",
+          "index": {
+            "turn": 4,
+            "flow": 2
+          }
+        },
+        {
+          "page": "chest-pain-focused-history",
+          "index": {
+            "turn": 12,
+            "flow": 3
+          }
+        },
+        {
+          "page": "chest-pain-focused-history",
+          "index": {
+            "turn": 16,
+            "flow": 4
+          }
+        }
       ],
       "script": {
         "eyebrow": "Ask in this order",
@@ -146,9 +218,18 @@
       "cta": {
         "eyebrow": "Bedside English",
         "headline": [
-          { "text": "Hear the", "tone": "base" },
-          { "text": "whole encounter.", "tone": "base" },
-          { "text": "Then take it.", "tone": "accent" }
+          {
+            "text": "Hear the",
+            "tone": "base"
+          },
+          {
+            "text": "whole encounter.",
+            "tone": "base"
+          },
+          {
+            "text": "Then take it.",
+            "tone": "accent"
+          }
         ],
         "url": "bedsideenglish.github.io",
         "footer": "Audio and transcript, free.",
@@ -172,6 +253,96 @@
         "oetexam",
         "osce",
         "residency",
+        "medstudent",
+        "englishformedicine",
+        "esl"
+      ],
+      "review": {
+        "clinical_text_is_source_verbatim": true,
+        "authored_copy_makes_no_clinical_claim": true,
+        "source_pages_published": true,
+        "language_standard_en_us": true
+      }
+    },
+    {
+      "slug": "what-to-cut-from-a-case-presentation",
+      "library": "case-presentation",
+      "reviewed_on": "2026-08-28",
+      "hook": {
+        "eyebrow": "Oral case presentation",
+        "source": {
+          "page": "copd-exacerbation-oral-case-presentation",
+          "index": 3
+        },
+        "consequence": "Nobody needs to hear it.",
+        "footer": "Five chart facts, four verdicts.",
+        "swipe": "SWIPE"
+      },
+      "items": [
+        {
+          "page": "copd-exacerbation-oral-case-presentation",
+          "index": 0
+        },
+        {
+          "page": "copd-exacerbation-oral-case-presentation",
+          "index": 1
+        },
+        {
+          "page": "copd-exacerbation-oral-case-presentation",
+          "index": 2
+        },
+        {
+          "page": "copd-exacerbation-oral-case-presentation",
+          "index": 4
+        },
+        {
+          "page": "copd-exacerbation-oral-case-presentation",
+          "index": 3
+        }
+      ],
+      "script": {
+        "eyebrow": "What made the cut",
+        "footer": "One chart, five decisions."
+      },
+      "cta": {
+        "eyebrow": "Bedside English",
+        "headline": [
+          {
+            "text": "Turn a chart",
+            "tone": "base"
+          },
+          {
+            "text": "into a",
+            "tone": "base"
+          },
+          {
+            "text": "presentation.",
+            "tone": "accent"
+          }
+        ],
+        "url": "bedsideenglish.github.io",
+        "footer": "The full worked example is free.",
+        "swipe": "LINK IN BIO"
+      },
+      "caption": [
+        "“Retired plumber with no pets.” It is in the chart. It is true. It does not belong in your presentation.",
+        "An oral case presentation is a compression problem before it is an English problem — and the compression happens one verdict at a time: lead with it, include it, compress it to a clause, or leave it out.",
+        "Five facts from one worked COPD exacerbation, each with its verdict and the reason behind it. Swipe to see which one earns the first sentence.",
+        "The full guide — the source chart, the complete six-part script, and the follow-up questions to expect — is on the site. Link in bio."
+      ],
+      "hashtags": [
+        "clinicalenglish",
+        "medicalenglish",
+        "casepresentation",
+        "oralpresentation",
+        "wardrounds",
+        "medicalstudent",
+        "img",
+        "usmle",
+        "osce",
+        "residency",
+        "internalmedicine",
+        "copd",
         "medstudent",
         "englishformedicine",
         "esl"

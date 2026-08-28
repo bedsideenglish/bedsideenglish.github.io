@@ -18,6 +18,9 @@ each has an adapter that knows how to read it:
                       clinical-term option.
   model-interview     a live encounter with no single wrong line, so slides are
                       the doctor's actual questions and the hook is a scene.
+  case-presentation   chart to speech; the skill is what you leave out, so a
+                      slide stamps one chart fact with the guide's verdict and
+                      the hook is the fact nobody needs to hear.
 
 The authoring standard, and the reasoning behind the hook, is in
 `docs/instagram-card-system.md`.
@@ -78,6 +81,9 @@ LIMITS = {
 }
 
 TONES = {"base", "accent"}
+# Mirrored from tools/generate-case-presentation-pages.py, so a typo in a guide's
+# verdict is caught here rather than printed onto a card.
+DECISIONS = {"Lead", "Include", "Compress", "Omit"}
 MAX_SLIDES = 10  # Instagram's carousel limit.
 
 
@@ -169,7 +175,9 @@ def render_template(name: str, values: dict[str, str]) -> str:
 # Each returns the same two shapes so the slide templates stay library-agnostic:
 #
 #   item  {badge, name, top_label, top_text, bottom_label, bottom_text, reason,
-#          tone}  — one body slide
+#          script_code, tone}  — one body slide. `badge` falls back to the slide
+#          number and `script_code` to `badge`, so an adapter only sets what its
+#          library actually has.
 #   hero  the verbatim source text the hook is built on
 # --------------------------------------------------------------------------
 
@@ -190,6 +198,7 @@ def team_communication_item(page: dict[str, Any], index: Any, where: str) -> dic
         "bottom_label": "&#10003;",
         "bottom_text": source_text(note.get("preferred"), f"{where}.preferred", LIMITS["quote"]),
         "reason": source_text(note.get("reason"), f"{where}.reason", LIMITS["reason"]),
+        "script_code": "",
         "tone": "error",
     }
 
@@ -217,6 +226,7 @@ def learning_item(page: dict[str, Any], index: Any, where: str) -> dict[str, Any
         "bottom_label": source_text(second.get("label"), f"{where}.alternatives[1].label", LIMITS["label"]),
         "bottom_text": source_text(second.get("phrase"), f"{where}.alternatives[1].phrase", LIMITS["quote"]),
         "reason": source_text(edit.get("why_this_wording"), f"{where}.why_this_wording", LIMITS["reason"]),
+        "script_code": "",
         "tone": "option",
     }
 
@@ -255,6 +265,7 @@ def model_interview_item(page: dict[str, Any], index: Any, where: str) -> dict[s
         "bottom_label": "",
         "bottom_text": source_text(turn.get("text"), f"{where}.turn", LIMITS["quote"]),
         "reason": "",
+        "script_code": "",
         "tone": "ask",
     }
 
@@ -265,27 +276,62 @@ def model_interview_hero(page: dict[str, Any], index: Any, where: str) -> str:
     return source_text(page.get("patient_card"), f"{page['slug']}.patient_card", LIMITS["hero"])
 
 
+def case_presentation_item(page: dict[str, Any], index: Any, where: str) -> dict[str, Any]:
+    """One chart fact and the verdict the guide passed on it.
+
+    An oral presentation is a compression problem, so the lesson is the verdict:
+    lead with this fact, include it, compress it to a clause, or leave it out.
+    Neither the fact nor the verdict is speech, so these slides carry no quote
+    marks.
+    """
+    entries = page.get("compression") or []
+    if not isinstance(index, int) or not 0 <= index < len(entries):
+        fail(f"{where}: {index!r} is not a compression index of '{page['slug']}'")
+    entry = entries[index]
+    decision = source_text(entry.get("decision"), f"{where}.decision", 12)
+    if decision not in DECISIONS:
+        fail(f"{where}.decision: {decision!r} is not one of {', '.join(sorted(DECISIONS))}")
+    return {
+        "badge": "",
+        "name": "",
+        "top_label": "",
+        "top_text": source_text(entry.get("source_detail"), f"{where}.source_detail", LIMITS["quote"]),
+        "bottom_label": "",
+        "bottom_text": decision,
+        "reason": source_text(entry.get("why"), f"{where}.why", LIMITS["reason"]),
+        "script_code": decision,
+        "tone": "verdict",
+    }
+
+
+def case_presentation_hero(page: dict[str, Any], index: Any, where: str) -> str:
+    return case_presentation_item(page, index, where)["top_text"]
+
+
 LIBRARIES: dict[str, dict[str, Any]] = {
     "team-communication": {
         "manifest": "team-communication-pages.json",
         "item": team_communication_item,
         "hero": team_communication_hero,
-        "hero_takes_index": True,
-        "hero_is_quote": True,
+        "hero_style": "quote",
     },
     "learning": {
         "manifest": "learning-pages.json",
         "item": learning_item,
         "hero": learning_hero,
-        "hero_takes_index": True,
-        "hero_is_quote": True,
+        "hero_style": "quote",
     },
     "model-interview": {
         "manifest": "model-interview-pages.json",
         "item": model_interview_item,
         "hero": model_interview_hero,
-        "hero_takes_index": False,
-        "hero_is_quote": False,
+        "hero_style": "scene",
+    },
+    "case-presentation": {
+        "manifest": "case-presentation-pages.json",
+        "item": case_presentation_item,
+        "hero": case_presentation_hero,
+        "hero_style": "fact",
     },
 }
 
@@ -454,12 +500,15 @@ def build_slides(card: dict[str, Any], pages: dict[str, dict[str, Any]]) -> list
 
     hook = card["hook"]
     hero = library["hero"](pages[hook["source"]["page"]], hook["source"]["index"], "hook")
+    style = library["hero_style"]
     slides.append({
         "kind": "hook",
-        "body_class": "hook on-ink" + ("" if library["hero_is_quote"] else " hook-scene"),
+        "body_class": f"hook on-ink hero-{style}",
         "html": render_template("slide-hook.html", {
             "EYEBROW": esc(hook["eyebrow"]),
-            "HERO_TAG": "q" if library["hero_is_quote"] else "p",
+            # Only a quoted hero is something somebody said; a scene or a chart
+            # fact takes no quote marks.
+            "HERO_TAG": "q" if style == "quote" else "p",
             "HERO": esc(hero),
             "CONSEQUENCE": esc(hook["consequence"]),
             "FOOTER": esc(hook["footer"]),
@@ -500,16 +549,21 @@ def build_slides(card: dict[str, Any], pages: dict[str, dict[str, Any]]) -> list
             }),
         })
 
+    script_codes = [item["script_code"] or item["badge"] or str(position + 1)
+                    for position, item in enumerate(items)]
+    # A verdict reads as a word, not a letter, so widen the column for it.
+    wide = any(len(code) > 3 for code in script_codes)
     say_lines = "\n".join(
         '<div class="say"><span class="code">{code}</span><p>{text}</p></div>'.format(
-            code=esc(item["badge"] or str(position + 1)),
-            text=esc(item["bottom_text"]),
+            code=esc(code),
+            # On a verdict card the fact is the line and the verdict is the code.
+            text=esc(item["top_text"] if item["tone"] == "verdict" else item["bottom_text"]),
         )
-        for position, item in enumerate(items)
+        for code, item in zip(script_codes, items)
     )
     slides.append({
         "kind": "script",
-        "body_class": "script on-ink",
+        "body_class": "script on-ink" + (" wide-codes" if wide else ""),
         "html": render_template("slide-script.html", {
             "EYEBROW": esc(card["script"]["eyebrow"]),
             "SAY_LINES": say_lines,
