@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK1EXM7ZKH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FK1EXM7ZKH');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <title>Bedside English: Talk &amp; Train — Unscripted English practice for IMGs</title>
+  <meta name="description" content="Practice unpredictable everyday English, then grow into live AI patient encounters, OSCE, OET, handovers, and presentations. Free on Windows and now on Google Play for Android.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bedside English: Talk & Train">
+  <meta property="og:title" content="You won’t know who speaks next. That’s the point.">
+  <meta property="og:description" content="Unscripted English practice for IMGs—from everyday survival to the clinical floor. Free on Windows desktop and now live on Google Play for Android.">
+  <meta property="og:url" content="https://bedsideenglish.github.io/desktop/">
+  <meta property="og:image" content="https://bedsideenglish.github.io/assets/app-survival-live.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://bedsideenglish.github.io/desktop/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://bedsideenglish.github.io/#app",
+    "name": "Bedside English: Talk & Train",
+    "alternateName": "MedVoiceTrainer",
+    "operatingSystem": "Windows, macOS, Linux, Android",
+    "applicationCategory": "EducationalApplication",
+    "description": "A free, open-source app for unscripted everyday and clinical English speaking practice, built for international medical graduates. Available now on Windows desktop and on Google Play for Android.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://bedsideenglish.github.io/",
+    "sameAs": "https://bedsideenglish.github.io/desktop/"
+  }
+  </script>
+  <style>
+    :root {
+      --paper: #f4f2ec;
+      --paper-2: #ebe8df;
+      --ink: #0b1020;
+      --ink-soft: #414755;
+      --cobalt: #1e40af;
+      --cobalt-bright: #2563eb;
+      --cobalt-pale: #e6edff;
+      --amber: #f59e0b;
+      --green: #087d5c;
+      --red: #d9463e;
+      --rule: #c8c5bb;
+      --white: #fff;
+      --display: Manrope, "Noto Sans KR", sans-serif;
+      --mono: "IBM Plex Mono", Consolas, monospace;
+      --shell: min(1460px, calc(100vw - 56px));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--paper); font-family: var(--display); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .2; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E"); }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; }
+    .shell { width: var(--shell); margin-inline: auto; }
+    .skip-link { position: fixed; top: 10px; left: 10px; z-index: 100; padding: 10px 14px; color: white; background: var(--cobalt); transform: translateY(-160%); }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--ink); background: var(--paper); }
+    .nav { min-height: 74px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; width: max-content; font-size: .92rem; font-weight: 800; letter-spacing: -.035em; }
+    .brand-mark { width: 31px; height: 31px; display: grid; place-items: center; color: white; background: var(--cobalt); }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; font: 500 .72rem var(--mono); letter-spacing: .035em; text-transform: uppercase; }
+    .nav-links a { position: relative; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px; background: var(--cobalt); transition: right .2s ease; }
+    .nav-links a:hover::after { right: 0; }
+    .nav-tools { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+    .language-switch { display: flex; border: 1px solid var(--ink); }
+    .language-switch button { min-width: 39px; padding: 7px 8px; border: 0; color: var(--ink); background: transparent; font: 600 .66rem var(--mono); cursor: pointer; }
+    .language-switch button + button { border-left: 1px solid var(--ink); }
+    .language-switch button.active { color: white; background: var(--ink); }
+    .nav-repo-links { display: flex; align-items: center; gap: 8px; }
+    .nav-github { min-height: 34px; display: inline-flex; align-items: center; padding: 0 12px; color: white; background: var(--ink); font: 600 .66rem var(--mono); text-transform: uppercase; }
+    .nav-github-icon { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; border: 1px solid var(--ink); color: var(--ink); background: transparent; transition: color .16s ease, background .16s ease; }
+    .nav-github-icon svg { width: 16px; height: 16px; }
+    .nav-github-icon:hover { color: white; background: var(--ink); }
+    .nav-play-badge { width: 142px; min-height: 42px; display: inline-flex; align-items: center; }
+    .nav-play-badge img { width: 100%; height: auto; display: block; }
+
+    .hero { position: relative; border-bottom: 1px solid var(--ink); }
+    .hero-grid { display: grid; grid-template-columns: 52px minmax(0, 1fr); }
+    .margin-rail { border-right: 1px solid var(--ink); display: flex; align-items: flex-start; justify-content: center; padding-top: 38px; }
+    .margin-rail span { writing-mode: vertical-rl; transform: rotate(180deg); font: 500 .6rem var(--mono); letter-spacing: .18em; text-transform: uppercase; }
+    .hero-main { min-width: 0; }
+    .hero-copy-grid { display: grid; grid-template-columns: minmax(0, 1fr) 295px; gap: 56px; padding: 78px 54px 42px; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 29px; color: var(--cobalt); font: 600 .68rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 42px; height: 2px; background: var(--cobalt); }
+    h1 { max-width: 1120px; margin: 0; font-size: clamp(4rem, 7.25vw, 8.3rem); font-weight: 800; line-height: .88; letter-spacing: -.075em; text-wrap: balance; }
+    h1 span { color: var(--cobalt); }
+    h1 em { display: block; margin-top: .12em; font-style: normal; }
+    html[lang="ko"] h1 { letter-spacing: -.045em; line-height: .98; word-break: keep-all; }
+    .hero-body { max-width: 770px; margin: 31px 0 0; color: var(--ink-soft); font-size: clamp(1.02rem, 1.35vw, 1.28rem); line-height: 1.65; }
+    .hero-body strong { color: var(--ink); font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 34px; }
+    .button { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 14px; padding: 0 19px; border: 1px solid var(--ink); font: 600 .72rem var(--mono); letter-spacing: .02em; text-transform: uppercase; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+    .button:hover { transform: translate(-3px, -3px); box-shadow: 4px 4px 0 var(--ink); }
+    .button-primary { color: white; border-color: var(--cobalt); background: var(--cobalt); }
+    .button-secondary { background: transparent; }
+    .button-arrow { font-size: 1rem; }
+    .play-badge { width: 168px; min-height: 50px; display: inline-flex; align-items: center; transition: transform .18s ease, filter .18s ease; }
+    .play-badge:hover { transform: translateY(-3px); filter: drop-shadow(4px 4px 0 rgba(11,16,32,.22)); }
+    .play-badge img { width: 100%; height: auto; display: block; }
+    .hero-path-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; color: var(--cobalt); font: 600 .68rem var(--mono); letter-spacing: .02em; text-transform: uppercase; }
+    .hero-path-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .hero-platforms { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; color: var(--ink); font: 600 .72rem var(--mono); letter-spacing: .035em; text-transform: uppercase; }
+    .hero-platforms > span { display: inline-flex; align-items: center; gap: 9px; padding: 10px 13px; border: 1px solid var(--ink); background: white; box-shadow: 4px 4px 0 var(--cobalt); }
+    .hero-platforms > span + span { box-shadow: 4px 4px 0 var(--amber); }
+    .hero-platforms i { width: 9px; height: 9px; flex: 0 0 auto; background: var(--cobalt); }
+    .hero-platforms > span + span i { background: var(--amber); }
+    .field-note { align-self: end; margin-bottom: 5px; padding: 19px 0 0; border-top: 1px solid var(--ink); }
+    .field-note-label { display: block; margin-bottom: 22px; color: var(--cobalt); font: 600 .63rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .field-note blockquote { margin: 0; font-size: 1.02rem; font-weight: 650; line-height: 1.45; }
+    .field-note p { margin: 17px 0 0; color: #6b6f79; font: 400 .68rem/1.6 var(--mono); }
+
+    .scenario-board { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--white); }
+    .scenario-cell { min-width: 0; padding: 13px 18px 15px; border-left: 1px solid var(--ink); }
+    .scenario-cell:first-child { border-left: 0; }
+    .scenario-label { display: block; margin-bottom: 6px; color: #777b84; font: 500 .57rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .scenario-value { display: block; overflow: hidden; color: var(--ink); font: 600 .76rem var(--mono); text-overflow: ellipsis; white-space: nowrap; transition: opacity .15s ease, transform .15s ease; }
+    .scenario-value.changing { opacity: 0; transform: translateY(5px); }
+    .shuffle-status { display: flex; align-items: center; justify-content: space-between; padding: 9px 18px; color: white; background: var(--cobalt); font: 500 .6rem var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+    .shuffle-dots { display: inline-flex; gap: 4px; }
+    .shuffle-dots i { width: 4px; height: 4px; border-radius: 50%; background: white; animation: blink 1.2s ease-in-out infinite; }
+    .shuffle-dots i:nth-child(2) { animation-delay: .2s; }
+    .shuffle-dots i:nth-child(3) { animation-delay: .4s; }
+
+    .product-showcase { position: relative; padding: 48px 54px 82px; background: var(--cobalt-pale); }
+    .product-showcase::before { content: "LIVE PRODUCT / ACTUAL APP CAPTURE"; position: absolute; right: 18px; top: 22px; color: var(--cobalt); font: 500 .55rem var(--mono); letter-spacing: .08em; writing-mode: vertical-rl; }
+    .capture-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin-bottom: 18px; }
+    .capture-title { margin: 0; font-size: clamp(1.45rem, 2.3vw, 2.45rem); font-weight: 750; letter-spacing: -.04em; }
+    .capture-title span { color: var(--cobalt); }
+    .capture-meta { color: #5d6681; font: 500 .6rem var(--mono); text-align: right; text-transform: uppercase; }
+    .app-frame { overflow: hidden; border: 1px solid var(--ink); background: white; box-shadow: 14px 14px 0 var(--cobalt); }
+    .frame-bar { height: 39px; display: flex; align-items: center; gap: 8px; padding: 0 13px; border-bottom: 1px solid var(--ink); background: var(--paper); }
+    .frame-bar i { width: 8px; height: 8px; border: 1px solid var(--ink); border-radius: 50%; }
+    .frame-bar strong { margin-left: 7px; font: 600 .59rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .frame-bar span { margin-left: auto; color: var(--green); font: 600 .57rem var(--mono); text-transform: uppercase; }
+    .app-frame img { width: 100%; height: auto; display: block; }
+    .capture-caption { display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: start; margin-top: 17px; }
+    .capture-caption p { max-width: 780px; margin: 0; font-size: .87rem; line-height: 1.6; }
+    .capture-caption code { padding: 4px 7px; color: var(--cobalt); border: 1px solid #aebcde; background: white; font: 500 .6rem var(--mono); }
+
+    .journey { border-bottom: 1px solid var(--ink); }
+    .journey-head { display: grid; grid-template-columns: 180px minmax(0, 1fr) 330px; gap: 42px; align-items: end; padding: 118px 0 70px; }
+    .section-code { color: var(--cobalt); font: 600 .64rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .section-code strong { display: block; margin-bottom: 12px; color: var(--ink); font-size: 2rem; font-weight: 500; letter-spacing: -.06em; }
+    .journey-head h2 { max-width: 900px; margin: 0; font-size: clamp(3rem, 5.5vw, 6.3rem); font-weight: 780; line-height: .98; letter-spacing: -.065em; }
+    html[lang="ko"] .journey-head h2 { letter-spacing: -.04em; word-break: keep-all; }
+    .journey-head p { margin: 0; color: var(--ink-soft); font-size: .98rem; line-height: 1.7; }
+    .path-rule { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; margin-bottom: 52px; color: var(--cobalt); font: 600 .65rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .path-rule::before, .path-rule::after { content: ""; height: 1px; background: var(--cobalt); }
+    .chapter { display: grid; grid-template-columns: 130px 390px minmax(0, 1fr); gap: 38px; align-items: start; padding: 0 0 112px; }
+    .chapter-number { margin-top: -9px; color: var(--cobalt); font: 500 clamp(4.8rem, 8vw, 8.8rem)/.8 var(--mono); letter-spacing: -.12em; }
+    .chapter-copy { padding-top: 4px; }
+    .chapter-kicker { display: block; margin-bottom: 20px; color: var(--cobalt); font: 600 .62rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .chapter h3 { margin: 0; font-size: clamp(2.2rem, 3.35vw, 3.9rem); font-weight: 760; line-height: 1.02; letter-spacing: -.055em; }
+    html[lang="ko"] .chapter h3 { letter-spacing: -.035em; word-break: keep-all; }
+    .chapter-copy p { margin: 25px 0 0; color: var(--ink-soft); font-size: .94rem; line-height: 1.75; }
+    .chapter-points { display: grid; gap: 9px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--rule); }
+    .chapter-points span { display: flex; align-items: center; gap: 10px; font: 500 .65rem var(--mono); text-transform: uppercase; }
+    .chapter-points span::before { content: ""; width: 7px; height: 7px; background: var(--amber); }
+    .chapter-figure { margin: 0; min-width: 0; }
+    .chapter-frame { overflow: hidden; border: 1px solid var(--ink); background: white; }
+    .chapter-frame img { width: 100%; display: block; }
+    .chapter-figure figcaption { display: flex; justify-content: space-between; gap: 20px; margin-top: 12px; color: #676b74; font: 500 .58rem var(--mono); text-transform: uppercase; }
+
+    .clinical-band { color: white; border-top: 1px solid var(--ink); background: var(--cobalt); }
+    .clinical-band .chapter { padding-top: 92px; }
+    .clinical-band .chapter-number, .clinical-band .chapter-kicker { color: var(--amber); }
+    .clinical-band .chapter-copy p { color: #d5dfff; }
+    .clinical-band .chapter-points { border-color: rgba(255,255,255,.3); }
+    .clinical-band .chapter-points span::before { background: var(--amber); }
+    .clinical-band .chapter-frame { border-color: white; box-shadow: 13px 13px 0 var(--amber); }
+    .clinical-band .chapter-figure figcaption { color: #d5dfff; }
+
+    .session-loop { color: white; border-bottom: 1px solid var(--ink); background: var(--ink); }
+    .session-head { display: grid; grid-template-columns: 180px minmax(0, 1fr) 330px; gap: 42px; align-items: end; padding: 118px 0 64px; }
+    .session-head .section-code { color: var(--amber); }
+    .session-head .section-code strong { color: white; }
+    .session-head h2 { max-width: 900px; margin: 0; font-size: clamp(3rem, 5.5vw, 6.3rem); font-weight: 780; line-height: .98; letter-spacing: -.065em; }
+    .session-head p { margin: 0; color: #adb5c8; font-size: .95rem; line-height: 1.7; }
+    html[lang="ko"] .session-head h2 { letter-spacing: -.04em; word-break: keep-all; }
+    .proof-sequence { padding-bottom: 105px; }
+    .proof-step { display: grid; grid-template-columns: 115px 320px minmax(0, 1fr); gap: 34px; padding: 42px 0; border-top: 1px solid #343a49; }
+    .proof-index { color: var(--amber); font: 500 1rem var(--mono); }
+    .proof-copy span { display: block; margin-bottom: 16px; color: #7f899f; font: 500 .6rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .proof-copy h3 { margin: 0; font-size: clamp(1.8rem, 2.7vw, 3.1rem); font-weight: 700; line-height: 1.08; letter-spacing: -.045em; }
+    .proof-copy p { margin: 19px 0 0; color: #aeb7ca; font-size: .86rem; line-height: 1.7; }
+    .proof-screen { position: relative; min-width: 0; padding: 0 14px 14px 0; }
+    .proof-screen::after { content: ""; position: absolute; inset: 14px 0 0 14px; z-index: 0; background: var(--cobalt); }
+    .proof-screen.amber::after { background: var(--amber); }
+    .proof-window { position: relative; z-index: 1; overflow: hidden; border: 1px solid white; background: white; }
+    .proof-window img { width: 100%; display: block; }
+    .proof-screen-label { position: absolute; z-index: 2; right: 0; bottom: 0; padding: 6px 9px; color: var(--ink); background: white; font: 600 .55rem var(--mono); text-transform: uppercase; }
+
+    .feature-index { color: var(--ink); background: var(--paper); }
+    .feature-index-inner { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 70px; padding: 100px 0; }
+    .feature-index h2 { margin: 0; font-size: clamp(2.6rem, 4.5vw, 5rem); font-weight: 760; line-height: 1; letter-spacing: -.06em; }
+    .feature-index-intro p { max-width: 310px; margin: 23px 0 0; color: var(--ink-soft); font-size: .9rem; line-height: 1.7; }
+    .mode-list { border-top: 1px solid var(--ink); }
+    .mode-row { display: grid; grid-template-columns: 48px 210px 1fr auto; gap: 24px; align-items: center; min-height: 88px; border-bottom: 1px solid var(--ink); }
+    .mode-row > span:first-child { color: var(--cobalt); font: 600 .62rem var(--mono); }
+    .mode-row strong { font-size: 1.05rem; letter-spacing: -.025em; }
+    .mode-row p { margin: 0; color: #5f646e; font-size: .78rem; }
+    .mode-row b { color: var(--cobalt); font: 500 .7rem var(--mono); }
+
+    .platform-section { border-bottom: 1px solid var(--ink); background: var(--white); }
+    .platform-inner { padding: 100px 0; }
+    .platform-head { max-width: 900px; }
+    .platform-head h2 { margin: 15px 0 0; font-size: clamp(2.6rem, 4.5vw, 5rem); font-weight: 760; line-height: 1; letter-spacing: -.06em; }
+    html[lang="ko"] .platform-head h2 { word-break: keep-all; }
+    .platform-head p { max-width: 640px; margin: 23px 0 0; color: var(--ink-soft); font-size: .95rem; line-height: 1.75; }
+    .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 58px; }
+    .platform-card { border: 1px solid var(--ink); padding: 32px 30px; background: var(--paper); }
+    .platform-card.is-live { box-shadow: 10px 10px 0 var(--cobalt); }
+    .platform-card.is-soon { box-shadow: 10px 10px 0 var(--amber); }
+    .platform-card-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+    .platform-card-head h3 { margin: 0; font-size: 1.5rem; font-weight: 750; letter-spacing: -.03em; }
+    .platform-status { display: inline-flex; align-items: center; gap: 8px; font: 600 .62rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .platform-status::before { content: ""; width: 8px; height: 8px; background: var(--green); }
+    .platform-card.is-soon .platform-status::before { background: var(--amber); }
+    .platform-card p.platform-desc { margin: 20px 0 0; color: var(--ink-soft); font-size: .87rem; line-height: 1.7; }
+    .platform-points { display: grid; gap: 10px; margin: 22px 0 0; padding-top: 20px; border-top: 1px solid var(--rule); }
+    .platform-points span { display: flex; align-items: center; gap: 10px; font: 500 .68rem var(--mono); text-transform: uppercase; }
+    .platform-points span::before { content: ""; width: 7px; height: 7px; background: var(--cobalt); flex: 0 0 auto; }
+    .platform-card.is-soon .platform-points span::before { background: var(--amber); }
+    .platform-card .button { margin-top: 26px; width: 100%; }
+    .platform-card .play-badge { margin-top: 26px; }
+    .platform-card .play-badge + .button { margin-top: 14px; }
+
+    .trust-section { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--cobalt-pale); }
+    .trust-grid { display: grid; grid-template-columns: .86fr 1.14fr; gap: 90px; align-items: start; padding: 110px 0; }
+    .trust-copy h2 { max-width: 650px; margin: 15px 0 0; font-size: clamp(3rem, 5.2vw, 6rem); font-weight: 780; line-height: .98; letter-spacing: -.065em; }
+    html[lang="ko"] .trust-copy h2 { letter-spacing: -.04em; word-break: keep-all; }
+    .trust-copy p { max-width: 540px; margin: 25px 0 0; color: var(--ink-soft); font-size: .95rem; line-height: 1.75; }
+    .trust-ledger { border-top: 1px solid var(--ink); }
+    .ledger-row { display: grid; grid-template-columns: 180px 1fr auto; gap: 26px; align-items: center; min-height: 86px; border-bottom: 1px solid var(--ink); }
+    .ledger-row > span:first-child { color: #586074; font: 500 .62rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .ledger-row strong { font-size: .9rem; }
+    .ledger-state { display: inline-flex; align-items: center; gap: 8px; font: 600 .61rem var(--mono); text-transform: uppercase; }
+    .ledger-state::before { content: ""; width: 8px; height: 8px; background: var(--green); }
+    .ledger-state.inactive::before { background: var(--amber); }
+    .trust-note { margin: 20px 0 0; color: #5e6574; font: 400 .64rem/1.7 var(--mono); }
+
+    .download-section { color: var(--ink); border-bottom: 1px solid var(--ink); background: var(--amber); }
+    .download-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px 380px; gap: 36px; align-items: end; padding: 105px 0; }
+    .download-copy .section-code { color: var(--ink); }
+    .download-copy h2 { max-width: 850px; margin: 18px 0 0; font-size: clamp(3.6rem, 6.5vw, 7.6rem); font-weight: 800; line-height: .9; letter-spacing: -.075em; }
+    html[lang="ko"] .download-copy h2 { letter-spacing: -.045em; line-height: .98; word-break: keep-all; }
+    .download-copy p { max-width: 660px; margin: 28px 0 0; font-size: 1rem; line-height: 1.7; }
+    .download-panel { border: 1px solid var(--ink); background: var(--paper); box-shadow: 11px 11px 0 var(--ink); }
+    .download-panel-head { padding: 17px 19px; border-bottom: 1px solid var(--ink); font: 600 .63rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .download-play { display: flex; align-items: center; justify-content: center; min-height: 94px; padding: 15px 18px; border-bottom: 1px solid var(--ink); background: white; }
+    .download-play .play-badge { width: 190px; }
+    .platform-link { display: grid; grid-template-columns: 46px 1fr auto; gap: 15px; align-items: center; min-height: 72px; padding: 11px 18px; border-bottom: 1px solid var(--ink); transition: color .16s ease, background .16s ease; }
+    .platform-link:hover { color: white; background: var(--cobalt); }
+    .platform-link:last-of-type { border-bottom: 0; }
+    .platform-link.is-disabled { cursor: default; opacity: .62; }
+    .platform-link.is-disabled:hover { color: var(--ink); background: transparent; }
+    .platform-icon { width: 38px; height: 38px; display: grid; place-items: center; color: white; background: var(--ink); font: 600 .8rem var(--mono); }
+    .platform-link strong { display: block; font-size: .9rem; }
+    .platform-link span span { color: #686d77; font: 400 .58rem var(--mono); text-transform: uppercase; }
+    .platform-link:hover span span { color: #d7e2ff; }
+    .platform-link > b { font: 500 .8rem var(--mono); }
+    .download-note { padding: 15px 18px; border-top: 1px solid var(--ink); color: #5e636c; font: 400 .58rem/1.6 var(--mono); }
+
+    .faq-section { border-bottom: 1px solid var(--ink); background: var(--paper); }
+    .faq-grid { display: grid; grid-template-columns: 370px minmax(0, 1fr); gap: 90px; padding: 105px 0; }
+    .faq-copy { position: sticky; top: 30px; align-self: start; }
+    .faq-copy h2 { margin: 15px 0 0; font-size: clamp(2.8rem, 4.4vw, 5rem); font-weight: 760; line-height: 1; letter-spacing: -.06em; }
+    .faq-copy p { margin: 23px 0 0; color: var(--ink-soft); font-size: .85rem; line-height: 1.7; }
+    .faq-list { border-top: 1px solid var(--ink); }
+    details { border-bottom: 1px solid var(--ink); }
+    summary { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 4px; cursor: pointer; list-style: none; font-size: .94rem; font-weight: 700; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; width: 27px; height: 27px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--ink); font: 500 1rem var(--mono); }
+    details[open] summary::after { content: "−"; color: white; background: var(--cobalt); }
+    .faq-answer { max-width: 780px; padding: 0 48px 23px 4px; color: #5b606a; font-size: .84rem; line-height: 1.75; }
+
+    .site-footer { min-height: 90px; display: flex; align-items: center; border-top: 1px solid var(--ink); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 30px; color: #5b606a; font: 500 .62rem var(--mono); text-transform: uppercase; }
+    .footer-inner a { color: var(--cobalt); }
+    .footer-links { display: flex; gap: 20px; }
+
+    @keyframes blink { 0%, 100% { opacity: .3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+    @media (max-width: 1080px) {
+      .nav { grid-template-columns: 1fr auto; }
+      .nav-links { display: none; }
+      .hero-copy-grid { grid-template-columns: 1fr; }
+      .field-note { max-width: 520px; }
+      .scenario-board { grid-template-columns: 1fr 1fr; }
+      .scenario-cell:nth-child(3) { border-left: 0; border-top: 1px solid var(--ink); }
+      .scenario-cell:nth-child(4) { border-top: 1px solid var(--ink); }
+      .journey-head { grid-template-columns: 130px 1fr; }
+      .journey-head p { grid-column: 2; max-width: 600px; }
+      .chapter { grid-template-columns: 90px 1fr; }
+      .chapter-figure { grid-column: 2; }
+      .session-head { grid-template-columns: 130px 1fr; }
+      .session-head p { grid-column: 2; max-width: 600px; }
+      .proof-step { grid-template-columns: 75px 1fr; }
+      .proof-screen { grid-column: 2; }
+      .feature-index-inner { grid-template-columns: 1fr; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; gap: 55px; }
+      .download-grid { grid-template-columns: 1fr; gap: 55px; }
+      .faq-grid { grid-template-columns: 1fr; gap: 50px; }
+      .faq-copy { position: static; }
+    }
+    @media (max-width: 700px) {
+      :root { --shell: calc(100vw - 28px); }
+      .site-header .shell { width: calc(100vw - 28px); }
+      .nav { min-height: 64px; }
+      .brand { font-size: .82rem; }
+      .nav-repo-links { display: none; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .margin-rail { display: none; }
+      .hero-copy-grid { padding: 55px 20px 40px; gap: 34px; }
+      h1 { font-size: clamp(3.45rem, 17vw, 5.8rem); }
+      .hero-body { font-size: .98rem; }
+      .hero-actions .button { flex: 1 1 100%; }
+      .hero-actions .play-badge { width: 168px; }
+      .scenario-board { grid-template-columns: 1fr; }
+      .scenario-cell, .scenario-cell:nth-child(3), .scenario-cell:nth-child(4) { border-left: 0; border-top: 1px solid var(--ink); }
+      .scenario-cell:first-child { border-top: 0; }
+      .product-showcase { padding: 36px 20px 60px; }
+      .product-showcase::before { display: none; }
+      .capture-header, .capture-caption { grid-template-columns: 1fr; display: grid; }
+      .capture-meta { text-align: left; }
+      .app-frame { box-shadow: 7px 7px 0 var(--cobalt); }
+      .app-frame img { width: 176%; max-width: none; transform: translateX(-.5%); }
+      .capture-caption code { width: max-content; }
+      .journey-head { grid-template-columns: 1fr; gap: 25px; padding: 82px 0 48px; }
+      .journey-head p { grid-column: auto; }
+      .path-rule { margin-bottom: 40px; }
+      .chapter, .clinical-band .chapter { grid-template-columns: 1fr; gap: 20px; padding: 0 0 78px; }
+      .clinical-band .chapter { padding-top: 65px; }
+      .chapter-number { font-size: 4.5rem; }
+      .chapter-figure { grid-column: auto; margin-top: 16px; }
+      .chapter-frame img { width: 168%; max-width: none; }
+      .clinical-band .chapter-frame { box-shadow: 7px 7px 0 var(--amber); }
+      .session-head { grid-template-columns: 1fr; gap: 25px; padding: 82px 0 48px; }
+      .session-head p { grid-column: auto; }
+      .proof-step { grid-template-columns: 1fr; gap: 18px; padding: 36px 0; }
+      .proof-screen { grid-column: auto; margin-top: 10px; }
+      .proof-window img { width: 170%; max-width: none; }
+      .feature-index-inner { gap: 45px; padding: 78px 0; }
+      .mode-row { grid-template-columns: 34px 1fr auto; gap: 12px; padding: 18px 0; }
+      .mode-row p { grid-column: 2 / -1; }
+      .platform-inner { padding: 78px 0; }
+      .platform-grid { gap: 20px; margin-top: 42px; }
+      .platform-card { padding: 26px 22px; }
+      .trust-grid { padding: 78px 0; }
+      .ledger-row { grid-template-columns: 1fr auto; gap: 8px 15px; padding: 17px 0; }
+      .ledger-row strong { grid-column: 1 / -1; grid-row: 2; }
+      .download-grid { padding: 78px 0; }
+      .download-panel { box-shadow: 7px 7px 0 var(--ink); }
+      .faq-grid { padding: 78px 0; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+  <meta name="google-site-verification" content="2CkgXnZJeGnBsmZNi9cWluacL9eRtDsInE647fCrR_g" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="#" aria-label="Bedside English: Talk & Train home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        Bedside English
+      </a>
+      <div class="nav-links">
+        <a href="#journey" data-i18n="nav_journey">The journey</a>
+        <a href="#platforms" data-i18n="nav_platforms">Platforms</a>
+        <a href="#privacy" data-i18n="nav_privacy">Privacy</a>
+        <a href="#download" data-i18n="nav_download">Download</a>
+      </div>
+      <div class="nav-tools">
+        <div class="language-switch" role="group" aria-label="Page language">
+          <button class="active" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="ko" aria-pressed="false">KO</button>
+        </div>
+        <div class="nav-repo-links">
+          <a class="nav-github" href="#download">Desktop ↓</a>
+          <a class="nav-github-icon" href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer" aria-label="Bedside English Desktop repository on GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+          <a class="nav-play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get it on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play"></a>
+          <a class="nav-github-icon" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer" aria-label="Bedside English Android repository on GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-grid">
+        <aside class="margin-rail" aria-hidden="true"><span>Listen / react / recover / repeat</span></aside>
+        <div class="hero-main">
+          <div class="hero-copy-grid">
+            <div>
+              <p class="eyebrow" data-i18n="hero_eyebrow">Unscripted English practice for IMGs</p>
+              <h1 data-i18n="hero_title">You won’t know <span>who speaks next.</span><em>That’s the point.</em></h1>
+              <p class="hero-body" data-i18n="hero_body">Speak out loud with live AI in situations you cannot memorize. Start with <strong>everyday English before the wards</strong>, then practice patient encounters, OSCE/OET, handovers, and presentations—with feedback after every attempt.</p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip"><span data-i18n="hero_cta">Download for Windows</span><span class="button-arrow">↓</span></a>
+                <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get Bedside English on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play"></a>
+              </div>
+              <a class="hero-path-link" href="#journey"><span data-i18n="hero_secondary">See how the training works</span><span aria-hidden="true">↓</span></a>
+              <div class="hero-platforms" aria-hidden="true">
+                <span><i></i><span data-i18n="hero_platform_desktop">No card required</span></span>
+                <span><i></i><span data-i18n="hero_platform_android">Free · $0 to start</span></span>
+              </div>
+            </div>
+            <aside class="field-note">
+              <span class="field-note-label">Field note / 001</span>
+              <blockquote data-i18n="field_quote">“The English wasn’t the problem. Getting the words out under pressure was.”</blockquote>
+              <p data-i18n="field_body">Built for the gap between knowing the language and being able to use it before the moment moves on.</p>
+            </aside>
+          </div>
+
+          <div class="scenario-board" aria-label="Example variables that change between sessions">
+            <div class="scenario-cell"><span class="scenario-label" data-i18n="label_situation">Situation</span><strong class="scenario-value" data-shuffle="situation">Hospital pharmacy line</strong></div>
+            <div class="scenario-cell"><span class="scenario-label" data-i18n="label_goal">Your goal</span><strong class="scenario-value" data-shuffle="goal">Keep the conversation moving</strong></div>
+            <div class="scenario-cell"><span class="scenario-label" data-i18n="label_voice">Voice / accent</span><strong class="scenario-value" data-shuffle="voice">Rotating voice · random profile</strong></div>
+            <div class="scenario-cell"><span class="scenario-label" data-i18n="label_delivery">Delivery</span><strong class="scenario-value" data-shuffle="delivery">Fast · natural · ear-only</strong></div>
+          </div>
+          <div class="shuffle-status" aria-hidden="true"><span data-i18n="shuffle_status">Scenario variables reshuffle every session</span><span class="shuffle-dots"><i></i><i></i><i></i></span></div>
+
+          <div class="product-showcase">
+            <div class="capture-header">
+              <h2 class="capture-title" data-i18n="capture_title"><span>Surprise Mode.</span> The AI speaks first. You react.</h2>
+              <div class="capture-meta" data-i18n="capture_meta">Actual app capture / Windows desktop / Dev mode</div>
+            </div>
+            <figure style="margin:0">
+              <div class="app-frame">
+                <div class="frame-bar"><i></i><i></i><i></i><strong>Bedside English / Survival English</strong><span>● session live</span></div>
+                <img src="../assets/app-survival-live.png" alt="Actual Bedside English Survival English screen showing randomized scenario controls and a live pharmacy conversation">
+              </div>
+              <figcaption class="capture-caption">
+                <p data-i18n="capture_caption">No polished mockup. This is the real desktop app running a surprise everyday scenario with randomized context, hidden AI words, variable voice, and a live transcript. The Android build shares the same training design.</p>
+                <code>CAPTURE_2026.07.13</code>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey" id="journey">
+      <div class="shell">
+        <header class="journey-head">
+          <div class="section-code"><strong>01—02</strong><span data-i18n="journey_code">A trainer that grows with you</span></div>
+          <h2 data-i18n="journey_title">Start before the wards. Keep going when the stakes rise.</h2>
+          <p data-i18n="journey_intro">Your first English problem in a new country may be a pharmacy line, not a patient history. Build the reflex early—then carry it into clinical conversations.</p>
+        </header>
+        <div class="path-rule"><span data-i18n="path_rule">Pre-med / early years → clinical years</span></div>
+
+        <article class="chapter">
+          <div class="chapter-number">01</div>
+          <div class="chapter-copy">
+            <span class="chapter-kicker" data-i18n="survival_kicker">Before the wards / Survival English</span>
+            <h3 data-i18n="survival_title">Train uncertainty before it becomes pressure.</h3>
+            <p data-i18n="survival_body">For pre-med and early-year IMGs: everyday situations change their role, goal, detail, voice, accent profile, pace, and delivery. You practice the response—not a memorized line.</p>
+            <div class="chapter-points"><span data-i18n="survival_point_1">Surprise mode hides the situation</span><span data-i18n="survival_point_2">Ear-only listening hides AI words</span><span data-i18n="survival_point_3">Voice and delivery keep rotating</span></div>
+          </div>
+          <figure class="chapter-figure">
+            <div class="chapter-frame"><img src="../assets/app-survival.png" alt="Actual Survival English setup screen with random situation, accent, pace, delivery, and voice controls"></div>
+            <figcaption><span data-i18n="fig_desktop_survival">Desktop app / Survival setup</span><span>Randomized variables visible</span></figcaption>
+          </figure>
+        </article>
+      </div>
+
+      <div class="clinical-band">
+        <div class="shell">
+          <article class="chapter">
+            <div class="chapter-number">02</div>
+            <div class="chapter-copy">
+              <span class="chapter-kicker" data-i18n="clinical_kicker">On the wards / Clinical English</span>
+              <h3 data-i18n="clinical_title">Turn medical knowledge into words under pressure.</h3>
+              <p data-i18n="clinical_body">For clinical-year students and graduates: take histories, counsel patients, present to an attending, rehearse OSCE/OET, and prepare for residency interviews with live voice AI.</p>
+              <div class="chapter-points"><span data-i18n="clinical_point_1">Live patient transcript</span><span data-i18n="clinical_point_2">History coverage and phrase support</span><span data-i18n="clinical_point_3">Scored feedback after every attempt</span></div>
+            </div>
+            <figure class="chapter-figure">
+              <div class="chapter-frame"><img src="../assets/app-patient-live.png" alt="Actual Bedside English patient encounter in progress with phrase helper and live transcript"></div>
+              <figcaption><span data-i18n="fig_desktop_patient">Desktop app / Patient encounter</span><span>Live transcript in progress</span></figcaption>
+            </figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="session-loop" id="session">
+      <div class="shell">
+        <header class="session-head">
+          <div class="section-code"><strong>03</strong><span data-i18n="loop_code">The closed loop</span></div>
+          <h2 data-i18n="loop_title">Practice should leave evidence.</h2>
+          <p data-i18n="loop_intro">The app does not end at “good job.” It shows what you attempted, what broke down, and the one correction worth carrying into the next session.</p>
+        </header>
+
+        <div class="proof-sequence">
+          <article class="proof-step">
+            <div class="proof-index">01 / ORIENT</div>
+            <div class="proof-copy"><span data-i18n="proof_1_label">Know what comes next</span><h3 data-i18n="proof_1_title">Open to a mission, not an empty dashboard.</h3><p data-i18n="proof_1_body">Your history, due corrections, common patterns, and a focused five-minute mission turn past sessions into today’s practice.</p></div>
+            <div class="proof-screen"><div class="proof-window"><img src="../assets/app-dashboard.png" alt="Actual Bedside English dashboard with daily mission, practice evidence, and common mistakes"></div><span class="proof-screen-label" data-i18n="fig_desktop_dashboard">Desktop dashboard</span></div>
+          </article>
+          <article class="proof-step">
+            <div class="proof-index">02 / SPEAK</div>
+            <div class="proof-copy"><span data-i18n="proof_2_label">Say it before you can polish it</span><h3 data-i18n="proof_2_title">A live conversation exposes the real weak link.</h3><p data-i18n="proof_2_body">The transcript, patient turns, phrase support, and history phases stay visible while you practice getting the words out.</p></div>
+            <div class="proof-screen"><div class="proof-window"><img src="../assets/app-patient-live.png" alt="Actual live patient conversation in Bedside English"></div><span class="proof-screen-label" data-i18n="fig_desktop_live">Desktop live encounter</span></div>
+          </article>
+          <article class="proof-step">
+            <div class="proof-index">03 / CORRECT</div>
+            <div class="proof-copy"><span data-i18n="proof_3_label">Fix one thing that matters</span><h3 data-i18n="proof_3_title">The correction becomes the next drill.</h3><p data-i18n="proof_3_body">See your original wording, a more natural clinical version, and why it works—then send it directly into targeted practice or spaced review.</p></div>
+            <div class="proof-screen amber"><div class="proof-window"><img src="../assets/app-feedback-corrections.png" alt="Actual Bedside English corrections tab showing original and improved clinical phrasing"></div><span class="proof-screen-label" data-i18n="fig_desktop_corrections">Desktop correction report</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-index" aria-labelledby="more-heading">
+      <div class="feature-index-inner shell">
+        <div class="feature-index-intro"><span class="section-code">04 / ALSO INSIDE</span><h2 id="more-heading" data-i18n="more_title">Not every weak link needs another roleplay.</h2><p data-i18n="more_intro">Split listening, explanation, interview structure, and recurring errors into the mode that trains them best.</p></div>
+        <div class="mode-list">
+          <div class="mode-row"><span>01</span><strong data-i18n="mode_1">Listening Lab</strong><p data-i18n="mode_1_body">Exact-detail drills with changing pace, accent profiles, and real-world noise.</p><b>16 DRILLS</b></div>
+          <div class="mode-row"><span>02</span><strong data-i18n="mode_2">Lecture Teach-back</strong><p data-i18n="mode_2_body">Explain what you learned to a classmate, tutor, or oral examiner.</p><b>FEYNMAN</b></div>
+          <div class="mode-row"><span>03</span><strong data-i18n="mode_3">Residency Interview</strong><p data-i18n="mode_3_body">Behavioral, clinical-reasoning, and IMG-specific questions with follow-ups.</p><b>11 SCENES</b></div>
+          <div class="mode-row"><span>04</span><strong data-i18n="mode_4">Mistake Genome</strong><p data-i18n="mode_4_body">See which patterns keep returning and what deserves review next.</p><b>LOCAL DATA</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="platform-section" id="platforms">
+      <div class="shell platform-inner">
+        <div class="platform-head">
+          <span class="section-code">05 / TWO PLATFORMS, ONE TRAINER</span>
+          <h2 data-i18n="platform_title">Same training design. Windows and Android, both live.</h2>
+          <p data-i18n="platform_intro">Choose the version that fits where you practice. Windows gives you the full desktop workflow; Android keeps shorter speaking and listening sessions close at hand.</p>
+        </div>
+        <div class="platform-grid">
+          <article class="platform-card is-live">
+            <div class="platform-card-head"><h3 data-i18n="platform_desktop_name">Windows Desktop</h3><span class="platform-status" data-i18n="platform_desktop_status">Available now</span></div>
+            <p class="platform-desc" data-i18n="platform_desktop_body">Download the ready-to-run Windows .zip, unzip it, and open the app—there is no installer or store account. macOS and Linux users can run the open-source version themselves.</p>
+            <div class="platform-points">
+              <span data-i18n="platform_desktop_point_1">Direct download, no store account</span>
+              <span data-i18n="platform_desktop_point_2">Demo Mode works without an API key</span>
+              <span data-i18n="platform_desktop_point_3">Screenshots throughout this page are the real app</span>
+            </div>
+            <a class="button button-primary" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip"><span data-i18n="platform_desktop_cta">Download for Windows</span><span class="button-arrow">↓</span></a>
+          </article>
+          <article class="platform-card is-live">
+            <div class="platform-card-head"><h3 data-i18n="platform_android_name">Android</h3><span class="platform-status" data-i18n="platform_android_status">Available now</span></div>
+            <p class="platform-desc" data-i18n="platform_android_body">Practice the same speaking loop on your phone, with an 8-language interface, pronunciation drills, and quick sessions designed for practice anywhere.</p>
+            <div class="platform-points">
+              <span data-i18n="platform_android_point_1">8-language interface, not just EN/KO</span>
+              <span data-i18n="platform_android_point_2">Optional Azure pronunciation scoring</span>
+              <span data-i18n="platform_android_point_3">Mock voice mode works without an API key</span>
+            </div>
+            <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get Bedside English on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a>
+            <a class="button button-secondary" href="../"><span data-i18n="platform_android_tour_cta">Take the Android app tour</span><span class="button-arrow">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-section" id="privacy">
+      <div class="trust-grid shell">
+        <div class="trust-copy"><span class="section-code">06 / LOCAL-FIRST</span><h2 data-i18n="trust_title">Private enough to be imperfect.</h2><p data-i18n="trust_body">The awkward version has to come out before the better version can. Your learning history stays on your device, and there is no Bedside English account holding your practice—on desktop or Android.</p></div>
+        <div>
+          <div class="trust-ledger">
+            <div class="ledger-row"><span data-i18n="ledger_account">App account</span><strong data-i18n="ledger_account_body">No account or Bedside English cloud profile</strong><span class="ledger-state" data-i18n="state_none">None</span></div>
+            <div class="ledger-row"><span data-i18n="ledger_history">Learning history</span><strong data-i18n="ledger_history_body">Sessions, mistakes, and progress remain local</strong><span class="ledger-state" data-i18n="state_device">On device</span></div>
+            <div class="ledger-row"><span data-i18n="ledger_telemetry">Telemetry collector</span><strong data-i18n="ledger_telemetry_body">Not configured in the current build</strong><span class="ledger-state inactive" data-i18n="state_inactive">Inactive</span></div>
+            <div class="ledger-row"><span data-i18n="ledger_ai">AI-powered sessions</span><strong data-i18n="ledger_ai_body">Necessary audio or text goes to the provider you choose</strong><span class="ledger-state" data-i18n="state_direct">Direct</span></div>
+          </div>
+          <p class="trust-note" data-i18n="trust_note">Use fictional or de-identified cases. Provider data handling follows the provider and account you configure. Any future anonymous telemetry activation is opt-in and excludes audio, transcripts, API keys, and free text. Read the full <a href="../privacy.html">privacy policy</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="download-section" id="download">
+      <div class="download-grid shell">
+        <div class="download-copy"><span class="section-code">07 / START</span><h2 data-i18n="download_title">Speak before you feel ready.</h2><p data-i18n="download_body">Choose Windows or Android and start with the no-key demo. When you want live AI voice and feedback, connect a supported provider with your own API key.</p></div>
+        <div class="download-panel">
+          <div class="download-panel-head" data-i18n="download_panel_desktop_title">Desktop / GitHub Releases</div>
+          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop/releases/latest/download/MedVoiceTrainer-windows.zip"><span class="platform-icon">W</span><span><strong>Windows</strong><span data-i18n="download_zip">Download the .zip</span></span><b>↓</b></a>
+          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop#-quick-start-running-from-source" target="_blank" rel="noreferrer"><span class="platform-icon">M</span><span><strong>macOS</strong><span data-i18n="build_source">Build from source</span></span><b>↗</b></a>
+          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop#-quick-start-running-from-source" target="_blank" rel="noreferrer"><span class="platform-icon">L</span><span><strong>Linux</strong><span data-i18n="build_source">Build from source</span></span><b>↗</b></a>
+          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer"><span class="platform-icon">◆</span><span><strong data-i18n="desktop_source_title">Source</strong><span data-i18n="desktop_source_body">Read the README on GitHub</span></span><b>↗</b></a>
+          <div class="download-note" data-i18n="download_note_desktop">Downloads straight as a .zip — unzip it, open the folder, and double-click MedVoiceTrainer.exe to start (no installer). macOS and Linux aren't packaged yet — run from source using the README instructions.</div>
+        </div>
+        <div class="download-panel">
+          <div class="download-panel-head" data-i18n="download_panel_android_title">Android / Google Play</div>
+          <div class="download-play"><a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" aria-label="Get Bedside English on Google Play"><img class="play-badge-img" src="../assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async"></a></div>
+          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Android#-quick-start" target="_blank" rel="noreferrer"><span class="platform-icon">A</span><span><strong data-i18n="android_source_title">Android Studio</strong><span data-i18n="build_source">Build from source</span></span><b>↗</b></a>
+          <a class="platform-link" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer"><span class="platform-icon">★</span><span><strong data-i18n="android_star_title">Watch the repo</strong><span data-i18n="android_star_body">Follow ongoing development</span></span><b>↗</b></a>
+          <div class="download-note" data-i18n="download_note_android">Now live on Google Play. Prefer to build it yourself? Clone the repo and run it from Android Studio — see the README for setup.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="faq-grid shell">
+        <div class="faq-copy"><span class="section-code">08 / FIELD NOTES</span><h2 data-i18n="faq_title">Before your first session.</h2><p data-i18n="faq_intro">Bedside English: Talk & Train is a personal open-source practice project, not a clinical system or medical device.</p></div>
+        <div class="faq-list">
+          <details open><summary data-i18n="faq_1_q">Is this useful before clinical rotations?</summary><div class="faq-answer" data-i18n="faq_1_a">Yes. Survival Mode and Listening Lab are specifically useful for pre-med and early-year students who need faster, more flexible everyday English before clinical vocabulary becomes the main challenge.</div></details>
+          <details><summary data-i18n="faq_2_q">What is actually random in Survival Mode?</summary><div class="faq-answer" data-i18n="faq_2_a">The role, goal, contextual detail, twist, delivery style, voice, and best-effort accent profile can change. The purpose is to train understanding and recovery when the next line is not predictable.</div></details>
+          <details><summary data-i18n="faq_3_q">Can I try it without an API key?</summary><div class="faq-answer" data-i18n="faq_3_a">Yes. Demo Mode (desktop) and Mock voice mode (Android) run a guided practice flow without a key or microphone. Live AI voice and provider-based analysis require a supported API key.</div></details>
+          <details><summary data-i18n="faq_4_q">Is the app completely free?</summary><div class="faq-answer" data-i18n="faq_4_a">Both apps are free and open source. Provider-based live AI usage depends on the model, free tier, and plan attached to your own API key.</div></details>
+          <details><summary data-i18n="faq_5_q">Why might my operating system show a warning?</summary><div class="faq-answer" data-i18n="faq_5_a">Early open-source desktop releases are unsigned, so Windows SmartScreen may say “Windows protected your PC.” Click <strong>More info</strong>, then <strong>Run anyway</strong> — the file comes straight from this project’s GitHub Releases, and you’re welcome to inspect the source first.</div></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <span data-i18n="footer_note">Bedside English: Talk &amp; Train / Free &amp; open source / Not a medical device</span>
+      <span class="footer-links">
+        <a href="../about.html">About &amp; editorial policy</a>
+        <a href="../privacy.html" data-i18n="footer_privacy">Privacy policy</a>
+        <a href="https://github.com/boyskier/BedsideEnglish-Desktop" target="_blank" rel="noreferrer" data-i18n="footer_source_desktop">Desktop source ↗</a>
+        <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer" data-i18n="footer_source_android">Android source ↗</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    const I18N = {
+      ko: {
+        nav_journey: '훈련 여정', nav_platforms: '플랫폼', nav_privacy: '프라이버시', nav_download: '다운로드',
+        hero_eyebrow: '모든 단계의 IMG를 위한 예측 불가능한 영어 훈련',
+        hero_title: '다음에 <span>누가 말을 걸지</span> 알 수 없습니다.<em>바로 그게 핵심입니다.</em>',
+        hero_body: '외울 수 없는 상황에서 실시간 AI와 소리 내어 말해 보세요. <strong>병동에 가기 전 일상 영어</strong>부터 시작해 환자 면담, OSCE/OET, 인계, 프레젠테이션까지 연습하고 매 시도 후 피드백을 받을 수 있습니다.',
+        hero_cta: 'Windows용 다운로드', hero_secondary: '훈련 방식 살펴보기',
+        hero_platform_desktop: '카드 없이 시작',
+        hero_platform_android: '무료 · $0로 시작',
+        field_quote: '“영어를 모르는 게 문제가 아니었습니다. 압박 속에서 입 밖으로 꺼내는 게 문제였죠.”',
+        field_body: '영어를 아는 것과, 순간이 지나가기 전에 실제로 사용하는 것 사이의 간극을 위해 만들었습니다.',
+        label_situation: '상황', label_goal: '나의 목표', label_voice: '목소리 / 억양', label_delivery: '전달 방식',
+        shuffle_status: '세션마다 상황 변수가 다시 섞입니다',
+        capture_title: '<span>Surprise Mode.</span> AI가 먼저 말합니다. 나는 반응합니다.',
+        capture_meta: '실제 앱 캡처 / Windows 데스크톱 / 개발 모드',
+        capture_caption: '다듬어진 가상 목업이 아닙니다. 랜덤한 맥락, 숨겨진 AI 문장, 바뀌는 목소리, 실시간 대화 기록으로 Surprise 일상 상황을 실행 중인 실제 데스크톱 앱입니다. Android 빌드도 동일한 훈련 설계를 공유합니다.',
+        journey_code: '함께 성장하는 트레이너', journey_title: '병동에 가기 전 시작하고, 중요한 순간까지 이어가세요.',
+        journey_intro: '새로운 나라에서 처음 마주치는 영어 문제는 환자 병력이 아니라 약국 줄일 수 있습니다. 낮은 부담에서 반응력을 만들고, 그 감각을 임상 대화까지 가져가세요.',
+        path_rule: '예과 · 본과 저학년 → 본과 고학년 · 임상',
+        survival_kicker: '병동에 가기 전 / Survival English', survival_title: '불확실성이 압박이 되기 전에 훈련하세요.',
+        survival_body: '예과·본과 저학년 IMG를 위해 상황의 역할, 목표, 세부 조건, 목소리, 억양 프로필, 속도, 전달 방식이 달라집니다. 외운 문장이 아니라 반응 자체를 연습합니다.',
+        survival_point_1: 'Surprise Mode가 상황을 숨깁니다', survival_point_2: 'Ear-only 듣기가 AI 문장을 숨깁니다', survival_point_3: '목소리와 전달 방식이 계속 바뀝니다',
+        fig_desktop_survival: '데스크톱 앱 / Survival 설정',
+        clinical_kicker: '병동에서 / Clinical English', clinical_title: '의학 지식을 압박 속에서도 나오는 말로 바꾸세요.',
+        clinical_body: '본과 고학년과 졸업생을 위해 병력 청취, 환자 상담, 교수님 프레젠테이션, OSCE/OET, 레지던시 인터뷰를 실시간 음성 AI와 연습합니다.',
+        clinical_point_1: '실시간 환자 대화 기록', clinical_point_2: '병력 커버리지와 표현 도움', clinical_point_3: '매 시도 후 채점 피드백',
+        fig_desktop_patient: '데스크톱 앱 / 환자 면담',
+        loop_code: '닫힌 학습 루프', loop_title: '연습은 증거를 남겨야 합니다.', loop_intro: '앱은 “잘했어요”에서 끝나지 않습니다. 무엇을 시도했고, 어디서 무너졌으며, 다음 세션까지 가져갈 가치가 있는 교정 한 가지가 무엇인지 보여줍니다.',
+        proof_1_label: '다음에 할 일을 알기', proof_1_title: '빈 대시보드가 아니라 오늘의 미션으로 시작합니다.', proof_1_body: '지난 기록, 복습할 교정, 반복 패턴, 집중된 5분 미션이 이전 세션을 오늘의 연습으로 연결합니다.',
+        fig_desktop_dashboard: '데스크톱 대시보드',
+        proof_2_label: '다듬기 전에 먼저 말하기', proof_2_title: '실시간 대화가 진짜 약한 고리를 드러냅니다.', proof_2_body: '입 밖으로 말을 꺼내는 동안 대화 기록, 환자의 발화, 표현 도움, 병력 단계가 함께 보입니다.',
+        fig_desktop_live: '데스크톱 실시간 면담',
+        proof_3_label: '효과가 큰 한 가지 고치기', proof_3_title: '교정 내용이 다음 드릴이 됩니다.', proof_3_body: '내가 말한 원문, 더 자연스러운 임상 표현, 그 이유를 확인하고 맞춤 연습이나 간격 반복으로 바로 보냅니다.',
+        fig_desktop_corrections: '데스크톱 교정 리포트',
+        more_title: '모든 약점에 또 다른 롤플레이가 필요한 것은 아닙니다.', more_intro: '듣기, 설명, 인터뷰 구조, 반복 실수를 각각 가장 잘 훈련하는 모드로 분리했습니다.',
+        mode_1: 'Listening Lab', mode_1_body: '속도, 억양 프로필, 현실적인 소음을 바꿔가며 정확한 세부 정보를 듣습니다.',
+        mode_2: 'Lecture Teach-back', mode_2_body: '배운 내용을 동기, 튜터, 구술시험 교수에게 직접 설명합니다.',
+        mode_3: 'Residency Interview', mode_3_body: '행동·임상 추론·IMG 특화 질문과 이어지는 꼬리 질문을 연습합니다.',
+        mode_4: 'Mistake Genome', mode_4_body: '계속 반복되는 패턴과 다음 복습 대상을 확인합니다.',
+        platform_title: '같은 훈련 설계, Windows와 Android 모두 이용 가능.',
+        platform_intro: '연습하는 환경에 맞는 버전을 고르세요. Windows는 전체 데스크톱 훈련 흐름을 제공하고, Android는 짧은 말하기·듣기 연습을 언제든 이어갈 수 있게 해 줍니다.',
+        platform_desktop_name: 'Windows 데스크톱', platform_desktop_status: '지금 이용 가능',
+        platform_desktop_body: 'Windows용 .zip을 받아 압축을 풀고 바로 실행하세요. 설치 프로그램이나 스토어 계정은 필요 없습니다. macOS와 Linux에서는 오픈소스 버전을 직접 실행할 수 있습니다.',
+        platform_desktop_point_1: '스토어 계정 없이 직접 다운로드', platform_desktop_point_2: 'API 키 없이 Demo Mode 사용 가능', platform_desktop_point_3: '이 페이지의 스크린샷은 실제 앱 화면',
+        platform_desktop_cta: 'Windows용 다운로드',
+        platform_android_name: 'Android', platform_android_status: '지금 이용 가능',
+        platform_android_body: '휴대폰에서도 같은 말하기 루프를 연습하세요. 8개 언어 인터페이스, 발음 드릴, 어디서든 시작하기 좋은 짧은 세션을 제공합니다.',
+        platform_android_point_1: 'EN/KO뿐 아니라 8개 언어 인터페이스', platform_android_point_2: '선택적 Azure 발음 채점', platform_android_point_3: 'API 키 없이 Mock 음성 모드 사용 가능',
+        platform_android_tour_cta: 'Android 앱 투어 보기',
+        platform_android_cta: 'Google Play에서 받기',
+        trust_title: '틀려도 괜찮을 만큼 사적으로.', trust_body: '더 나은 표현이 나오려면 먼저 어색한 표현이 나와야 합니다. 학습 기록은 내 기기에 남고, 데스크톱이든 Android든 연습 내용을 보관하는 Bedside English 계정은 없습니다.',
+        ledger_account: '앱 계정', ledger_account_body: '계정이나 Bedside English 클라우드 프로필 없음', ledger_history: '학습 기록', ledger_history_body: '세션, 실수, 성장 기록은 로컬에 보관', ledger_telemetry: 'Telemetry 수집기', ledger_telemetry_body: '현재 빌드에는 설정되지 않음', ledger_ai: 'AI 기반 세션', ledger_ai_body: '필요한 음성이나 텍스트만 선택한 제공자로 직접 전송', state_none: '없음', state_device: '기기 내부', state_inactive: '비활성', state_direct: '직접 연결',
+        trust_note: '가상 또는 비식별화된 사례를 사용하세요. 데이터 처리는 설정한 제공자와 계정 정책을 따릅니다. 향후 익명 telemetry가 활성화되더라도 명시적 동의가 필요하며 음성, 대화 내용, API 키, 자유 입력 텍스트는 제외됩니다. 전체 <a href="../privacy.html">개인정보 처리방침</a>을 확인하세요.',
+        download_title: '준비되기 전에 말하세요.', download_body: 'Windows 또는 Android를 고르고 API 키 없는 데모부터 시작하세요. 실시간 AI 음성과 피드백이 필요할 때는 내 API 키로 지원되는 제공자를 연결하면 됩니다.',
+        download_panel_desktop_title: '데스크톱 / GitHub Releases', download_zip: '.zip 다운로드', build_source: '소스에서 빌드',
+        desktop_source_title: '소스 코드', desktop_source_body: 'GitHub에서 README 보기',
+        download_note_desktop: '.zip 파일이 바로 다운로드됩니다 — 압축을 풀고 폴더 안의 MedVoiceTrainer.exe를 더블클릭하면 실행됩니다 (설치 프로그램 없음). macOS와 Linux는 아직 패키징되지 않았습니다 — README 안내에 따라 소스에서 직접 실행하세요.',
+        download_panel_android_title: 'Android / Google Play', android_play_title: 'Google Play', android_play_soon: '앱 받기',
+        android_source_title: 'Android Studio', android_star_title: '저장소 Watch', android_star_body: '개발 소식 팔로우하기',
+        download_note_android: '이제 Google Play에서 바로 받을 수 있습니다. 직접 빌드하고 싶다면 저장소를 클론해 Android Studio에서 실행해 보세요 — 설정 방법은 README를 참고하세요.',
+        faq_title: '첫 세션 전에.', faq_intro: 'Bedside English: Talk & Train은 개인 오픈소스 연습 프로젝트이며 임상 시스템이나 의료기기가 아닙니다.',
+        faq_1_q: '임상 실습 전에도 도움이 되나요?', faq_1_a: '네. Survival Mode와 Listening Lab은 임상 어휘보다 빠르고 유연한 일상 영어가 먼저 필요한 예과·본과 저학년에게 특히 유용합니다.',
+        faq_2_q: 'Survival Mode에서 실제로 무엇이 랜덤인가요?', faq_2_a: '역할, 목표, 맥락의 세부 조건, 돌발 요소, 전달 방식, 목소리, 최선 노력 기반 억양 프로필이 달라질 수 있습니다. 다음 문장을 예측할 수 없을 때 이해하고 회복하는 힘을 기르는 것이 목적입니다.',
+        faq_3_q: 'API 키 없이 체험할 수 있나요?', faq_3_a: '네. 데스크톱의 Demo Mode와 Android의 Mock 음성 모드는 키나 마이크 없이 안내형 연습 흐름을 실행합니다. 실시간 AI 음성과 제공자 기반 분석에는 지원되는 API 키가 필요합니다.',
+        faq_4_q: '앱은 완전히 무료인가요?', faq_4_a: '두 앱 모두 무료 오픈소스입니다. 제공자 기반 실시간 AI 사용 비용은 내 API 키에 연결된 모델, 무료 사용량, 요금제에 따라 달라집니다.',
+        faq_5_q: '운영체제에서 경고가 뜰 수 있는 이유는 무엇인가요?', faq_5_a: '초기 오픈소스 데스크톱 릴리스는 서명되어 있지 않아, Windows SmartScreen이 "Windows의 PC 보호"라는 경고를 띄울 수 있습니다. <strong>추가 정보</strong>를 클릭한 뒤 <strong>실행</strong>을 누르세요 — 파일은 이 프로젝트의 GitHub Releases에서 직접 받은 것이며, 원하면 먼저 소스 코드를 살펴보셔도 됩니다.',
+        footer_note: 'Bedside English: Talk & Train / 무료 오픈소스 / 의료기기가 아님', footer_privacy: '개인정보 처리방침', footer_source_desktop: '데스크톱 소스 보기 ↗', footer_source_android: 'Android 소스 보기 ↗'
+      }
+    };
+    const english = new Map();
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.dataset.i18n;
+        if (!english.has(element)) english.set(element, element.innerHTML);
+        element.innerHTML = lang === 'ko' && I18N.ko[key] ? I18N.ko[key] : english.get(element);
+      });
+      document.querySelectorAll('[data-lang]').forEach((button) => {
+        const active = button.dataset.lang === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      document.querySelectorAll('.play-badge-img').forEach((image) => {
+        image.src = lang === 'ko' ? '../assets/store/google-play-badge-ko.png' : '../assets/store/google-play-badge-en.png';
+        image.alt = lang === 'ko' ? 'Google Play에서 다운로드' : 'Get it on Google Play';
+        image.closest('a').setAttribute('aria-label', image.alt);
+      });
+      document.title = lang === 'ko' ? 'Bedside English: Talk & Train — IMG를 위한 예측 불가능한 영어 훈련' : 'Bedside English: Talk & Train — Unscripted English practice for IMGs';
+      try { localStorage.setItem('be-language', lang); } catch (_) {}
+    }
+    document.querySelectorAll('[data-lang]').forEach((button) => button.addEventListener('click', () => applyLanguage(button.dataset.lang)));
+    let initialLanguage = 'en';
+    try { initialLanguage = localStorage.getItem('be-language') || ''; } catch (_) {}
+    if (!initialLanguage) initialLanguage = (navigator.language || '').toLowerCase().startsWith('ko') ? 'ko' : 'en';
+    applyLanguage(initialLanguage === 'ko' ? 'ko' : 'en');
+
+    const shuffleCopy = {
+      situation: ['Hospital pharmacy line', 'Campus gym between sets', 'Apartment viewing', 'Delayed airport gate', 'Coffee shop mix-up'],
+      goal: ['Keep the conversation moving', 'Clarify a hidden fee', 'Repair a misunderstanding', 'Ask for the exact detail', 'Set a boundary politely'],
+      voice: ['Rotating voice · random profile', 'Irish profile · warm voice', 'Indian profile · brisk voice', 'US profile · soft voice', 'Australian profile · low voice'],
+      delivery: ['Fast · natural · ear-only', 'Mumbled · background noise', 'Connected speech · 1.25×', 'Phone quality · no transcript', 'Soft voice · one replay']
+    };
+    const shuffleCopyKo = {
+      situation: ['병원 약국 대기 줄', '교내 헬스장', '집 보러 가기', '지연된 공항 탑승구', '카페 주문 착오'],
+      goal: ['대화를 계속 이어가기', '숨겨진 수수료 확인하기', '오해를 바로잡기', '정확한 세부 정보 묻기', '정중하게 선 긋기'],
+      voice: ['교체되는 목소리 · 랜덤 프로필', '아일랜드 프로필 · 따뜻한 목소리', '인도 프로필 · 빠른 목소리', '미국 프로필 · 부드러운 목소리', '호주 프로필 · 낮은 목소리'],
+      delivery: ['빠르게 · 자연스럽게 · 귀로만', '웅얼거림 · 배경 소음', '연결 발화 · 1.25×', '전화 음질 · 대본 없음', '작은 목소리 · 한 번 재생']
+    };
+    let shuffleIndex = 0;
+    const shuffle = () => {
+      shuffleIndex += 1;
+      document.querySelectorAll('[data-shuffle]').forEach((element) => {
+        const source = document.documentElement.lang === 'ko' ? shuffleCopyKo : shuffleCopy;
+        const values = source[element.dataset.shuffle];
+        element.classList.add('changing');
+        window.setTimeout(() => {
+          element.textContent = values[shuffleIndex % values.length];
+          element.classList.remove('changing');
+        }, 160);
+      });
+    };
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) window.setInterval(shuffle, 2600);
+
+    document.querySelectorAll('details').forEach((item) => item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      document.querySelectorAll('details[open]').forEach((other) => { if (other !== item) other.open = false; });
+    }));
+  </script>
+</body>
+</html>

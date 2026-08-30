@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK1EXM7ZKH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FK1EXM7ZKH');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5efdc">
+  <title>Is the Gemini API Free Tier Actually Free? — Bedside English</title>
+  <meta name="description" content="No card required — but is it really free? What the Gemini API free tier actually gives you: what your data is used for, how the RPM/TPM/RPD limits work, when they reset, and how project-level quotas work — every claim linked to Google's own docs.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bedside English">
+  <meta property="og:title" content="Is the Gemini API Free Tier Actually Free?">
+  <meta property="og:description" content="No card required, but not a free lunch. How the Gemini API free tier really works, line by line, sourced to Google's own documentation.">
+  <meta property="og:url" content="https://bedsideenglish.github.io/gemini-api-free-tier.html">
+  <meta property="og:image" content="https://bedsideenglish.github.io/assets/social/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://bedsideenglish.github.io/gemini-api-free-tier.html">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Article","TechArticle"],"@id":"https://bedsideenglish.github.io/gemini-api-free-tier.html#article","headline":"Is the Gemini API free tier actually free?","name":"Is the Gemini API free tier actually free?","description":"What the Gemini API free tier actually gives you: whether a card is required, what your data is used for, how the RPM/TPM/RPD limits work, when they reset, and how project-level quotas work - every claim linked to Google's own docs.","url":"https://bedsideenglish.github.io/gemini-api-free-tier.html","inLanguage":"en-US","isAccessibleForFree":true,"about":{"@type":"Thing","name":"Google Gemini API free tier"},"author":{"@id":"https://bedsideenglish.github.io/#organization"},"publisher":{"@id":"https://bedsideenglish.github.io/#organization"},"image":"https://bedsideenglish.github.io/assets/social/og-cover.png"},{"@type":"BreadcrumbList","@id":"https://bedsideenglish.github.io/gemini-api-free-tier.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bedsideenglish.github.io/"},{"@type":"ListItem","position":2,"name":"Is the Gemini API free tier actually free?","item":"https://bedsideenglish.github.io/gemini-api-free-tier.html"}]}]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+  <style>
+    @import url("tokens.css");
+    *{box-sizing:border-box}
+    html,body{overflow-x:clip}
+    html{scroll-behavior:smooth;background:var(--color-paper)}
+    body{margin:0;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-md);line-height:1.7;-webkit-font-smoothing:antialiased}
+    a{color:var(--color-accent);text-decoration-thickness:var(--rule-hairline);text-underline-offset:0.2em}
+    a:active{color:var(--color-ink)}
+    html[lang="ko"]{--font-body:var(--font-ko)}
+    html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3,html[lang="ko"] p,html[lang="ko"] li,html[lang="ko"] dt,html[lang="ko"] dd{word-break:keep-all}
+    html[lang="ko"] h1,html[lang="ko"] h2{font-weight:760;letter-spacing:-0.03em}
+
+    .shell{width:min(46rem,calc(100% - 2.5rem));margin-inline:auto}
+
+    header.site-header{min-height:4rem;display:flex;align-items:center;border-block-end:var(--rule-hairline) solid var(--color-rule);background:var(--color-paper-glass);backdrop-filter:blur(14px);position:sticky;inset-block-start:0;z-index:50}
+    header.site-header .shell{width:min(58rem,calc(100% - 2.5rem));display:flex;flex-wrap:wrap;align-items:center;gap:0.6rem var(--space-md);padding-block:0.5rem}
+    @media (max-width:26rem){
+      .home-link{order:3;margin-inline-start:0}
+      .nav-store{order:1;margin-inline-start:auto}
+      .lang{order:2}
+    }
+    .brand{display:flex;align-items:center;gap:var(--space-2xs);font-weight:700;text-decoration:none;color:var(--color-ink);white-space:nowrap;font-size:var(--text-sm)}
+    .brand-mark{width:1.75rem;height:1.75rem;display:grid;place-items:center;background:var(--color-ink);color:var(--color-paper);transform:rotate(-2deg);flex:0 0 auto}
+    .brand-mark svg{width:1rem}
+    .home-link{margin-inline-start:auto;padding:0.4rem 0.75rem;border:var(--rule-hairline) solid var(--color-rule-strong);border-radius:var(--radius-pill);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-2);text-decoration:none;white-space:nowrap}
+    .home-link:hover{color:var(--color-accent);border-color:var(--color-accent)}
+    .nav-store{flex:0 0 auto;height:2.1rem;display:inline-flex}
+    .nav-store img{height:100%;width:auto;display:block}
+    .lang{display:flex;border:var(--rule-hairline) solid var(--color-rule-strong);flex:0 0 auto}
+    .lang button{border:0;padding:0.35rem 0.6rem;background:transparent;color:var(--color-ink-2);cursor:pointer;font-size:var(--text-xs);font-weight:700}
+    .lang button.on{background:var(--color-ink);color:var(--color-paper)}
+    .lang button:hover{color:var(--color-accent)}
+
+    main{padding-block:var(--space-2xl) var(--space-3xl)}
+
+    .eyebrow{margin:0 0 var(--space-xs);color:var(--color-accent);font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+    h1{margin:0 0 var(--space-sm);font-family:var(--font-display);font-weight:400;letter-spacing:-0.02em;font-size:clamp(2rem,5.5vw,2.9rem);line-height:1.08;max-width:22ch}
+    html[lang="ko"] h1{font-family:var(--font-ko)}
+    .lede{margin:0 0 var(--space-lg);max-width:52ch;color:var(--color-ink-2);font-size:var(--text-lg);line-height:1.55}
+    .meta-line{margin:0 0 var(--space-2xl);color:var(--color-ink-2);font-size:var(--text-xs)}
+    .meta-line code{background:var(--color-paper-2);padding:0.1rem 0.35rem;border-radius:0.2rem;font-size:0.95em}
+
+    .callout{margin:0 0 var(--space-md);padding:var(--space-md) var(--space-md);border:var(--rule-hairline) solid var(--color-rule-strong);border-inline-start:var(--rule-bold) solid var(--color-accent);border-radius:var(--radius-card);background:var(--color-paper-3)}
+    .callout p{margin:0;font-size:var(--text-sm);color:var(--color-ink-2)}
+    .callout p+p{margin-block-start:0.5rem}
+    .callout strong{color:var(--color-ink)}
+    .callout-money{border-inline-start-color:oklch(55% 0.15 145);background:oklch(96% 0.03 145)}
+    .callout-money .badge{display:inline-block;margin:0 0 0.5rem;padding:0.2rem 0.6rem;border-radius:var(--radius-pill);background:oklch(55% 0.15 145);color:oklch(98% 0.01 85);font-size:var(--text-xs);font-weight:700;letter-spacing:0.02em}
+    .callout-money p{color:var(--color-ink)}
+    .callout+.callout{margin-block-start:var(--space-md)}
+    .callout:last-of-type{margin-block-end:var(--space-2xl)}
+
+    article section{margin-block-end:var(--space-2xl)}
+    h2{margin:0 0 var(--space-sm);font-family:var(--font-display);font-weight:400;font-size:var(--text-2xl);letter-spacing:-0.015em;color:var(--color-ink)}
+    html[lang="ko"] h2{font-family:var(--font-ko);font-size:var(--text-xl)}
+    h2 .num{color:var(--color-accent-2);font-family:var(--font-body);font-size:0.55em;font-weight:700;vertical-align:0.3em;margin-inline-end:0.4em}
+    p{margin:0 0 var(--space-sm);max-width:60ch}
+    ul,ol{margin:0 0 var(--space-sm);padding-inline-start:1.25em;max-width:58ch}
+    li{margin:0 0 0.4em}
+    .fact sup{font-size:0.72em}
+    .fact sup a{text-decoration:none;font-weight:700;color:var(--color-accent-2);padding:0 0.1em}
+    .fact sup a:hover{text-decoration:underline}
+    .aside-note{font-size:var(--text-sm);color:var(--color-ink-2);font-style:italic;max-width:58ch}
+
+    .lookup{display:inline-flex;align-items:center;gap:0.4em;margin:var(--space-2xs) 0 var(--space-md);padding:0.55rem 0.9rem;border:var(--rule-hairline) solid var(--color-ink);border-radius:var(--radius-input);font-size:var(--text-sm);font-weight:700;text-decoration:none;color:var(--color-ink)}
+    .lookup:hover{background:var(--color-ink);color:var(--color-paper)}
+
+    .walkthrough-intro{font-size:var(--text-sm);color:var(--color-ink-2);font-style:italic;margin:var(--space-md) 0 var(--space-sm)}
+    .walkthrough{display:grid;gap:var(--space-lg);margin:0 0 var(--space-lg);padding:0;list-style:none;counter-reset:stepnum}
+    .walkthrough>li{counter-increment:stepnum;margin:0}
+    .step-shot{margin:0;padding:0}
+    .step-shot img{width:100%;height:auto;display:block;border-radius:var(--radius-card);border:var(--rule-hairline) solid var(--color-rule-strong);background:#111}
+    .step-shot figcaption{display:flex;gap:0.6em;align-items:baseline;margin-block-start:var(--space-2xs);font-size:var(--text-sm);color:var(--color-ink-2)}
+    .step-shot figcaption::before{content:counter(stepnum);flex:0 0 auto;width:1.5em;height:1.5em;display:grid;place-items:center;border-radius:50%;background:var(--color-accent);color:var(--color-accent-ink);font-size:0.8em;font-weight:700}
+
+    .refs{padding-block-start:var(--space-lg);border-block-start:var(--rule-hairline) solid var(--color-rule)}
+    .refs h2{font-size:var(--text-lg);font-family:var(--font-body);font-weight:700}
+    .refs ol{list-style:none;padding:0;margin:0;counter-reset:refnum}
+    .refs li{counter-increment:refnum;margin:0 0 var(--space-sm);padding-inline-start:2.1em;position:relative;font-size:var(--text-sm);color:var(--color-ink-2)}
+    .refs li::before{content:"["counter(refnum)"]";position:absolute;inset-inline-start:0;color:var(--color-accent-2);font-weight:700}
+    .refs li a{display:block;color:var(--color-accent);word-break:break-all}
+    .refs li .loc{display:block;margin-block-start:0.15em;color:var(--color-ink-2)}
+    .refs li:target{background:var(--color-accent-wash);border-radius:0.3rem;padding-block:0.3em}
+
+    footer.site-footer{padding-block:var(--space-lg);border-block-start:var(--rule-hairline) solid var(--color-rule);text-align:center;color:var(--color-ink-2);font-size:var(--text-xs)}
+    footer.site-footer a{color:inherit}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="/" aria-label="Bedside English home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span>Bedside English</span>
+      </a>
+      <a class="home-link" href="./" data-i18n="nav_home">← Home</a>
+      <a class="store-badge nav-store" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+        <img class="store-badge-img" src="assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async">
+      </a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+      <article>
+        <header>
+          <p class="eyebrow" data-i18n="eyebrow">Reference · How the Gemini API free tier works</p>
+          <h1 data-i18n="h1">Is the Gemini API free tier actually free?</h1>
+          <p class="lede" data-i18n="lede">Short answer: yes, it's really free — $0, no card. There are still real limits and a data trade-off worth knowing, so here's how it actually works, with every sentence linked to the specific Google page it comes from.</p>
+          <p class="meta-line" data-i18n="meta_line">Last checked <code>2026-08-25</code>. Google changes these numbers without much notice, so treat the linked pages as the source of truth, not this one.</p>
+        </header>
+
+        <div class="callout callout-money">
+          <span class="badge" data-i18n="callout_money_badge">$0 — no charge</span>
+          <p data-i18n="callout_money_1"><strong>Straight answer: this doesn't cost money.</strong> If Bedside English pointed you to this page and you're wondering whether the app quietly went paid — it didn't. A Gemini API key is issued for free, directly by Google, with no credit card and no trial clock attached.</p>
+          <p data-i18n="callout_money_2">Nothing here charges you automatically. You'd only ever be billed if you deliberately went into Google's own billing settings and turned on a paid tier yourself — and once you do, that project's free tier is gone: every call is billed from then on, not just the usage above what the free tier used to cover.</p>
+        </div>
+
+        <div class="callout">
+          <p data-i18n="callout_1"><strong>The one trade-off worth knowing:</strong> on the free tier, your prompts and responses may be used to improve Google's products. There are also three separate rate limits stacked on top of each other, they reset on a clock (not a countdown), and the quota belongs to a Google Cloud project — not to you personally. Details on each, below.</p>
+        </div>
+
+        <div class="callout">
+          <p data-i18n="callout_realtest"><strong>One real test, for scale:</strong> on 2026-08-09 we ran a single free-tier key through one continuous session — 30+ minutes, 150+ conversation turns — without ever hitting a rate limit. That's not a guarantee (Google can change the numbers, and your usage pattern will differ), just a sense of how much headroom the free tier actually gives ordinary use.</p>
+        </div>
+
+        <section id="getting-a-key">
+          <h2><span class="num">01</span><span data-i18n="s1_h">Getting a key — and using it — is free</span></h2>
+          <p class="fact"><span data-i18n="s1_p1">A Gemini API key can be created with a Google account alone — no billing profile, no card, no trial-expiry clock.</span><sup>[<a href="#ref1">1</a>]</sup></p>
+          <p class="fact"><span data-i18n="s1_p2">The key is issued from Google AI Studio's API key screen, not from the general Cloud Console billing flow.</span><sup>[<a href="#ref2">2</a>]</sup></p>
+          <p class="fact"><span data-i18n="s1_p3">You can attach the key to a brand-new Google Cloud project or to one you already have — either way, no billing account is required to receive a working free-tier key.</span><sup>[<a href="#ref1">1</a>]</sup></p>
+          <a class="lookup" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" data-i18n="s1_cta">Get a key on Google AI Studio ↗</a>
+
+          <p class="walkthrough-intro" data-i18n="wt_intro">Screenshots from an actual Google AI Studio account, walking through the exact five clicks. The API key value is partly blurred below — yours will show in full.</p>
+          <ol class="walkthrough">
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-01-consent.jpg" width="830" height="924" loading="lazy" decoding="async" alt="AI Studio welcome dialog with the developer-agreement checkbox and the Continue button both circled.">
+                <figcaption data-i18n="wt_1">Check the agreement box, then click <strong>Continue</strong>.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-02-create-button.jpg" width="1400" height="536" loading="lazy" decoding="async" alt="The API Keys page in Google AI Studio with the Create API key button circled.">
+                <figcaption data-i18n="wt_2">On the <strong>API Keys</strong> page, click <strong>Create API key</strong>.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-03-name-and-create.jpg" width="830" height="515" loading="lazy" decoding="async" alt="The Create a new key dialog with a key name, a project picker, and the Create key button circled.">
+                <figcaption data-i18n="wt_3">Name the key, pick a project, click <strong>Create key</strong>.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-04-key-details.jpg" width="863" height="844" loading="lazy" decoding="async" alt="The API key details dialog with the key value partly blurred and the Copy key button circled.">
+                <figcaption data-i18n="wt_4">Copy the key now — but unlike some providers (OpenAI, DeepSeek) that only ever let you copy a key once, Google keeps a copy button next to it in the API Keys list, so you can grab it again later too. (Blurred here for this screenshot only; yours won't be.)</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="step-shot">
+                <img src="assets/gemini-free-tier/step-05-confirm-free-tier.jpg" width="1400" height="536" loading="lazy" decoding="async" alt="The API Keys list with the new key's Free tier badge circled.">
+                <figcaption data-i18n="wt_5">Back on the list, confirm the new key reads <strong>Free tier</strong> — no card attached.</figcaption>
+              </figure>
+            </li>
+          </ol>
+        </section>
+
+        <section id="what-free-costs">
+          <h2><span class="num">02</span><span data-i18n="s2_h">What "free" actually costs: your data</span></h2>
+          <p class="fact"><span data-i18n="s2_p1">On the free (unpaid) tier, the prompts you send and the responses you get back may be used by Google to improve its products and machine-learning models.</span><sup>[<a href="#ref3">3</a>]</sup></p>
+          <p class="fact"><span data-i18n="s2_p2">Once a project has a Cloud Billing account attached and moves to a paid tier, that same traffic is excluded from being used to improve Google's products.</span><sup>[<a href="#ref3">3</a>]</sup></p>
+          <p class="aside-note" data-i18n="s2_note">In other words, "free" here doesn't mean "no cost" — it means you're paying with data instead of money. That's worth knowing before you route anything sensitive through a free-tier key.</p>
+        </section>
+
+        <section id="three-limits">
+          <h2><span class="num">03</span><span data-i18n="s3_h">Three limits apply at once, not one</span></h2>
+          <p class="fact"><span data-i18n="s3_p1">Every free-tier call is checked against three independent ceilings simultaneously: requests per minute (RPM), tokens per minute (TPM), and requests per day (RPD).</span><sup>[<a href="#ref4">4</a>]</sup></p>
+          <p class="fact"><span data-i18n="s3_p2">Hitting any one of the three — not just the daily count — is enough to get your next call rejected until that specific window clears.</span><sup>[<a href="#ref4">4</a>]</sup></p>
+          <p class="fact"><span data-i18n="s3_p3">The exact numbers differ per model, and Google does not promise they'll stay the same — it states that limits depend on your tier and account status and can change automatically as those change.</span><sup>[<a href="#ref4">4</a>]</sup></p>
+          <p class="fact"><span data-i18n="s3_p4">Not every model is included in the free tier at all — which models are free, and which are paid-only, is listed on Google's own pricing page rather than the rate-limit page.</span><sup>[<a href="#ref5">5</a>]</sup></p>
+          <a class="lookup" href="https://ai.google.dev/gemini-api/docs/rate-limits" target="_blank" rel="noopener noreferrer" data-i18n="s3_cta">See today's exact numbers ↗</a>
+        </section>
+
+        <section id="daily-reset">
+          <h2><span class="num">04</span><span data-i18n="s4_h">The daily counter resets on a clock, not a timer</span></h2>
+          <p class="fact"><span data-i18n="s4_p1">The requests-per-day count resets at midnight Pacific Time — a fixed point on the clock, not "24 hours after your first call of the day."</span><sup>[<a href="#ref4">4</a>]</sup></p>
+          <p class="aside-note" data-i18n="s4_p2">Converted: that's roughly 4pm–5pm Korea time (KST, UTC+9), depending on whether the US is on daylight saving — so a key that runs dry in the Korean morning won't refill until Korean late afternoon, not at midnight KST.</p>
+        </section>
+
+        <section id="per-project-quota">
+          <h2><span class="num">05</span><span data-i18n="s5_h">The quota belongs to the project, not the key or the person</span></h2>
+          <p class="fact"><span data-i18n="s5_p1">Rate limits are enforced per Google Cloud project. Creating additional API keys inside the same project does not create additional quota — every key in that project draws from the same pool.</span><sup>[<a href="#ref4">4</a>]</sup></p>
+          <p class="fact"><span data-i18n="s5_p2">A project's tier — Free, or Tier 1/2/3 once paid — is determined automatically from that project's billing status and cumulative spend history.</span><sup>[<a href="#ref6">6</a>]</sup></p>
+        </section>
+
+        <section id="new-projects">
+          <h2><span class="num">06</span><span data-i18n="s6_h">So does making more projects get you more free quota?</span></h2>
+          <p class="fact"><span data-i18n="s6_p1">Structurally: yes — because the limit is attached to the project, a genuinely separate Google Cloud project starts with its own separate free-tier pool.</span><sup>[<a href="#ref4">4</a>]</sup></p>
+          <p class="fact"><span data-i18n="s6_p2">But Google runs both automated and manual abuse monitoring across the Gemini API and AI Studio, and a project that keeps showing suspicious usage patterns can be flagged for manual review.</span><sup>[<a href="#ref7">7</a>]</sup></p>
+          <p class="fact"><span data-i18n="s6_p3">Logs are retained separately for up to 55 days specifically for detecting and preventing violations of Google's usage policies.</span><sup>[<a href="#ref7">7</a>]</sup></p>
+          <p class="aside-note" data-i18n="s6_note">Exactly where "spin up a few personal projects" ends and "policy violation" begins isn't spelled out in one clean sentence anywhere — that line lives in the Terms of Service themselves, not in this summary, so read the source directly before you build anything that depends on it.</p>
+        </section>
+
+        <section id="upgrading">
+          <h2><span class="num">07</span><span data-i18n="s7_h">Outgrowing the free tier</span></h2>
+          <p class="fact"><span data-i18n="s7_p1">Attaching a Cloud Billing account to a project is what moves it off the Free tier onto usage-based paid tiers.</span><sup>[<a href="#ref6">6</a>]</sup></p>
+          <p class="fact"><span data-i18n="s7_p2">Paid tiers raise the RPM/TPM/RPD ceilings substantially over the free tier, and a project can climb further (Tier 1 → 2 → 3) automatically as its billing history accumulates.</span><sup>[<a href="#ref4">4</a>]</sup></p>
+          <p class="fact"><span data-i18n="s7_p3">Billing itself doesn't cost anything to turn on — but once a project has a Cloud Billing account attached, its free tier is gone for good. From that point on, every call on that project is billed at Google's published per-token rates, not just the usage beyond the old free limits.</span><sup>[<a href="#ref6">6</a>]</sup></p>
+        </section>
+
+        <div class="refs">
+          <h2 data-i18n="refs_h">References</h2>
+          <ol>
+            <li id="ref1"><span class="loc" data-i18n="ref1_loc">Gemini API keys — how a key is created, and that no billing is required to start</span><a href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener noreferrer">ai.google.dev/gemini-api/docs/api-key</a></li>
+            <li id="ref2"><span class="loc" data-i18n="ref2_loc">Google AI Studio — the "Get API key" screen itself</span><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/apikey</a></li>
+            <li id="ref3"><span class="loc" data-i18n="ref3_loc">Gemini API Additional Terms of Service — the "Paid Services" vs. unpaid-service data-use clause</span><a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener noreferrer">ai.google.dev/gemini-api/terms</a></li>
+            <li id="ref4"><span class="loc" data-i18n="ref4_loc">Rate limits — the "Free Tier" section: RPM/TPM/RPD definitions, per-project scope, midnight-PT reset, tier upgrade path</span><a href="https://ai.google.dev/gemini-api/docs/rate-limits" target="_blank" rel="noopener noreferrer">ai.google.dev/gemini-api/docs/rate-limits</a></li>
+            <li id="ref5"><span class="loc" data-i18n="ref5_loc">Pricing — the per-model table showing which models are free vs. paid-only, and paid per-token rates</span><a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener noreferrer">ai.google.dev/gemini-api/docs/pricing</a></li>
+            <li id="ref6"><span class="loc" data-i18n="ref6_loc">Billing — how attaching a Cloud Billing account changes a project's tier</span><a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noopener noreferrer">ai.google.dev/gemini-api/docs/billing</a></li>
+            <li id="ref7"><span class="loc" data-i18n="ref7_loc">Abuse monitoring — automated/manual detection and the 55-day log-retention window</span><a href="https://ai.google.dev/gemini-api/docs/usage-policies" target="_blank" rel="noopener noreferrer">ai.google.dev/gemini-api/docs/usage-policies</a></li>
+          </ol>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <span data-i18n="footer_text">Not affiliated with Google. This page summarizes public Google documentation for Bedside English users — always defer to the linked pages.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var KO = {
+        nav_home:"← 홈",
+        eyebrow:"레퍼런스 · Gemini API 무료 티어 작동 방식",
+        h1:"Gemini API 무료 티어, 진짜 무료일까?",
+        lede:"결론부터: 네, 진짜 무료입니다 — 0원, 카드도 필요 없음. 다만 실제로 걸리는 한도와 알아둘 만한 데이터 트레이드오프가 있으니, 그게 정확히 어떻게 작동하는지 아래에 정리했다. 모든 문장은 근거가 된 구글 페이지로 바로 연결된다.",
+        meta_line:"최종 확인일 <code>2026-08-25</code>. 구글은 이 수치들을 예고 없이 바꾸므로, 이 페이지가 아니라 링크된 원문을 기준으로 삼을 것.",
+        callout_money_badge:"0원 — 결제 없음",
+        callout_money_1:"<strong>결론부터: 이거 돈 안 나갑니다.</strong> Bedside English가 이 페이지로 안내했다고 해서 '어라, 이 앱 몰래 유료로 바뀐 건가?'라고 생각했다면 — 아니다. Gemini API 키는 구글이 직접, 무료로 발급하는 것이고, 신용카드도 체험판 만료 시계도 없다.",
+        callout_money_2:"여기서 자동으로 돈이 빠져나가는 일은 없다. 직접 구글의 결제 설정에 들어가서 유료 등급을 켜지 않는 이상 절대 청구되지 않는다. 다만 일단 켜면 그 프로젝트의 무료 등급은 사라지며, 그 시점부터는 예전 무료 한도를 넘어선 사용량만이 아니라 모든 호출이 과금 대상이 된다.",
+        callout_1:"<strong>알아둘 만한 트레이드오프 하나:</strong> 무료 등급에서 보낸 프롬프트와 응답은 구글 제품 개선에 쓰일 수 있다. 서로 다른 세 가지 한도가 동시에 걸려 있고, 이 한도는 '카운트다운'이 아니라 '정해진 시각'에 초기화되며, 쿼터는 개인이 아니라 Google Cloud 프로젝트에 귀속된다. 아래에서 하나씩 자세히 다룬다.",
+        callout_realtest:"<strong>참고로 실제 테스트 결과:</strong> 2026년 8월 9일, 무료 등급 키 하나로 30분 넘게, 150턴이 넘는 대화를 한 세션에서 이어갔는데도 한도에 걸리지 않았다. 이게 보장은 아니다(구글이 수치를 바꿀 수 있고, 사용 패턴에 따라 다를 것이다) — 다만 무료 등급이 일반적인 사용에 실제로 얼마나 여유가 있는지 감을 잡는 데는 도움이 될 것이다.",
+        s1_h:"키 발급도, 그걸 쓰는 것도 무료다",
+        s1_p1:"Gemini API 키는 구글 계정만 있으면 만들 수 있다 — 결제 프로필도, 카드 등록도, 체험판 만료 시계도 없다.",
+        s1_p2:"키는 일반 Cloud Console의 결제 흐름이 아니라 Google AI Studio의 API 키 발급 화면에서 발급된다.",
+        s1_p3:"새로 만든 Google Cloud 프로젝트든 기존에 있던 프로젝트든 키를 붙일 수 있고, 어느 쪽이든 무료 등급 키를 받는 데 결제 계정은 필요 없다.",
+        s1_cta:"Google AI Studio에서 키 발급받기 ↗",
+        wt_intro:"실제 Google AI Studio 계정에서 다섯 번의 클릭을 그대로 캡처했다. 아래 API 키 값은 공개용으로 일부만 흐리게 처리했고, 실제로 발급받으면 전체 값이 그대로 보인다.",
+        wt_1:"동의 체크박스를 누른 뒤 <strong>Continue</strong>를 클릭한다.",
+        wt_2:"<strong>API Keys</strong> 페이지에서 <strong>Create API key</strong>를 클릭한다.",
+        wt_3:"키 이름을 정하고 프로젝트를 선택한 뒤 <strong>Create key</strong>를 클릭한다.",
+        wt_4:"지금 키를 복사해두자 — 다만 오픈AI나 딥시크처럼 키를 딱 한 번만 보여주고 마는 곳들과 달리, 구글은 API Keys 목록에 복사 버튼을 계속 남겨두므로 나중에 다시 와서 복사할 수도 있다. (이 스크린샷만 공개용으로 흐리게 처리했고, 실제 발급 화면은 그렇지 않다.)",
+        wt_5:"목록으로 돌아가 새 키가 <strong>Free tier</strong>로 표시되는지 확인한다 — 카드가 연결되지 않았다는 뜻이다.",
+        s2_h:"'무료'가 실제로 요구하는 것: 당신의 데이터",
+        s2_p1:"무료(비유료) 등급에서는 당신이 보낸 프롬프트와 받은 응답을 구글이 자사 제품과 머신러닝 모델 개선에 사용할 수 있다.",
+        s2_p2:"프로젝트에 Cloud Billing 계정을 연결해 유료 등급으로 전환되는 순간부터는, 같은 트래픽이라도 제품 개선 목적 사용 대상에서 제외된다.",
+        s2_note:"다시 말해 여기서 '무료'는 '비용이 없다'는 뜻이 아니라 '돈 대신 데이터로 지불한다'는 뜻에 가깝다. 민감한 내용을 무료 키로 흘려보내기 전에 알아둘 만하다.",
+        s3_h:"한도는 하나가 아니라 세 개가 동시에 걸린다",
+        s3_p1:"무료 등급의 모든 호출은 분당 요청 수(RPM), 분당 토큰 수(TPM), 일일 요청 수(RPD)라는 세 가지 독립된 상한을 동시에 검사받는다.",
+        s3_p2:"일일 한도뿐 아니라 이 셋 중 아무거나 하나만 먼저 도달해도, 해당 구간이 풀릴 때까지 다음 호출은 거부된다.",
+        s3_p3:"정확한 수치는 모델마다 다르며, 구글은 이 수치가 고정이라고 약속하지 않는다 — 오히려 등급(Tier)과 계정 상태에 따라 달라지고, 그것이 바뀌면 한도도 자동으로 바뀔 수 있다고 명시한다.",
+        s3_p4:"애초에 모든 모델이 무료 등급에 포함되는 것도 아니다 — 어떤 모델이 무료이고 어떤 모델이 유료 전용인지는 요율 한도 페이지가 아니라 구글의 가격 정책 페이지에 나와 있다.",
+        s3_cta:"오늘 기준 정확한 수치 확인하기 ↗",
+        s4_h:"일일 카운터는 '타이머'가 아니라 '시계'로 초기화된다",
+        s4_p1:"일일 요청 수(RPD) 카운트는 태평양시간(PT) 자정에 초기화된다 — '첫 호출로부터 24시간 후'가 아니라 정해진 시각이다.",
+        s4_p2:"환산하면 한국시간(KST, UTC+9) 기준 대략 오후 4~5시 무렵이다(미국 서머타임 여부에 따라 달라짐) — 즉 한국 시간 오전에 한도를 다 쓴 키는 한국 자정이 아니라 한국 오후 늦게가 되어야 다시 채워진다.",
+        s5_h:"쿼터는 키나 사람이 아니라 프로젝트에 붙는다",
+        s5_p1:"요율 한도는 Google Cloud 프로젝트 단위로 적용된다. 같은 프로젝트 안에서 API 키를 추가로 만들어도 쿼터가 늘어나지 않는다 — 그 프로젝트의 모든 키는 같은 풀을 공유한다.",
+        s5_p2:"프로젝트의 등급(무료, 또는 결제 이후의 Tier 1/2/3)은 그 프로젝트의 결제 상태와 누적 지출 이력을 바탕으로 자동 결정된다.",
+        s6_h:"그럼 프로젝트를 여러 개 만들면 무료 쿼터도 늘어날까?",
+        s6_p1:"구조적으로는 그렇다 — 한도가 프로젝트에 귀속되므로, 진짜로 별개인 Google Cloud 프로젝트는 각자 독립된 무료 등급 풀을 갖고 시작한다.",
+        s6_p2:"다만 구글은 Gemini API와 AI Studio 전반에 걸쳐 자동·수동 어뷰징 모니터링을 상시 운영하며, 의심스러운 사용 패턴이 계속되는 프로젝트는 수동 검토 대상이 될 수 있다.",
+        s6_p3:"이용 정책 위반을 탐지·방지할 목적으로, 관련 로그는 최대 55일간 별도로 보관된다.",
+        s6_note:"'개인적으로 프로젝트 몇 개 만드는 것'과 '정책 위반'의 정확한 경계선이 어디인지는 이 요약 어디에도 깔끔한 한 문장으로 정리돼 있지 않다 — 그 경계는 이용약관 원문에 있다. 여기에 기대어 뭔가를 설계하기 전에 원문을 직접 읽을 것.",
+        s7_h:"무료 등급을 넘어서려면",
+        s7_p1:"프로젝트에 Cloud Billing 계정을 연결하는 것이 무료 등급에서 사용량 기반 유료 등급으로 전환되는 계기다.",
+        s7_p2:"유료 등급은 무료 등급보다 RPM/TPM/RPD 상한을 크게 끌어올리며, 결제 이력이 쌓이면 프로젝트는 자동으로 더 높은 등급(Tier 1 → 2 → 3)으로 올라갈 수 있다.",
+        s7_p3:"결제 기능을 켜는 것 자체는 비용이 들지 않는다 — 하지만 일단 프로젝트에 Cloud Billing 계정을 연결하면 그 프로젝트의 무료 등급은 완전히 사라진다. 그 시점부터는 예전 무료 한도를 넘어선 사용량만이 아니라 모든 호출이 구글이 공개한 토큰당 요율로 과금된다.",
+        refs_h:"참고 자료",
+        ref1_loc:"Gemini API 키 — 키 발급 방식, 발급 시 결제가 필요하지 않다는 설명",
+        ref2_loc:"Google AI Studio의 'API 키 발급' 화면 그 자체",
+        ref3_loc:"Gemini API 추가 이용약관 — '유료 서비스' 대 무료 서비스의 데이터 사용 조항",
+        ref4_loc:"요율 한도 문서 — '무료 등급' 섹션: RPM/TPM/RPD 정의, 프로젝트 단위 적용, 태평양시간 자정 초기화, 등급 상향 경로",
+        ref5_loc:"가격 정책 문서 — 모델별로 무료/유료 전용 여부를 보여주는 표와 유료 단가",
+        ref6_loc:"결제 문서 — Cloud Billing 계정 연결이 프로젝트 등급을 어떻게 바꾸는지",
+        ref7_loc:"어뷰징 모니터링 문서 — 자동·수동 탐지 방식과 55일 로그 보관 기간",
+        footer_text:"구글과 관련이 없는 페이지입니다. Bedside English 사용자를 위해 구글 공개 문서를 요약한 것이며, 항상 원문 링크를 기준으로 판단하세요."
+      };
+
+      var originals = new WeakMap();
+
+      function setLanguage(lang){
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach(function(el){
+          var key = el.dataset.i18n;
+          if (!originals.has(el)) originals.set(el, el.innerHTML);
+          el.innerHTML = (lang === "ko" && KO[key]) ? KO[key] : originals.get(el);
+        });
+        document.querySelectorAll("[data-lang]").forEach(function(btn){
+          var active = btn.dataset.lang === lang;
+          btn.classList.toggle("on", active);
+          btn.setAttribute("aria-pressed", String(active));
+        });
+        var badge = document.querySelector(".store-badge-img");
+        if (badge) {
+          badge.src = "assets/store/google-play-badge-" + lang + ".png";
+          badge.alt = lang === "ko" ? "Google Play에서 다운로드" : "Get it on Google Play";
+        }
+        try{ localStorage.setItem("be-language", lang); }catch(e){}
+      }
+
+      document.querySelectorAll("[data-lang]").forEach(function(btn){
+        btn.addEventListener("click", function(){ setLanguage(btn.dataset.lang); });
+      });
+
+      var saved = "";
+      try{ saved = localStorage.getItem("be-language") || ""; }catch(e){}
+      if (!saved) saved = (navigator.language || "").toLowerCase().startsWith("ko") ? "ko" : "en";
+      setLanguage(saved === "ko" ? "ko" : "en");
+    })();
+  </script>
+</body>
+</html>
