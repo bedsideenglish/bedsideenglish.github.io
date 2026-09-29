@@ -42,10 +42,14 @@
     return true;
   }
 
+  // The model follow-up hub reuses this script, so the noun comes from the form when it is set.
+  var nounOne = form.getAttribute("data-noun-one") || "history";
+  var nounMany = form.getAttribute("data-noun-many") || "histories";
+
   function describe(shown) {
-    if (!shown) return "No history matches yet";
-    if (shown === total) return "Showing all " + total + " histories";
-    return "Showing " + shown + " of " + total + (shown === 1 ? " history" : " histories");
+    if (!shown) return "No " + nounOne + " matches yet";
+    if (shown === total) return "Showing all " + total + " " + nounMany;
+    return "Showing " + shown + " of " + total + " " + nounMany;
   }
 
   // Chip counts follow the keyword search but not the chosen specialty, so the numbers always

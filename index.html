@@ -203,6 +203,7 @@
     .resource-card p{margin:0;color:var(--color-ink-2);font-size:var(--text-sm)}
     .resource-card .resource-link{margin-block-start:auto;padding-block-start:var(--space-md);color:var(--color-ink);font-weight:800}
     .resource-card:hover{border-color:var(--color-accent)}
+    .resource-grid>.resource-card:last-child:nth-child(odd){grid-column:1/-1}
 
     .faq{padding-block:var(--space-3xl);background:var(--color-ink);color:var(--color-paper)}
     .faq-grid{display:grid;grid-template-columns:minmax(0,0.7fr) minmax(0,1.3fr);gap:clamp(var(--space-lg),7vw,var(--space-3xl));align-items:start}
@@ -519,6 +520,12 @@
           <p>Press play and follow the exact flow, with distinct doctor and patient voices for every case.</p>
           <span class="resource-link">Play model interviews →</span>
         </a>
+        <a class="resource-card" href="model-follow-ups/">
+          <span class="resource-label">Run the return visit</span>
+          <h3>Seven complete follow-up visits</h3>
+          <p>From the pre-visit chart to the teach-back: results, missed doses, side effects, and a shared plan.</p>
+          <span class="resource-link">Read model follow-ups →</span>
+        </a>
         <a class="resource-card" href="case-presentations/">
           <span class="resource-label">Present the case</span>
           <h3>From patient chart to oral presentation</h3>
@@ -600,6 +607,7 @@
       <a href="everyday-english/">Interactive listening guides</a>
       <a href="learning/">Clinical English guides</a>
       <a href="model-interviews/">Model history-taking conversations</a>
+      <a href="model-follow-ups/">Model follow-up visits</a>
       <a href="case-presentations/">Case presentation guides</a>
       <a href="communication/">Team communication guides</a>
       <a href="desktop/index.html" data-i18n="desktop">Desktop app</a>
