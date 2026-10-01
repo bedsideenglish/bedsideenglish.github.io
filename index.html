@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5efdc">
   <title>Clinical English Speaking Practice with AI Patients | Bedside English</title>
-  <meta name="description" content="Clinical English speaking practice for international medical graduates (IMGs), medical students, and healthcare professionals. Talk to AI patients out loud, take a history in your own words, and get precise feedback plus pronunciation drills. Free on Android; a full Everyday English mode is included.">
+  <meta name="description" content="Clinical English speaking practice for international medical graduates (IMGs), medical students, and healthcare professionals. Talk to AI patients out loud and get precise feedback plus pronunciation drills. Free on Android and in your browser; Everyday English is included.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bedside English: Talk &amp; Train">
   <meta property="og:title" content="Clinical English that talks back">
@@ -268,6 +268,80 @@
     @media (prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}.panel{animation:none}.vo-text,.loop-shot,.btn,.mobile-bar{transition-duration:50ms;transition-property:opacity}
     }
+
+    /* Hallmark · component: app launch + recommendation · selected dark badge A
+     * pre-emit critique: P5 H5 E4 S5 R5 V4 · native links and dialog focus */
+    [hidden]{display:none!important}
+    .lang button.on:hover{color:var(--color-paper)}
+    .launch{margin-block-start:var(--space-lg);max-width:34rem}
+    .launch-actions{display:flex;align-items:center;gap:var(--space-xs)}
+    .launch-play img{height:3rem}
+    .launch-web{min-height:3rem;padding-inline:var(--space-sm);background:var(--color-accent);border-color:var(--color-accent);color:var(--color-accent-ink)}
+    .launch-actions .launch-web{flex:1;max-width:12rem;min-width:0}
+    .launch-play{flex:0 0 auto}
+    .launch-web .browser-icon{width:1.5rem;height:1.5rem;flex:0 0 auto}
+    .launch-web:hover{background:var(--color-ink);border-color:var(--color-ink)}
+    .launch-note{margin:var(--space-xs) 0 0;display:flex;align-items:baseline;gap:var(--space-2xs);color:var(--color-ink-2);font-size:var(--text-xs)}
+    .launch-beta{font-size:var(--text-xs);font-weight:700;padding:0 var(--space-2xs);border:var(--rule-hairline) solid var(--color-rule-strong);border-radius:var(--radius-input);white-space:nowrap}
+    .launch-secondary{display:inline-flex;align-items:center;min-height:2.75rem;padding:0;font-size:var(--text-sm);font-weight:600;white-space:nowrap;background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:.22em}
+    .launch-secondary:hover{color:var(--color-accent)}
+    .nav-web{min-height:2.5rem;padding-inline:var(--space-sm);font-size:var(--text-xs)}
+    .final .launch{margin-block-start:var(--space-lg)}
+    .final-actions{margin-block-start:var(--space-sm)}
+    .launch-dialog{width:min(28rem,calc(100% - 2rem));max-height:calc(100dvh - 2rem);padding:var(--space-xl) var(--space-lg) var(--space-lg);border:var(--rule-hairline) solid var(--color-rule-strong);border-radius:var(--radius-card);background:var(--color-paper-3);color:var(--color-ink);box-shadow:0 var(--space-lg) var(--space-3xl) var(--color-shadow-deep);overflow-y:auto}
+    .launch-dialog::backdrop{background:var(--color-shadow-deep);backdrop-filter:blur(5px)}
+    .launch-dialog h2{font-family:var(--font-body);font-size:var(--text-2xl);font-weight:700;line-height:1.2;letter-spacing:-.03em}
+    .launch-dialog p{margin:var(--space-sm) 0;color:var(--color-ink-2);font-size:var(--text-sm);line-height:1.7}
+    .dialog-close{position:absolute;inset-block-start:var(--space-2xs);inset-inline-end:var(--space-2xs);width:2.75rem;height:2.75rem;padding:0;border:0;background:none;cursor:pointer;font-size:var(--text-xl)}
+    .dialog-close:hover{color:var(--color-accent)}
+    .dialog-actions{display:flex;flex-direction:column;align-items:stretch;gap:var(--space-2xs);margin-block-start:var(--space-md)}
+    .dialog-actions .launch-secondary{justify-content:center}
+    .dialog-actions .store-badge{align-self:center}
+    .dialog-actions .store-badge img{height:3rem}
+    .dialog-benefit{padding:var(--space-sm);border-inline-start:var(--rule-bold) solid var(--color-accent);background:var(--color-accent-wash)}
+    .dialog-benefit strong{display:block;font-size:var(--text-sm);line-height:1.5}
+    .dialog-benefit p{margin:var(--space-2xs) 0 0;font-size:var(--text-xs)}
+    body:has(.launch-dialog[open]){overflow-y:hidden}
+    @media(max-width:60rem){.nav-web{display:none}}
+    @media(max-width:45rem){
+      .launch-actions{gap:var(--space-2xs)}
+      .launch-web{gap:var(--space-2xs)}
+      .nav-web{display:none}
+      .hero-actions{margin-block-start:var(--space-sm)}
+    }
+    @media(max-width:22rem){
+      .launch-dialog{padding-inline:var(--space-md)}.launch-dialog h2{font-size:var(--text-xl)}
+      .launch-play img{height:2.75rem}
+      .launch-actions .launch-web{min-height:2.75rem;padding-inline:var(--space-2xs);font-size:var(--text-xs)}
+      .launch-web .browser-icon{width:1.25rem;height:1.25rem}
+    }
+
+    /* Selected A: a quiet dark badge paired with the official Play artwork. */
+    .launch-actions{gap:var(--space-xs)}
+    .launch-play img{height:3.5rem}
+    .launch-web{background:var(--color-ink);border-color:var(--color-ink);color:var(--color-paper-3)}
+    .launch-web:hover{background:var(--color-ink-2);border-color:var(--color-ink-2);transform:none}
+    .launch-actions .launch-web{height:3.5rem;min-height:3.5rem;max-width:13rem;padding:0 1.125rem;gap:var(--space-xs);border-radius:.375rem;box-shadow:none}
+    .launch-web .browser-icon{width:1.625rem;height:1.625rem}
+    .badge-copy{display:flex;flex-direction:column;align-items:flex-start;gap:.125rem;line-height:1.15}
+    .badge-copy>span{font-size:.9375rem;font-weight:650;letter-spacing:-.02em}
+    .badge-copy small{font-size:.625rem;font-weight:500;letter-spacing:.015em;opacity:.8}
+    .nav-web .browser-icon{width:1.25rem;height:1.25rem}
+    .nav-web .badge-copy>span{font-size:var(--text-xs)}
+    .nav-web .badge-copy small{font-size:.5625rem}
+    @media(max-width:450px){
+      .launch-actions{gap:var(--space-2xs)}
+      .launch-play img{height:3rem}
+      .launch-actions .launch-web{height:3rem;min-height:3rem;max-width:12rem;padding:0 var(--space-xs);gap:var(--space-2xs)}
+      .badge-copy>span{font-size:.8125rem}.badge-copy small{font-size:.5625rem}
+      .launch-web .browser-icon{width:1.375rem;height:1.375rem}
+    }
+    @media(max-width:22rem){
+      .launch-play img{height:2.75rem}
+      .launch-actions .launch-web{height:2.75rem;min-height:2.75rem;padding:0 var(--space-2xs);gap:.375rem}
+      .badge-copy>span{font-size:var(--text-xs)}.badge-copy small{font-size:.5rem}
+      .launch-web .browser-icon{width:1.25rem;height:1.25rem}
+    }
   </style>
 </head>
 <body>
@@ -291,6 +365,7 @@
     <a class="store-badge nav-store" id="navStore" href="#download" aria-label="Get it on Google Play">
       <img class="store-badge-img" src="assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async">
     </a>
+    <a class="btn launch-web nav-web" href="https://bedsideenglish.github.io/app/" data-web-launch hidden><svg class="browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="badge-copy"><span data-i18n="web_app">Start web app</span><small>iPhone · iPad · PC</small></span></a>
   </nav>
 </header>
 
@@ -303,11 +378,17 @@
           <h1 data-i18n="hero_title">Speak in the clinic.<em>Keep going in real life.</em></h1>
           <p class="hero-copy" data-i18n="hero_copy">Talk to AI patients in your own words. The patient answers out loud, the clinical checklist updates from what you actually covered, and your exact mistakes return as tomorrow’s speaking practice. A full Everyday English mode is included for life outside the clinic.</p>
           <p class="audience-link"><a href="android-everyday.html" data-i18n="everyday_link">Here for everyday English? Explore the everyday version →</a></p>
+          <div class="launch">
+            <div class="launch-actions">
+              <a class="store-badge launch-play" data-play-launch href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer"><img class="store-badge-img" src="assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play"></a>
+              <a class="btn launch-web" data-web-launch href="https://bedsideenglish.github.io/app/"><svg class="browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="badge-copy"><span data-i18n="web_app">Start web app</span><small>iPhone · iPad · PC</small></span></a>
+
+            </div>
+            <p class="launch-note"><span data-launch-note>Android app or browser — choose how to practice.</span><span class="launch-beta" data-web-beta hidden>Beta</span></p>
+          </div>
         </div>
 
-        <!-- On a phone the promise stays with the headline so the clinical and
-             everyday tracks both land before the tall real-app clip. The CTA
-             remains below the clip while the store listing is under review. -->
+        <!-- Launch choices stay with the headline, before the tall app clip on phones. -->
         <div class="hero-tail">
           <div class="hero-actions">
             <button type="button" class="btn btn-primary" id="clipAction">
@@ -322,10 +403,6 @@
             <li data-i18n="chip_noacct">No Bedside English account</li>
           </ul>
           <a class="tier-link" href="gemini-api-free-tier.html" data-i18n="hero_tier_link">Is Free Tier really free? →</a>
-          <p class="store-status">
-            <span class="store-dot" aria-hidden="true"></span>
-            <span data-i18n="store_pending">Available now on Google Play.</span>
-          </p>
         </div>
       </div>
 
@@ -586,14 +663,17 @@
   <section class="final" id="download">
     <div class="shell">
       <h2 data-i18n="final_title">Next time, let the English come out first.</h2>
-      <p class="lede" data-i18n="final_body">Practice clinical English aloud with AI patients, then keep the same speaking habit in Everyday mode. Free on Android with no Bedside English account required.</p>
+      <p class="lede" data-i18n="final_body">Practice clinical English aloud with AI patients, then keep the same speaking habit in Everyday mode. Free on Android and in your browser, with no Bedside English account required.</p>
+      <div class="launch">
+        <div class="launch-actions">
+          <a class="store-badge launch-play" data-play-launch href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer"><img class="store-badge-img" src="assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy"></a>
+          <a class="btn launch-web" data-web-launch href="https://bedsideenglish.github.io/app/"><svg class="browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="badge-copy"><span data-i18n="web_app">Start web app</span><small>iPhone · iPad · PC</small></span></a>
+
+        </div>
+        <p class="launch-note"><span data-launch-note>Android app or browser — choose how to practice.</span><span class="launch-beta" data-web-beta hidden>Beta</span></p>
+      </div>
       <div class="final-actions">
-        <p class="store-status">
-          <span class="store-dot" aria-hidden="true"></span>
-          <span data-i18n="store_pending">Available now on Google Play.</span>
-        </p>
-        <a class="btn btn-ghost" href="https://bedsideenglish.github.io/app/"><span data-i18n="web_app">Open the web app (beta) — iPhone &amp; PC</span></a>
-        <a class="btn btn-ghost" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer"><span data-i18n="source_link">View source on GitHub</span><span aria-hidden="true">↗</span></a>
+        <a class="launch-secondary" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer"><span data-i18n="source_link">View source on GitHub</span><span aria-hidden="true"> ↗</span></a>
       </div>
     </div>
   </section>
@@ -611,7 +691,7 @@
       <a href="model-follow-ups/">Model follow-up visits</a>
       <a href="case-presentations/">Case presentation guides</a>
       <a href="communication/">Team communication guides</a>
-      <a href="https://bedsideenglish.github.io/app/" data-i18n="web_app_footer">Web app (beta)</a>
+      <a href="https://bedsideenglish.github.io/app/" data-web-launch data-i18n="web_app_footer">Web app</a>
       <a href="desktop/index.html" data-i18n="desktop">Desktop app</a>
       <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer">GitHub ↗</a>
     </span>
@@ -619,6 +699,21 @@
 </footer>
 
 <a class="mobile-bar" id="mobileBar" href="#download"><span class="store-dot" aria-hidden="true"></span><span data-i18n="store_pending_short">Get it on Google Play</span></a>
+
+<dialog class="launch-dialog" id="androidRecommendation" aria-labelledby="androidRecommendationTitle" aria-describedby="androidRecommendationIntro">
+  <button class="dialog-close" type="button" data-dialog-close aria-label="Close" autofocus><span aria-hidden="true">×</span></button>
+  <h2 id="androidRecommendationTitle" data-i18n="android_title">Keep talking.<br>Even with your screen off.</h2>
+  <p id="androidRecommendationIntro" data-i18n="android_intro">On Android, we recommend the app from Google Play for live voice practice.</p>
+  <div class="dialog-benefit">
+    <strong data-i18n="android_benefit">Voice conversations can continue with the screen off.</strong>
+    <p data-i18n="android_limit">The web app pauses live voice when you lock your screen or leave the app.</p>
+  </div>
+  <div class="dialog-actions">
+    <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noreferrer" data-dialog-store><img class="store-badge-img" src="assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play"></a>
+    <a class="launch-secondary" href="https://bedsideenglish.github.io/app/" data-web-continue data-i18n="web_continue">Continue in browser</a>
+  </div>
+</dialog>
+
 
 <script>
   /*
@@ -721,10 +816,19 @@
     q5:"의료기기인가요?",
     a5:"아닙니다. 영어 말하기 연습 도구입니다. 임상 체크리스트는 대화에 형태를 주기 위한 것이지, 의학을 가르치거나 실제 진료 판단을 돕기 위한 것이 아닙니다.",
     final_title:"다음에는 영어가 먼저 나오게 만드세요.",
-    final_body:"AI 환자와 소리 내어 임상 영어를 연습하고, 같은 말하기 습관을 일상 영어 모드에서도 이어가세요. Bedside English 계정 없이 Android에서 무료로 사용할 수 있습니다.",
+    final_body:"AI 환자와 소리 내어 임상 영어를 연습하고, 같은 말하기 습관을 일상 영어 모드에서도 이어가세요. Bedside English 계정 없이 Android와 브라우저에서 무료로 사용할 수 있습니다.",
     source_link:"GitHub에서 소스 보기",footer_note:"Bedside English · 무료 오픈소스 · 의료기기가 아님",
     privacy:"개인정보 처리방침",desktop:"데스크톱 앱",
-    web_app:"웹 앱 열기 (베타) — iPhone · PC",web_app_footer:"웹 앱 (베타)"
+    web_app:"웹 앱 시작하기",web_app_footer:"웹 앱",
+    android_title:"화면을 꺼도,<br>대화는 계속.",
+    android_intro:"Android에서는 Google Play 앱으로 실시간 음성 연습을 하는 것을 추천해요.",
+    android_benefit:"화면을 꺼도 음성 대화를 이어갈 수 있어요.",
+    android_limit:"웹 앱은 화면을 잠그거나 다른 앱으로 이동하면 실시간 음성 대화가 일시정지돼요.",
+    install_android:"Google Play에서 설치",web_continue:"웹 앱으로 계속하기",
+    launch_android_note:"화면을 꺼도 이어지는 음성 연습 · Android 앱 추천",
+    launch_web_note:"설치 없이 시작 · iPhone, iPad, PC에서도 사용",
+    launch_generic_note:"Android 앱 또는 브라우저에서 무료로 시작",
+    close_dialog:"닫기"
   };
 
   /* Compact tab labels remain one-line affordances in both languages; the
@@ -871,37 +975,75 @@
 
   (function(){
     var originals = new Map();
+    var WEB_APP_URL = "https://bedsideenglish.github.io/app/";
+    var platform = detectLaunchPlatform();
+    var recommendation = document.getElementById("androidRecommendation");
+    var recommendationAccepted = false;
 
-    /* On approval the two launch-status lines and the phone bar become real
-       links, and the final section gains a download button. */
-    function applyStoreUrl(){
-      if (!GOOGLE_PLAY_URL) return;
-      document.querySelectorAll(".store-status").forEach(function(node){
-        var link = document.createElement("a");
-        link.className = "store-badge store-live";
-        link.href = GOOGLE_PLAY_URL;
-        link.target = "_blank";
-        link.rel = "noreferrer";
-        link.setAttribute("aria-label","Get it on Google Play");
-        link.innerHTML = '<img class="store-badge-img" src="'+PLAY_BADGE.en+'" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async">';
-        node.replaceWith(link);
-      });
+    // A presentation hint only: no redirects, identifiers, storage or network lookup.
+    // Unknown/overridden device hints retain both working launch links.
+    function detectLaunchPlatform(){
+      var ua = navigator.userAgent || "";
+      var hint = navigator.userAgentData && navigator.userAgentData.platform;
+      if (hint === "Android" || /Android/i.test(ua)) return "android";
+      if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1)) return "apple-mobile";
+      if (/Windows NT|Macintosh|X11|CrOS|Linux/i.test(ua)) return "desktop";
+      return "unknown";
+    }
+
+    function renderLaunch(){
+      var android = platform === "android";
+      var generic = platform === "unknown";
+      document.documentElement.dataset.launchPlatform = platform;
+      document.querySelectorAll("[data-play-launch]").forEach(function(link){link.hidden = false;});
+      document.querySelectorAll("[data-web-beta]").forEach(function(badge){badge.hidden = android;});
+      var noteKey = android ? "launch_android_note" : generic ? "launch_generic_note" : "launch_web_note";
+      var noteEn = android ? "Screen-off voice practice · Android app recommended" : generic ? "Android app or browser — choose how to practice." : "No installation needed · iPhone, iPad & PC";
+      document.querySelectorAll("[data-launch-note]").forEach(function(note){note.textContent = t(noteKey,noteEn);});
+      var navStore = document.getElementById("navStore");
+      navStore.hidden = false;
+      navStore.href = GOOGLE_PLAY_URL;
+      navStore.target = "_blank";
+      navStore.rel = "noreferrer";
+      navStore.setAttribute("aria-label",PLAY_BADGE_ALT[currentLang]);
+      document.querySelector(".nav-web").hidden = false;
       var bar = document.getElementById("mobileBar");
-      if (bar) {
-        bar.classList.add("store-live");
-        bar.href = GOOGLE_PLAY_URL;
+      bar.href = android || generic ? GOOGLE_PLAY_URL : WEB_APP_URL;
+      if (android || generic) {
         bar.target = "_blank";
         bar.rel = "noreferrer";
-        bar.setAttribute("aria-label","Get it on Google Play");
-        bar.innerHTML = '<img class="store-badge-img" src="'+PLAY_BADGE.en+'" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async">';
+        bar.innerHTML = '<img class="store-badge-img" src="'+PLAY_BADGE[currentLang]+'" width="564" height="168" alt="'+PLAY_BADGE_ALT[currentLang]+'">';
+      } else {
+        bar.removeAttribute("target");
+        bar.removeAttribute("rel");
+        bar.textContent = t("web_app","Start web app") + " →";
       }
-      var navStore = document.getElementById("navStore");
-      if (navStore) {
-        navStore.href = GOOGLE_PLAY_URL;
-        navStore.target = "_blank";
-        navStore.rel = "noreferrer";
-      }
+      document.querySelectorAll("[data-dialog-close]").forEach(function(button){button.setAttribute("aria-label",t("close_dialog","Close"));});
     }
+
+    function openDialog(dialog){
+      if (!dialog || typeof dialog.showModal !== "function") return false;
+      dialog.showModal();
+      return true;
+    }
+
+    document.querySelectorAll("[data-web-launch]").forEach(function(link){
+      link.addEventListener("click",function(event){
+        // Modified clicks remain normal links. Never block direct /app/ access.
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        if (platform === "android" && !recommendationAccepted && openDialog(recommendation)) event.preventDefault();
+      });
+    });
+    document.querySelector("[data-web-continue]").addEventListener("click",function(){recommendationAccepted = true;recommendation.close();});
+    document.querySelector("[data-dialog-store]").addEventListener("click",function(){recommendation.close();});
+    document.querySelectorAll(".launch-dialog").forEach(function(dialog){
+      dialog.querySelector("[data-dialog-close]").addEventListener("click",function(){dialog.close();});
+      // Backdrop clicks dismiss; clicks in the dialog's padding must not.
+      dialog.addEventListener("click",function(event){
+        var rect = dialog.getBoundingClientRect();
+        if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close();
+      });
+    });
 
     function setLanguage(lang){
       currentLang = lang;
@@ -923,10 +1065,10 @@
         img.src = PLAY_BADGE[lang] || PLAY_BADGE.en;
         img.alt = PLAY_BADGE_ALT[lang] || PLAY_BADGE_ALT.en;
       });
+      renderLaunch();
       try{localStorage.setItem("be-language",lang);}catch(error){}
     }
 
-    applyStoreUrl();
     document.querySelectorAll("[data-lang]").forEach(function(button){
       button.addEventListener("click",function(){setLanguage(button.dataset.lang);});
     });
