@@ -17,7 +17,7 @@ header.site-header .shell{width:min(58rem,calc(100% - 2.5rem));display:flex;flex
 .brand-mark svg{width:1rem}
 .home-link{margin-inline-start:auto;padding:0.4rem 0.75rem;border:var(--rule-hairline) solid var(--color-rule-strong);border-radius:var(--radius-pill);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-2);text-decoration:none;white-space:nowrap}
 .home-link:hover{color:var(--color-accent);border-color:var(--color-accent)}
-.nav-store{flex:0 0 auto;height:2.1rem;display:inline-flex}
+.nav-store{flex:0 0 auto;height:2.5rem;display:inline-flex}
 .nav-store img{height:100%;width:auto;display:block}
 
 main{padding-block:var(--space-2xl) var(--space-3xl)}
@@ -72,13 +72,12 @@ thead th{border-block-end-color:var(--color-rule-strong)}
 .cta{margin-block:var(--space-xl) 0;padding:var(--space-md);border:var(--rule-hairline) solid var(--color-ink);border-radius:var(--radius-card);background:var(--color-paper-2)}
 .cta h2{font-size:var(--text-lg)}
 .cta p{font-size:var(--text-sm)}
-.cta .store{display:inline-flex;height:3.25rem}
+.cta .store{display:inline-flex;height:3.5rem}
 .cta .store img{height:100%;width:auto;display:block}
 .cta .more{display:block;margin-block-start:var(--space-xs);font-size:var(--text-sm)}
 
 footer.site-footer{padding-block:var(--space-lg);border-block-start:var(--rule-hairline) solid var(--color-rule);text-align:center;color:var(--color-ink-2);font-size:var(--text-xs)}
 footer.site-footer a{color:inherit}
-.btn-web{display:inline-flex;align-items:center;gap:0.5rem;min-height:3.25rem;padding:0 1.25rem;border-radius:var(--radius-pill);background:var(--color-accent);color:var(--color-accent-ink);font-weight:700;text-decoration:none}
 .store-row{display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem}
 
 /* Real app screenshots: phone frames (shot), side-by-side rows (shots), a desktop frame (shot-pc). */
@@ -99,5 +98,5 @@ footer.site-footer a{color:inherit}
 .quote .who{font-weight:700;color:var(--color-ink-2);font-size:var(--text-xs);letter-spacing:0.03em}
 .fix{color:oklch(48% 0.16 150)}
 .slip{text-decoration:line-through;color:oklch(52% 0.17 25)}
-.nav-web{flex:0 0 auto;padding:0.4rem 0.85rem;border-radius:var(--radius-pill);background:var(--color-accent);color:var(--color-accent-ink);font-size:var(--text-sm);font-weight:700;text-decoration:none;white-space:nowrap}
-.nav-web:hover{filter:brightness(1.08)}
+a.site-web-launch{font-family:inherit}
+@media (max-width:450px){.cta .store{height:3rem}}
