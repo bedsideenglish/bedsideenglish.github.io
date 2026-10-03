@@ -1,0 +1,26 @@
+/* Shared companion to Google Play CTAs, matching the homepage web badge. */
+.site-launch-group{display:inline-flex;align-items:center;flex-wrap:wrap;gap:.75rem;min-width:0;max-width:100%}
+.ctas .site-launch-group{justify-content:center}
+a.site-web-launch{display:inline-flex;align-items:center;justify-content:center;gap:.75rem;min-height:3.5rem;padding:0 1.125rem;border:1px solid #85878c;border-radius:.375rem;background:#000;color:#fff;text-decoration:none;white-space:nowrap;font-family:Inter,system-ui,sans-serif;line-height:1.15;transition:background 140ms ease}
+a.site-web-launch:hover{background:#272727;color:#fff}
+a.site-web-launch:focus-visible{outline:3px solid #6495ed;outline-offset:4px}
+.site-web-launch .site-browser-icon{width:1.625rem;height:1.625rem;flex:0 0 auto}
+.site-web-launch .site-badge-copy{display:flex;flex-direction:column;align-items:flex-start;gap:.125rem;line-height:1.15}
+.site-web-launch .site-badge-copy>span{font-size:.9375rem;font-weight:650;letter-spacing:-.02em}
+.site-web-launch .site-badge-copy small{font-size:.625rem;font-weight:500;letter-spacing:.015em;opacity:.8}
+.site-header .site-launch-group{gap:.5rem}
+.site-header a.site-web-launch{min-height:2.5rem;padding:0 .625rem;gap:.5rem}
+.site-header .site-web-launch .site-badge-copy>span{font-size:.8125rem}
+.site-header .site-web-launch .site-badge-copy small{font-size:.5625rem}
+.site-header .site-web-launch .site-browser-icon{width:1.375rem;height:1.375rem}
+.site-header .nav,.site-header nav{flex-wrap:wrap;padding-block:.5rem}
+.site-header .nav-links{flex-wrap:wrap;justify-content:flex-end}
+.cta-panel .site-launch-group{align-self:center}
+@media(max-width:450px){
+  .site-launch-group{gap:.5rem}
+  a.site-web-launch{min-height:3rem;padding:0 .75rem;gap:.5rem}
+  .site-web-launch .site-badge-copy>span{font-size:.8125rem}
+  .site-web-launch .site-browser-icon{width:1.375rem;height:1.375rem}
+  .site-header .site-launch-group{margin-inline-start:auto}
+}
+@media(prefers-reduced-motion:reduce){a.site-web-launch{transition:none}}

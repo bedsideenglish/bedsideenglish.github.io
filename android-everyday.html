@@ -330,11 +330,12 @@
       .terms{grid-template-columns:minmax(0,1fr)}
     }
   </style>
+  <link rel="stylesheet" href="web-launch.css">
 </head>
 <body>
 <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
-<header>
+<header class="site-header">
   <nav class="shell" aria-label="Primary navigation">
     <a class="brand" href="android-everyday.html" aria-label="Bedside English everyday Android home">
       <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
@@ -349,9 +350,9 @@
         <button type="button" data-lang="ko">KO</button>
       </div>
     </div>
-    <a class="store-badge nav-store" id="navStore" href="#download" aria-label="Get it on Google Play">
+    <div class="site-launch-group"><a class="store-badge nav-store" id="navStore" href="#download" aria-label="Get it on Google Play">
       <img class="store-badge-img" src="assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async">
-    </a>
+    </a><a class="site-web-launch" href="https://bedsideenglish.github.io/app/"><svg class="site-browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="site-badge-copy"><span>Start web app</span><small>iPhone · iPad · PC</small></span></a></div>
   </nav>
 </header>
 
@@ -380,10 +381,10 @@
             <li data-i18n="chip_noacct">No Bedside English account</li>
           </ul>
           <a class="tier-link" href="gemini-api-free-tier.html" data-i18n="hero_tier_link">Is Free Tier really free? →</a>
-          <p class="store-status">
+          <div class="site-launch-group"><p class="store-status">
             <span class="store-dot" aria-hidden="true"></span>
             <span data-i18n="store_pending">Available now on Google Play.</span>
-          </p>
+          </p><a class="site-web-launch" href="https://bedsideenglish.github.io/app/"><svg class="site-browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="site-badge-copy"><span>Start web app</span><small>iPhone · iPad · PC</small></span></a></div>
         </div>
       </div>
 
@@ -596,10 +597,10 @@
       <h2 data-i18n="final_title">Next time, let the English come out first.</h2>
       <p class="lede" data-i18n="final_body">Practice everyday English alone, out loud, inside a conversation that answers back and keeps moving. Free on Android with no Bedside English account required.</p>
       <div class="final-actions">
-        <p class="store-status">
+        <div class="site-launch-group"><p class="store-status">
           <span class="store-dot" aria-hidden="true"></span>
           <span data-i18n="store_pending">Available now on Google Play.</span>
-        </p>
+        </p><a class="site-web-launch" href="https://bedsideenglish.github.io/app/"><svg class="site-browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="site-badge-copy"><span>Start web app</span><small>iPhone · iPad · PC</small></span></a></div>
         <a class="btn btn-ghost" href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer"><span data-i18n="source_link">View source on GitHub</span><span aria-hidden="true">↗</span></a>
       </div>
     </div>

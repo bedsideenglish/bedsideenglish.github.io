@@ -117,6 +117,7 @@
     footer.site-footer{padding-block:var(--space-lg);border-block-start:var(--rule-hairline) solid var(--color-rule);text-align:center;color:var(--color-ink-2);font-size:var(--text-xs)}
     footer.site-footer a{color:inherit}
   </style>
+  <link rel="stylesheet" href="web-launch.css">
 </head>
 <body>
   <header class="site-header">
@@ -126,9 +127,9 @@
         <span>Bedside English</span>
       </a>
       <a class="home-link" href="./" data-i18n="nav_home">← Home</a>
-      <a class="store-badge nav-store" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+      <div class="site-launch-group"><a class="store-badge nav-store" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
         <img class="store-badge-img" src="assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" loading="lazy" decoding="async">
-      </a>
+      </a><a class="site-web-launch" href="https://bedsideenglish.github.io/app/"><svg class="site-browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="site-badge-copy"><span>Start web app</span><small>iPhone · iPad · PC</small></span></a></div>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="ko" aria-pressed="false">한국어</button>

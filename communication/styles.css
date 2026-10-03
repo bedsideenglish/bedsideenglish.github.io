@@ -147,3 +147,24 @@ h2{font-size:clamp(2.05rem,4.3vw,3.65rem);line-height:1.04}
 @media (max-width:52rem){.shell{width:min(100% - 2rem,76rem)}.nav-links>a:not(.store-badge){display:none}.content{display:block;padding-top:2rem}.contents{position:static;display:flex;overflow-x:auto;gap:1rem;padding:0 0 1.5rem;border-bottom:1px solid #c8c9bd}.contents p{display:none}.contents a{white-space:nowrap}.chart-group{grid-template-columns:1fr}.chart-group dl{grid-template-columns:1fr 1fr}.cta-panel.has-visual{grid-template-columns:1fr}.cta-visual{transform:none}.what-is,.library-heading,.skills-map,.hub-boundary{grid-template-columns:1fr}.footer-inner{display:grid}.footer-inner div{flex-wrap:wrap}}
 @media (max-width:38rem){.brand span:last-child{font-size:var(--text-sm)}.nav-store{height:2.15rem}.hero{padding-block:3rem}.breadcrumbs{margin-bottom:2.5rem}.hero-actions{display:grid}.framework-strip{grid-template-columns:1fr}.scenario-grid{grid-template-columns:1fr}.scenario-grid>div{border-right:0}.scenario-grid .scenario-goal{grid-column:auto}.chart>header{align-items:flex-start;flex-direction:column}.chart-group dl{grid-template-columns:1fr}.language-contrast-grid{grid-template-columns:1fr}.transcript-row{grid-template-columns:1fr;gap:.4rem}.checklist{grid-template-columns:1fr}.repairs article{grid-template-columns:1fr;gap:.55rem}.guide-grid,.skill-grid{grid-template-columns:1fr}.cta-actions{align-items:flex-start;flex-direction:column}.cta-store{height:3rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+
+/* Landing launch badges; shared placement for Android and browser practice. */
+.cta-panel .cta-actions{display:flex;flex-direction:column;align-items:flex-start}
+.cta-launch{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-xs);max-width:100%}
+.cta-launch .store-badge{height:3.5rem;flex:0 0 auto}
+.cta-launch .store-badge img{display:block;height:100%;width:auto}
+.cta-launch .launch-web{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);height:3.5rem;padding:0 1.125rem;border:1px solid var(--color-rule-strong);border-radius:.375rem;background:var(--color-launch-bg);color:var(--color-paper-3);text-decoration:none;white-space:nowrap;font-family:var(--font-body);transition:background var(--dur-short) var(--ease-out)}
+.cta-launch .launch-web:hover{background:var(--color-launch-hover)}
+.cta-launch .launch-web:active{opacity:.85}
+.cta-launch a:focus-visible{outline:3px solid var(--color-paper-3);outline-offset:4px}
+.cta-launch .browser-icon{width:1.625rem;height:1.625rem;flex:0 0 auto}
+.cta-launch .badge-copy{display:flex;flex-direction:column;align-items:flex-start;gap:.125rem;line-height:1.15}
+.cta-launch .badge-copy>span{font-size:.9375rem;font-weight:650;letter-spacing:-.02em}
+.cta-launch .badge-copy small{font-size:.625rem;font-weight:500;letter-spacing:.015em;opacity:.8}
+@media(max-width:450px){.cta-launch{gap:var(--space-2xs)}.cta-launch .store-badge,.cta-launch .launch-web{height:3rem}.cta-launch .launch-web{padding:0 var(--space-xs);gap:var(--space-2xs)}.cta-launch .badge-copy>span{font-size:.8125rem}.cta-launch .badge-copy small{font-size:.5625rem}.cta-launch .browser-icon{width:1.375rem;height:1.375rem}}
+@media(max-width:22rem){.cta-launch .store-badge,.cta-launch .launch-web{height:2.75rem}.cta-launch .launch-web{padding:0 var(--space-2xs);gap:.375rem}.cta-launch .badge-copy>span{font-size:var(--text-xs)}.cta-launch .badge-copy small{font-size:.5rem}.cta-launch .browser-icon{width:1.25rem;height:1.25rem}}
+@media(prefers-reduced-motion:reduce){.cta-launch .launch-web{transition:none}}
+
+/* Keep both badges side by side inside a narrow CTA copy column. */
+.cta-panel .cta-actions{container-type:inline-size;width:100%}
+@container(max-width:26rem){.cta-launch{gap:var(--space-2xs)}.cta-launch .store-badge,.cta-launch .launch-web{height:2.75rem}.cta-launch .launch-web{padding:0 var(--space-2xs);gap:var(--space-2xs)}.cta-launch .badge-copy>span{font-size:.8125rem}.cta-launch .badge-copy small{font-size:.5625rem}.cta-launch .browser-icon{width:1.375rem;height:1.375rem}}
