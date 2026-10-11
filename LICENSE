@@ -1,0 +1,20 @@
+Copyright (c) 2026 boyskier. All rights reserved.
+
+This repository contains the Bedside English informational and learning website.
+All rights are reserved for its code and content, including articles,
+explanations, examples, dialogues, learning materials, images, audio, and video,
+except where otherwise stated. Publication of this repository does not grant a
+general license to copy, modify, redistribute, or commercially reuse it.
+Permission requests: bedsideenglish.support@gmail.com
+
+This notice reserves only rights that exist under applicable law and are held
+by the operator. Statutory exceptions and third-party licenses remain applicable.
+Permissions already granted for earlier MIT-licensed releases are not revoked.
+
+The Android, Desktop, and PWA apps are separate projects. Their existing MIT
+source releases retain the MIT License and their existing scope. The PWA hosted
+at https://bedsideenglish.github.io/app/ is outside this website policy.
+Material also available in an MIT-licensed app release remains subject to that
+release's license.
+
+See https://bedsideenglish.github.io/license.html for the public scope notice.
