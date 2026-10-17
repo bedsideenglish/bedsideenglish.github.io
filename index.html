@@ -111,6 +111,7 @@
     .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(15.5rem,0.65fr);gap:clamp(var(--space-xl),7vw,var(--space-3xl));align-items:center}
     .hero-copy{max-width:48ch;margin:var(--space-lg) 0 0;color:var(--color-ink-2);font-size:var(--text-lg)}
     .audience-link{margin:var(--space-sm) 0 0;color:var(--color-ink-2);font-size:var(--text-sm)}
+    .audience-link+.audience-link{margin-block-start:var(--space-2xs)}
     .audience-link a{color:var(--color-ink);font-weight:650}
     .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin-block-start:var(--space-lg)}
     .chips{display:flex;flex-wrap:wrap;gap:0;margin:var(--space-lg) 0 0;padding:0;list-style:none;border-block:var(--rule-hairline) solid var(--color-rule)}
@@ -378,6 +379,7 @@
           <h1 data-i18n="hero_title">Speak in the clinic.<em>Keep going in real life.</em></h1>
           <p class="hero-copy" data-i18n="hero_copy">Talk to AI patients in your own words. The patient answers out loud, the clinical checklist updates from what you actually covered, and your exact mistakes return as tomorrow’s speaking practice. A full Everyday English mode is included for life outside the clinic.</p>
           <p class="audience-link"><a href="android-everyday.html" data-i18n="everyday_link">Here for everyday English? Explore the everyday version →</a></p>
+          <p class="audience-link"><a href="cpx/" data-i18n="cpx_link">Preparing for the Korean medical licensing exam? Korean KMLE CPX mode →</a></p>
           <div class="launch">
             <div class="launch-actions">
               <a class="store-badge launch-play" data-play-launch href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dhome" target="_blank" rel="noreferrer"><img class="store-badge-img" src="assets/store/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play"></a>
@@ -691,6 +693,8 @@
       <a href="model-follow-ups/">Model follow-up visits</a>
       <a href="case-presentations/">Case presentation guides</a>
       <a href="communication/">Team communication guides</a>
+      <a href="cpx/" data-i18n="cpx_footer">Korean KMLE CPX</a>
+      <a href="kmle-cpx/" data-i18n="kmle_guide_footer">KMLE CPX guides</a>
       <a href="https://bedsideenglish.github.io/app/" data-web-launch data-i18n="web_app_footer">Web app</a>
       <a href="desktop/index.html" data-i18n="desktop">Desktop app</a>
       <a href="https://github.com/boyskier/BedsideEnglish-Android" target="_blank" rel="noreferrer">GitHub ↗</a>
@@ -758,6 +762,7 @@
     hero_title:"진료실에서 말하고.<em>일상에서도 이어가세요.</em>",
     hero_copy:"AI 환자에게 내 말로 질문하세요. 환자는 소리 내어 대답하고, 실제로 확인한 내용에 따라 임상 체크리스트가 채워지며, 내가 틀린 표현은 내일의 말하기 연습으로 돌아옵니다. 진료실 밖을 위한 완전한 일상 영어 모드도 포함되어 있습니다.",
     everyday_link:"일상 영어가 목적이신가요? Everyday 버전 보기 →",
+    cpx_link:"한국 의사 국가시험 실기(CPX)를 준비하시나요? 한국어 CPX 모드 보기 →",
     watch_clip:"8초 클립 보기",listen_clip:"8초 들어보기",pause_clip:"소리 끄기",
     see_how:"작동 방식 보기",
     chip_zero:"테스트 청구액 0원",chip_cost:"· Gemini 무료 티어",chip_free:"신용카드 불필요",chip_noacct:"Bedside English 계정 없음",
@@ -820,6 +825,7 @@
     final_body:"AI 환자와 소리 내어 임상 영어를 연습하고, 같은 말하기 습관을 일상 영어 모드에서도 이어가세요. Bedside English 계정 없이 Android와 브라우저에서 무료로 사용할 수 있습니다.",
     source_link:"GitHub에서 소스 보기",footer_note:"Bedside English · 무료 MIT 앱 · 의료기기가 아님",
     privacy:"개인정보 처리방침",desktop:"데스크톱 앱",
+    cpx_footer:"한국 의사국시 CPX",kmle_guide_footer:"KMLE CPX 실기 가이드",
     web_app:"웹 앱 시작하기",web_app_footer:"웹 앱",
     android_title:"화면을 꺼도,<br>대화는 계속.",
     android_intro:"Android에서는 Google Play 앱으로 실시간 음성 연습을 하는 것을 추천해요.",
