@@ -1,4 +1,9 @@
-/* Shared styles for the Korean CPX (의사 국가시험 실기) articles. */
+/* Shared styles for the Korean CPX (의사 국가시험 실기) articles.
+ * Hallmark · genre: editorial · macrostructure: Long Document
+ * theme: existing cobalt/paper · nav: N9 compact · footer: Ft2 inline
+ * audience: Korean CPX learners · purpose: practice guides · tone: factual
+ * enrichment: none · pre-emit critique: P4 H4 E4 S5 R5 V4
+ */
 @import url("../tokens.css");
 *{box-sizing:border-box}
 html,body{overflow-x:clip}
@@ -100,3 +105,48 @@ footer.site-footer a{color:inherit}
 .slip{text-decoration:line-through;color:oklch(52% 0.17 25)}
 a.site-web-launch{font-family:inherit}
 @media (max-width:450px){.cta .store{height:3rem}}
+
+/* A short answer at every search entrance: scope, price and API conditions. */
+h1,h2,h3{overflow-wrap:anywhere;min-width:0;font-style:normal}
+a:focus-visible{outline:3px solid var(--color-accent);outline-offset:4px}
+.practice-entry{margin:var(--space-md) 0 var(--space-lg);padding-block:var(--space-sm);border-block:var(--rule-hairline) solid var(--color-rule-strong)}
+.practice-entry p{margin:0;max-width:none;font-size:var(--text-sm)}
+.practice-entry strong{font-weight:760}
+.entry-links{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2xs) var(--space-md);margin-block:var(--space-xs)}
+.entry-links>a{display:inline-flex;align-items:center;min-height:2.75rem;white-space:nowrap;font-size:var(--text-sm)}
+.practice-entry .entry-terms{font-size:var(--text-sm);line-height:1.6;color:var(--color-ink-2)}
+a.practice-open{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);min-height:2.75rem;padding:var(--space-2xs) var(--space-sm);border:var(--rule-hairline) solid var(--color-accent);border-radius:var(--radius-input);background:var(--color-accent);color:var(--color-accent-ink);font-size:var(--text-sm);font-weight:700;line-height:1.2;text-decoration:none;white-space:nowrap;transition:background-color var(--dur-short) var(--ease-out)}
+a.practice-open:hover{background:var(--color-ink);border-color:var(--color-ink)}
+a.practice-open:active{transform:translateY(1px)}
+.practice-guide header.site-header{position:static;backdrop-filter:none;background:var(--color-paper)}
+.practice-guide header.site-header .shell{gap:var(--space-xs);padding-block:var(--space-xs)}
+.practice-guide header.site-header .practice-open{margin-inline-start:auto}
+.practice-guide .home-link{border:0;padding-inline:0;min-height:2.75rem;display:inline-flex;align-items:center;border-radius:0}
+.practice-guide .lede{margin-block-end:var(--space-sm);font-size:var(--text-md);line-height:1.75}
+.practice-guide .meta-line{margin-block-end:var(--space-lg)}
+.practice-guide .practice-header .eyebrow{color:var(--color-ink-2);font-weight:500}
+.practice-details{margin:0 0 var(--space-md)}
+.practice-details dt{font-weight:700;margin-block-start:var(--space-sm)}
+.practice-details dd{margin:var(--space-3xs) 0 0;max-width:60ch;color:var(--color-ink-2)}
+.practice-guide caption{text-align:start;margin-block-end:var(--space-xs);color:var(--color-ink-2)}
+.practice-guide th{white-space:normal}
+.practice-guide .steps h3{margin-block:0 var(--space-2xs);font-size:var(--text-md)}
+.related-guides{margin-block:var(--space-xl);padding-block:var(--space-sm);border-block:var(--rule-hairline) solid var(--color-rule)}
+.related-guides h2{font-size:var(--text-lg)}
+.related-guides ul{display:flex;flex-wrap:wrap;gap:0 var(--space-md);list-style:none;padding:0;margin:0;max-width:none}
+.related-guides li{margin:0}
+.related-guides a{display:inline-flex;align-items:center;min-height:2.75rem;font-size:var(--text-sm);white-space:nowrap}
+.skip-link{position:absolute;inset-block-start:var(--space-xs);inset-inline-start:var(--space-sm);z-index:60;transform:translateY(-200%);padding:var(--space-xs);background:var(--color-paper);color:var(--color-ink)}
+.skip-link:focus{transform:none}
+@media(max-width:30rem){
+  main{padding-block-start:var(--space-lg)}
+  .practice-guide .home-link{margin-inline-start:0;margin-inline-end:auto}
+  .practice-entry{margin-block:var(--space-sm) var(--space-md)}
+  .entry-links{gap:var(--space-2xs) var(--space-sm)}
+  .practice-guide .crumbs{margin-block-end:var(--space-sm)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  a.practice-open{transition:none}
+  a.practice-open:active{transform:none}
+}
