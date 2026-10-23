@@ -42,6 +42,7 @@
     let elevation = config.figure.view?.elevation ?? 22, zoom = 1;
     let playing = false, started = 0, raf = 0, renderer = null, busy = false, pending = false;
     let ready = false, starting = null, sequence = 0, disposed = false;
+    let setRendererActive = () => {};
     let inView = false, resumePlayback = true;
     let lastDraw = '', lastTick = -Infinity, captionStep = -1;
     // Bound animation work while preserving automatic playback and native timing.
@@ -65,8 +66,9 @@
       root.dataset.progress = progress.toFixed(4);
       root.dataset.angle = angle.toFixed(2);
     }
-    function finishDraw() {
+    function finishDraw(stats) {
       busy = false; root.dataset.rendered = 'true';
+      if (stats) root.dataset.frameCache = JSON.stringify(stats);
       if (pending) { pending = false; requestDraw(); }
     }
     function fail(error) {
@@ -80,39 +82,31 @@
       starting = (async () => {
         // An OffscreenCanvas worker keeps geometry calculations off the page's UI thread.
         if (typeof Worker !== 'undefined' && primary.transferControlToOffscreen && typeof OffscreenCanvas !== 'undefined') {
-          const worker = new Worker(new URL('renderer/atlas-worker.js?v=canvas3', scriptBase), {type:'module'});
+          const worker = new Worker(new URL('renderer/atlas-worker.js?v=canvas4', scriptBase), {type:'module'});
           const transferred = Object.fromEntries(Object.entries(canvases).map(([key, canvas]) => [key, canvas.transferControlToOffscreen()]));
           await new Promise((resolve, reject) => {
             worker.onerror = error => { reject(error); fail(error); };
             worker.onmessage = ({data}) => {
               if (data.type === 'ready') { adoptTiming(data.timing); resolve(); }
-              else if (data.type === 'drawn') finishDraw();
+              else if (data.type === 'drawn') finishDraw(data.stats);
               else if (data.type === 'error') { reject(Error(data.message)); fail(data.message); }
             };
             worker.postMessage({type:'init',config,canvases:transferred},Object.values(transferred));
           });
-          renderer = s => worker.postMessage({type:'render',sequence:++sequence,state:s});
+          renderer = s => worker.postMessage({type:'render',sequence:++sequence,state:s,warm:playing});
+          setRendererActive = value => worker.postMessage({type:'active',value});
           root.dataset.renderMode = 'worker';
           window.addEventListener('pagehide', event => { if (!event.persisted) { disposed = true; worker.terminate(); } });
         } else {
-          const {drawAtlas,atlasTiming} = await import(new URL('renderer/pe-atlas-browser.js', scriptBase));
-          const cardText = JSON.stringify(config);
-          const canvasStates = new Map();
-          adoptTiming(JSON.parse(atlasTiming(cardText)));
-          renderer = s => {
-            for (const [key, canvas] of Object.entries(canvases)) {
-              const width=s.widths[key];
-              const diagram=key==='primary'&&Boolean(config.diagram);
-              const pose=key==='position'?0:s.progress;
-              const scale=diagram?1:s.zoom;
-              const signature=JSON.stringify([width,pose,s.language,s.elevation,s.azimuth,scale]);
-              if(canvasStates.get(key)===signature)continue;
-              if (canvas.width!==width) { canvas.width=width; canvas.height=Math.round(width*270/480); }
-              drawAtlas(canvas,cardText,pose,s.language,s.elevation,s.azimuth,diagram,scale);
-              canvasStates.set(key,signature);
-            }
-            requestAnimationFrame(finishDraw);
-          };
+          const [{drawAtlas,atlasTiming},{createFrameRenderer}] = await Promise.all([
+            import(new URL('renderer/pe-atlas-browser.js', scriptBase)),
+            import(new URL('renderer/atlas-frame-cache.js?v=canvas4', scriptBase)),
+          ]);
+          const timing = JSON.parse(atlasTiming(JSON.stringify(config)));
+          adoptTiming(timing);
+          const cached = createFrameRenderer(config,canvases,drawAtlas,timing);
+          renderer = s => { cached.draw(s).then(finishDraw).catch(fail); };
+          window.addEventListener('pagehide', event => { if (!event.persisted) { disposed = true; cached.dispose(); } });
           root.dataset.renderMode = 'main';
         }
         ready = true; play.disabled = frames.length < 2; status.textContent = '';
@@ -135,18 +129,24 @@
       resumePlayback = preserve && playing;
       if (playing) elapsed = (performance.now() - started) % cycle;
       playing = false; cancelAnimationFrame(raf); play.disabled = frames.length < 2; pause.disabled = true;
+      setRendererActive(false);
       root.dataset.playing = 'false';
     }
     function tick(now) {
       if (!playing) return;
       raf=requestAnimationFrame(tick);
       if (now-lastTick < frameInterval) return;
-      lastTick=now;
+      // Carry fractional timing forward instead of rounding every frame up to
+      // the next display refresh (which turns 24 Hz into uneven 20 Hz on 60 Hz).
+      lastTick=Number.isFinite(lastTick)?now-((now-lastTick)%frameInterval):now;
       elapsed = (now - started) % cycle;
       let offset=elapsed;
       for (let i=0; i<frames.length; i++) {
         const hold=holds[i];
-        if (offset < hold+transition) { step=i;progress=i+Math.max(0,(offset-hold)/transition);break; }
+        if (offset < hold+transition) {
+          const samples=Math.max(1,Math.ceil(transition/frameInterval));
+          step=i;progress=i+Math.floor(Math.max(0,(offset-hold)/transition)*samples)/samples;break;
+        }
         offset-=hold+transition;
       }
       captions(); requestDraw();
@@ -155,6 +155,7 @@
       if (playing || disposed || frames.length < 2) return;
       resumePlayback = true; root.dataset.playing = 'true';
       playing=true;lastTick=-Infinity;started=performance.now()-elapsed;play.disabled=true;pause.disabled=false;raf=requestAnimationFrame(tick);
+      setRendererActive(true);
     }
     play.addEventListener('click', async () => {
       try { await ensureRenderer(); beginPlayback(); } catch (error) { fail(error); }
