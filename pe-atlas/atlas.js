@@ -43,6 +43,9 @@
     let playing = false, started = 0, raf = 0, renderer = null, busy = false, pending = false;
     let ready = false, starting = null, sequence = 0, disposed = false;
     let inView = false, resumePlayback = true;
+    let lastDraw = '', lastTick = -Infinity, captionStep = -1;
+    // Bound animation work while preserving automatic playback and native timing.
+    const frameInterval = 1000 / 24;
     function adoptTiming(timing) {
       transition=timing.transition;holds=timing.holds;
       cycle=holds.reduce((sum,hold)=>sum+hold+transition,0);
@@ -54,8 +57,11 @@
     }
     function state() { return {progress, language, elevation, azimuth:(config.figure.view?.azimuth ?? 0) + angle, zoom, widths:widths()}; }
     function captions() {
-      root.querySelectorAll('[data-caption]').forEach(item => { item.hidden = Number(item.dataset.caption) !== step; });
-      root.querySelectorAll('[data-step]').forEach(item => item.setAttribute('aria-pressed', String(Number(item.dataset.step) === step)));
+      if (captionStep !== step) {
+        root.querySelectorAll('[data-caption]').forEach(item => { item.hidden = Number(item.dataset.caption) !== step; });
+        root.querySelectorAll('[data-step]').forEach(item => item.setAttribute('aria-pressed', String(Number(item.dataset.step) === step)));
+        captionStep = step;
+      }
       root.dataset.progress = progress.toFixed(4);
       root.dataset.angle = angle.toFixed(2);
     }
@@ -74,7 +80,7 @@
       starting = (async () => {
         // An OffscreenCanvas worker keeps geometry calculations off the page's UI thread.
         if (typeof Worker !== 'undefined' && primary.transferControlToOffscreen && typeof OffscreenCanvas !== 'undefined') {
-          const worker = new Worker(new URL('renderer/atlas-worker.js', scriptBase), {type:'module'});
+          const worker = new Worker(new URL('renderer/atlas-worker.js?v=canvas3', scriptBase), {type:'module'});
           const transferred = Object.fromEntries(Object.entries(canvases).map(([key, canvas]) => [key, canvas.transferControlToOffscreen()]));
           await new Promise((resolve, reject) => {
             worker.onerror = error => { reject(error); fail(error); };
@@ -91,12 +97,19 @@
         } else {
           const {drawAtlas,atlasTiming} = await import(new URL('renderer/pe-atlas-browser.js', scriptBase));
           const cardText = JSON.stringify(config);
+          const canvasStates = new Map();
           adoptTiming(JSON.parse(atlasTiming(cardText)));
           renderer = s => {
             for (const [key, canvas] of Object.entries(canvases)) {
               const width=s.widths[key];
+              const diagram=key==='primary'&&Boolean(config.diagram);
+              const pose=key==='position'?0:s.progress;
+              const scale=diagram?1:s.zoom;
+              const signature=JSON.stringify([width,pose,s.language,s.elevation,s.azimuth,scale]);
+              if(canvasStates.get(key)===signature)continue;
               if (canvas.width!==width) { canvas.width=width; canvas.height=Math.round(width*270/480); }
-              drawAtlas(canvas,cardText,key==='position'?0:s.progress,language,s.elevation,s.azimuth,key==='primary'&&Boolean(config.diagram),key==='primary'&&config.diagram?1:s.zoom);
+              drawAtlas(canvas,cardText,pose,s.language,s.elevation,s.azimuth,diagram,scale);
+              canvasStates.set(key,signature);
             }
             requestAnimationFrame(finishDraw);
           };
@@ -111,8 +124,12 @@
       if (disposed) return;
       if (!ready) { ensureRenderer().catch(fail); return; }
       if (busy) { pending = true; return; }
-      busy = true;
-      try { renderer(state()); } catch (error) { busy = false; fail(error); }
+      const next = state();
+      const key = JSON.stringify(next);
+      // In particular, keyframe holds must not redraw the same full mesh at 60 Hz.
+      if (key === lastDraw) return;
+      busy = true; lastDraw = key;
+      try { renderer(next); } catch (error) { busy = false; lastDraw = ''; fail(error); }
     }
     function pausePlayback(preserve = false) {
       resumePlayback = preserve && playing;
@@ -122,6 +139,9 @@
     }
     function tick(now) {
       if (!playing) return;
+      raf=requestAnimationFrame(tick);
+      if (now-lastTick < frameInterval) return;
+      lastTick=now;
       elapsed = (now - started) % cycle;
       let offset=elapsed;
       for (let i=0; i<frames.length; i++) {
@@ -129,12 +149,12 @@
         if (offset < hold+transition) { step=i;progress=i+Math.max(0,(offset-hold)/transition);break; }
         offset-=hold+transition;
       }
-      captions(); requestDraw(); raf=requestAnimationFrame(tick);
+      captions(); requestDraw();
     }
     function beginPlayback() {
       if (playing || disposed || frames.length < 2) return;
       resumePlayback = true; root.dataset.playing = 'true';
-      playing=true;started=performance.now()-elapsed;play.disabled=true;pause.disabled=false;raf=requestAnimationFrame(tick);
+      playing=true;lastTick=-Infinity;started=performance.now()-elapsed;play.disabled=true;pause.disabled=false;raf=requestAnimationFrame(tick);
     }
     play.addEventListener('click', async () => {
       try { await ensureRenderer(); beginPlayback(); } catch (error) { fail(error); }
