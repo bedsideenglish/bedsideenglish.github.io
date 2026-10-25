@@ -1,8 +1,8 @@
 /* Local, dependency-free controls. Atlas media stays on demand. */
 (() => {
   'use strict';
-  let language = 'en';
-  try { language = localStorage.getItem('pe-atlas-language') === 'ko' ? 'ko' : 'en'; } catch (_) {}
+  // The URL's static document owns its language, including fresh visits/reloads.
+  const language = document.documentElement.lang === 'ko' ? 'ko' : 'en';
   const text = (en, ko) => language === 'ko' ? ko : en;
   const viewers = [];
   const search = document.querySelector('#atlas-search');
@@ -204,14 +204,8 @@
       img.src = img.src.replace(/google-play-badge-(en|ko)\.png/, `google-play-badge-${language}.png`);
       img.alt = text('Get it on Google Play', 'Google Play에서 다운로드');
     });
-    document.querySelectorAll('input[name="language"]').forEach(input => { input.checked = input.value === language; });
     for (const viewer of viewers) viewer.refresh(initial);
     filter();
   }
-  document.querySelectorAll('input[name="language"]').forEach(input => input.addEventListener('change', () => {
-    language = input.value;
-    try { localStorage.setItem('pe-atlas-language', language); } catch (_) {}
-    applyLanguage();
-  }));
   applyLanguage(true);
 })();

@@ -1,0 +1,20 @@
+/* Hallmark · component additions · existing cobalt/paper editorial system
+ * pre-emit critique: P4 H4 E4 S5 R5 V4 */
+.study-entrances{margin-block:2rem 3rem;min-width:0}
+.study-entrances h2{font-size:var(--text-xl);font-style:normal;overflow-wrap:anywhere}
+.study-entrances>p{max-width:65ch}
+.study-entry-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.study-entry-card{display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;padding:1.25rem;border:1px solid var(--color-rule-strong);background:var(--color-paper-3);color:var(--color-ink);text-decoration:none;min-width:0}
+.study-entry-card strong{font-size:var(--text-lg);line-height:1.5;overflow-wrap:anywhere}
+.study-entry-card span{font-size:var(--text-sm);line-height:1.8;overflow-wrap:anywhere;word-break:keep-all}
+.study-entry-card .study-entry-action{color:var(--color-accent);font-weight:700;white-space:nowrap;margin-top:auto;padding-top:.25rem;min-height:44px;display:inline-flex;align-items:center}
+.study-entry-card:focus-visible,.official-study-links a:focus-visible{outline:3px solid var(--color-focus);outline-offset:4px}
+.study-entry-card:active{border-color:var(--color-ink)}
+@media(hover:hover){.study-entry-card:hover{border-color:var(--color-accent)}.official-study-links a:hover{text-decoration-thickness:2px}}
+.item-grid.official-study-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr));gap:1rem 1.5rem}
+.official-study-grid>li{padding-block:1rem}
+.official-study-links{display:flex;flex-wrap:wrap;gap:0 .75rem;align-items:center;padding-top:.35rem;font-size:var(--text-xs)}
+.official-study-links span{flex-basis:100%;color:var(--color-ink-2)}
+.official-study-links a{display:inline-flex;align-items:center;min-height:44px;white-space:nowrap}
+.official-study-links a:active{color:var(--color-ink)}
+@media(max-width:40rem){.study-entry-grid{grid-template-columns:minmax(0,1fr)}}

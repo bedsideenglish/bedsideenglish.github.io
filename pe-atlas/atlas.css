@@ -6,6 +6,9 @@
 /* Browser-rendered examination surfaces inherit the existing reference layout. */
 .figure-stage canvas,.rotation canvas{display:block;width:100%;height:auto;aspect-ratio:480 / 270;background:var(--color-paper-2)}[data-position-canvas],.visual:not(:has([data-position-canvas])) [data-primary-canvas]{cursor:grab;touch-action:pan-y}canvas:active{cursor:grabbing}
 
+.language a{white-space:nowrap;text-decoration:none;padding:.2rem .35rem}
+.language a[aria-current="page"]{color:var(--color-accent);text-decoration:underline;text-underline-offset:.3em;font-weight:700}
+
 /* Atlas shares the site's library identity, typography, and app badges. */
 .site-header{max-width:none;padding:var(--space-sm) max(var(--space-md),calc((100vw - 74rem)/2));gap:var(--space-md)}
 .brand{display:inline-flex;align-items:center;gap:var(--space-xs);font-size:1.5rem}
@@ -52,3 +55,9 @@ main,footer{max-width:77rem;padding-inline:var(--space-md)}
   .store-badge img{height:3rem}
   .practice-options .site-web-launch{min-height:3rem}
 }
+.study-footer{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem}
+.study-footer nav{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem}
+.study-footer nav a{display:inline-flex;align-items:center;min-height:44px}
+.study-footer .study-footer-note,.study-footer .study-footer-scope,.study-footer .copyright-notice{flex-basis:100%;margin:0}
+.technique-contexts{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;list-style:none;padding:0}
+.technique-contexts a{display:inline-flex;align-items:center;min-height:44px}
