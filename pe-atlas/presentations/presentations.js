@@ -1,5 +1,6 @@
 // Progressive enhancement: every checklist and link is in the original HTML.
 document.querySelectorAll('[data-discovery]').forEach((root) => {
+  const english = document.documentElement.lang === 'en';
   const input = root.querySelector('input[type="search"]');
   const links = [...root.querySelectorAll('[data-group]')];
   const sections = [...root.querySelectorAll('[data-group-section]')];
@@ -17,10 +18,12 @@ document.querySelectorAll('[data-discovery]').forEach((root) => {
         if (visible) { count++; found.add(row.dataset.presentation); }
       });
       section.hidden = count === 0;
-      section.querySelector('h2 .meta').textContent = `${count}개`;
+      section.querySelector('h2 .meta').textContent = english ? `${count}` : `${count}개`;
     });
     links.forEach((a) => a.setAttribute('aria-current', String(a.dataset.group === group)));
-    root.querySelector('[data-result-count]').textContent = `${group || '전체'} · ${found.size}개 임상표현${query ? ' 검색됨' : ''}`;
+    root.querySelector('[data-result-count]').textContent = english
+      ? `${group || 'All'} · ${found.size} presentations${query ? ' found' : ''}`
+      : `${group || '전체'} · ${found.size}개 임상표현${query ? ' 검색됨' : ''}`;
     root.querySelector('[data-no-results]').hidden = found.size > 0;
     if (save) {
       const next = new URL(location.href);
