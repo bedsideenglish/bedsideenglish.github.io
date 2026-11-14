@@ -1,14 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FK1EXM7ZKH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FK1EXM7ZKH');
-  </script>
+  <!-- Production analytics only: local previews and automated browsers send nothing. -->
+  <script>if(location.hostname==='bedsideenglish.github.io'&&!navigator.webdriver){const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-FK1EXM7ZKH';document.head.append(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config', 'G-FK1EXM7ZKH');const a=document.createElement('script');a.src='/assets/site-analytics.js';document.head.append(a);}</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5efdc">
