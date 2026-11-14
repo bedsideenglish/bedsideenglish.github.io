@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bedsideenglish.github.io/sitemap.xml
+Sitemap: https://bedsideenglish.github.io/sitemap-index.xml
