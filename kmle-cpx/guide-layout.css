@@ -50,6 +50,7 @@
 .guide-footer-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--space-2xs) var(--space-lg);margin-block-end:var(--space-md)}
 .guide-footer-nav a{display:inline-flex;align-items:center;min-height:2.75rem;white-space:nowrap;font-size:var(--text-sm)}
 .cpx-guide .guide-feature{max-width:none;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--space-xl);align-items:center}
+.cpx-guide .guide-feature:not(:has(.walkthrough-preview)){grid-template-columns:minmax(0,1fr);max-width:48rem}
 .guide-feature .guide-intro-copy{min-width:0}
 .guide-feature h1{max-width:17ch;font-size:clamp(2rem,4.3vw,3.5rem)}
 .guide-feature .lede{font-size:var(--text-md)}

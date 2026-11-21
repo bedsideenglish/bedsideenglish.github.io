@@ -23,8 +23,8 @@
   --color-positive-wash: oklch(91% 0.045 154);
   --color-negative-wash: oklch(92% 0.04 27);
 
-  --font-display: "Instrument Serif", "Pretendard Variable", Pretendard, Georgia, serif;
-  --font-body: Inter, "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --font-display: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-body: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-ko: "Pretendard Variable", Pretendard, system-ui, sans-serif;
 
   --space-3xs: 0.25rem;

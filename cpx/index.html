@@ -5,7 +5,7 @@
   <script>if(location.hostname==='bedsideenglish.github.io'&&!navigator.webdriver){const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-FK1EXM7ZKH';document.head.append(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config', 'G-FK1EXM7ZKH');const a=document.createElement('script');a.src='/assets/site-analytics.js';document.head.append(a);}</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5efdc">
+  <meta name="theme-color" content="#ffffff">
   <title>KMLE CPX AI 무료 연습 — 12분 진료·체크리스트 채점 | Bedside English</title>
   <meta name="description" content="한국어 AI 모의환자와 KMLE CPX 12분 진료를 무료로 연습하세요. 48개 임상표현·1,100개 이상 증례, 문진 대본과 P/E 진찰 자료, 체크리스트·PPI 피드백. AI 이용에는 본인의 Gemini 키와 무료 한도가 적용됩니다.">
   <meta property="og:type" content="website">
@@ -21,292 +21,313 @@
   <link rel="canonical" href="https://bedsideenglish.github.io/cpx/">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://bedsideenglish.github.io/cpx/#app","name":"Bedside English CPX","url":"https://bedsideenglish.github.io/app/","applicationCategory":"EducationalApplication","operatingSystem":"Web browser (iPhone, iPad, PC, Android)","inLanguage":"ko-KR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"description":"한국어 AI 표준화 환자와 의사 국가시험 실기(CPX) 12분 스테이션을 연습하고 체크리스트·PPI·진단까지 채점받는 무료 웹 앱."},{"@type":"WebPage","@id":"https://bedsideenglish.github.io/cpx/#webpage","url":"https://bedsideenglish.github.io/cpx/","name":"KMLE CPX AI 무료 연습 — 12분 진료·체크리스트 채점","inLanguage":"ko-KR","dateModified":"2026-10-26","about":{"@id":"https://bedsideenglish.github.io/cpx/#app"},"publisher":{"@id":"https://bedsideenglish.github.io/#organization"},"description":"한국어 AI 모의환자와 KMLE CPX 12분 진료를 무료로 연습하세요. 48개 임상표현·1,100개 이상 증례, 문진 대본과 P/E 진찰 자료, 체크리스트·PPI 피드백. AI 이용에는 본인의 Gemini 키와 무료 한도가 적용됩니다."}]}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
-  <link rel="stylesheet" href="../web-launch.css">
   <style>
-    /* KMLE CPX landing. Same system as android-everyday.html (tokens.css), Korean-only, web app CTA. */
-    @import url("../tokens.css");
-    :root{--font-display:var(--font-ko)}
-    *{box-sizing:border-box}
-    html,body{overflow-x:clip}
-    html{scroll-behavior:smooth;background:var(--color-paper)}
-    body{margin:0;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-ko);font-size:var(--text-md);line-height:1.7;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration-thickness:var(--rule-hairline);text-underline-offset:0.22em}
-    img{display:block;max-width:100%}
-    h1,h2,h3,p,li,dt,dd,summary,figcaption{word-break:keep-all;overflow-wrap:anywhere}
-    h1,h2,.quote{font-family:var(--font-display);font-weight:760;letter-spacing:-0.045em}
-    h1{max-width:13ch;margin:0;font-size:clamp(2.7rem,6.6vw,5.6rem);line-height:1.08}
-    h1 em{display:block;color:var(--color-accent);font-style:normal}
-    h1 .nb{white-space:nowrap}
-    h2{margin:0;font-size:clamp(2rem,4.4vw,3.8rem);line-height:1.12}
-    h3{margin:0;font-size:var(--text-lg);font-weight:750;letter-spacing:-0.02em;line-height:1.35}
-    .shell{width:min(76rem,calc(100% - 2rem));margin-inline:auto}
-    .skip{position:fixed;inset-block-start:var(--space-xs);inset-inline-start:var(--space-xs);z-index:100;padding:var(--space-xs) var(--space-sm);background:var(--color-accent);color:var(--color-accent-ink);transform:translateY(-200%)}
-    .skip:focus{transform:none}
-    :focus-visible{outline:var(--rule-bold) solid var(--color-focus);outline-offset:var(--space-3xs)}
-
-    header.site-header{position:sticky;inset-block-start:0;z-index:50;background:var(--color-paper-glass);border-block-end:var(--rule-hairline) solid var(--color-rule);backdrop-filter:blur(14px)}
-    nav{min-height:4.25rem;display:flex;align-items:center;gap:var(--space-md)}
-    .brand{display:flex;align-items:center;gap:var(--space-xs);font-weight:700;text-decoration:none;white-space:nowrap}
-    .brand-mark{width:2rem;height:2rem;display:grid;place-items:center;background:var(--color-ink);color:var(--color-paper);transform:rotate(-2deg)}
-    .brand-mark svg{width:1.1rem}
-    .brand small{margin-inline-start:var(--space-2xs);padding:0.1rem 0.45rem;border:var(--rule-hairline) solid var(--color-rule-strong);font-size:var(--text-xs);font-weight:700;color:var(--color-accent)}
-    .nav-links{display:flex;align-items:center;gap:var(--space-lg);margin-inline-start:auto;color:var(--color-ink-2);font-size:var(--text-sm)}
-    .nav-links a{text-decoration:none;white-space:nowrap}
-    .nav-links a:hover{color:var(--color-accent)}
-
-    .btn{min-height:3.25rem;padding-inline:var(--space-lg);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);border:var(--rule-hairline) solid var(--color-ink);border-radius:var(--radius-input);background:transparent;font-size:var(--text-sm);font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background var(--dur-short) var(--ease-out),color var(--dur-short) var(--ease-out)}
-    .btn-primary{background:var(--color-accent);border-color:var(--color-accent);color:var(--color-accent-ink)}
-    .btn-primary:hover{background:var(--color-ink);border-color:var(--color-ink)}
-    .btn-ghost:hover{border-color:var(--color-accent);color:var(--color-accent)}
-    .btn small{font-weight:500;opacity:0.85}
-    a.site-web-launch{font-family:inherit}
-    .play-badge{flex:0 0 auto;display:inline-flex;height:3.5rem}
-    .play-badge img{width:auto;height:100%;max-width:none}
-    .nav-play{height:2.5rem}
-
-    .kicker{margin:0 0 var(--space-md);color:var(--color-accent);font-size:var(--text-xs);font-weight:800;letter-spacing:0.04em}
-    .kicker::before{content:"";display:inline-block;width:2.5rem;height:var(--rule-bold);margin-inline-end:var(--space-xs);background:currentColor;vertical-align:0.2em}
-    .lede{max-width:52ch;margin:var(--space-md) 0 0;color:var(--color-ink-2);font-size:var(--text-lg)}
-
-    .device{position:relative;width:var(--dw,16rem);border:0.45rem solid var(--color-ink);border-radius:2rem;background:var(--color-ink);box-shadow:0 1.8rem 4rem var(--color-shadow);overflow:hidden}
-    .screen{position:relative;aspect-ratio:786/1704;overflow:hidden;border-radius:1.55rem;background:var(--color-paper-3)}
-    .screen img{width:100%;height:100%;object-fit:cover;object-position:top}
-
-    .hero{position:relative;padding-block:clamp(var(--space-lg),5vw,var(--space-2xl)) var(--space-2xl);border-block-end:var(--rule-bold) solid var(--color-ink);overflow:clip}
-    .hero::after{content:"CPX 12:00";position:absolute;inset-inline-start:-0.04em;inset-block-end:-0.2em;z-index:-1;color:var(--color-paper-2);font-family:var(--font-body);font-size:clamp(4rem,15vw,14rem);font-weight:850;line-height:0.8;white-space:nowrap}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(17rem,0.9fr);gap:clamp(var(--space-xl),6vw,var(--space-3xl));align-items:center}
-    .hero-copy{max-width:46ch;margin:var(--space-lg) 0 0;color:var(--color-ink-2);font-size:var(--text-lg)}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin-block-start:var(--space-lg)}
-    .chips{display:flex;flex-wrap:wrap;margin:var(--space-lg) 0 0;padding:0;list-style:none;border-block:var(--rule-hairline) solid var(--color-rule)}
-    .chips li{padding:var(--space-2xs) var(--space-sm);color:var(--color-ink-2);font-size:var(--text-xs);border-inline-end:var(--rule-hairline) solid var(--color-rule)}
-    .chips li:first-child{padding-inline-start:0}
-    .chips li:last-child{border-inline-end:0}
-    .chips b{color:var(--color-positive)}
-    .hero-free-note{max-width:48ch;margin:var(--space-sm) 0 0;color:var(--color-ink-2);font-size:var(--text-xs);line-height:1.6}
-    .hero-free-note b{color:var(--color-ink)}
-    .hero-free-note a,.tier-link{color:var(--color-accent);font-weight:700;text-decoration:none}
-    .hero-free-note a:hover,.tier-link:hover{text-decoration:underline}
-    .tier-link{display:inline-block;margin-block-start:var(--space-sm);font-size:var(--text-xs)}
-    .stage{position:relative;justify-self:center;display:flex;align-items:flex-end;gap:var(--space-md)}
-    .stage .device{--dw:17rem}
-    .stage .device.back{--dw:13rem;margin-block-end:3rem;opacity:0.95;transform:rotate(-3deg)}
-
-    .problem{padding-block:var(--space-3xl);background:var(--color-paper-2);border-block-end:var(--rule-hairline) solid var(--color-rule-strong)}
-    .problem-grid{display:grid;grid-template-columns:minmax(0,0.62fr) minmax(0,0.38fr);gap:clamp(var(--space-lg),6vw,var(--space-3xl));align-items:start}
-    .quote{max-width:20ch;margin:0;font-size:clamp(1.9rem,4vw,3.4rem);line-height:1.2}
-    .quote em{color:var(--color-accent);font-style:normal}
-    .problem-after{margin:0;padding-block-start:var(--space-sm);border-block-start:var(--rule-bold) solid var(--color-accent);color:var(--color-ink-2);font-size:var(--text-lg)}
-
-    .videos{padding-block:var(--space-3xl);scroll-margin-top:4rem}
-    .video-grid{display:flex;justify-content:center;gap:clamp(var(--space-md),4vw,var(--space-2xl));margin-block-start:var(--space-2xl)}
-    .video{flex:0 1 17rem;min-width:0;margin:0}
-    .video[hidden]{display:none}
-    .video .device{--dw:100%}
-    .video .screen{aspect-ratio:9/16}
-    .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-    .video-play{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:none;color:var(--color-accent-ink);cursor:pointer}
-    .video-play::after{content:"";position:absolute;inset:0;background:color-mix(in oklch,var(--color-ink) 38%,transparent);transition:background var(--dur-short) var(--ease-out)}
-    .video-play:hover::after{background:color-mix(in oklch,var(--color-ink) 22%,transparent)}
-    .video-icon{position:absolute;z-index:1;inset:0;width:4rem;height:4rem;margin:auto;display:grid;place-items:center;border-radius:50%;background:var(--color-accent)}
-    .video-icon svg{width:1.6rem;margin-inline-start:0.2rem}
-    .video-time{position:absolute;z-index:1;inset-inline-end:var(--space-xs);inset-block-end:var(--space-xs);padding:0.1rem 0.45rem;background:var(--color-ink);color:var(--color-paper);font-size:var(--text-xs);font-weight:700}
-    .video h3{margin-block-start:var(--space-sm);font-size:var(--text-md)}
-    .video p{margin:var(--space-3xs) 0 0;color:var(--color-ink-2);font-size:var(--text-sm)}
-
-    .loop{padding-block:var(--space-3xl);background:var(--color-paper-3);scroll-margin-top:4rem}
-    .loop-stage{display:grid;grid-template-columns:minmax(15rem,0.48fr) minmax(0,1.52fr);gap:clamp(var(--space-lg),6vw,var(--space-3xl));align-items:start;margin-block-start:var(--space-2xl)}
-    .loop-device{justify-self:center;position:sticky;inset-block-start:6rem}
-    .loop-device .device{--dw:16.5rem}
-    .loop-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity var(--dur-medium) var(--ease-out)}
-    .loop-shot.active{opacity:1}
-    .steps{margin:0;padding:0;list-style:none;border-block-start:var(--rule-bold) solid var(--color-ink)}
-    .steps>li{border-block-end:var(--rule-hairline) solid var(--color-rule)}
-    .step{width:100%;display:grid;grid-template-columns:3rem minmax(0,1fr);gap:var(--space-sm);align-items:baseline;padding-block:var(--space-lg);border:0;background:none;text-align:start;cursor:pointer;font:inherit;color:inherit}
-    .step i{font-style:normal;color:var(--color-accent);font-size:var(--text-sm);font-weight:800}
-    .step b{font-size:var(--text-xl);font-weight:750;letter-spacing:-0.03em;color:var(--color-ink-2)}
-    .step[aria-selected="true"] b,.step:hover b{color:var(--color-ink)}
-    .panel[hidden]{display:none}
-    .panel{padding:0 0 var(--space-lg) calc(3rem + var(--space-sm))}
-    .panel p{max-width:56ch;margin:0;color:var(--color-ink-2)}
-    .tags{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin:var(--space-md) 0 0;padding:0;list-style:none}
-    .tags li{padding:var(--space-3xs) var(--space-2xs);background:var(--color-accent-wash);color:var(--color-accent);font-size:var(--text-xs);font-weight:700}
-
-    .cases{padding-block:var(--space-3xl)}
-    .case-list{display:grid;gap:var(--space-2xl);margin-block-start:var(--space-2xl)}
-    .case{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(13rem,0.75fr);gap:clamp(var(--space-lg),5vw,var(--space-2xl));align-items:center;padding-block-start:var(--space-lg);border-block-start:var(--rule-bold) solid var(--color-ink)}
-    .case:nth-child(even){grid-template-columns:minmax(13rem,0.75fr) minmax(0,1.25fr)}
-    .case:nth-child(even) .case-shot{order:-1}
-    .case-meta{margin:0 0 var(--space-xs);color:var(--color-ink-2);font-size:var(--text-sm);font-weight:700}
-    .case h3{font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-0.035em}
-    .case-score{display:flex;align-items:baseline;gap:var(--space-sm);margin:var(--space-md) 0}
-    .case-score b{font-size:clamp(3rem,6vw,4.6rem);line-height:0.9;font-family:var(--font-body);font-weight:800;letter-spacing:-0.04em}
-    .case-score span{color:var(--color-ink-2);font-size:var(--text-sm)}
-    .low b{color:var(--color-negative)}.mid b{color:var(--color-pending)}
-    .case dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-2xs) var(--space-md);margin:0;font-size:var(--text-sm)}
-    .case dt{color:var(--color-ink-2);font-weight:700;white-space:nowrap}
-    .case dd{margin:0}
-    .alert{margin:var(--space-md) 0 0;padding:var(--space-sm) var(--space-md);border-inline-start:var(--rule-bold) solid var(--color-negative);background:var(--color-negative-wash);font-size:var(--text-sm)}
-    .alert b{color:var(--color-negative)}
-    .case-shot{justify-self:center}
-    .case-shot .device{--dw:15rem}
-    .case a.more{display:inline-block;margin-block-start:var(--space-md);font-size:var(--text-sm);font-weight:700;color:var(--color-accent);text-decoration:none}
-    .case a.more:hover{text-decoration:underline}
-
-    .fix{padding-block:var(--space-3xl);background:var(--color-ink);color:var(--color-paper)}
-    .fix .kicker{color:var(--color-accent-2)}
-    .fix-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:clamp(var(--space-xl),6vw,var(--space-3xl));align-items:center}
-    .fix-lines{margin:var(--space-lg) 0 0;padding:0;list-style:none;font-size:var(--text-lg)}
-    .fix-lines li{padding:var(--space-sm) var(--space-md);border-inline-start:var(--rule-bold) solid}
-    .fix-lines li+li{margin-block-start:var(--space-xs)}
-    .fix-lines .label{display:block;margin-block-end:var(--space-3xs);font-size:var(--text-xs);font-weight:800}
-    .fix-miss{border-color:var(--color-negative);background:color-mix(in oklch,var(--color-negative) 18%,var(--color-ink))}
-    .fix-miss .label{color:#ffb4a8}
-    .fix-say{border-color:var(--color-positive);background:color-mix(in oklch,var(--color-positive) 18%,var(--color-ink))}
-    .fix-say .label{color:#a8e6bd}
-    .fix-why{margin:var(--space-lg) 0 0;padding-block-start:var(--space-md);border-block-start:var(--rule-hairline) solid var(--color-ink-2);color:var(--color-paper-2)}
-    .fix-shots{display:flex;gap:var(--space-md);justify-content:center}
-    .fix-shots .device{--dw:13.5rem;border-color:#2b3445;box-shadow:none}
-
-    .modes{padding-block:var(--space-3xl);background:var(--color-paper-3)}
-    .mode-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-md);margin-block-start:var(--space-2xl)}
-    .mode{margin:0;display:flex;flex-direction:column}
-    .mode .device{--dw:100%;width:100%;border-width:0.3rem;border-radius:1.3rem;box-shadow:none}
-    .mode .screen{border-radius:1.05rem}
-    .mode h3{margin-block-start:var(--space-sm);font-size:var(--text-md)}
-    .mode p{margin:var(--space-3xs) 0 0;color:var(--color-ink-2);font-size:var(--text-sm)}
-    .mode a{margin-block-start:auto;padding-block-start:var(--space-xs);font-size:var(--text-xs);font-weight:700;color:var(--color-accent);text-decoration:none}
-    .mode a:hover{text-decoration:underline}
-    .key-note{margin:0;font-size:var(--text-xs);color:var(--color-positive);font-weight:700}
-
-    .terms{padding-block:var(--space-3xl)}
-    .terms-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-xl);padding-block:var(--space-xl);border-block:var(--rule-bold) solid var(--color-ink)}
-    .terms-grid p{max-width:55ch;margin:var(--space-sm) 0 0;color:var(--color-ink-2)}
-    .terms-list{display:flex;flex-wrap:wrap;gap:var(--space-xs) var(--space-lg);margin:var(--space-md) 0 0;padding:0;list-style:none;color:var(--color-positive);font-size:var(--text-sm);font-weight:700}
-    .big{font-family:var(--font-body);font-size:clamp(3rem,6vw,5.5rem);font-weight:800;letter-spacing:-0.05em;line-height:0.9;color:var(--color-positive)}
-    .install{margin:var(--space-md) 0 0;padding:0;list-style:none;counter-reset:s}
-    .install li{counter-increment:s;position:relative;padding-inline-start:2rem;margin-block-end:var(--space-xs);color:var(--color-ink-2)}
-    .install li::before{content:counter(s);position:absolute;inset-inline-start:0;inset-block-start:0.15rem;width:1.4rem;height:1.4rem;display:grid;place-items:center;border-radius:50%;background:var(--color-ink);color:var(--color-paper);font-size:var(--text-xs);font-weight:700}
-    .install b{color:var(--color-ink)}
-
-    .faq{padding-block:var(--space-3xl);background:var(--color-paper-2);border-block:var(--rule-hairline) solid var(--color-rule-strong)}
-    .faq-grid{display:grid;grid-template-columns:minmax(0,0.7fr) minmax(0,1.3fr);gap:clamp(var(--space-lg),6vw,var(--space-3xl));align-items:start}
-    details{border-block-start:var(--rule-hairline) solid var(--color-rule-strong)}
-    details:last-of-type{border-block-end:var(--rule-hairline) solid var(--color-rule-strong)}
-    summary{position:relative;padding:var(--space-md) var(--space-xl) var(--space-md) 0;cursor:pointer;list-style:none;font-weight:700}
-    summary::-webkit-details-marker{display:none}
-    summary::after{content:"+";position:absolute;inset-inline-end:0;color:var(--color-accent);font-size:var(--text-xl);font-weight:400;line-height:1.2}
-    details[open] summary::after{content:"−"}
-    summary:hover{color:var(--color-accent)}
-    details p{max-width:62ch;margin:0 0 var(--space-md);color:var(--color-ink-2)}
-
-    .final{position:relative;padding-block:var(--space-3xl);background:var(--color-ink);color:var(--color-paper);overflow:clip}
-    .final::after{content:"입실";position:absolute;inset-inline-end:-0.03em;inset-block-end:-0.2em;color:var(--color-ink-2);font-size:clamp(7rem,24vw,19rem);font-weight:850;line-height:0.8}
-    .final h2{max-width:14ch;position:relative;z-index:1}
-    .final .lede{position:relative;z-index:1;color:var(--color-paper-2)}
-    .final .hero-actions{position:relative;z-index:1}
-    .final .btn-ghost{border-color:var(--color-paper-2);color:var(--color-paper)}
-    .final .btn-ghost:hover{border-color:var(--color-accent-2);color:var(--color-accent-2)}
-
-    footer{padding-block:var(--space-lg);border-block-start:var(--rule-hairline) solid var(--color-rule);color:var(--color-ink-2);font-size:var(--text-xs)}
-    .footer-inner{display:flex;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap}
-    .footer-links{display:flex;flex-wrap:wrap;gap:var(--space-sm) var(--space-lg)}
-    .footer-links a{text-decoration:none}
-    .footer-links a:hover{color:var(--color-accent)}
-    .honest{margin:var(--space-sm) 0 0;max-width:80ch}
-    .mobile-bar{display:none}
-
-    @media (max-width:60rem){
-      .hero-grid,.problem-grid,.fix-grid,.faq-grid,.terms-grid{grid-template-columns:minmax(0,1fr)}
-      .stage{order:2}
-      .loop-stage{grid-template-columns:minmax(0,1fr)}
-      .loop-device{position:static;grid-row:1}
-      .case,.case:nth-child(even){grid-template-columns:minmax(0,1fr)}
-      .case:nth-child(even) .case-shot{order:0}
-      .mode-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-block-end:var(--space-sm)}
-      .mode{flex:0 0 12.5rem;scroll-snap-align:start}
+    /* KMLE CPX landing, 2026-11 redesign: direction A from legacy/landing-hero-studies/
+       (all light, centred, soft grey stages) on the homepage's tokens, type and launch badges.
+       The CPX app screens are light, so they sit on grey rather than night-navy; one dark chapter
+       (the next sentence to say) keeps the family resemblance with the homepage.
+       The /kmle-cpx/ guides keep tokens.css until their own pass. */
+    :root {
+      --bg: oklch(100% 0 0);
+      --surface: oklch(96.6% 0.005 255);
+      --surface-2: oklch(94.2% 0.006 255);
+      --ink: oklch(21% 0.02 262);
+      --ink-2: oklch(44% 0.02 260);
+      --ink-3: oklch(54% 0.018 260);
+      --rule: oklch(90% 0.006 260);
+      --chip: oklch(95.5% 0.005 260);
+      --accent: oklch(52% 0.2 259);
+      --night: oklch(21% 0.025 264);
+      --night-ink: oklch(97% 0.005 260);
+      --night-ink-2: oklch(78% 0.02 260);
+      --miss: oklch(56% 0.19 25);
+      --say: oklch(52% 0.13 155);
+      --select: oklch(88% 0.07 255);
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --wrap: 1200px;
+      --gutter: 20px;
     }
-    @media (max-width:45rem){
-      .nav-links>a:not(.site-web-launch){display:none}
-      .hero::after,.final::after{display:none}
-      h1{font-size:clamp(2.5rem,12vw,3.6rem)}
-      .hero-actions{display:grid}.hero-actions .btn{width:100%}
-      .chips{display:grid}.chips li{border-inline-end:0;border-block-end:var(--rule-hairline) solid var(--color-rule);padding-inline:0}
-      .chips li:last-child{border-block-end:0}
-      .stage .device{--dw:15rem}.stage .device.back{display:none}
-      .panel{padding-inline-start:0}
-      .video-grid{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding-block-end:var(--space-sm)}
-      .video{flex:0 0 14rem;scroll-snap-align:start}
-      .step{grid-template-columns:2.25rem minmax(0,1fr)}
-      .step b{font-size:var(--text-lg)}
-      .fix-shots .device{--dw:11rem}
-      .fix-shots .device:last-child{display:none}
-      .case-shot .device{--dw:14rem}
-      footer{padding-block-end:var(--space-3xl)}
-      .mobile-bar{position:fixed;z-index:60;inset-inline:var(--space-xs);inset-block-end:var(--space-xs);min-height:3.25rem;display:flex;align-items:center;justify-content:center;background:var(--color-accent);color:var(--color-accent-ink);font-weight:700;text-decoration:none;box-shadow:0 1rem 2rem var(--color-shadow-deep);transform:translateY(150%);transition:transform var(--dur-medium) var(--ease-out)}
-      .mobile-bar.is-visible{transform:none}
+    @media (min-width: 768px) { :root { --gutter: 32px; } }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 80px; scrollbar-color: oklch(80% 0.01 260) var(--bg); }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif; font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+    h1, h2, h3, p, li, dt, dd, summary, strong, span { word-break: keep-all; overflow-wrap: anywhere; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-underline-offset: .2em; }
+    button { font: inherit; color: inherit; }
+    ::selection { background: var(--select); color: var(--ink); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    .night :focus-visible { outline-color: oklch(80% 0.11 255); }
+    .wrap { width: 100%; max-width: calc(var(--wrap) + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); }
+    .skip { position: absolute; left: 16px; top: -48px; z-index: 30; padding: 8px 14px; border-radius: 8px; background: var(--ink); color: var(--bg); }
+    .skip:focus { top: 12px; }
+
+    h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.035em; text-wrap: balance; }
+    h1 { font-size: clamp(2.6rem, 1.3rem + 4.6vw, 5rem); line-height: 1.12; letter-spacing: -0.04em; }
+    h2 { font-size: clamp(1.875rem, 1.1rem + 2.6vw, 3.25rem); line-height: 1.2; }
+    .center { text-align: center; }
+    .center h2, .center .lede { margin-left: auto; margin-right: auto; }
+    .lede { margin: 20px 0 0; max-width: 34em; color: var(--ink-2); font-size: clamp(1.0625rem, 1rem + .25vw, 1.1875rem); text-wrap: pretty; }
+    .night .lede { color: var(--night-ink-2); }
+    .chapter { padding: clamp(72px, 13vh, 152px) 0; }
+    .tint { background: var(--surface); }
+    .night { background: var(--night); color: var(--night-ink); }
+
+    /* Header */
+    .bar { position: sticky; top: 0; z-index: 20; background: oklch(100% 0 0 / .84); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); box-shadow: 0 1px 0 transparent; transition: box-shadow .3s var(--ease); }
+    .bar.is-stuck { box-shadow: 0 1px 0 var(--rule); }
+    .bar-inner { display: flex; align-items: center; gap: 24px; height: 64px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; margin-right: auto; font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--ink); color: var(--bg); }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .brand small { padding: 2px 8px; border-radius: 6px; background: var(--chip); color: var(--accent); font-size: .8125rem; font-weight: 700; letter-spacing: 0; }
+    .nav { display: flex; gap: 4px; }
+    .nav a { padding: 8px 12px; border-radius: 8px; color: var(--ink-2); font-size: .9375rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .nav a:hover { color: var(--ink); background: var(--chip); }
+    .bar-cta { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 10px; background: var(--ink); color: var(--bg); font-size: .9375rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .bar-cta:hover { background: oklch(32% 0.03 262); }
+    @media (max-width: 960px) { .nav { display: none; } }
+    @media (max-width: 400px) { .bar-inner { gap: 10px; } .brand { font-size: 1rem; gap: 8px; } .bar-cta { padding: 0 12px; font-size: .875rem; } }
+    @media (max-width: 359px) { .brand-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } }
+
+    /* Launch badges: the official Google Play badge and a matching web-app badge */
+    .launch-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .center .launch-actions { justify-content: center; }
+    .store-badge, .web-badge { display: inline-flex; align-items: center; height: 56px; border-radius: 10px; text-decoration: none; transition: transform .2s var(--ease), opacity .2s var(--ease); }
+    .store-badge:hover, .web-badge:hover { opacity: .88; }
+    .store-badge:active, .web-badge:active { transform: scale(.98); }
+    .store-badge-img { height: 56px; width: auto; }
+    .web-badge { gap: 12px; padding: 0 20px 0 16px; background: oklch(0% 0 0); color: oklch(100% 0 0); box-shadow: inset 0 0 0 1px oklch(70% 0 0); white-space: nowrap; }
+    .browser-icon { width: 26px; height: 26px; flex: none; }
+    .badge-copy { display: grid; line-height: 1.15; text-align: left; }
+    .badge-copy > span { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.01em; }
+    .badge-copy small { margin-top: 2px; font-size: .75rem; font-weight: 500; opacity: .85; }
+    .launch-note { margin: 16px 0 0; color: var(--ink-2); font-size: .9375rem; }
+    @media (max-width: 440px) {
+      .launch-actions { gap: 8px; }
+      .store-badge, .web-badge, .store-badge-img { height: 50px; }
+      .web-badge { padding: 0 14px 0 12px; gap: 8px; }
+      .browser-icon { width: 22px; height: 22px; }
+      .badge-copy > span { font-size: 1rem; }
+      .badge-copy small { font-size: .6875rem; }
     }
-    @media (max-width:450px){.play-badge{height:3rem}}
-    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.loop-shot,.mobile-bar{transition:none}}
+
+    /* Phones: the CPX screens are light, so a thin dark bezel and a soft neutral shadow */
+    .phone { --w: 240px; width: var(--w); padding: calc(var(--w) * .028); border-radius: calc(var(--w) * .13); background: oklch(22% 0.015 262); box-shadow: 0 32px 64px -28px rgb(0 0 0 / .35), 0 10px 20px -12px rgb(0 0 0 / .18); }
+    .phone img { width: 100%; height: auto; aspect-ratio: 786 / 1704; object-fit: cover; border-radius: calc(var(--w) * .105); background: var(--surface); }
+
+    /* Hero */
+    .hero { padding-top: clamp(56px, 9vh, 104px); text-align: center; }
+    .hero h1 span { display: block; }
+    .hero h1 .quiet { color: var(--ink-3); }
+    .hero .lede { margin: 28px auto 0; max-width: 33em; }
+    .hero .launch { margin-top: 40px; }
+    /* Many arrivals want the scripts first: two quiet text links, no key or install needed */
+    .hero-study-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 28px; margin-top: 20px; }
+    .hero-study-links a { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; color: var(--accent); font-weight: 700; text-decoration: none; }
+    .hero-study-links a::after { content: "→"; }
+    .hero-study-links a:hover { text-decoration: underline; }
+    .stage { position: relative; display: flex; justify-content: center; align-items: flex-start; gap: clamp(20px, 4vw, 56px); margin-top: clamp(56px, 8vh, 88px); padding: clamp(40px, 6vw, 72px) 20px; border-radius: clamp(28px, 4vw, 44px); background: var(--surface); overflow: hidden; }
+    .stage .phone { --w: clamp(150px, 21vw, 270px); }
+    .stage .phone:first-child { margin-top: clamp(28px, 5vw, 64px); }
+
+    /* Study entrances (markup generated by tools/cpx_study_entries.py; styled here) */
+    .study-entrances { text-align: center; }
+    .study-entrances h2 { margin: 0 auto; }
+    .study-entrances > p { margin: 20px auto 0; max-width: 34em; color: var(--ink-2); font-size: clamp(1.0625rem, 1rem + .25vw, 1.1875rem); }
+    .study-entry-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: clamp(40px, 6vh, 56px); text-align: left; }
+    .study-entry-card { display: flex; flex-direction: column; gap: 12px; min-height: 240px; padding: clamp(28px, 3.4vw, 40px); border-radius: 28px; background: var(--surface); color: var(--ink-2); font-size: 1.0625rem; text-decoration: none; transition: background-color .25s var(--ease); }
+    .study-entry-card:hover { background: var(--surface-2); }
+    .study-entry-card strong { color: var(--ink); font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.25; }
+    .study-entry-action { margin-top: auto; padding-top: 12px; color: var(--accent); font-weight: 700; }
+    @media (max-width: 720px) { .study-entry-grid { grid-template-columns: minmax(0, 1fr); } .study-entry-card { min-height: 0; } }
+
+    /* One big statement */
+    .statement p { margin: 0 auto; max-width: 20em; font-size: clamp(1.75rem, 1rem + 2.8vw, 3.25rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.3; text-wrap: balance; }
+    .statement .quiet { color: var(--ink-3); }
+    .statement .after { margin-top: 28px; max-width: 32em; color: var(--ink-2); font-size: clamp(1.0625rem, 1rem + .25vw, 1.1875rem); font-weight: 400; letter-spacing: 0; line-height: 1.65; }
+
+    /* Videos (YouTube is only contacted after a press) */
+    .video-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: clamp(40px, 6vh, 64px); }
+    .video { margin: 0; display: grid; justify-items: center; text-align: center; }
+    .video .phone { --w: clamp(180px, 20vw, 240px); }
+    .video-play { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: calc(var(--w) * .105); background: none; cursor: pointer; }
+    .video-play img { border-radius: calc(var(--w) * .105); }
+    .video-icon { position: absolute; inset: 0; margin: auto; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: oklch(21% 0.02 262 / .82); color: #fff; transition: transform .25s var(--ease); }
+    .video-icon svg { width: 26px; height: 26px; margin-left: 3px; }
+    .video-play:hover .video-icon { transform: scale(1.06); }
+    .video-time { position: absolute; right: 12px; bottom: 12px; padding: 2px 8px; border-radius: 6px; background: oklch(21% 0.02 262 / .82); color: #fff; font-size: .8125rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .video iframe { display: block; width: 100%; aspect-ratio: 9 / 16; border: 0; border-radius: calc(var(--w) * .105); background: #000; }
+    .video h3 { margin-top: 24px; font-size: 1.25rem; letter-spacing: -0.02em; }
+    .video p { margin: 6px 0 0; color: var(--ink-2); }
+    @media (max-width: 760px) {
+      /* Phones: the three clips become a swipeable row instead of three full-height stacks */
+      .video-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 62%; gap: 16px; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) 8px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); }
+      .video { scroll-snap-align: start; }
+      .video .phone { --w: 100%; }
+      .video .phone { border-radius: 28px; padding: 6px; }
+      .video-play, .video-play img, .video iframe { border-radius: 22px; }
+    }
+
+    /* Five steps: a horizontal rail, because the order is the point */
+    .rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 340px); gap: 16px; margin: clamp(40px, 6vh, 64px) 0 0; padding: 0 var(--gutter) 8px; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); overscroll-behavior-x: contain; scrollbar-width: thin; }
+    @media (min-width: 1264px) { .rail { padding-inline: calc((100vw - var(--wrap)) / 2); scroll-padding-inline: calc((100vw - var(--wrap)) / 2); } }
+    .rail li { display: flex; flex-direction: column; scroll-snap-align: start; padding: 32px 28px 0; border-radius: 28px; background: var(--surface); overflow: hidden; }
+    .rail .n { color: var(--accent); font-size: .9375rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .rail h3 { margin-top: 8px; font-size: 1.375rem; letter-spacing: -0.025em; }
+    .rail p { margin: 10px 0 0; color: var(--ink-2); font-size: 1rem; }
+    .rail .phone { --w: 210px; margin: 28px auto -64px; }
+    .rail-hint { margin: 16px 0 0; color: var(--ink-3); font-size: .9375rem; }
+
+    /* Cases */
+    .cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(40px, 6vh, 64px); }
+    .case { display: flex; flex-direction: column; padding: clamp(28px, 3vw, 36px); border-radius: 28px; background: var(--bg); }
+    .case-meta { margin: 0; color: var(--ink-3); font-size: .9375rem; font-weight: 600; }
+    .case-score { display: flex; align-items: baseline; gap: 6px; margin-top: 20px; }
+    .case-score b { font-size: 3.5rem; line-height: 1; font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+    .case-score span { color: var(--ink-3); font-weight: 600; }
+    .case h3 { margin-top: 16px; font-size: 1.3125rem; line-height: 1.35; letter-spacing: -0.025em; }
+    .case dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 16px; margin: 20px 0 0; padding-top: 20px; border-top: 1px solid var(--rule); font-size: .9375rem; }
+    .case dt { color: var(--ink-3); font-weight: 600; }
+    .case dd { margin: 0; color: var(--ink); font-weight: 600; }
+    .case .note { margin: 16px 0 0; color: var(--ink-2); font-size: .9375rem; }
+    .case .note b { color: var(--miss); }
+    .case .more { margin-top: auto; padding-top: 24px; color: var(--accent); font-weight: 700; text-decoration: none; }
+    .case .more:hover { text-decoration: underline; }
+    @media (max-width: 960px) { .cases { grid-template-columns: minmax(0, 1fr); } }
+
+    /* The one dark chapter */
+    .fix-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+    .fix-lines { margin: 36px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+    .fix-lines li { padding: 20px 22px; border-radius: 18px; background: oklch(27% 0.028 264); font-size: 1.125rem; font-weight: 600; line-height: 1.5; }
+    .fix-lines .label { display: block; margin-bottom: 4px; font-size: .875rem; font-weight: 700; }
+    .fix-miss .label { color: oklch(74% 0.15 25); }
+    .fix-say .label { color: oklch(80% 0.14 155); }
+    .fix-shots { display: flex; justify-content: center; gap: clamp(16px, 3vw, 32px); }
+    .fix-shots .phone { --w: clamp(150px, 17vw, 230px); }
+    .fix-shots .phone:last-child { margin-top: 56px; }
+    @media (max-width: 860px) { .fix-grid { grid-template-columns: minmax(0, 1fr); } }
+
+    /* Modes */
+    .modes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin-top: clamp(40px, 6vh, 64px); }
+    .mode { grid-column: span 2; display: flex; flex-direction: column; margin: 0; border-radius: 28px; background: var(--surface); overflow: hidden; }
+    .mode:nth-child(-n+2) { grid-column: span 3; }
+    .mode-shot { height: 240px; padding: 28px 28px 0; overflow: hidden; }
+    .mode-shot .phone { --w: 200px; margin: 0 auto; }
+    .mode:nth-child(-n+2) .mode-shot { height: 280px; }
+    .mode:nth-child(-n+2) .mode-shot .phone { --w: 230px; }
+    .mode-body { display: flex; flex-direction: column; flex: 1; padding: 24px 28px 28px; border-top: 1px solid var(--rule); background: var(--bg); }
+    .mode h3 { font-size: 1.3125rem; letter-spacing: -0.025em; }
+    .mode p { margin: 8px 0 0; color: var(--ink-2); font-size: 1rem; }
+    .mode .key-note { margin-top: 10px; color: var(--say); font-size: .9375rem; font-weight: 700; }
+    .mode a { margin-top: auto; padding-top: 18px; color: var(--accent); font-weight: 700; text-decoration: none; }
+    .mode a:hover { text-decoration: underline; }
+    @media (max-width: 960px) { .modes { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mode, .mode:nth-child(-n+2) { grid-column: span 1; } .mode:first-child { grid-column: 1 / -1; } }
+    @media (max-width: 600px) {
+      .modes { grid-template-columns: minmax(0, 1fr); }
+      .mode:first-child { grid-column: auto; }
+      .mode-shot, .mode:nth-child(-n+2) .mode-shot { height: 180px; padding-top: 20px; }
+      .mode-shot .phone, .mode:nth-child(-n+2) .mode-shot .phone { --w: 170px; }
+    }
+
+    /* Free + how to start */
+    .terms-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+    .terms-grid p { margin: 20px 0 0; color: var(--ink-2); font-size: 1.0625rem; }
+    .terms-list { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0 0; padding: 0; list-style: none; font-weight: 700; }
+    .terms-list li::before { content: "✓"; margin-right: 6px; color: var(--say); }
+    .tier-link { display: inline-block; margin-top: 24px; color: var(--accent); font-weight: 700; text-decoration: none; }
+    .tier-link:hover { text-decoration: underline; }
+    .install { margin: 28px 0 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 4px; }
+    .install li { counter-increment: s; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px 12px; padding: 18px 0; border-top: 1px solid var(--rule); color: var(--ink-2); }
+    .install li::before { content: counter(s); grid-row: span 2; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--bg); font-size: .9375rem; font-weight: 700; }
+    .install b { color: var(--ink); font-size: 1.0625rem; }
+    @media (max-width: 860px) { .terms-grid { grid-template-columns: minmax(0, 1fr); } }
+
+    /* FAQ */
+    .faq-grid { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+    .faq-list { border-top: 1px solid var(--rule); }
+    details { border-bottom: 1px solid var(--rule); }
+    summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em; cursor: pointer; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: ""; flex: none; width: 10px; height: 10px; margin-right: 4px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(45deg) translateY(-3px); transition: transform .25s var(--ease); }
+    details[open] summary::after { transform: rotate(-135deg) translateY(-3px); }
+    details p { margin: 0; padding: 0 0 24px; max-width: 40em; color: var(--ink-2); }
+    @media (max-width: 860px) { .faq-grid { grid-template-columns: minmax(0, 1fr); } }
+
+    /* Final */
+    .final h2 { font-size: clamp(2.25rem, 1.2rem + 3.4vw, 4rem); letter-spacing: -0.04em; }
+    .final .launch { margin-top: 36px; }
+    .final .guide-link { display: inline-block; margin-top: 20px; color: var(--accent); font-weight: 700; text-decoration: none; }
+    .final .guide-link:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer { padding: 64px 0 40px; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: .9375rem; }
+    .foot-cols { display: grid; grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr)); gap: 32px; }
+    .foot-brand { color: var(--ink); font-weight: 700; }
+    .foot-brand p { margin: 8px 0 0; max-width: 30em; color: var(--ink-2); font-weight: 400; }
+    .foot-brand p a { text-decoration: underline; }
+    footer h2 { margin-bottom: 12px; color: var(--ink); font-size: .9375rem; letter-spacing: -0.01em; }
+    footer ul { margin: 0; padding: 0; list-style: none; }
+    footer li a { display: inline-block; padding: 5px 0; text-decoration: none; }
+    footer li a:hover { color: var(--ink); text-decoration: underline; }
+    .foot-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: .875rem; }
+    .foot-legal a { text-decoration: underline; }
+    .foot-legal p { margin: 0; }
+    .foot-legal .foot-scope { flex: 1 1 18rem; }
+    @media (max-width: 760px) { .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-brand { grid-column: 1 / -1; } }
+
+    /* Phone-only bar */
+    .mobile-bar { position: fixed; left: 16px; right: 16px; bottom: max(16px, env(safe-area-inset-bottom)); z-index: 15; display: none; align-items: center; justify-content: center; min-height: 52px; border-radius: 16px; background: var(--ink); color: var(--bg); font-weight: 700; text-decoration: none; box-shadow: 0 12px 32px -8px rgb(0 0 0 / .4), inset 0 0 0 1px oklch(100% 0 0 / .14); transform: translateY(calc(100% + 24px)); transition: transform .4s var(--ease); }
+    .mobile-bar.is-visible { transform: none; }
+    .mobile-bar.is-play { background: transparent; box-shadow: none; min-height: 0; }
+    .mobile-bar.is-play .store-badge-img { filter: drop-shadow(0 10px 20px rgb(0 0 0 / .35)); }
+    @media (max-width: 760px) { .mobile-bar { display: flex; } }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
   </style>
-  <link rel="stylesheet" href="../kmle-cpx/study-entries.css">
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 
-<header class="site-header">
-  <nav class="shell" aria-label="주 메뉴">
+<header class="bar">
+  <div class="wrap bar-inner">
     <a class="brand" href="./" aria-label="Bedside English CPX">
       <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 10v4m3-7v10m4-13v16m3-12v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
-      Bedside English <small>CPX</small>
+      <span class="brand-name">Bedside English</span> <small>CPX</small>
     </a>
-    <div class="nav-links">
-      <a href="#study-library">대본·학습 자료</a>
-      <a href="#loop">진행 방식</a>
-      <a href="#cases">결과표 예시</a>
-      <a href="#modes">연습 모드</a>
+    <nav class="nav" aria-label="주 메뉴">
+      <a href="../ko/kmle-cpx/presentations/">문진 대본</a>
+      <a href="../ko/pe-atlas/presentations/">P/E 진찰법</a>
       <a href="../kmle-cpx/">연습 가이드</a>
       <a href="#faq">자주 묻는 질문</a>
-      <a class="play-badge nav-play" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dkmle-cpx" target="_blank" rel="noopener noreferrer" aria-label="Google Play에서 다운로드"><img src="../assets/store/google-play-badge-ko.png" width="564" height="168" alt="Google Play에서 다운로드" decoding="async"></a>
-      <a class="site-web-launch" href="https://bedsideenglish.github.io/app/"><svg class="site-browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="site-badge-copy"><span>웹 앱 시작하기</span><small>아이폰 · 아이패드 · PC</small></span></a>
-    </div>
-  </nav>
+    </nav>
+    <a class="bar-cta" href="https://bedsideenglish.github.io/app/">웹 앱 열기</a>
+  </div>
 </header>
 
-<main id="main" data-reviewed-on="2026-10-26">
+<main id="main" data-reviewed-on="2026-11-14">
   <section class="hero">
-    <div class="shell hero-grid">
-      <div>
-        <p class="kicker">KMLE CPX · 의사 국가시험 실기</p>
-        <h1>혼자서도 <span class="nb">12분 CPX.</span><em>채점표까지.</em></h1>
-        <p class="hero-copy">문제지를 읽고 입실하면 한국어로 대답하는 AI 표준화 환자가 기다린다. 병력청취, 말로 하는 신체진찰, 설명까지 12분. 나오면 놓친 질문과 다음에 할 말이 적힌 결과표가 남는다.</p>
-        <nav class="hero-study-links" aria-label="연습 전 학습 자료"><a href="../ko/kmle-cpx/presentations/">문진 대본 보기 →</a><a href="../ko/pe-atlas/presentations/">P/E 진찰법 보기 →</a></nav>
-        <div class="hero-actions">
-          <span class="site-launch-group">
-            <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dkmle-cpx" target="_blank" rel="noopener noreferrer" aria-label="Google Play에서 다운로드"><img src="../assets/store/google-play-badge-ko.png" width="564" height="168" alt="Google Play에서 다운로드" decoding="async"></a>
-            <a class="site-web-launch" href="https://bedsideenglish.github.io/app/"><svg class="site-browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="site-badge-copy"><span>웹 앱 시작하기</span><small>아이폰 · 아이패드 · PC</small></span></a>
-          </span>
-          <a class="btn btn-ghost" href="#cases">결과표 예시 보기</a>
+    <div class="wrap">
+      <h1><span>혼자서도 12분 CPX.</span><span class="quiet">채점표까지.</span></h1>
+      <p class="lede">문제지를 읽고 입실하면 한국어로 대답하는 AI 표준화 환자가 기다려요. 병력청취, 말로 하는 신체진찰, 설명까지 12분. 끝나면 놓친 질문과 다음에 할 말이 적힌 결과표가 남아요.</p>
+      <div class="launch center">
+        <div class="launch-actions">
+          <a class="web-badge" data-web-launch href="https://bedsideenglish.github.io/app/"><svg class="browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="badge-copy"><span>웹 앱 시작하기</span><small>아이폰 · 아이패드 · PC</small></span></a>
+          <a class="store-badge" data-play-launch href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dkmle-cpx" target="_blank" rel="noopener noreferrer"><img class="store-badge-img" src="../assets/store/google-play-badge-ko.png" width="564" height="168" alt="Google Play에서 다운로드" decoding="async"></a>
         </div>
-        <ul class="chips">
-          <li><b>끝까지 0원</b> · 유료 플랜·결제창 없음</li>
-          <li><b>48개 임상표현</b> 전부 + 증례 1,100개 이상</li>
-          <li>키 없이도 공부 노트·체험 환자 바로 열림</li>
-          <li>설치 · 회원가입 · 광고 없음</li>
-        </ul>
-        <p class="hero-free-note"><b>전체 케이스의 앱 이용료는 0원.</b> AI 대화·채점은 본인 Gemini 키로 동작하며 Google 무료 등급의 한도가 적용됩니다. <a href="#start">무료 이용 조건 →</a></p>
-
+        <p class="launch-note">무료 · 가입 없음 · 광고 없음 · 48개 임상표현 전부</p>
       </div>
+      <nav class="hero-study-links" aria-label="연습 전 학습 자료"><a href="../ko/kmle-cpx/presentations/">문진 대본 보기</a><a href="../ko/pe-atlas/presentations/">P/E 진찰법 보기</a></nav>
       <div class="stage">
-        <div class="device back"><div class="screen"><img src="../assets/kmle-cpx/live-exam.webp" width="786" height="1704" alt="CPX 진료 화면: 학생의사가 진찰을 말로 진행하고 환자가 협조하는 대화, 상단에 CPX · 03:34 / 12:00" decoding="async"></div></div>
-        <div class="device"><div class="screen"><img src="../assets/kmle-cpx/result.webp" width="786" height="1704" alt="CPX 채점 결과 58점: 영역별 점수, 내가 말한 추정진단 말하지 않음, 실제 진단 대동맥판막 폐쇄부전증" decoding="async" fetchpriority="high"></div></div>
+        <div class="phone"><img src="../assets/kmle-cpx/live-exam.webp" width="786" height="1704" alt="CPX 진료 화면: 학생의사가 진찰을 말로 진행하고 환자가 협조하는 대화, 상단에 CPX · 03:34 / 12:00" decoding="async"></div>
+        <div class="phone"><img src="../assets/kmle-cpx/result.webp" width="786" height="1704" alt="CPX 채점 결과 58점: 영역별 점수, 내가 말한 추정진단 말하지 않음, 실제 진단 대동맥판막 폐쇄부전증" decoding="async" fetchpriority="high"></div>
       </div>
     </div>
   </section>
 
-  <div class="shell">
+  <div class="chapter"><div class="wrap">
   <!-- STUDY_ENTRIES -->
 <section class="study-entrances" id="study-library" aria-labelledby="study-library-title">
 <h2 id="study-library-title">대본을 준비하고,<br>진찰법을 확인하세요.</h2>
@@ -316,51 +337,50 @@
 <a class="study-entry-card" href="../ko/pe-atlas/presentations/"><strong>어떻게 진찰할까?</strong><span>P/E 신체진찰 목록·Atlas. 필요한 진찰을 고르고 동작, 환자에게 할 말, 소견과 주의점을 확인하세요.</span><span class="study-entry-action">P/E 진찰법 보기 →</span></a>
 </div></section>
 <!-- /STUDY_ENTRIES -->
-  </div>
+  </div></div>
 
-  <section class="problem">
-    <div class="shell problem-grid">
-      <p class="quote">책으로는 무엇을 물어야 하는지 안다. <em>12분 안에 실제로 묻는 연습</em>은 상대가 있어야 된다.</p>
-      <p class="problem-after">스터디 친구가 없는 밤에도, 같은 증상을 열 번째 돌 때도, 환자는 대본대로 대답하고 채점은 같은 기준으로 한다.</p>
+  <section class="chapter tint statement center" aria-label="왜 상대가 필요한가">
+    <div class="wrap">
+      <p><span class="quiet">책으로는 무엇을 물어야 하는지 알아요.</span> 12분 안에 실제로 묻는 연습은 상대가 있어야 해요.</p>
+      <p class="after">스터디 친구가 없는 밤에도, 같은 증상을 열 번째 돌 때도, 환자는 대본대로 대답하고 채점은 같은 기준으로 해요.</p>
     </div>
   </section>
 
-  <section class="videos" id="videos" hidden>
-    <div class="shell">
-      <p class="kicker">영상으로 보기</p>
-      <h2>읽기 전에, 1분만 보자.</h2>
-      <p class="lede">실제 앱 화면을 녹화한 영상이다. 누르면 이 자리에서 YouTube 영상이 재생된다.</p>
+  <section class="chapter center" id="videos" aria-labelledby="videos-title" hidden>
+    <div class="wrap">
+      <h2 id="videos-title">읽기 전에, 1분만 보세요.</h2>
+      <p class="lede">실제 앱 화면을 녹화한 영상이에요. 누르면 이 자리에서 YouTube 영상이 재생돼요.</p>
       <div class="video-grid">
         <figure class="video" data-video="demo" hidden>
-          <div class="device"><div class="screen">
+          <div class="phone">
             <button class="video-play" type="button" aria-label="CPX 한 스테이션 영상 재생">
               <img src="../assets/kmle-cpx/live.webp" width="786" height="1704" alt="" loading="lazy" decoding="async">
               <span class="video-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
               <span class="video-time">1:04</span>
             </button>
-          </div></div>
+          </div>
           <h3>CPX 한 스테이션</h3>
           <p>문제지를 읽고 입실해서 결과표를 받기까지.</p>
         </figure>
         <figure class="video" data-video="patient" hidden>
-          <div class="device"><div class="screen">
+          <div class="phone">
             <button class="video-play" type="button" aria-label="AI 표준화 환자 영상 재생">
               <img src="../assets/kmle-cpx/live-exam.webp" width="786" height="1704" alt="" loading="lazy" decoding="async">
               <span class="video-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
               <span class="video-time">0:41</span>
             </button>
-          </div></div>
+          </div>
           <h3>AI 표준화 환자</h3>
-          <p>한국어로 묻고, 환자가 한국어로 대답한다.</p>
+          <p>한국어로 묻고, 환자가 한국어로 대답해요.</p>
         </figure>
         <figure class="video" data-video="feedback" hidden>
-          <div class="device"><div class="screen">
+          <div class="phone">
             <button class="video-play" type="button" aria-label="결과표와 피드백 영상 재생">
               <img src="../assets/kmle-cpx/checklist.webp" width="786" height="1704" alt="" loading="lazy" decoding="async">
               <span class="video-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
               <span class="video-time">0:40</span>
             </button>
-          </div></div>
+          </div>
           <h3>결과표와 피드백</h3>
           <p>놓친 항목과 다음에 할 문장이 어떻게 나오는지.</p>
         </figure>
@@ -368,281 +388,253 @@
     </div>
   </section>
 
-  <section class="loop" id="loop">
-    <div class="shell">
-      <p class="kicker">한 스테이션, 다섯 단계</p>
-      <h2>문제지에서 결과표까지.</h2>
-      <p class="lede">단계를 누르면 그 화면이 보인다.</p>
-      <div class="loop-stage">
-        <div class="loop-device" aria-hidden="true">
-          <div class="device"><div class="screen">
-            <img class="loop-shot active" data-shot="0" src="../assets/kmle-cpx/station-sheet.webp" width="786" height="1704" alt="" loading="lazy" decoding="async">
-            <img class="loop-shot" data-shot="1" src="../assets/kmle-cpx/live.webp" width="786" height="1704" alt="" loading="lazy" decoding="async">
-            <img class="loop-shot" data-shot="2" src="../assets/kmle-cpx/live-exam.webp" width="786" height="1704" alt="" loading="lazy" decoding="async">
-            <img class="loop-shot" data-shot="3" src="../assets/kmle-cpx/result.webp" width="786" height="1704" alt="" loading="lazy" decoding="async">
-            <img class="loop-shot" data-shot="4" src="../assets/kmle-cpx/checklist.webp" width="786" height="1704" alt="" loading="lazy" decoding="async">
-          </div></div>
-        </div>
-        <ol class="steps" role="tablist" aria-label="스테이션 진행 단계" aria-orientation="vertical">
-          <li><button class="step" type="button" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true"><i>01</i><b>증상 고르고 문제지 읽기</b></button>
-            <div class="panel" role="tabpanel" id="panel-0" aria-labelledby="tab-0"><p>48개 임상표현 중 하나를 고르면 2026년 형식 문제지가 뜬다. 이름과 나이, 활력징후, 과제만 있고 주호소는 없다. 범위를 전체, 병력청취+신체진찰, 병력청취만 중에서 고른다.</p><ul class="tags"><li>2026 문제지 양식</li><li>연습 범위 선택</li><li>안 해 본 임상표현부터</li></ul></div></li>
-          <li><button class="step" type="button" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false"><i>02</i><b>12분 진료</b></button>
-            <div class="panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" hidden><p>입실하면 상단에 "CPX · 경과 시간 / 12:00"이 흐른다. 말로 해도 되고 타이핑해도 된다. 환자는 물은 것에만 대답하고, 걱정과 질문은 스스로 꺼낸다. 2분 전에는 시계가 노랗게 바뀐다.</p><ul class="tags"><li>음성 또는 타이핑</li><li>종료 2분 전 알림</li><li>묻는 것에만 대답하는 환자</li></ul></div></li>
-          <li><button class="step" type="button" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false"><i>03</i><b>말로 하는 신체진찰</b></button>
-            <div class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden><p>"손을 앞으로 뻗어 보시겠어요? 손떨림이 있는지 보겠습니다." 진찰을 말하면 환자가 그에 맞게 반응하고, 상단의 '문제·소견' 숫자가 늘어난다. 연습 모드에서는 그 진찰의 소견을 바로 확인할 수 있다.</p><ul class="tags"><li>진찰 소견 공개</li><li>손 위생 · 동의도 채점</li></ul></div></li>
-          <li><button class="step" type="button" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false"><i>04</i><b>결과표</b></button>
-            <div class="panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden><p>면담 시작 5%, 병력청취 30%, 신체진찰 15%, 환자교육·마무리 15%, 진단·계획 20%, PPI 15%. 영역별 점수와 함께 내가 말한 추정진단과 실제 진단이 나란히 나온다.</p><ul class="tags"><li>6개 영역 가중치</li><li>추정진단 vs 실제 진단</li><li>환자 안전 경고</li></ul></div></li>
-          <li><button class="step" type="button" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false"><i>05</i><b>놓친 항목과 모범 멘트</b></button>
-            <div class="panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" hidden><p>항목마다 수행 · 부분 · 누락. 수행한 항목에는 근거가 된 내 말이, 누락한 항목에는 "예:"로 시작하는 바로 쓸 문장이 붙는다. 채점이 틀렸으면 직접 고치고 점수를 다시 계산한다.</p><ul class="tags"><li>근거 문장 인용</li><li>모범 멘트</li><li>직접 수정 가능</li></ul></div></li>
-        </ol>
-      </div>
+  <section class="chapter tint" id="loop" aria-labelledby="loop-title">
+    <div class="wrap">
+      <h2 id="loop-title">문제지에서 결과표까지.</h2>
+      <p class="lede">한 스테이션은 다섯 단계로 흘러가요.</p>
     </div>
+    <ol class="rail" tabindex="0" aria-label="한 스테이션의 다섯 단계">
+      <li><span class="n">1</span><h3>증상 고르고 문제지 읽기</h3><p>48개 임상표현 중 하나를 고르면 2026년 형식 문제지가 떠요. 이름과 나이, 활력징후, 과제만 있고 주호소는 없어요.</p><div class="phone"><img src="../assets/kmle-cpx/station-sheet.webp" width="786" height="1704" alt="2026년 형식 문제지: 42세 여자 서지영, 활력징후와 응시자 과제" loading="lazy" decoding="async"></div></li>
+      <li><span class="n">2</span><h3>12분 진료</h3><p>상단에 경과 시간이 흘러요. 말로 해도 되고 타이핑해도 돼요. 환자는 물은 것에만 대답하고, 걱정과 질문은 스스로 꺼내요.</p><div class="phone"><img src="../assets/kmle-cpx/live.webp" width="786" height="1704" alt="12분 진료 중인 화면과 경과 시간" loading="lazy" decoding="async"></div></li>
+      <li><span class="n">3</span><h3>말로 하는 신체진찰</h3><p>“손을 앞으로 뻗어 보시겠어요?” 진찰을 말하면 환자가 그에 맞게 반응하고, 연습 모드에서는 소견을 바로 확인할 수 있어요.</p><div class="phone"><img src="../assets/kmle-cpx/findings.webp" width="786" height="1704" alt="이 환자의 실제 진찰 소견: 진찰함과 안 함 표시, 넓은 맥압과 이완기 잡음 소견" loading="lazy" decoding="async"></div></li>
+      <li><span class="n">4</span><h3>결과표</h3><p>면담 시작부터 PPI까지 6개 영역 점수와 함께, 내가 말한 추정진단과 실제 진단이 나란히 나와요.</p><div class="phone"><img src="../assets/kmle-cpx/result.webp" width="786" height="1704" alt="CPX 채점 결과 58점과 영역별 점수" loading="lazy" decoding="async"></div></li>
+      <li><span class="n">5</span><h3>놓친 항목과 모범 멘트</h3><p>항목마다 수행·부분·누락. 누락한 항목에는 바로 쓸 문장이 붙고, 채점이 틀렸으면 직접 고칠 수 있어요.</p><div class="phone"><img src="../assets/kmle-cpx/checklist.webp" width="786" height="1704" alt="병력청취 체크리스트: 수행과 누락, 근거 문장과 모범 멘트" loading="lazy" decoding="async"></div></li>
+    </ol>
+    <div class="wrap"><p class="rail-hint">옆으로 넘겨 보세요 →</p></div>
   </section>
 
-  <section class="cases" id="cases">
-    <div class="shell">
-      <p class="kicker">결과표 예시</p>
-      <h2>점수보다 먼저, 무엇을 놓쳤는지.</h2>
-      <p class="lede">시연용으로 진행한 세 번의 진료와 그 결과표다. 셋 다 그럴듯하게 진료했지만, 결과표는 무엇을 놓쳤는지 짚었다.</p>
-
-      <div class="case-list">
+  <section class="chapter tint" id="cases" aria-labelledby="cases-title" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="cases-title">점수보다 먼저, 무엇을 놓쳤는지.</h2>
+      <p class="lede">시연용으로 진행한 세 번의 진료예요. 셋 다 그럴듯하게 진료했지만, 결과표는 놓친 것을 짚었어요.</p>
+      <div class="cases">
         <article class="case">
-          <div>
-            <p class="case-meta">연습 스테이션 · 가슴이 두근거려요 · 32세 여자</p>
-            <h3>카페인과 갑상샘까지 물었는데, 판막을 놓쳤다</h3>
-            <div class="case-score low"><b>58</b><span>/ 100</span></div>
-            <dl>
-              <dt>영역별 점수</dt><dd>병력청취 70 · 진단·계획 38 (각 100점 만점)</dd>
-              <dt>내가 말한 진단</dt><dd>말하지 않음 (갑상샘·부정맥만 언급)</dd>
-              <dt>실제 진단</dt><dd>대동맥판막 폐쇄부전증</dd>
-              <dt>결과표가 짚은 것</dt><dd>혈압 146/52의 넓은 맥압, 이완기 잡음, 도약맥. 진찰하지 않은 항목의 소견까지 공개된다.</dd>
-            </dl>
-            <a class="more" href="../kmle-cpx/station-walkthrough/">이 스테이션 전체 보기 →</a>
-          </div>
-          <div class="case-shot"><div class="device"><div class="screen"><img src="../assets/kmle-cpx/findings.webp" width="786" height="1704" alt="이 환자의 실제 진찰 소견: 진찰함과 안 함 표시, 넓은 맥압과 이완기 잡음 소견" loading="lazy" decoding="async"></div></div></div>
+          <p class="case-meta">연습 스테이션 · 가슴이 두근거려요 · 32세 여자</p>
+          <div class="case-score"><b>58</b><span>/ 100</span></div>
+          <h3>카페인과 갑상샘까지 물었는데, 판막을 놓쳤어요</h3>
+          <dl><dt>내가 말한 진단</dt><dd>말하지 않음</dd><dt>실제 진단</dt><dd>대동맥판막 폐쇄부전증</dd></dl>
+          <p class="note">결과표가 짚은 것: 혈압 146/52의 넓은 맥압, 이완기 잡음, 도약맥.</p>
+          <a class="more" href="../kmle-cpx/station-walkthrough/">이 스테이션 전체 보기 →</a>
         </article>
-
         <article class="case">
-          <div>
-            <p class="case-meta">실전 모의고사 1번 · 정신을 잃고 쓰러졌어요 · 32세 여자</p>
-            <h3>"스트레스 때문일 거예요"라고 말한 순간</h3>
-            <div class="case-score low"><b>53</b><span>/ 100</span></div>
-            <dl>
-              <dt>영역별 점수</dt><dd>신체진찰 33 · 진단·계획 38 (각 100점 만점)</dd>
-              <dt>내가 말한 진단</dt><dd>미주신경성 실신</dd>
-              <dt>실제 진단</dt><dd>중증 대동맥판협착증</dd>
-            </dl>
-            <p class="alert"><b>[심각]</b> 운동 중 실신 및 흉통을 미주신경성 실신으로 오진하여 위험을 과소평가함</p>
-            <a class="more" href="../kmle-cpx/mock-exam/">모의고사 3개 스테이션 결과 보기 →</a>
-          </div>
-          <div class="case-shot"><div class="device"><div class="screen"><img src="../assets/kmle-cpx/mock-station1.webp" width="786" height="1704" alt="모의고사 1번 결과표: 53점, 심각 단계 환자 안전 경고, 실제 진단 중증 대동맥판협착증" loading="lazy" decoding="async"></div></div></div>
+          <p class="case-meta">실전 모의고사 1번 · 정신을 잃고 쓰러졌어요 · 32세 여자</p>
+          <div class="case-score"><b>53</b><span>/ 100</span></div>
+          <h3>“스트레스 때문일 거예요”라고 말한 순간</h3>
+          <dl><dt>내가 말한 진단</dt><dd>미주신경성 실신</dd><dt>실제 진단</dt><dd>중증 대동맥판협착증</dd></dl>
+          <p class="note"><b>[심각]</b> 운동 중 실신 및 흉통을 미주신경성 실신으로 오진하여 위험을 과소평가함</p>
+          <a class="more" href="../kmle-cpx/mock-exam/">모의고사 3개 스테이션 결과 보기 →</a>
         </article>
-
         <article class="case">
-          <div>
-            <p class="case-meta">친구와 역할극 · 가슴이 아파요 · 61세 남자</p>
-            <h3>진단은 맞혔는데, 119를 말하지 않았다</h3>
-            <div class="case-score mid"><b>66</b><span>/ 100</span></div>
-            <dl>
-              <dt>영역별 점수</dt><dd>병력청취 80 · 신체진찰 40 (각 100점 만점)</dd>
-              <dt>내가 말한 진단</dt><dd>안정형 협심증</dd>
-              <dt>실제 진단</dt><dd>만성 안정형 협심증</dd>
-            </dl>
-            <p class="alert"><b>[주의]</b> 흉통 지속 시 응급 대처(119 연락, 니트로글리세린 복용법)에 대한 구체적 교육 누락</p>
-            <a class="more" href="../kmle-cpx/peer-roleplay/">역할극으로 녹음·채점하는 법 →</a>
-          </div>
-          <div class="case-shot"><div class="device"><div class="screen"><img src="../assets/kmle-cpx/peer-result.webp" width="786" height="1704" alt="친구와 역할극 채점 결과 66점과 환자 안전 경고" loading="lazy" decoding="async"></div></div></div>
+          <p class="case-meta">친구와 역할극 · 가슴이 아파요 · 61세 남자</p>
+          <div class="case-score"><b>66</b><span>/ 100</span></div>
+          <h3>진단은 맞혔는데, 119를 말하지 않았어요</h3>
+          <dl><dt>내가 말한 진단</dt><dd>안정형 협심증</dd><dt>실제 진단</dt><dd>만성 안정형 협심증</dd></dl>
+          <p class="note"><b>[주의]</b> 흉통 지속 시 응급 대처(119 연락, 니트로글리세린 복용법)에 대한 구체적 교육 누락</p>
+          <a class="more" href="../kmle-cpx/peer-roleplay/">역할극으로 녹음·채점하는 법 →</a>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="fix" id="fix">
-    <div class="shell fix-grid">
+  <section class="chapter night" id="fix" aria-labelledby="fix-title">
+    <div class="wrap fix-grid">
       <div>
-        <p class="kicker">결과표가 남기는 것</p>
-        <h2>"잘했어요"가 아니라, 다음에 할 한 문장.</h2>
+        <h2 id="fix-title">“잘했어요”가 아니라, 다음에 할 한 문장.</h2>
         <ul class="fix-lines">
           <li class="fix-miss"><span class="label">누락</span>다른 불편한 점이 있는지 확인하고 오늘 다룰 문제를 정한다</li>
-          <li class="fix-say"><span class="label">이렇게 말해 보세요</span>"그 밖에 또 불편하신 데는 없으세요?"</li>
+          <li class="fix-say"><span class="label">이렇게 말해 보세요</span>“그 밖에 또 불편하신 데는 없으세요?”</li>
         </ul>
-        <p class="fix-why">놓친 항목마다 바로 쓸 문장이 붙고, PPI 6개 영역은 우수·보통 같은 등급과 한 줄 이유로 나온다. 다음 입실에서 그 문장이 먼저 나오게 만드는 것이 목표다.</p>
+        <p class="lede">놓친 항목마다 바로 쓸 문장이 붙고, PPI 6개 영역은 우수·보통 같은 등급과 한 줄 이유로 나와요. 다음 입실에서 그 문장이 먼저 나오게 만드는 게 목표예요.</p>
       </div>
       <div class="fix-shots">
-        <div class="device"><div class="screen"><img src="../assets/kmle-cpx/checklist.webp" width="786" height="1704" alt="병력청취 체크리스트: 수행과 누락, 근거 문장과 모범 멘트" loading="lazy" decoding="async"></div></div>
-        <div class="device"><div class="screen"><img src="../assets/kmle-cpx/ppi.webp" width="786" height="1704" alt="PPI 6개 영역 평가와 이렇게 말해 보세요 예문" loading="lazy" decoding="async"></div></div>
+        <div class="phone"><img src="../assets/kmle-cpx/checklist.webp" width="786" height="1704" alt="병력청취 체크리스트: 수행과 누락, 근거 문장과 모범 멘트" loading="lazy" decoding="async"></div>
+        <div class="phone"><img src="../assets/kmle-cpx/ppi.webp" width="786" height="1704" alt="PPI 6개 영역 평가와 이렇게 말해 보세요 예문" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
 
-  <section class="modes" id="modes">
-    <div class="shell">
-      <p class="kicker">혼자, 둘이, 시험처럼</p>
-      <h2>다섯 가지 방법으로 연습한다.</h2>
-      <div class="mode-grid">
+  <section class="chapter" id="modes" aria-labelledby="modes-title">
+    <div class="wrap">
+      <h2 id="modes-title">혼자, 둘이, 시험처럼.</h2>
+      <p class="lede">다섯 가지 방법으로 연습해요.</p>
+      <div class="modes">
         <figure class="mode">
-          <div class="device"><div class="screen"><img src="../assets/kmle-cpx/live.webp" width="786" height="1704" alt="AI 표준화 환자와 진료 중인 화면" loading="lazy" decoding="async"></div></div>
-          <h3>AI 환자와 혼자</h3>
-          <p>48개 임상표현, 1,100개 넘는 증례. 같은 증상을 골라도 환자가 바뀐다.</p>
-          <a href="../kmle-cpx/station-walkthrough/">한 스테이션 따라가기 →</a>
+          <div class="mode-shot"><div class="phone"><img src="../assets/kmle-cpx/live.webp" width="786" height="1704" alt="AI 표준화 환자와 진료 중인 화면" loading="lazy" decoding="async"></div></div>
+          <figcaption class="mode-body"><h3>AI 환자와 혼자</h3><p>48개 임상표현, 1,100개 넘는 증례. 같은 증상을 골라도 환자가 바뀌어요.</p><a href="../kmle-cpx/station-walkthrough/">한 스테이션 따라가기 →</a></figcaption>
         </figure>
         <figure class="mode">
-          <div class="device"><div class="screen"><img src="../assets/kmle-cpx/peer-script.webp" width="786" height="1704" alt="친구용 환자 역할 대본과 연기 규칙" loading="lazy" decoding="async"></div></div>
-          <h3>친구와 역할극</h3>
-          <p>친구는 환자 대본을 보고 연기, 휴대폰은 녹음. 화자를 나눠 받아쓰고 같은 기준으로 채점한다.</p>
-          <a href="../kmle-cpx/peer-roleplay/">역할극 연습법 →</a>
+          <div class="mode-shot"><div class="phone"><img src="../assets/kmle-cpx/peer-script.webp" width="786" height="1704" alt="친구용 환자 역할 대본과 연기 규칙" loading="lazy" decoding="async"></div></div>
+          <figcaption class="mode-body"><h3>친구와 역할극</h3><p>친구는 환자 대본을 보고 연기하고, 휴대폰은 녹음해요. 화자를 나눠 받아쓰고 같은 기준으로 채점해요.</p><a href="../kmle-cpx/peer-roleplay/">역할극 연습법 →</a></figcaption>
         </figure>
         <figure class="mode">
-          <div class="device"><div class="screen"><img src="../assets/kmle-cpx/mock-result.webp" width="786" height="1704" alt="모의고사 결과: 210 / 300점, 통과 스테이션 2 / 3, 추정 결과 불합격권" loading="lazy" decoding="async"></div></div>
-          <h3>실전 모의고사</h3>
-          <p>9개 또는 3개 방 연속, 12분 자동 종료, 힌트 없음. 결과와 추정 합격선은 마지막에.</p>
-          <a href="../kmle-cpx/mock-exam/">모의고사 결과 보기 →</a>
+          <div class="mode-shot"><div class="phone"><img src="../assets/kmle-cpx/mock-result.webp" width="786" height="1704" alt="모의고사 결과: 210 / 300점, 통과 스테이션 2 / 3, 추정 결과 불합격권" loading="lazy" decoding="async"></div></div>
+          <figcaption class="mode-body"><h3>실전 모의고사</h3><p>9개 또는 3개 방 연속, 12분 자동 종료, 힌트 없음. 결과와 추정 합격선은 마지막에.</p><a href="../kmle-cpx/mock-exam/">모의고사 결과 보기 →</a></figcaption>
         </figure>
         <figure class="mode">
-          <div class="device"><div class="screen"><img src="../assets/kmle-cpx/study-history.webp" width="786" height="1704" alt="가슴통증 공부 노트: 병력청취 항목, 감별 범주, 예문" loading="lazy" decoding="async"></div></div>
-          <h3>공부하기</h3>
-          <p>임상표현마다 감별 범주, ★ 필수 질문, 그대로 말할 문장, 검사·치료 핵심.</p>
-          <p class="key-note">API 키 없이 사용</p>
-          <a href="../kmle-cpx/study-guide/">공부 노트 보기 →</a>
+          <div class="mode-shot"><div class="phone"><img src="../assets/kmle-cpx/study-history.webp" width="786" height="1704" alt="가슴통증 공부 노트: 병력청취 항목, 감별 범주, 예문" loading="lazy" decoding="async"></div></div>
+          <figcaption class="mode-body"><h3>공부하기</h3><p>임상표현마다 감별 범주, ★ 필수 질문, 그대로 말할 문장, 검사·치료 핵심.</p><p class="key-note">API 키 없이 사용</p><a href="../kmle-cpx/study-guide/">공부 노트 보기 →</a></figcaption>
         </figure>
         <figure class="mode">
-          <div class="device"><div class="screen"><img src="../assets/kmle-cpx/osce-suture.webp" width="786" height="1704" alt="봉합술 셀프 체크: 12분 타이머와 체크 10/25" loading="lazy" decoding="async"></div></div>
-          <h3>기본진료술기</h3>
-          <p>봉합, 심폐소생술, 채혈 등 9개 술기. 단계별 체크리스트와 12분 셀프 체크.</p>
-          <p class="key-note">API 키 없이 사용</p>
-          <a href="../kmle-cpx/osce-checklist/">술기 체크리스트 →</a>
+          <div class="mode-shot"><div class="phone"><img src="../assets/kmle-cpx/osce-suture.webp" width="786" height="1704" alt="봉합술 셀프 체크: 12분 타이머와 체크 10/25" loading="lazy" decoding="async"></div></div>
+          <figcaption class="mode-body"><h3>기본진료술기</h3><p>봉합, 심폐소생술, 채혈 등 9개 술기. 단계별 체크리스트와 12분 셀프 체크.</p><p class="key-note">API 키 없이 사용</p><a href="../kmle-cpx/osce-checklist/">술기 체크리스트 →</a></figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <section class="terms" id="start">
-    <div class="shell terms-grid">
+  <section class="chapter tint" id="start" aria-labelledby="start-title">
+    <div class="wrap terms-grid">
       <div>
-        <div class="big">0원</div>
-        <h3>체험판이 아니다. 유료 플랜과 결제창 자체가 없다.</h3>
-        <p>한두 문제만 무료로 풀게 한 뒤 이용권 결제를 유도하는 서비스가 아니다. 이 앱에는 구독 상품, 크레딧 충전, 회원가입, 광고가 아예 없다. 서버 비용을 구독료로 받는 대신, 본인이 Google AI Studio에서 <b>카드 등록 없이</b> 발급받은 무료 Gemini API 키로 직접 연결해 쓰기 때문에 48개 임상표현 전부를 계속 0원으로 연습한다.</p>
+        <h2 id="start-title">체험판이 아니에요. 유료 플랜과 결제창 자체가 없어요.</h2>
+        <p>한두 문제만 무료로 풀게 한 뒤 이용권 결제를 유도하는 서비스가 아니에요. 구독 상품, 크레딧 충전, 회원가입, 광고가 아예 없어요. 서버 비용을 구독료로 받는 대신, Google AI Studio에서 <b>카드 등록 없이</b> 발급받은 내 무료 Gemini API 키로 연결해 쓰기 때문에 48개 임상표현 전부를 계속 0원으로 연습해요.</p>
         <ul class="terms-list"><li>유료 플랜 · 결제창 없음</li><li>카드 등록 불필요</li><li>설치 · 가입 · 광고 없음</li><li>기록은 내 기기에만</li></ul>
-        <a class="tier-link" href="../gemini-api-free-tier.html">Gemini 무료 티어, 정말 돈이 안 나가나요? (구글 공식 문서 근거) →</a>
+        <a class="tier-link" href="../gemini-api-free-tier.html">Gemini 무료 티어, 정말 돈이 안 나가나요? →</a>
       </div>
       <div>
-        <h3>가볍게 시작하는 법.</h3>
+        <h3 style="font-size:1.5rem">가볍게 시작하는 법</h3>
         <ol class="install">
-          <li><b>웹 앱을 열고 '한국 의사국시 CPX (한국어)'를 고른다.</b> 아이폰·아이패드는 Safari, PC는 Chrome이나 Edge, 안드로이드는 Chrome에서 주소만 열면 된다.</li>
-          <li><b>키 없이 10초 만에 먼저 둘러본다.</b> 첫 화면의 '키 없이 먼저 둘러보기'를 누르면 48개 임상표현 공부 노트, 필수 질문, 술기 체크리스트, 체험 환자가 바로 열린다.</li>
-          <li><b>AI 환자와 연습할 때만 무료 키를 붙여 넣는다.</b> 카드 등록 없이 Google AI Studio에서 1분이면 만든다.</li>
-          <li><b>부담 없는 범위부터 한 방만 해 본다.</b> 처음엔 '병력청취만'·'체크리스트 힌트 보기'를 켜거나, 도서관이라면 타이핑으로 가볍게 시작하면 된다.</li>
+          <li><b>웹 앱을 열고 '한국 의사국시 CPX (한국어)'를 골라요.</b><span>아이폰·아이패드는 Safari, PC는 Chrome이나 Edge, 안드로이드는 Chrome에서 주소만 열면 돼요.</span></li>
+          <li><b>키 없이 먼저 둘러봐요.</b><span>첫 화면의 '키 없이 먼저 둘러보기'를 누르면 48개 임상표현 공부 노트, 필수 질문, 술기 체크리스트가 바로 열려요.</span></li>
+          <li><b>AI 환자와 연습할 때만 무료 키를 붙여 넣어요.</b><span>카드 등록 없이 Google AI Studio에서 1분이면 만들어요.</span></li>
+          <li><b>부담 없는 범위부터 한 방만 해 봐요.</b><span>처음엔 '병력청취만'·'체크리스트 힌트 보기'를 켜거나, 도서관이라면 타이핑으로 가볍게 시작하면 돼요.</span></li>
         </ol>
       </div>
     </div>
   </section>
 
-  <section class="faq" id="faq">
-    <div class="shell faq-grid">
-      <div>
-        <p class="kicker">입실 전에</p>
-        <h2>자주 묻는 질문</h2>
-      </div>
-      <div>
-        <details><summary>처음만 무료고 나중에 결제하라고 하지 않나요?</summary><p>아닙니다. 1회 체험 뒤 유료 결제를 유도하는 앱이 아니며, 앱 안에 결제창·구독 플랜·크레딧 충전 자체가 없습니다. AI 기능은 본인이 Google AI Studio에서 카드 등록 없이 발급받는 무료 Gemini API 키로 동작하므로 자동으로 돈이 빠져나가는 일도 없습니다. 키 없이도 48개 임상표현 공부 노트, 기본진료술기 체크리스트, 체험 환자는 바로 열립니다. 다만 무료 등급에서는 Google이 대화 내용을 서비스 개선에 쓸 수 있으니 실제 환자 정보나 개인 정보는 말하지 마세요. 사용량이 몰리면 Google 쪽 한도 때문에 채점이 늦어질 수 있고, 그때는 저장된 대화를 나중에 다시 채점하면 됩니다.</p></details>
-        <details><summary>국시원의 실제 채점표로 채점하나요?</summary><p>아닙니다. 국시원의 채점표와 배점은 공개되지 않습니다. 앱의 체크리스트는 공개된 시험 안내(문제지 양식, 환자-의사 관계 평가 영역, 임상표현 목록)를 참고해 만든 연습용 기준이고, 학교나 실제 시험과 다를 수 있습니다. 채점이 틀렸다고 생각하면 항목을 직접 고칠 수 있습니다.</p></details>
-        <details><summary>아이폰이나 PC에서도 되나요?</summary><p>네. 웹 앱이라 아이폰·아이패드 Safari, PC의 Chrome·Edge, 안드로이드 Chrome에서 주소만 열면 됩니다. 홈 화면에 추가하면 앱처럼 전체 화면으로 열립니다.</p></details>
-        <details><summary>신체진찰은 어떻게 하나요?</summary><p>말로 진행합니다. 어떤 진찰을 하겠다고 말하면 환자가 대본대로 반응하고, 연습 모드에서는 그 진찰의 소견이 표시됩니다. 손의 위치나 기법은 평가하지 못합니다. 손기술이 필요한 기본진료술기 9개는 단계별 체크리스트와 12분 타이머로 스스로 점검합니다.</p></details>
-        <details><summary>PPI도 채점되나요?</summary><p>네. 6개 영역을 우수·보통 같은 등급과 한 줄 이유로 평가하고, 바꿔 말하면 좋을 문장을 상황별로 보여 줍니다. 다만 대화 기록만 보고 추정하므로 말투·표정·시선은 반영되지 않습니다.</p></details>
-        <details><summary>기록은 어디에 저장되나요?</summary><p>쓰는 브라우저 안에만 저장됩니다. 계정이 없어서 다른 기기와 자동으로 동기화되지 않습니다. 음성 진료 중에 화면을 잠그거나 다른 앱으로 가면 대화가 일시정지되니, 12분 동안은 화면을 켜 두세요.</p></details>
+  <section class="chapter" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <h2 id="faq-title">자주 묻는 질문</h2>
+      <div class="faq-list">
+        <details><summary>처음만 무료고 나중에 결제하라고 하지 않나요?</summary><p>아니에요. 1회 체험 뒤 유료 결제를 유도하는 앱이 아니고, 앱 안에 결제창·구독 플랜·크레딧 충전 자체가 없어요. AI 기능은 Google AI Studio에서 카드 등록 없이 발급받는 내 무료 Gemini API 키로 동작해서 자동으로 돈이 빠져나가는 일도 없어요. 키 없이도 48개 임상표현 공부 노트와 기본진료술기 체크리스트는 바로 열려요. 다만 무료 등급에서는 Google이 대화 내용을 서비스 개선에 쓸 수 있으니 실제 환자 정보나 개인 정보는 말하지 마세요. 사용량이 몰리면 Google 쪽 한도 때문에 채점이 늦어질 수 있고, 그때는 저장된 대화를 나중에 다시 채점하면 돼요.</p></details>
+        <details><summary>국시원의 실제 채점표로 채점하나요?</summary><p>아니에요. 국시원의 채점표와 배점은 공개되지 않아요. 앱의 체크리스트는 공개된 시험 안내(문제지 양식, 환자-의사 관계 평가 영역, 임상표현 목록)를 참고해 만든 연습용 기준이고, 학교나 실제 시험과 다를 수 있어요. 채점이 틀렸다고 생각하면 항목을 직접 고칠 수 있어요.</p></details>
+        <details><summary>아이폰이나 PC에서도 되나요?</summary><p>네. 웹 앱이라 아이폰·아이패드 Safari, PC의 Chrome·Edge, 안드로이드 Chrome에서 주소만 열면 돼요. 홈 화면에 추가하면 앱처럼 전체 화면으로 열려요. 안드로이드는 Google Play 앱도 있어요.</p></details>
+        <details><summary>신체진찰은 어떻게 하나요?</summary><p>말로 진행해요. 어떤 진찰을 하겠다고 말하면 환자가 대본대로 반응하고, 연습 모드에서는 그 진찰의 소견이 표시돼요. 손의 위치나 기법은 평가하지 못해요. 손기술이 필요한 기본진료술기 9개는 단계별 체크리스트와 12분 타이머로 스스로 점검해요.</p></details>
+        <details><summary>PPI도 채점되나요?</summary><p>네. 6개 영역을 우수·보통 같은 등급과 한 줄 이유로 평가하고, 바꿔 말하면 좋을 문장을 상황별로 보여 줘요. 다만 대화 기록만 보고 추정하므로 말투·표정·시선은 반영되지 않아요.</p></details>
+        <details><summary>기록은 어디에 저장되나요?</summary><p>쓰는 기기 안에만 저장돼요. 계정이 없어서 다른 기기와 자동으로 동기화되지 않아요. 웹 앱에서 음성 진료 중에 화면을 잠그거나 다른 앱으로 가면 대화가 일시정지되니, 12분 동안은 화면을 켜 두세요.</p></details>
       </div>
     </div>
   </section>
 
-  <section class="final" id="download">
-    <div class="shell">
-      <h2>가볍게 한 방만 입실해 보자.</h2>
-      <p class="lede">웹 앱이라 아이폰·아이패드·PC·안드로이드 브라우저에서 바로 연다. 유료 플랜·결제창·가입·광고 자체가 없고, 키 없이 공부 노트부터 보거나 카드 등록 없는 무료 Gemini 키로 12분 진료를 시작할 수 있다.</p>
-      <div class="hero-actions">
-        <span class="site-launch-group">
-          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dkmle-cpx" target="_blank" rel="noopener noreferrer" aria-label="Google Play에서 다운로드"><img src="../assets/store/google-play-badge-ko.png" width="564" height="168" alt="Google Play에서 다운로드" loading="lazy" decoding="async"></a>
-          <a class="site-web-launch" href="https://bedsideenglish.github.io/app/"><svg class="site-browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="site-badge-copy"><span>웹 앱 시작하기</span><small>아이폰 · 아이패드 · PC</small></span></a>
-        </span>
-        <a class="btn btn-ghost" href="../kmle-cpx/">CPX 연습 가이드 읽기</a>
+  <section class="chapter tint final center" id="download" aria-labelledby="final-title">
+    <div class="wrap">
+      <h2 id="final-title">가볍게 한 방만 입실해 보세요.</h2>
+      <p class="lede">아이폰·아이패드·PC·안드로이드 브라우저에서 바로 열려요. 가입도, 결제도 없어요.</p>
+      <div class="launch">
+        <div class="launch-actions">
+          <a class="web-badge" data-web-launch href="https://bedsideenglish.github.io/app/"><svg class="browser-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8h22M10 25h8M14 20v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="badge-copy"><span>웹 앱 시작하기</span><small>아이폰 · 아이패드 · PC</small></span></a>
+          <a class="store-badge" data-play-launch href="https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&amp;referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dkmle-cpx" target="_blank" rel="noopener noreferrer"><img class="store-badge-img" src="../assets/store/google-play-badge-ko.png" width="564" height="168" alt="Google Play에서 다운로드" loading="lazy" decoding="async"></a>
+        </div>
       </div>
+      <a class="guide-link" href="../kmle-cpx/">CPX 연습 가이드 읽기 →</a>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="shell">
-    <div class="footer-inner">
-      <span>Bedside English · KMLE CPX</span>
-      <span class="footer-links">
-        <a href="../kmle-cpx/exam-format-2026/">2026 실기시험 형식</a>
-        <a href="../kmle-cpx/48-clinical-presentations/">48개 임상표현</a>
-        <a href="../kmle-cpx/ppi/">PPI 6개 영역</a>
-        <a href="../privacy.html">개인정보 처리방침</a>
-        <a href="../">Bedside English 홈</a>
-      </span>
+  <div class="wrap">
+    <div class="foot-cols">
+      <div class="foot-brand">
+        Bedside English · KMLE CPX
+        <p>이 페이지의 화면과 점수는 시연용으로 진행한 세션에서 나왔어요. 한국보건의료인국가시험원과 관련이 없는 독립 프로젝트이며, 시험 규정은 <a href="https://www.kuksiwon.or.kr/" target="_blank" rel="noopener noreferrer">국시원 공지</a>를 기준으로 확인하세요.</p>
+      </div>
+      <div>
+        <h2>시험 정보</h2>
+        <ul>
+          <li><a href="../kmle-cpx/exam-format-2026/">2026 실기시험 형식</a></li>
+          <li><a href="../kmle-cpx/48-clinical-presentations/">48개 임상표현</a></li>
+          <li><a href="../kmle-cpx/ppi/">PPI 6개 영역</a></li>
+          <li><a href="../kmle-cpx/">연습 가이드</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>학습 자료</h2>
+        <ul>
+          <li><a href="../ko/kmle-cpx/presentations/">문진 대본</a></li>
+          <li><a href="../ko/pe-atlas/presentations/">P/E 진찰법</a></li>
+          <li><a href="../ko/pe-atlas/">신체진찰 아틀라스</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>정보</h2>
+        <ul>
+          <li><a href="./">CPX 앱 소개</a></li>
+          <li><a href="../about.html">소개·편집 방침</a></li>
+          <li><a href="../privacy.html">개인정보 처리방침</a></li>
+          <li><a href="../">Bedside English (English)</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="honest">이 페이지의 화면과 점수는 시연용으로 진행한 세션에서 나온 것이다. 한국보건의료인국가시험원과 관련이 없는 독립 프로젝트이며, 시험 규정은 <a href="https://www.kuksiwon.or.kr/" target="_blank" rel="noopener noreferrer">국시원 공지</a>를 기준으로 확인한다.</p>
+    <div class="foot-legal">
+      <p class="copyright-notice" style="margin:0">© 2026 boyskier. All rights reserved.</p>
+      <p class="foot-scope">학습용 참고 자료이며, 공식 채점표나 개별 환자의 진료 지침이 아니에요.</p>
+      <a href="../license.html">저작권 안내</a>
+    </div>
   </div>
-<p class="copyright-notice" style="margin:0;padding:0.75rem 1rem;width:100%;box-sizing:border-box;text-align:center;font-size:0.75rem;line-height:1.6">© 2026 boyskier. All rights reserved. · <a href="../license.html">Copyright &amp; licenses</a></p>
 </footer>
 
-<a class="mobile-bar" id="mobileBar" href="https://bedsideenglish.github.io/app/">웹 앱 시작하기 · 무료</a>
+<a class="mobile-bar" id="mobileBar" href="https://bedsideenglish.github.io/app/" data-web-launch>웹 앱 시작하기 · 무료</a>
 
 <script>
   /*
-   * YouTube links for the three screen recordings in the "영상으로 보기"
-   * section. Paste a video ID or any YouTube URL (Shorts, watch, youtu.be).
-   * Leave "" until the video is uploaded: a card with no link stays hidden,
-   * and with none set the whole section stays hidden. Nothing is requested
-   * from YouTube until a visitor presses play.
+   * YouTube links for the three screen recordings in the "읽기 전에, 1분만 보세요" section.
+   * Paste a video ID or any YouTube URL (Shorts, watch, youtu.be). Leave "" until the video is
+   * uploaded: a card with no link stays hidden, and with none set the whole section stays hidden.
+   * Nothing is requested from YouTube until a visitor presses play.
    */
   var CPX_VIDEOS = {
     demo: "https://www.youtube.com/shorts/Jqcku7QPycw",      // A_cpx_demo.mp4 (1:04)
     feedback: "https://youtube.com/shorts/yGYCHfxQkt8",      // B_cpx_feedback.mp4 (0:40)
     patient: "https://www.youtube.com/shorts/CjzClbSLz-4"    // C_cpx_ai_patient.mp4 (0:41)
   };
+  var PLAY_URL = "https://play.google.com/store/apps/details?id=com.boyskier.bedsideenglish&referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Dkmle-cpx";
 
   (function(){
-    var anyVideo=false;
+    var anyVideo = false;
     [].slice.call(document.querySelectorAll('.video')).forEach(function(f){
-      var m=/(?:^|shorts\/|embed\/|v=|youtu\.be\/)([\w-]{11})(?:$|[?&#\/])/.exec(CPX_VIDEOS[f.getAttribute('data-video')]||'');
-      if(!m) return;
-      anyVideo=true; f.hidden=false;
-      var btn=f.querySelector('.video-play');
-      btn.addEventListener('click',function(){
-        var frame=document.createElement('iframe');
-        frame.src='https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&playsinline=1&rel=0';
-        frame.title=f.querySelector('h3').textContent;
-        frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
-        frame.allowFullscreen=true;
-        btn.parentNode.replaceChild(frame,btn);
+      var m = /(?:^|shorts\/|embed\/|v=|youtu\.be\/)([\w-]{11})(?:$|[?&#\/])/.exec(CPX_VIDEOS[f.getAttribute('data-video')] || '');
+      if (!m) return;
+      anyVideo = true; f.hidden = false;
+      var btn = f.querySelector('.video-play');
+      btn.addEventListener('click', function(){
+        var frame = document.createElement('iframe');
+        frame.src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&playsinline=1&rel=0';
+        frame.title = f.querySelector('h3').textContent;
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        frame.allowFullscreen = true;
+        btn.parentNode.replaceChild(frame, btn);
       });
     });
-    document.getElementById('videos').hidden=!anyVideo;
+    document.getElementById('videos').hidden = !anyVideo;
 
-    var tabs=[].slice.call(document.querySelectorAll('.step'));
-    var shots=[].slice.call(document.querySelectorAll('.loop-shot'));
-    function select(i,focus){
-      tabs.forEach(function(t,j){
-        var on=i===j; t.setAttribute('aria-selected',on?'true':'false'); t.tabIndex=on?0:-1;
-        document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    /* Header hairline once the page has moved. */
+    var header = document.querySelector('.bar');
+    var onScroll = function(){ header.classList.toggle('is-stuck', window.scrollY > 8); };
+    onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+    /* Android leads with Google Play; every other platform leads with the web app. Both always stay. */
+    var ua = navigator.userAgent || '';
+    var hint = navigator.userAgentData && navigator.userAgentData.platform;
+    var android = hint === 'Android' || /Android/i.test(ua);
+    if (android) {
+      [].slice.call(document.querySelectorAll('.launch-actions')).forEach(function(row){
+        row.insertBefore(row.querySelector('[data-play-launch]'), row.firstChild);
       });
-      shots.forEach(function(s){ s.classList.toggle('active', Number(s.getAttribute('data-shot'))===i) });
-      if(focus) tabs[i].focus();
     }
-    tabs.forEach(function(t,i){
-      t.addEventListener('click',function(){select(i)});
-      t.addEventListener('keydown',function(e){
-        if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();select((i+1)%tabs.length,true)}
-        if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();select((i-1+tabs.length)%tabs.length,true)}
+
+    /* Phone bar: on once the hero has left the screen, off while the final call to action shows. */
+    var bar = document.getElementById('mobileBar'), hero = document.querySelector('.hero'), fin = document.getElementById('download');
+    if (android) {
+      bar.href = PLAY_URL; bar.target = '_blank'; bar.rel = 'noopener noreferrer';
+      bar.removeAttribute('data-web-launch'); bar.classList.add('is-play');
+      bar.innerHTML = '<img class="store-badge-img" src="../assets/store/google-play-badge-ko.png" width="564" height="168" alt="Google Play에서 다운로드">';
+    }
+    if ('IntersectionObserver' in window && bar) {
+      var heroVis = true, finVis = false;
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.target === hero) heroVis = e.isIntersecting; else finVis = e.isIntersecting; });
+        bar.classList.toggle('is-visible', !heroVis && !finVis);
       });
-    });
-    select(0);
-    var bar=document.getElementById('mobileBar'), hero=document.querySelector('.hero'), fin=document.getElementById('download');
-    if('IntersectionObserver' in window&&bar){
-      var heroVis=true, finVis=false;
-      var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.target===hero)heroVis=e.isIntersecting; else finVis=e.isIntersecting });
-        bar.classList.toggle('is-visible',!heroVis&&!finVis)});
       io.observe(hero); io.observe(fin);
     }
   })();

@@ -1,0 +1,90 @@
+/* Shared header and footer for guide and reference pages (see tools/site_chrome.py).
+   The chrome sits on whatever paper the page uses, so it carries its own ink
+   colours and never sets a background of its own. */
+.sc-header,
+.sc-footer {
+  --sc-ink: oklch(22% 0.035 255);
+  --sc-ink-2: oklch(40% 0.03 255);
+  --sc-rule: oklch(22% 0.035 255 / 13%);
+  --sc-chip: oklch(22% 0.035 255 / 6.5%);
+  --sc-accent: oklch(48% 0.19 255);
+  --sc-width: min(76rem, calc(100% - 3rem));
+  color: var(--sc-ink);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-feature-settings: "ss06";
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+.sc-header a,
+.sc-footer a { color: inherit; }
+.sc-header a:focus-visible,
+.sc-footer a:focus-visible { outline: 2px solid var(--sc-accent); outline-offset: 3px; border-radius: 6px; }
+
+/* Header */
+.sc-header { position: relative; z-index: 30; display: block; margin: 0; padding: 0; border: 0; border-bottom: 1px solid var(--sc-rule); background: transparent; }
+.sc-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1.25rem; width: var(--sc-width); min-height: 4rem; margin: 0 auto; padding: 0; }
+.sc-brand { display: inline-flex; align-items: center; gap: .625rem; margin-right: auto; padding: .25rem 0; font-size: 1.0625rem; font-weight: 700; letter-spacing: -.02em; line-height: 1; text-decoration: none; white-space: nowrap; }
+.sc-mark { display: grid; place-items: center; flex: 0 0 auto; width: 1.75rem; height: 1.75rem; padding: 0; border-radius: .5rem; background: var(--sc-ink); color: oklch(98% 0.01 85); }
+.sc-mark svg { display: block; width: 1.125rem; height: 1.125rem; }
+.sc-brand small { padding: .125rem .5rem; border-radius: .375rem; background: oklch(48% 0.19 255 / 10%); color: var(--sc-accent); font-size: .8125rem; font-weight: 700; letter-spacing: 0; }
+.sc-nav { display: flex; gap: .25rem; margin: 0; padding: 0; border: 0; }
+.sc-nav a { display: inline-flex; align-items: center; min-height: 2.25rem; padding: 0 .75rem; border-radius: .5rem; color: var(--sc-ink-2); font-size: .9375rem; font-weight: 600; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; transition: background-color 140ms ease, color 140ms ease; }
+.sc-nav a:hover { background: var(--sc-chip); color: var(--sc-ink); }
+.sc-nav a[aria-current] { background: var(--sc-chip); color: var(--sc-ink); }
+.sc-end { display: flex; align-items: center; gap: .75rem; }
+.sc-lang { display: inline-flex; align-items: center; gap: .125rem; }
+.sc-lang a { display: inline-flex; align-items: center; min-height: 2.25rem; padding: 0 .5rem; border-radius: .5rem; color: var(--sc-ink-2); font-size: .8125rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.sc-lang a:hover { background: var(--sc-chip); color: var(--sc-ink); }
+.sc-lang a[aria-current] { color: var(--sc-ink); font-weight: 750; }
+.sc-cta { display: inline-flex; align-items: center; min-height: 2.375rem; padding: 0 .9375rem; border-radius: .625rem; background: var(--sc-ink); color: oklch(98% 0.01 85) !important; font-size: .9375rem; font-weight: 650; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; transition: background-color 140ms ease; }
+.sc-cta:hover { background: oklch(32% 0.04 255); }
+
+@media (max-width: 54rem) {
+  /* Row one: brand and the app button. Row two: section links, which scroll
+     sideways instead of wrapping, then the language pair. */
+  .sc-bar { gap: 0 .75rem; min-height: 0; padding-top: .625rem; }
+  .sc-bar::after { content: ""; order: 2; flex-basis: 100%; }
+  .sc-end { display: contents; }
+  .sc-cta { order: 1; min-height: 2.25rem; padding: 0 .75rem; font-size: .875rem; }
+  .sc-nav { order: 3; flex: 1 1 0; min-width: 0; margin: .375rem 0 0 -.625rem; padding: 0 0 .5rem; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.25rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 1.25rem), transparent); }
+  .sc-nav::-webkit-scrollbar { display: none; }
+  .sc-nav a { padding: 0 .625rem; font-size: .875rem; }
+  .sc-lang { order: 4; margin: .375rem -.5rem 0 0; padding-bottom: .5rem; }
+}
+@media (max-width: 21rem) {
+  .sc-name { display: none; }
+}
+
+/* Footer */
+.sc-footer { display: block; margin: 0; padding: 3.5rem 0 2.5rem; border: 0; border-top: 1px solid var(--sc-rule); background: transparent; color: var(--sc-ink-2); font-size: .9375rem; text-align: left; }
+.sc-foot { display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: 2rem; width: var(--sc-width); margin: 0 auto; }
+.sc-foot-brand p { max-width: 30em; margin: .5rem 0 0; }
+.sc-foot-brand .sc-foot-name { margin: 0; color: var(--sc-ink); font-weight: 700; letter-spacing: -.01em; }
+.sc-foot-brand a { text-decoration: underline; text-underline-offset: .2em; }
+.sc-foot-col { display: block; margin: 0; padding: 0; border: 0; }
+.sc-foot-head { margin: 0 0 .5rem; color: var(--sc-ink); font-weight: 700; letter-spacing: -.01em; }
+.sc-foot-col ul { margin: 0; padding: 0; list-style: none; }
+.sc-foot-col li { margin: 0; padding: 0; }
+.sc-foot-col a { display: inline-block; padding: .3125rem 0; text-decoration: none; }
+.sc-foot-col a:hover { color: var(--sc-ink); text-decoration: underline; text-underline-offset: .2em; }
+.sc-foot-legal { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.5rem; width: var(--sc-width); margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--sc-rule); font-size: .875rem; }
+.sc-foot-legal p { margin: 0; }
+.sc-foot-legal .sc-foot-scope { flex: 1 1 18rem; }
+.sc-foot-legal a { text-decoration: underline; text-underline-offset: .2em; }
+
+@media (max-width: 54rem) {
+  .sc-foot { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.5rem; }
+  .sc-foot-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 22rem) {
+  .sc-foot { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sc-nav a, .sc-cta { transition: none; }
+}
+
+/* Site-wide reading rules that every guide shares: no one-word last lines in
+   body copy, balanced headings. Zero specificity, so family styles still win. */
+:where(p, li, dd, figcaption, blockquote) { text-wrap: pretty; }
+:where(h1, h2, h3) { text-wrap: balance; }
+:where(input, textarea)::placeholder { color: oklch(48% 0.02 255); opacity: 1; }
