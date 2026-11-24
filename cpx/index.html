@@ -285,6 +285,88 @@
     .mobile-bar.is-play .store-badge-img { filter: drop-shadow(0 10px 20px rgb(0 0 0 / .35)); }
     @media (max-width: 760px) { .mobile-bar { display: flex; } }
 
+    /* The one scroll scene: the 58-point demo station replayed, with the scroll as its 12-minute
+       clock. Checklist slots fill as the clock runs; one stays empty until 12:00 and turns out to be
+       the blood pressure. Without JS or with reduced motion it is a plain, finished page section. */
+    .film { --late: oklch(56% 0.14 62); --late-bg: oklch(93% 0.08 88); --late-ink: oklch(36% 0.08 60); --pending: oklch(80% 0.012 260); padding: clamp(72px, 13vh, 152px) 0; }
+    .film-intro { text-align: center; }
+    .film-intro h2 { margin: 0 auto; max-width: 13em; }
+    .film-intro .lede { margin: 20px auto 0; }
+    .film-hint { display: none; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0 20px; margin-top: 16px; color: var(--ink-3); font-size: .9375rem; font-weight: 600; }
+    .film-hint a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-2); }
+    .film-hint a:hover { color: var(--ink); }
+    .film-inner { display: grid; gap: clamp(16px, 3.2vh, 32px); max-width: calc(940px + var(--gutter) * 2); padding-top: clamp(40px, 6vh, 64px); }
+    .film-clock { display: flex; justify-content: center; align-items: baseline; gap: 14px; font-variant-numeric: tabular-nums; }
+    .film-time { font-size: min(6rem, max(3.25rem, 2.2rem + 7vw), 13vh); font-weight: 800; letter-spacing: -0.04em; line-height: 1; transition: color .4s var(--ease); }
+    .film-limit { color: var(--ink-3); font-size: clamp(1.0625rem, 1rem + .4vw, 1.375rem); font-weight: 700; white-space: nowrap; }
+    .film-flag { display: none; padding: 3px 10px; border-radius: 999px; background: var(--late-bg); color: var(--late-ink); font-size: .9375rem; font-weight: 700; }
+    .film-bar { height: 4px; border-radius: 2px; background: var(--surface-2); overflow: hidden; }
+    .film-bar i { display: block; height: 100%; background: var(--ink); transform-origin: left center; transition: background-color .4s var(--ease); }
+
+    .film-board { display: grid; gap: 14px; margin: 0; }
+    .film-row { display: grid; grid-template-columns: 5.5em minmax(0, 1fr); gap: 16px; align-items: start; }
+    .film-row dt { padding-top: 9px; color: var(--ink-3); font-size: .9375rem; font-weight: 700; }
+    .film-row dd { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+    .film-chip { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 16px 0 12px; border: 1.5px dashed transparent; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 1rem; font-weight: 600; white-space: nowrap; transition: background-color .45s var(--ease), color .45s var(--ease), border-color .45s var(--ease), opacity .5s var(--ease), transform .6s var(--ease); }
+    .film-chip svg { width: 14px; height: 14px; flex: none; color: var(--say); transition: opacity .45s var(--ease); }
+    .film-chip--part svg { color: var(--late); }
+    .film-chip--part em { color: var(--late-ink); font-style: normal; }
+    .film-chip--miss { border-color: var(--miss); background: oklch(96.5% 0.025 25); color: var(--miss); }
+    .film-chip--miss svg { color: var(--miss); }
+
+    .film-foot { display: grid; gap: 24px; text-align: center; }
+    .film-lines { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .film-line { color: var(--ink-2); font-size: clamp(1.0625rem, .95rem + .6vw, 1.5rem); font-weight: 600; line-height: 1.5; text-wrap: balance; }
+    .film-bubble { display: block; width: fit-content; max-width: 100%; margin: 12px auto 0; padding: 10px 18px 12px; border-radius: 20px 20px 20px 6px; background: var(--surface-2); color: var(--ink); text-align: left; }
+    .film-bubble small { display: block; color: var(--ink-3); font-size: .8125rem; font-weight: 700; }
+    .film-end { display: grid; gap: 24px; }
+    .film-miss { margin: 0 auto; max-width: 30em; color: var(--ink); font-size: clamp(1.125rem, 1rem + .5vw, 1.4375rem); font-weight: 700; line-height: 1.5; text-wrap: balance; }
+    .film-miss strong { color: var(--miss); }
+    .film-say p { margin: 0; }
+    .film-say-label { color: var(--say); font-size: .9375rem; font-weight: 700; }
+    .film-say-line { margin: 6px auto 0 !important; max-width: 20em; font-size: clamp(1.375rem, 1rem + 1.6vw, 2.125rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.35; text-wrap: balance; }
+    .film-say a { display: inline-flex; align-items: center; min-height: 44px; margin-top: 10px; color: var(--accent); font-weight: 700; text-decoration: none; }
+    .film-say a:hover { text-decoration: underline; }
+
+    /* Film mode (added by the script): a tall track with a pinned stage */
+    .film.is-film .film-hint { display: flex; }
+    .film.is-film .film-track { height: 560vh; height: 560svh; }
+    .film.is-film .film-stage { position: sticky; top: 64px; display: grid; align-content: center; height: calc(100vh - 64px); height: calc(100svh - 64px); overflow: hidden; }
+    .film.is-film .film-inner { padding-top: 0; }
+    .film.is-film .film-chip:not(.is-on) { border-color: var(--pending); background: transparent; color: transparent; transform: scale(.96); }
+    .film.is-film .film-chip:not(.is-on) svg, .film.is-film .film-chip:not(.is-on) em { opacity: 0; color: transparent; }
+    .film.is-film.is-end .film-chip:not(.film-chip--miss) { opacity: .38; }
+    .film.is-film .film-chip--miss.is-on { animation: film-strike .9s var(--ease) both; }
+    @keyframes film-strike {
+      0% { transform: scale(.96); box-shadow: 0 0 0 0 oklch(56% 0.19 25 / .35); }
+      40% { transform: scale(1.08); }
+      100% { transform: none; box-shadow: 0 0 0 14px oklch(56% 0.19 25 / 0); }
+    }
+    .film.is-film .film-foot { min-height: 9.5em; }
+    .film.is-film .film-foot > *, .film.is-film .film-lines > *, .film.is-film .film-end > * { grid-area: 1 / 1; }
+    .film.is-film .film-line, .film.is-film .film-end > * { align-self: start; opacity: 0; transform: translateY(10px); filter: blur(6px); visibility: hidden; transition: opacity .2s ease-out, transform .2s ease-out, filter .2s ease-out, visibility 0s .2s; }
+    .film.is-film .film-line.is-on, .film.is-film .film-end > .is-on { opacity: 1; transform: none; filter: none; visibility: visible; transition: opacity .45s var(--ease) .1s, transform .7s var(--ease) .1s, filter .5s var(--ease) .1s, visibility 0s; }
+    .film.is-late .film-time { color: var(--late); }
+    .film.is-late .film-bar i { background: var(--late); }
+    .film.is-late .film-limit > span, .film.is-over .film-limit > span { display: none; }
+    .film.is-late .film-flag, .film.is-over .film-flag { display: inline-block; }
+    .film.is-over .film-flag { background: var(--ink); color: var(--bg); }
+    body.film-pinned .mobile-bar.is-visible { transform: translateY(calc(100% + 24px)); }
+
+    @media (max-width: 640px) {
+      .film-board { gap: 10px; }
+      .film-row { display: flex; flex-wrap: wrap; gap: 6px; }
+      .film-row dt { flex: none; width: 100%; padding: 0; font-size: .8125rem; }
+      .film-row dd { display: contents; }
+      .film-chip { height: 32px; padding: 0 11px 0 9px; font-size: .875rem; }
+      .film.is-film .film-foot { min-height: 10.5em; }
+    }
+    @media (max-width: 640px) and (max-height: 760px) {
+      .film-row dt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+      .film-row { gap: 6px; }
+      .film-row + .film-row { padding-top: 10px; border-top: 1px solid var(--rule); }
+    }
+
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
   </style>
 </head>
@@ -344,6 +426,66 @@
       <p><span class="quiet">책으로는 무엇을 물어야 하는지 알아요.</span> 12분 안에 실제로 묻는 연습은 상대가 있어야 해요.</p>
       <p class="after">스터디 친구가 없는 밤에도, 같은 증상을 열 번째 돌 때도, 환자는 대본대로 대답하고 채점은 같은 기준으로 해요.</p>
     </div>
+  </section>
+
+  <section class="film is-over" id="film" aria-labelledby="film-title">
+    <div class="wrap film-intro">
+      <h2 id="film-title">58점짜리 12분을 다시 돌려 볼게요.</h2>
+      <p class="lede">시연으로 입실한 ‘가슴이 두근거려요’ 스테이션, 32세 여자 환자. 꽤 그럴듯하게 진료했는데, 결과표는 58점이었어요.</p>
+      <p class="film-hint"><span>스크롤하는 만큼 12분이 흘러요</span><a href="#film-after">장면 건너뛰기</a></p>
+    </div>
+    <div class="film-track">
+      <div class="film-stage">
+        <div class="wrap film-inner">
+          <div class="film-clock" role="img" aria-label="진료 시간 12분 종료">
+            <span class="film-time" aria-hidden="true">12:00</span>
+            <span class="film-limit" aria-hidden="true"><span>/ 12:00</span><b class="film-flag">종료</b></span>
+          </div>
+          <div class="film-bar" aria-hidden="true"><i></i></div>
+          <dl class="film-board" aria-label="이 진료에서 한 것과 하지 않은 것">
+            <div class="film-row"><dt>병력청취</dt><dd>
+              <span class="film-chip" data-at="1"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>목의 박동감</span>
+              <span class="film-chip" data-at="1"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>호흡곤란</span>
+              <span class="film-chip" data-at="1"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>카페인</span>
+              <span class="film-chip" data-at="1"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>갑상샘 증상</span>
+              <span class="film-chip" data-at="2"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>가족력</span>
+              <span class="film-chip" data-at="2"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>환자의 걱정</span>
+              <span class="film-chip film-chip--part" data-at="3"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>중간 요약 <em>부분</em></span>
+            </dd></div>
+            <div class="film-row"><dt>신체진찰</dt><dd>
+              <span class="film-chip film-chip--miss" data-at="7"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 4.5l7 7m0-7l-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>혈압 측정 안 함</span>
+              <span class="film-chip" data-at="4"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>갑상샘 촉진</span>
+              <span class="film-chip" data-at="4"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>손떨림</span>
+              <span class="film-chip" data-at="4"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>맥박</span>
+            </dd></div>
+            <div class="film-row"><dt>계획</dt><dd>
+              <span class="film-chip" data-at="5"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>심전도</span>
+              <span class="film-chip" data-at="5"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>갑상샘 검사</span>
+            </dd></div>
+          </dl>
+          <div class="film-foot">
+            <ol class="film-lines">
+              <li class="film-line" data-at="0" data-only>목에서 맥박이 쿵쿵 뛴다는 환자와 12분이 시작돼요.</li>
+              <li class="film-line" data-at="1" data-only>주 증상부터. 숨찬 정도, 카페인, 갑상샘 증상까지 물었어요.</li>
+              <li class="film-line" data-at="2" data-only>가족력, 그리고 환자가 무엇을 걱정하는지도요.</li>
+              <li class="film-line" data-at="3" data-only>중간 요약에 환자가 하지 않은 말을 넣자, 환자가 바로잡았어요.<span class="film-bubble"><small>환자</small>“커피 마신 날 더 심하다고 한 건 아닌데요.”</span></li>
+              <li class="film-line" data-at="4" data-only>진찰은 말로. 갑상샘을 만지고, 손떨림을 보고, 맥을 짚었어요.</li>
+              <li class="film-line" data-at="5" data-only>심전도와 갑상샘 검사를 계획했어요.</li>
+              <li class="film-line" data-at="6" data-only>12분 종료. 그럴듯한 진료였어요. 한 칸만 빼고요.</li>
+            </ol>
+            <div class="film-end">
+              <p class="film-miss" data-at="7" data-only>결과표는 58점. 비어 있던 한 칸은 <strong>혈압</strong>이었어요. 146/52의 넓은 맥압이 대동맥판막 폐쇄부전증의 단서였어요.</p>
+              <div class="film-say" data-at="8">
+                <p class="film-say-label">이렇게 말해 보세요</p>
+                <p class="film-say-line">“먼저 혈압을 재 보겠습니다. 소매를 걷어 주시겠어요?”</p>
+                <a href="../kmle-cpx/station-walkthrough/">이 스테이션 전체 보기 →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span id="film-after"></span>
   </section>
 
   <section class="chapter center" id="videos" aria-labelledby="videos-title" hidden>
@@ -637,6 +779,65 @@
       });
       io.observe(hero); io.observe(fin);
     }
+  })();
+
+  /*
+   * The scroll scene (#film): scrolling through its track runs the station's 12-minute clock.
+   * The markup is the finished state; this only adds the film when motion is welcome.
+   * BEATS are the scroll progress (0–1) where each beat starts; CLOCK maps progress to 00:00–12:00.
+   */
+  (function(){
+    var film = document.getElementById('film');
+    if (!film || !('IntersectionObserver' in window)) return;
+    var motion = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : null;
+    if (motion && motion.matches) return;
+
+    var BEATS = [0, .08, .2, .32, .44, .56, .7, .8, .9];
+    var CLOCK = [.03, .68];
+    var track = film.querySelector('.film-track'), stage = film.querySelector('.film-stage');
+    var time = film.querySelector('.film-time'), flag = film.querySelector('.film-flag'), fill = film.querySelector('.film-bar i');
+    var steps = [].slice.call(film.querySelectorAll('[data-at]')).map(function(el){
+      return { el: el, at: +el.getAttribute('data-at'), only: el.hasAttribute('data-only') };
+    });
+    var beat = -1, sec = -1, raf = 0, pinned = false;
+
+    film.classList.add('is-film');
+
+    function draw(){
+      raf = 0;
+      var top = parseFloat(getComputedStyle(stage).top) || 0;
+      var r = track.getBoundingClientRect(), span = r.height - stage.offsetHeight;
+      var p = span > 0 ? Math.min(1, Math.max(0, (top - r.top) / span)) : 1;
+
+      var s = Math.round(Math.min(1, Math.max(0, (p - CLOCK[0]) / (CLOCK[1] - CLOCK[0]))) * 720);
+      if (s !== sec) {
+        sec = s;
+        time.textContent = ('0' + Math.floor(s / 60)).slice(-2) + ':' + ('0' + s % 60).slice(-2);
+        fill.style.transform = 'scaleX(' + (s / 720) + ')';
+        film.classList.toggle('is-late', s >= 600 && s < 720);
+        film.classList.toggle('is-over', s >= 720);
+        flag.textContent = s >= 720 ? '종료' : '종료 2분 전';
+      }
+
+      var b = 0;
+      while (b + 1 < BEATS.length && p >= BEATS[b + 1]) b++;
+      if (b !== beat) {
+        beat = b;
+        steps.forEach(function(st){ st.el.classList.toggle('is-on', st.only ? b === st.at : b >= st.at); });
+        film.classList.toggle('is-end', b >= 7);
+      }
+
+      var pin = r.top <= top + 1 && r.bottom >= top + stage.offsetHeight - 1;
+      if (pin !== pinned) { pinned = pin; document.body.classList.toggle('film-pinned', pin); }
+    }
+    function queue(){ if (!raf) raf = requestAnimationFrame(draw); }
+
+    new IntersectionObserver(function(es){
+      if (es[0].isIntersecting) { window.addEventListener('scroll', queue, {passive:true}); queue(); }
+      else { window.removeEventListener('scroll', queue); queue(); }
+    }).observe(track);
+    window.addEventListener('resize', queue);
+    draw();
   })();
 </script>
 </body>
